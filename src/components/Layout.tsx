@@ -3,11 +3,13 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '../lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
+import NoviculeInfoModal from './NoviculeInfoModal';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [isNoviculeModalOpen, setIsNoviculeModalOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -304,7 +306,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   <li><Link to="/vsync" className="hover:text-white transition-colors">V-sync</Link></li>
                   <li><Link to="/haal-chaal" className="hover:text-white transition-colors">Haal-Chaal Pravartak 1.0</Link></li>
                   <li><Link to="/haal-chaal-pravartak" className="hover:text-white transition-colors">Haal-Chaal Pravartak</Link></li>
-                  <li><Link to="/innovation" className="hover:text-white transition-colors">Novicule-TA</Link></li>
+                  <li>
+                    <button 
+                      type="button" 
+                      onClick={() => setIsNoviculeModalOpen(true)} 
+                      className="hover:text-white transition-colors cursor-pointer text-left focus:outline-none"
+                    >
+                      Novicule-TA
+                    </button>
+                  </li>
                 </ul>
               </div>
               
@@ -399,6 +409,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </footer>
+
+      <NoviculeInfoModal 
+        isOpen={isNoviculeModalOpen} 
+        onClose={() => setIsNoviculeModalOpen(false)} 
+      />
     </div>
   );
 }

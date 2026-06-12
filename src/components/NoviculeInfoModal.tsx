@@ -170,7 +170,7 @@ export default function NoviculeInfoModal({ isOpen, onClose }: NoviculeInfoModal
   return createPortal(
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed left-0 right-0 top-[68px] md:top-[80px] h-[calc(100vh-68px)] md:h-[calc(100vh-80px)] z-[45] bg-slate-50 overflow-hidden flex flex-col w-full border-t border-slate-200/65 shadow-2xl transition-all duration-500 min-h-0">
+        <div className="fixed inset-0 h-screen z-[100] bg-slate-50 overflow-hidden flex flex-col w-full border-t border-slate-200/65 shadow-2xl transition-all duration-500 min-h-0">
           {/* Main Full-Screen Container */}
           <motion.div
             initial={{ opacity: 0, y: '50px' }}

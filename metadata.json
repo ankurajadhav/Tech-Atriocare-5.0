@@ -1,0 +1,10 @@
+{
+  "name": "Tech AtrioCare",
+  "description": "Premium healthcare technology platform powering the future of medical innovation, rehabilitation, and AI-driven diagnostics.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

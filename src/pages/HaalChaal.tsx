@@ -1,0 +1,871 @@
+import { motion, AnimatePresence } from 'motion/react';
+import { Wind, Trophy, Timer, Mic, CheckCircle2, QrCode, ArrowRight, ShieldCheck, Activity, Cpu, ArrowUpRight, X, Mail, User, Phone, Check, TrendingUp, Target, Microscope, BookOpen, Users, ChevronDown, Plus, Minus, Play } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { cn } from '../lib/utils';
+import { useState, useEffect } from 'react';
+
+// Using the high-speed Google CDN Cache link provided by the user for Mrs. Parinita Sinha's profile photograph
+const parinitaSinhaImg = "https://lh3.googleusercontent.com/d/14ztaodQTfxZkyF_hKLr9YK-daeeuG0HH";
+
+const EmbeddedVideo = ({ 
+  src, 
+  title, 
+  aspect = "aspect-[9/16]", 
+  className 
+}: { 
+  src: string; 
+  title: string; 
+  thumbnailUrl?: string; 
+  aspect?: string; 
+  className?: string; 
+ }) => {
+  return (
+    <div 
+      className={cn(
+        "group relative z-10 w-full overflow-hidden rounded-[32px] bg-black border-[6px] md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center", 
+        aspect, 
+        className
+      )}
+    >
+      <iframe
+        src={src}
+        title={title}
+        className="w-full h-full border-0 absolute inset-0"
+        allow="autoplay; encrypted-media"
+        allowFullScreen
+      />
+    </div>
+  );
+};
+
+const FaqItem = ({ 
+  q, 
+  a, 
+  isOpen, 
+  onToggle 
+}: { 
+  q: string; 
+  a: string; 
+  isOpen: boolean; 
+  onToggle: () => void; 
+}) => {
+  return (
+    <div className="bg-white rounded-[20px] border border-slate-100 shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md flex flex-col h-fit">
+      <button
+        onClick={onToggle}
+        className="w-full text-left p-6 md:p-8 flex items-start justify-between gap-4 hover:bg-slate-50/40 transition-colors cursor-pointer"
+        aria-expanded={isOpen}
+      >
+        <span className="text-lg md:text-xl font-black text-slate-900 tracking-tight leading-snug">{q}</span>
+        <div className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-1">
+          {isOpen ? (
+            <Minus className="w-5 h-5 text-blue-600 stroke-[3px]" />
+          ) : (
+            <Plus className="w-5 h-5 text-blue-600 stroke-[3px]" />
+          )}
+        </div>
+      </button>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+          >
+            <div className="px-6 pb-6 md:px-8 md:pb-8 border-t border-slate-50 pt-5 text-slate-600 font-semibold leading-relaxed text-base">
+              {a}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+export default function HaalChaal() {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Better countdown timer
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 14); // 14 days from now
+
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate.getTime() - now;
+
+      setTimeLeft({
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000)
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const handleRegisterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setIsSubmitted(false);
+    }, 3000);
+  };
+
+  return (
+    <div className="min-h-screen bg-white pt-24 pb-32">
+      {/* Hero Section */}
+      <section className="max-w-7xl mx-auto px-4 pt-12 pb-24 relative overflow-hidden">
+        {/* Background blobs */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-50/50 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 -z-10" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-teal-50/50 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2 -z-10" />
+
+        <div className="flex flex-col lg:flex-row items-start gap-12 pt-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex-1 space-y-8"
+          >
+            <div className="space-y-6">
+              <div className="inline-flex items-center px-8 py-3 bg-white border border-blue-100 rounded-full shadow-sm">
+                <h1 className="text-2xl md:text-3xl font-black text-[#2563EB] tracking-tighter">
+                  Haal-Chaal Pravartak 1.0
+                </h1>
+              </div>
+              
+              <div className="ml-2">
+                <span className="inline-block px-4 py-1 bg-blue-50 text-[#2563EB] text-[10px] font-black rounded-full border border-blue-100 uppercase tracking-widest">
+                  Premier Immunity Challenge: The Breathwork Revolution
+                </span>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h2 className="text-4xl md:text-6xl font-black text-[#006064] leading-[0.85] tracking-tighter uppercase font-display">
+                Optimize <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0097A7] to-[#3B82F6]">
+                  Breath.
+                </span> <br />
+                Fortify <br />
+                <span className="text-brand-blue">Immunity.</span> <br />
+                Win Big
+              </h2>
+            </div>
+
+            <p className="text-slate-600 text-xl font-medium leading-relaxed max-w-xl">
+              Revolutionary acoustic screening: track your respiratory health with just 7 seconds of humming. Join our premier immunity challenge and claim your rewards.
+              <br /><span className="text-[#0097A7] font-black mt-6 inline-block px-8 py-3 bg-teal-50 border border-teal-100 rounded-2xl uppercase tracking-widest text-sm shadow-sm">Participation fees is INR 500/-</span>
+            </p>
+
+            <div className="bg-white border border-slate-100 rounded-[48px] p-8 shadow-[0_20px_50px_rgba(0,0,0,0.05)] space-y-6 max-w-md relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50/50 blur-2xl rounded-full" />
+                <div className="space-y-1 text-center">
+                  <h4 className="font-bold text-slate-700 text-sm">Online Registration Window Closes In</h4>
+                  <p className="text-[#0097A7] text-xs font-black uppercase tracking-widest mt-2">Participation fees is INR 500/-</p>
+                </div>
+                <div className="grid grid-cols-4 gap-3">
+                  {[
+                    { label: 'Days', value: timeLeft.days },
+                    { label: 'Hours', value: timeLeft.hours },
+                    { label: 'Minutes', value: timeLeft.minutes },
+                    { label: 'Seconds', value: timeLeft.seconds }
+                  ].map((unit) => (
+                    <div key={unit.label} className="text-center space-y-2">
+                      <div className="bg-gradient-to-b from-[#0097A7] to-[#3B82F6] text-white py-4 rounded-xl font-black text-2xl shadow-lg font-display">
+                        {unit.value.toString().padStart(2, '0')}
+                      </div>
+                      <p className="text-[10px] font-bold text-slate-400 capitalize tracking-wide">{unit.label}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="space-y-4 pt-2">
+                  <Link 
+                    to="/challenge-terms"
+                    className="group w-full py-5 bg-[#0097A7] text-white rounded-2xl font-black text-lg shadow-xl shadow-[#0097A7]/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex flex-col items-center justify-center gap-1 leading-tight"
+                  >
+                    <span>Register for Challenge</span>
+                    <span className="text-[10px] opacity-80 font-medium tracking-tight">Click here to agree to terms & participate</span>
+                  </Link>
+                  <Link 
+                    to="/challenge-terms" 
+                    className="block text-[11px] text-center text-slate-400 font-bold leading-relaxed px-4 hover:text-brand-teal transition-colors"
+                  >
+                    Click here to agree to our terms and conditions and participate in the challenge
+                  </Link>
+                </div>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, x: 20 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex-1 relative w-full"
+          >
+            <div className="bg-white p-3 rounded-[40px] shadow-[0_40px_100px_rgba(0,0,0,0.1)] border border-slate-100">
+               <div className="rounded-[32px] overflow-hidden">
+                  <img 
+                    src="https://lh3.googleusercontent.com/d/13TEduYr7AtBxsvJPP6TNedvtiv0cAxqe" 
+                    alt="Haal-Chaal Pravartak Challenge"
+                    className="w-full h-auto object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+               </div>
+            </div>
+            
+            {/* Poster Info Simulation Overlay */}
+            <div className="absolute -bottom-8 -right-4 bg-blue-600 text-white p-6 rounded-3xl shadow-xl space-y-1 transform rotate-3 z-20">
+               <p className="text-xs font-black uppercase tracking-widest opacity-80">Powered By</p>
+               <p className="font-black text-lg">Tech AtrioCare</p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Winners & Feedback Section */}
+      <section className="py-24 bg-slate-50 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-200 to-transparent" />
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16 space-y-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full font-bold text-xs border border-blue-100 uppercase tracking-widest">
+              Smarter Breathing Challenge
+            </div>
+            <h2 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-[#0097A7] uppercase tracking-tighter font-display">
+              Challenge Winners
+            </h2>
+            <p className="text-slate-500 font-medium max-w-2xl mx-auto">
+              Celebrating the participants who demonstrated exceptional consistency and improvement during the Haal-Chaal Pravartak Challenge.
+            </p>
+          </div>
+
+          <div className="max-w-6xl mx-auto">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-white p-10 md:p-16 rounded-[48px] border border-slate-100 shadow-2xl flex flex-col lg:flex-row items-stretch gap-12 lg:gap-16 relative overflow-hidden"
+            >
+              {/* Winner Details Left */}
+              <div className="relative z-10 flex-1 space-y-10 flex flex-col justify-center">
+                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-[8px] border-slate-50 p-1 relative shadow-xl bg-white mx-auto lg:mx-0">
+                   <div className="absolute -top-3 -left-3 w-12 h-12 rounded-full overflow-hidden shadow-lg flex items-center justify-center z-12 border-4 border-white bg-amber-50">
+                     <Trophy className="w-5 h-5 text-amber-500 fill-amber-100/50" />
+                   </div>
+                  <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center font-black bg-teal-50 border border-teal-100">
+                    <img 
+                      src={parinitaSinhaImg} 
+                      alt="Mrs. Parinita Sinha" 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-4 text-center lg:text-left">
+                   <h3 className="text-4xl md:text-5xl font-black text-[#006064] tracking-tighter font-display uppercase">Mrs. Parinita Sinha</h3>
+                   <div className="inline-block px-6 py-2 bg-brand-teal/10 text-brand-teal text-xs font-black rounded-full border border-brand-teal/20 uppercase tracking-[0.3em] leading-none">
+                     Level 4 Winner
+                   </div>
+                   <p className="text-slate-500 text-lg font-medium leading-relaxed italic pt-4">
+                     "Achieved the highest overall score through perfect adherence and exceptional airway patency improvement."
+                   </p>
+                </div>
+
+                <div className="bg-slate-50 rounded-[32px] p-6 border border-slate-100 mt-auto text-center lg:text-left w-full">
+                   <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.3em] mb-2 leading-none">Challenge Reward</p>
+                   <div className="text-4xl md:text-5xl font-black font-display tracking-tight text-brand-teal">
+                    ₹500
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-slate-100 text-center lg:text-left">
+                  <p className="text-lg md:text-xl font-bold leading-relaxed tracking-tight italic text-[#006064] font-display">
+                    "हाल-चाल प्रवर्तक एक पारदर्शी, तथ्यपूर्ण और तकनीकियुक्त परियोजना है, जिससे मुझे स्पष्ट स्वास्थ्य लाभ मिला। <br />
+                    मेरी शुभकामना है कि यह आम जनों के लिये भी लाभदायक सिद्ध हो।"
+                  </p>
+                </div>
+              </div>
+
+              {/* Video Right */}
+              <div className="w-full lg:w-[400px] xl:w-[450px] shrink-0 flex items-center justify-center">
+                <EmbeddedVideo 
+                  src="https://drive.google.com/file/d/1Z9UZQhUhqkYGfMONidA1uIyibhUaA7J6/preview" 
+                  title="Mrs. Parinita Sinha Testimony"
+                  thumbnailUrl={parinitaSinhaImg}
+                  aspect="aspect-[9/16]"
+                  className="w-full h-full"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-24 bg-white relative">
+        <div className="max-w-7xl mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {[
+                { label: "Humming voice-notes analysed", value: "~4000", icon: <Mic className="w-6 h-6" /> },
+                { label: "Haal-Chaal Pravartak reports generated so far", value: "410", icon: <Activity className="w-6 h-6" /> },
+                { label: "Pilot cohorts validation so far", value: "8", icon: <CheckCircle2 className="w-6 h-6" /> },
+                { label: "Average duration of user retention", value: "~1 month", icon: <Timer className="w-6 h-6" /> },
+                { label: "Patient cases during pilot studies in which our tech outperformed PFT results", value: "~19%", icon: <TrendingUp className="w-6 h-6" /> },
+                { label: "Mean accuracy in Heart Rate estimation validated with pulse oximeter", value: "89.33%", icon: <ShieldCheck className="w-6 h-6" /> }
+              ].map((stat, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group p-10 rounded-[40px] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl transition-all duration-500 space-y-6"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 flex items-center justify-center text-blue-600 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
+                  {stat.icon}
+                </div>
+                <div className="space-y-2">
+                  <div className="text-4xl font-black text-slate-800 tracking-tight">
+                    {stat.value}
+                  </div>
+                  <p className="text-slate-500 font-bold text-xs uppercase tracking-widest leading-relaxed">{stat.label}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            whileHover={{ y: -6, scale: 1.01, boxShadow: "0 25px 50px -12px rgba(0, 96, 100, 0.25)" }}
+            transition={{ type: "spring", stiffness: 100, damping: 15 }}
+            className="mt-16 bg-gradient-to-br from-brand-blue to-slate-900 rounded-[48px] p-10 md:p-14 text-white border border-brand-blue/50 relative overflow-hidden shadow-2xl select-none group"
+          >
+            {/* Ambient Animated Floating Orbs for High-Tech Feel */}
+            <motion.div 
+              animate={{ 
+                x: [0, 40, -20, 0], 
+                y: [0, -30, 20, 0],
+                scale: [1, 1.15, 0.9, 1]
+              }}
+              transition={{ 
+                duration: 12, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+              className="absolute -top-12 -right-12 w-96 h-96 bg-brand-teal/20 blur-3xl rounded-full pointer-events-none" 
+            />
+            <motion.div 
+              animate={{ 
+                x: [0, -30, 30, 0], 
+                y: [0, 40, -30, 0],
+                scale: [1, 0.9, 1.1, 1]
+              }}
+              transition={{ 
+                duration: 15, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+              className="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-500/10 blur-3xl rounded-full pointer-events-none" 
+            />
+
+            <div className="relative flex flex-col md:flex-row items-center gap-10 md:gap-14">
+               {/* Watermark Percentage with Scroll-triggered Parallax entry */}
+               <motion.div 
+                 initial={{ opacity: 0, scale: 0.8, x: -50 }}
+                 whileInView={{ opacity: 0.12, scale: 1, x: 0 }}
+                 viewport={{ once: true }}
+                 transition={{ delay: 0.2, duration: 0.8 }}
+                 className="text-8xl md:text-[10rem] font-black text-brand-teal pointer-events-none absolute left-0 top-0 leading-none select-none tracking-tight opacity-10"
+               >
+                 94.83%
+               </motion.div>
+
+               {/* Left: Pulsating Radar Icon */}
+               <div className="relative z-10 shrink-0">
+                  <motion.div 
+                    animate={{ scale: [1, 1.15, 1] }}
+                    transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                    className="absolute inset-0 rounded-full bg-brand-teal/20 blur-md pointer-events-none"
+                  />
+                  <div className="w-24 h-24 rounded-full border-[6px] border-white/10 bg-brand-teal shadow-xl shadow-teal-900/15 flex items-center justify-center relative z-10 hover:rotate-12 transition-transform duration-300">
+                     <Activity className="w-11 h-11 text-white animate-pulse" />
+                  </div>
+               </div>
+
+               {/* Right: Content with Staggered Entrance Animations */}
+               <div className="relative z-10 space-y-4 text-center md:text-left flex-1">
+                  <motion.p 
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1, duration: 0.6 }}
+                    className="text-xl sm:text-2xl md:text-3xl lg:text-3.5xl font-black tracking-tight leading-tight text-white font-display"
+                  >
+                    94.83% of Accuracy in Heart Rate estimation through our technology when demonstrated before experts/mentor in IIT Delhi
+                  </motion.p>
+                  
+                  <motion.p 
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                    className="text-slate-300 font-medium leading-relaxed text-sm md:text-base md:max-w-4xl"
+                  >
+                    Demonstrated and verified using advanced proprietary signal processing algorithms under <span className="text-brand-teal-light font-black uppercase tracking-wider bg-white/5 py-1 px-3 rounded-lg border border-white/10 inline-block mt-1">FITT, IIT Delhi</span>.
+                  </motion.p>
+               </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center max-w-4xl mx-auto mb-20 space-y-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-[1.1] uppercase">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#006064] to-[#00838F]">From unseen risks</span> <span className="text-brand-teal">to clear insights</span> <span className="text-[#006064]">—</span> <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-teal-500">redefine your heart and lung wellness</span>
+            </h2>
+            <p className="text-slate-500 text-lg font-medium">
+              Experience scientifically-backed benefits through a structured breathing challenge and proprietary immune system optimization.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Enhanced Airway Health",
+                desc: "Monitor the changes in your airway health, improvise it with detailed insights and potentially benefitting individuals with respiratory conditions.",
+                icon: <Wind className="w-10 h-10" />,
+                emoji: "🫁",
+                color: "teal"
+              },
+              {
+                title: "Optimized Immunity",
+                desc: "Optimize your immune system with proprietary immune system optimization kit that utilizes Nitric Oxide level augmentation technology.",
+                icon: <ShieldCheck className="w-10 h-10" />,
+                emoji: "🛡️",
+                color: "blue"
+              },
+              {
+                title: "Stress and Anxiety Reduction",
+                desc: "Studies have shown that humming can decrease cortisol levels, heart rate, and blood pressure, indicating relaxation and reduced stress.",
+                icon: <Activity className="w-10 h-10" />,
+                emoji: "🧘‍♀️",
+                color: "indigo"
+              }
+            ].map((benefit, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="group p-12 rounded-[56px] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl transition-all duration-500 space-y-8 relative overflow-hidden"
+              >
+                <div className="absolute top-6 right-8 text-4xl opacity-20 group-hover:opacity-100 transition-opacity">
+                   {benefit.emoji}
+                </div>
+                <div className={cn(
+                  "w-20 h-20 rounded-3xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-6",
+                  benefit.color === 'teal' ? "bg-teal-100 text-teal-600" : 
+                  benefit.color === 'blue' ? "bg-blue-100 text-blue-600" : 
+                  "bg-indigo-100 text-indigo-600"
+                )}>
+                  {benefit.icon}
+                </div>
+                <div className="space-y-4">
+                  <h3 className="text-2xl font-black text-[#006064] tracking-tight group-hover:text-brand-teal transition-colors leading-tight font-display uppercase">{benefit.title}</h3>
+                  <p className="text-slate-500 font-medium leading-relaxed">{benefit.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What Our Community Says Section */}
+      <section className="py-24 bg-slate-50 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-200 to-transparent" />
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-4xl md:text-6xl font-black text-[#006064] tracking-tighter uppercase font-display">
+              What Our Community Says
+            </h2>
+            <p className="text-slate-500 font-medium text-lg md:text-xl max-w-xl mx-auto">
+              Real feedback from the participants of the pilot cohort.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            {/* Mrs. Parinita Sinha */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex flex-col items-center space-y-6 w-full"
+            >
+              <div className="w-full max-w-[380px] flex justify-center">
+                <EmbeddedVideo 
+                  src="https://drive.google.com/file/d/1Z9UZQhUhqkYGfMONidA1uIyibhUaA7J6/preview" 
+                  title="Mrs. Parinita Sinha Testimony"
+                  thumbnailUrl={parinitaSinhaImg}
+                  aspect="aspect-[9/16]"
+                  className="w-full"
+                />
+              </div>
+              <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed italic text-center max-w-[380px]">
+                Haal Chaal Pravartak 1.0 participant, <strong className="text-slate-900 font-extrabold">Mrs. Parinita Sinha</strong>, renowned Hindi poet and science enthusiast.
+              </p>
+            </motion.div>
+
+            {/* Mr. Anil Gupta */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15 }}
+              className="flex flex-col items-center space-y-6 w-full"
+            >
+              <div className="w-full max-w-[380px] aspect-[9/16] rounded-[32px] overflow-hidden bg-white border-8 border-slate-50 shadow-2xl relative flex items-center justify-center">
+                <img 
+                  className="w-full h-full object-cover"
+                  src="https://lh3.googleusercontent.com/d/1kWDKWggY6tX_-FYO3vwXDrVuKCE9d0Se" 
+                  alt="Mr. Anil Gupta's Feedback on Tech AtrioCare"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed italic text-center max-w-[380px]">
+                One of the participants in the pilot cohort, <strong className="text-slate-900 font-extrabold">Mr. Anil Gupta</strong>, renowned Indian scholar in the area of grassroots innovations, founder of the Honey Bee Network, retired as a full-time professor at the Indian Institute of Management, Ahmedabad.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Simple Steps Section (The 7-Day Protocol) */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-24 space-y-6">
+            <motion.div 
+               initial={{ opacity: 0, scale: 0.9 }}
+               whileInView={{ opacity: 1, scale: 1 }}
+               viewport={{ once: true }}
+               className="inline-block px-6 py-2 bg-[#0097A7]/10 text-[#0097A7] text-[10px] font-black rounded-full border border-[#0097A7]/20 uppercase tracking-[0.3em] shadow-sm"
+            >
+              The 7-Day Journey 📋
+            </motion.div>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-[#006064] tracking-tighter leading-tight uppercase font-display">
+              Simple steps to <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0097A7] to-[#3B82F6]">lasting health transformation</span>
+            </h2>
+          </div>
+
+          {/* Simple Steps Tutorial Video */}
+          <motion.div 
+            id="tutorial-video"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto mb-32 -mt-8 px-4"
+          >
+            <div className="w-full flex justify-center">
+              <EmbeddedVideo 
+                src="https://drive.google.com/file/d/1voO2RQTl3ATIN5BzgUES2OUB-rE3cab3/preview" 
+                title="Simple Steps Tutorial"
+                thumbnailUrl="https://lh3.googleusercontent.com/d/13TEduYr7AtBxsvJPP6TNedvtiv0cAxqe"
+                aspect="aspect-video"
+                className="w-full max-w-4xl"
+              />
+            </div>
+            <p className="text-center mt-6 text-slate-400 font-bold uppercase tracking-widest text-xs">
+               Watch the tutorial to understand the 7-day journey
+            </p>
+          </motion.div>
+
+          <div className="flex flex-col relative w-full pt-10">
+            {/* The vertical timeline line */}
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-[#00D4E5]/40" />
+            
+            {[
+              {
+                step: "01",
+                title: "Enroll into the challenge",
+                image: "https://lh3.googleusercontent.com/d/1hVJRrEOy6oc1AN4aZEbONAs3QPyjznXi"
+              },
+              {
+                step: "02",
+                title: "Fill out the registration form",
+                image: "https://lh3.googleusercontent.com/d/1esaxiDLzLkvWAYkcYdvdCYySrUjpJtye"
+              },
+              {
+                step: "03",
+                title: "Upload the participation fee screenshot",
+                image: "https://lh3.googleusercontent.com/d/1De4qA1IvKTP7g-VA-nlN70alMjQg6MoX"
+              },
+              {
+                step: "04",
+                title: "Scan the WhatsApp QR code",
+                image: "https://lh3.googleusercontent.com/d/1M0G1SnJVpNqYmLDk1kC471dX4lrclFs3"
+              },
+              {
+                step: "05",
+                title: "Send a 'Hi' and 'okay' and then start submitting your 7-second humming voice notes for a week during the Challenge",
+                image: "https://c8.alamy.com/comp/2GKT0EE/hand-of-woman-holding-smartphones-with-whatsapp-chat-screen-double-check-concept-vector-illustration-flat-colors-2GKT0EE.jpg"
+              }
+            ].map((item, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                className="flex flex-col md:flex-row min-h-[300px] w-full"
+              >
+                {/* Left Side: Step Text */}
+                <div className="w-full md:w-1/2 md:pr-20 py-12 md:py-20 flex flex-col justify-center">
+                  <div className="bg-[#E5F9FC] text-[#0B5CBA] font-bold text-sm px-5 py-2 rounded-full w-fit mb-6">
+                    Step {item.step}
+                  </div>
+                  <h3 className="text-3xl md:text-[36px] font-bold text-[#006064] leading-tight">
+                    {item.title}
+                  </h3>
+                </div>
+                
+                {/* Right Side: Image */}
+                <div className="w-full md:w-1/2 md:pl-20 py-8 md:py-20 flex flex-col justify-center border-t border-cyan-100 md:border-t-0">
+                  <div className="w-full bg-white shadow-[0_10px_40px_rgba(0,0,0,0.06)] rounded-[20px] overflow-hidden border border-slate-100">
+                    <img src={item.image} alt={item.title} className="w-full h-auto object-cover" referrerPolicy="no-referrer" />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Frequently Asked Questions</h2>
+            <p className="text-slate-500 font-normal max-w-3xl mx-auto text-base md:text-lg">
+              Everything you need to know about Haal-Chaal Pravartak 1.0 — India's First Immunity Challenge for Smarter Breathing.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            {[
+              {
+                q: "What is Haal-Chaal Pravartak 1.0?",
+                a: "It is India's First Immunity Challenge for Smarter Breathing, using research-backed voice signal processing technology."
+              },
+              {
+                q: "Who can participate in the Challenge?",
+                a: "The challenge is open to individuals residing in India who are 18 years or older."
+              },
+              {
+                q: "How do I register for the Challenge?",
+                a: "Simple: Fill the form, pay the INR 500 participation fee, and connect with us on WhatsApp."
+              },
+              {
+                q: "When does my Challenge start?",
+                a: "Immediately after successful registration and WhatsApp confirmation."
+              },
+              {
+                q: "What do I need to do each day?",
+                a: "Submit 3 short voice notes (7s each) and stay connected with the community hub."
+              },
+              {
+                q: "Where should I upload or send my daily status video?",
+                a: "Via the designated WhatsApp community hub as per the daily prompts."
+              },
+              {
+                q: "How are winners selected?",
+                a: "Based on adherence to the protocol and scientifically validated lung health improvement metrics."
+              },
+              {
+                q: "What prizes can I win?",
+                a: "Up to ₹50,000 for top rankers across different levels."
+              },
+              {
+                q: "Are there referral rewards?",
+                a: "Yes, contact support for details on our ambassador program."
+              },
+              {
+                q: "Are prizes taxable?",
+                a: "Yes, prizes exceeding ₹10,000 are subject to TDS as per Indian Income Tax laws."
+              },
+              {
+                q: "What happens if I miss a submission?",
+                a: "Missing a submission reduces your score but doesn't instantly disqualify you. 100% adherence is recommended."
+              },
+              {
+                q: "Can I be disqualified?",
+                a: "Yes, for submitting fake data, fraudulent screenshots, or abusive behavior."
+              },
+              {
+                q: "Will my data be used publicly?",
+                a: "Only with your consent for marketing and research purposes, as outlined in the T&C."
+              },
+              {
+                q: "How is my data handled?",
+                a: "Handled securely and used for digital health research and wellness profiling under strict privacy protocols."
+              },
+              {
+                q: "Is this a medical program?",
+                a: "No, it's a wellness/immunity tracking challenge. Not a substitute for clinical medical advice."
+              },
+              {
+                q: "Will the Challenge guarantee improvements?",
+                a: "While science supports humming, individual results vary. It is not a guaranteed medical cure."
+              },
+              {
+                q: "Who can I contact for support?",
+                a: "Support is available via WhatsApp and email at contact@techatriocare.com."
+              },
+              {
+                q: "Can these Terms change?",
+                a: "Yes, they may be updated to reflect protocol improvements or regulatory changes."
+              }
+            ].map((faq, i) => (
+              <FaqItem 
+                key={i}
+                q={faq.q}
+                a={faq.a}
+                isOpen={openFaq === i}
+                onToggle={() => setOpenFaq(openFaq === i ? null : i)}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom CTA Section */}
+      <section className="py-12 md:py-24 bg-white relative overflow-hidden">
+        <div className="max-w-[1400px] w-full px-4 md:px-8 mx-auto relative z-10">
+          <div className="bg-gradient-to-br from-[#004D54] to-[#007785] rounded-[48px] md:rounded-[64px] p-8 sm:p-16 md:p-24 lg:p-32 text-white relative overflow-hidden text-center space-y-10 shadow-2xl">
+            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#0097A7]/10 rounded-full blur-[100px] -translate-x-1/3 translate-y-1/3 pointer-events-none" />
+            
+            <div className="relative z-10 max-w-4xl mx-auto space-y-8">
+              <div className="inline-flex items-center gap-2 px-6 py-2 bg-white/10 text-[#00D2D3] rounded-full font-black text-[10px] sm:text-xs border border-white/10 tracking-[0.3em] uppercase">
+                🚀 Start Your Transformation
+              </div>
+              <h2 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.9] uppercase font-display">
+                Your health <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D2D3] to-[#48DBFB]">has a story</span>
+              </h2>
+              <p className="text-white/70 text-lg sm:text-xl md:text-2xl font-medium max-w-2xl mx-auto italic">
+                "Uncover the secrets of your heart and lungs in just 7 days."
+              </p>
+            </div>
+
+            <div className="relative z-10 flex flex-col items-center gap-8 md:gap-10 mt-8 md:mt-12">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full">
+                <Link 
+                  to="/challenge-terms"
+                  className="px-12 md:px-16 py-6 md:py-8 bg-white text-[#001D21] rounded-[32px] md:rounded-[40px] font-black text-xl md:text-2xl shadow-2xl hover:scale-105 transition-all w-full sm:w-auto text-center"
+                >
+                  Register Now
+                </Link>
+              </div>
+              <Link to="/challenge-terms" className="block text-xs sm:text-sm text-white/60 font-bold uppercase tracking-[0.2em] hover:text-white transition-colors text-center max-w-lg mx-auto">
+                Click here to agree to our terms and conditions and participate in the challenge
+              </Link>
+              <p className="text-2xl sm:text-3xl font-black text-white font-display tracking-widest uppercase text-center">Participation Fees is INR 500/-</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* Symptoms & High Risk Section */}
+      <section className="py-24 bg-slate-50 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex flex-col lg:flex-row gap-20 items-center">
+            <div className="flex-1 space-y-12">
+              <div className="space-y-6">
+                <h2 className="text-4xl md:text-5xl font-black text-[#006064] tracking-tighter leading-tight uppercase">
+                  Are you at risk from <br />
+                  <span className="text-[#0097A7]">hidden respiratory issues?</span>
+                </h2>
+                <p className="text-slate-500 text-lg font-medium leading-relaxed">
+                  Identify signals early. Our technology is specially designed for those who need it the most.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-6">
+                {[
+                  { title: "Chronic Smokers", desc: "Monitor lung function impact and airway health changes regularly." },
+                  { title: "Polluted Cities", desc: "For residents in AQI extremes who face daily environmental stress." },
+                  { title: "Post-Viral Recovery", desc: "Track respiratory biomarkers during recovery from viral infections." },
+                  { title: "Pre-existing Issues", desc: "Designed for individuals with known cardiovascular or pulmonary conditions." }
+                ].map((item, i) => (
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="p-8 bg-white rounded-3xl border border-slate-100 shadow-md space-y-3 hover:border-[#0097A7]/40 transition-colors"
+                  >
+                    <h4 className="font-bold text-xl text-[#006064]">{item.title}</h4>
+                    <p className="text-slate-600 text-sm md:text-base leading-relaxed">{item.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+                <div className="flex-1">
+                  <div className="bg-gradient-to-br from-[#004D54] to-[#007785] p-12 rounded-[56px] text-white space-y-8 relative overflow-hidden shadow-2xl">
+                     <div className="absolute top-0 right-0 w-32 h-32 bg-[#00D2D3]/10 blur-3xl rounded-full" />
+                     <h3 className="text-3xl font-extrabold italic font-display text-white/95">Common Symptoms to Watch:</h3>
+                     <ul className="space-y-4">
+                       {[
+                         "Persistent short-term breathlessness",
+                         "Frequent wheezing or chest tightness",
+                         "Chronic or recurring dry cough",
+                         "Sudden fatigue during physical activity",
+                         "Anxiety related to breathing patterns"
+                       ].map((symptom, i) => (
+                         <li key={i} className="flex items-start gap-4 group">
+                           <div className="w-7 h-7 rounded-full bg-[#00D2D3]/20 flex items-center justify-center shrink-0 group-hover:bg-[#00D2D3]/40 transition-colors mt-0.5">
+                             <div className="w-2.5 h-2.5 rounded-full bg-[#00D2D3]" />
+                           </div>
+                           <span className="text-white/95 text-lg md:text-xl font-medium leading-normal group-hover:text-white transition-colors">{symptom}</span>
+                         </li>
+                       ))}
+                     </ul>
+                     <div className="pt-6 border-t border-white/10">
+                       <p className="text-xs text-white/40 leading-relaxed font-medium">
+                         *These metrics are for wellness screening and immunity tracking. Always consult a medical professional for clinical diagnosis.
+                       </p>
+                     </div>
+                  </div>
+                </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Terms Modal removed and moved to its own page */}
+      
+      {/* Footer Info */}
+      <section className="py-24 text-center space-y-8 bg-white">
+          <div className="flex flex-col items-center justify-center gap-4 text-[#006D77] font-black">
+             <ShieldCheck className="w-10 h-10 animate-pulse" />
+             <div className="text-xs md:text-sm tracking-[0.3em] uppercase">INDIA'S FIRST DIGITAL GYM FOR HEART & LUNG WELLNESS</div>
+          </div>
+          <div className="h-px w-32 bg-slate-100 mx-auto" />
+          <p className="text-slate-400 font-black text-xs uppercase tracking-[0.4em]">
+            POWERED BY: TECH ATRIOCARE PRIVATE LIMITED
+          </p>
+      </section>
+    </div>
+  );
+}

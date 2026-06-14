@@ -37,33 +37,36 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   const handleMobileNavClick = (href: string, e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
-    setMobileMenuOpen(false);
     
-    setTimeout(() => {
-      if (href.startsWith('/#')) {
-        const elementId = href.replace('/#', '');
-        if (location.pathname === '/') {
-          const element = document.getElementById(elementId);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-          window.history.pushState(null, '', href);
-          setActiveSection(elementId);
-        } else {
-          navigate(href);
+    // 1. Scroll or navigate synchronously to provide instant feedback on single touch
+    if (href.startsWith('/#')) {
+      const elementId = href.replace('/#', '');
+      if (location.pathname === '/') {
+        const element = document.getElementById(elementId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-      } else if (href === '/') {
-        if (location.pathname === '/') {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          window.history.pushState(null, '', '/');
-          setActiveSection('home');
-        } else {
-          navigate('/');
-        }
+        window.history.pushState(null, '', href);
+        setActiveSection(elementId);
       } else {
         navigate(href);
       }
-    }, 150);
+    } else if (href === '/') {
+      if (location.pathname === '/') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.history.pushState(null, '', '/');
+        setActiveSection('home');
+      } else {
+        navigate('/');
+      }
+    } else {
+      navigate(href);
+    }
+
+    // 2. Delay closing the mobile menu slightly to avoid breaking touch sequences or causing click-through
+    setTimeout(() => {
+      setMobileMenuOpen(false);
+    }, 250);
   };
 
   useEffect(() => {
@@ -233,8 +236,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           <button 
-            className="lg:hidden p-2 text-slate-800 hover:text-brand-teal"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 text-slate-800 hover:text-brand-teal focus:outline-none"
+            onClick={(e) => {
+              e.preventDefault();
+              setMobileMenuOpen(!mobileMenuOpen);
+            }}
           >
             {mobileMenuOpen ? <X /> : <Menu />}
           </button>
@@ -265,7 +271,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={baseClasses}
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={() => {
+                      setTimeout(() => {
+                        setMobileMenuOpen(false);
+                      }, 250);
+                    }}
                   >
                     <span>{link.name}</span>
                     <ArrowUpRight className="w-3.5 h-3.5 text-slate-400" />
@@ -287,10 +297,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 className="bg-brand-teal text-white font-display font-black uppercase tracking-widest text-[10px] py-3.5 px-6 rounded-xl text-center shadow-lg shadow-brand-teal/15 transition-all hover:bg-brand-blue"
                 onClick={(e) => {
                   e.preventDefault();
-                  setMobileMenuOpen(false);
+                  navigate('/checkup');
                   setTimeout(() => {
-                    navigate('/checkup');
-                  }, 150);
+                    setMobileMenuOpen(false);
+                  }, 250);
                 }}
               >
                 1-Min Digital Check-Up

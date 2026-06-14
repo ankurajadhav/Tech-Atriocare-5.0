@@ -146,7 +146,7 @@ export default function HaalChaal() {
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-4xl md:text-6xl font-black text-[#006064] leading-[0.85] tracking-tighter uppercase font-display">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-[#006064] leading-[0.85] tracking-tighter uppercase font-display">
                 Optimize <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0097A7] to-[#3B82F6]">
                   Breath.

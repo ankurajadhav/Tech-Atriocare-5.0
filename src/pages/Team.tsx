@@ -120,7 +120,7 @@ export default function Team() {
               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-black">The Human Algorithm</span>
             </div>
             
-            <h1 className="text-5xl md:text-8xl font-black font-display text-[#006064] tracking-tighter leading-[0.8] uppercase">
+            <h1 className="text-3xl sm:text-5xl md:text-8xl font-black font-display text-[#006064] tracking-tighter leading-[0.8] uppercase">
               Visionaries <br /> behind <span className="text-brand-teal">Tech AtrioCare</span>
             </h1>
             
@@ -316,7 +316,7 @@ export default function Team() {
       <section className="py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="space-y-4 mb-20 text-center">
-             <h2 className="text-5xl md:text-8xl font-black font-display text-[#006064] uppercase tracking-tighter">Life at Tech AtrioCare</h2>
+             <h2 className="text-3xl sm:text-5xl md:text-8xl font-black font-display text-[#006064] uppercase tracking-tighter">Life at Tech AtrioCare</h2>
              <p className="text-black font-black text-xs uppercase tracking-[0.4em]">Chronicles of Innovation & Synergy</p>
              <div className="w-24 h-1.5 bg-brand-teal mx-auto rounded-full mt-8" />
           </div>

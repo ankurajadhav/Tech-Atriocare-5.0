@@ -293,8 +293,8 @@ export default function Home() {
               scale: { duration: 60, repeat: Infinity, ease: "linear" },
               opacity: { duration: 2 },
             }}
-            className="absolute inset-0 bg-cover mix-blend-multiply opacity-[0.88]"
-            style={{ backgroundPosition: "right 5% center", backgroundImage: `url(${futuristicLungHero})` }}
+            className="absolute inset-0 bg-cover mix-blend-multiply opacity-[0.88] bg-right sm:bg-[position:right_5%_center]"
+            style={{ backgroundImage: `url(${futuristicLungHero})` }}
           />
 
           {/* Core Cinematic Overlays to provide immaculate contrast and negative space */}
@@ -495,20 +495,21 @@ export default function Home() {
                   <span className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#00E5FF] shadow-[0_0_10px_#00E5FF]" />
                 </motion.div>
 
-                {/* 5. Center Glassmorphic container with actual logo image */}
+                {/* 5. Natural Frameless container with actual logo image in natural view */}
                 <motion.div
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.08 }}
                   transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                  className="w-44 h-44 md:w-52 md:h-52 rounded-[36px] bg-white border border-sky-100 shadow-[0_20px_60px_rgba(14,165,233,0.18)] p-5 md:p-7 flex items-center justify-center overflow-hidden relative z-10 select-none group"
+                  className="w-44 h-44 md:w-52 md:h-52 flex items-center justify-center relative z-10 select-none group"
                 >
-                  {/* Internal ambient back blur */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-sky-50 to-white opacity-40 pointer-events-none" />
-                  
-                  {/* Actual high-quality logo image */}
+                  {/* Elegant soft white glowing backdrop to define a clean base, preventing any discolored or blackish tints under multiply blend mode */}
+                  <div className="absolute w-36 h-36 bg-white rounded-full blur-xl opacity-95 pointer-events-none z-0" />
+
+                  {/* Actual high-quality logo image in natural view with blend mode and drop shadow */}
                   <img
-                    src="https://lh3.googleusercontent.com/d/1wXu_Vb5F6ihb6wEcXWhDYkfNjz28mPDA"
+                    src="https://www.techatriocare.com/logo_gif.gif"
                     alt="Tech AtrioCare Logo"
-                    className="w-full h-full object-contain relative z-10 transition-transform duration-700 ease-out group-hover:scale-110"
+                    className="w-full h-full object-contain relative z-10 transition-transform duration-700 ease-out group-hover:scale-110 drop-shadow-[0_12px_32px_rgba(0,96,100,0.18)]"
+                    style={{ mixBlendMode: 'multiply' }}
                     referrerPolicy="no-referrer"
                   />
                 </motion.div>
@@ -524,7 +525,7 @@ export default function Home() {
               className="mb-8 relative group cursor-default"
             >
               <div className="relative w-full">
-                <h1 className="block text-5xl md:text-7xl font-black text-[#006064] uppercase tracking-tighter font-display leading-[0.9] group-hover:text-brand-teal transition-all duration-700">
+                <h1 className="block text-3xl min-[380px]:text-4xl sm:text-5xl md:text-7xl font-black text-[#006064] uppercase tracking-tighter font-display leading-[0.9] group-hover:text-brand-teal transition-all duration-700">
                   <span className="text-brand-teal relative inline-block">
                     Tech AtrioCare
                     <motion.div
@@ -538,12 +539,37 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Clean & Professional Slogan (Standard high-legibility design) */}
-            <p className="text-slate-700 text-xl md:text-2xl font-serif italic leading-relaxed text-left mb-10 max-w-2xl text-shadow-sm tracking-wide">
-              <span className="text-brand-blue font-semibold not-italic text-2xl md:text-3xl mr-1">"</span>
-              In the atrium of innovation, research and development craft the wonders of tomorrow.
-              <span className="text-brand-blue font-semibold not-italic text-2xl md:text-3xl ml-1">"</span>
-            </p>
+            {/* Advanced & Premium Typography Slogan Block */}
+            <div className="relative pl-8 sm:pl-10 py-4 sm:py-5 pr-6 text-left mb-6 max-w-2xl select-none group">
+              {/* Premium sleek dual-layer accent line left-side */}
+              <div className="absolute left-0 top-0 bottom-0 w-[4.5px] bg-gradient-to-b from-[#006064] via-brand-teal to-transparent rounded-full opacity-90 transition-all duration-300 group-hover:shadow-[0_0_12px_rgba(20,184,166,0.6)]" />
+              <div className="absolute left-[9px] top-6 bottom-6 w-[1.5px] bg-gradient-to-b from-[#006064]/20 via-slate-200 to-transparent opacity-80" />
+              
+              {/* Core luxury pulsing crown dot */}
+              <div className="absolute -left-[3px] top-0 w-2.5 h-2.5 rounded-full bg-brand-teal shadow-[0_0_12px_rgba(20,229,255,0.8)] scale-90 group-hover:scale-110 transition-transform duration-500" />
+              
+              {/* Ultra-soft elegant radial color backlights (teal-to-cyan) */}
+              <div className="absolute -left-12 top-1/2 -translate-y-1/2 w-80 h-40 bg-gradient-to-r from-[#006064]/5 via-brand-teal/8 to-transparent rounded-full blur-3xl pointer-events-none group-hover:from-[#006064]/10 transition-all duration-700" />
+
+              {/* Large, super elegant, light quote-mark watermark */}
+              <span className="absolute -top-7 -left-1 font-serif text-8xl text-[#006064]/5 opacity-60 pointer-events-none select-none tracking-tighter leading-none group-hover:text-brand-teal/10 transition-colors duration-500">
+                “
+              </span>
+
+              <p className="relative z-10 text-slate-700 text-lg sm:text-xl md:text-2xl font-sans font-light leading-relaxed sm:leading-relaxed tracking-wide">
+                <span className="text-slate-500 font-light">In the atrium of </span>
+                <span className="font-extrabold tracking-tight bg-gradient-to-r from-[#004d40] via-[#006064] to-brand-teal bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300 inline-block pr-1">
+                  innovation
+                </span>
+                <span className="text-slate-500 font-light">, </span>
+                <span className="text-slate-600 font-medium">research and development</span>{" "}
+                <span className="relative inline-block pr-1 font-serif italic text-[#006064] font-medium tracking-tight whitespace-nowrap">
+                  craft the wonders of tomorrow
+                  <span className="absolute left-0 right-0 bottom-1 h-[2px] bg-gradient-to-r from-brand-teal/40 via-[#006064]/30 to-transparent pointer-events-none rounded-full" />
+                </span>
+                .
+              </p>
+            </div>
 
             <div className="flex flex-col sm:flex-row items-start justify-start gap-6 w-full">
               <Link
@@ -612,9 +638,9 @@ export default function Home() {
                 whileHover={{ scale: 1.03 }}
                 className="inline-flex items-center gap-3 px-4.5 py-1.5 bg-white/95 border border-sky-100/60 rounded-full shadow-[0_12px_28px_rgba(14,165,233,0.05)] backdrop-blur-md"
               >
-                <div className="w-11 h-11 rounded-xl bg-white flex items-center justify-center p-1 border border-sky-100 shadow-inner overflow-hidden shrink-0">
+                <div className="w-11 h-11 flex items-center justify-center overflow-hidden shrink-0">
                   <img
-                    src="https://lh3.googleusercontent.com/d/1wXu_Vb5F6ihb6wEcXWhDYkfNjz28mPDA"
+                    src="https://www.techatriocare.com/logo.webp"
                     alt="AtrioCare Shield"
                     className="w-full h-full object-contain"
                     referrerPolicy="no-referrer"
@@ -943,7 +969,7 @@ export default function Home() {
                   Product Ecosystem
                 </span>
               </motion.div>
-              <h2 className="text-5xl md:text-7xl font-bold font-display text-[#006064] leading-tight mb-6 tracking-tight">
+              <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold font-display text-[#006064] leading-tight mb-6 tracking-tight">
                 Advanced <span className="gradient-text">Heart</span> <br />{" "}
                 and Lung
               </h2>
@@ -2439,16 +2465,16 @@ export default function Home() {
             <motion.div
               whileHover={{ scale: 1.1, rotate: 360 }}
               transition={{ duration: 0.8, type: "spring" }}
-              className="w-24 h-24 md:w-32 md:h-32 rounded-[24px] mb-8 flex items-center justify-center bg-white shadow-[0_15px_30px_rgba(0,0,0,0.18)] border border-white/20 select-none overflow-hidden"
+              className="w-24 h-24 md:w-32 md:h-32 mb-8 flex items-center justify-center select-none overflow-hidden"
             >
               <img
-                src="https://lh3.googleusercontent.com/d/1wXu_Vb5F6ihb6wEcXWhDYkfNjz28mPDA"
+                src="https://www.techatriocare.com/logo.webp"
                 alt="AtrioCare Logo"
-                className="w-full h-full object-contain p-2"
+                className="w-full h-full object-contain"
                 referrerPolicy="no-referrer"
               />
             </motion.div>
-            <h2 className="text-5xl md:text-8xl font-bold font-display mb-8 tracking-tighter leading-none">
+            <h2 className="text-3xl sm:text-5xl md:text-8xl font-bold font-display mb-8 tracking-tighter leading-none">
               Catalyzing the <br /> Future of Health
             </h2>
             <p className="text-white/80 text-lg md:text-xl mb-12 font-medium">

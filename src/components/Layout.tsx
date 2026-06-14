@@ -1,4 +1,4 @@
-import { Menu, X, Wind, Activity, LayoutDashboard, Sparkles, Database, Mail, ArrowUpRight, Instagram, Linkedin, MapPin } from 'lucide-react';
+import { Menu, X, Wind, Activity, LayoutDashboard, Sparkles, Database, Mail, ArrowUpRight, Instagram, Linkedin, MapPin, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '../lib/utils';
@@ -11,6 +11,51 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [activeSection, setActiveSection] = useState('home');
   const [isNoviculeModalOpen, setIsNoviculeModalOpen] = useState(false);
   const location = useLocation();
+
+  const handleNavClick = (href: string, e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    if (href.startsWith('/#')) {
+      const elementId = href.replace('/#', '');
+      if (location.pathname === '/') {
+        e.preventDefault();
+        const element = document.getElementById(elementId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        window.history.pushState(null, '', href);
+        setActiveSection(elementId);
+      }
+    } else if (href === '/') {
+      if (location.pathname === '/') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.history.pushState(null, '', '/');
+        setActiveSection('home');
+      }
+    }
+  };
+
+  const handleMobileNavClick = (href: string, e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    setMobileMenuOpen(false);
+    if (href.startsWith('/#')) {
+      const elementId = href.replace('/#', '');
+      if (location.pathname === '/') {
+        e.preventDefault();
+        const element = document.getElementById(elementId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        window.history.pushState(null, '', href);
+        setActiveSection(elementId);
+      }
+    } else if (href === '/') {
+      if (location.pathname === '/') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.history.pushState(null, '', '/');
+        setActiveSection('home');
+      }
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -106,15 +151,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         )}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between lg:justify-start gap-1 lg:gap-12 w-full">
-          <Link to="/" className="flex items-center gap-3.5 group shrink-0">
+          <Link to="/" className="flex items-center gap-3 group shrink-0">
             <div className={cn(
-              "w-13 h-13 rounded-xl flex items-center justify-center bg-white shadow-[0_4px_20px_rgba(14,165,233,0.1)] border border-sky-100 transition-all duration-500 overflow-hidden",
+              "w-14 h-14 md:w-16 md:h-16 flex items-center justify-center transition-all duration-500 select-none",
               isScrolled || location.pathname !== '/' ? "scale-100" : "scale-105"
             )}>
               <img 
-                src="https://lh3.googleusercontent.com/d/1wXu_Vb5F6ihb6wEcXWhDYkfNjz28mPDA" 
+                src="https://www.techatriocare.com/logo.webp" 
                 alt="Tech AtrioCare Logo" 
-                className="w-full h-full object-contain p-1 group-hover:scale-110 transition-transform duration-500"
+                className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
                 referrerPolicy="no-referrer"
               />
             </div>
@@ -132,23 +177,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="hidden lg:flex items-center gap-1.5 xl:gap-3">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id || (location.pathname === link.href);
-              return link.href.startsWith('/#') ? (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className={cn(
-                    "text-[11px] xl:text-[13px] font-black uppercase tracking-widest transition-all py-2 px-2.5 xl:px-3.5 rounded-full relative",
-                    isActive 
-                      ? "text-cyan-800 bg-sky-500/10 border border-sky-500/20 shadow-[0_4px_12px_rgba(14,165,233,0.08)] scale-105" 
-                      : "text-slate-800 hover:text-brand-teal hover:bg-white/45 border border-transparent"
-                  )}
-                >
-                  {link.name}
-                </a>
-              ) : (
+              return (
                 <Link
                   key={link.name}
                   to={link.href}
+                  onClick={(e) => handleNavClick(link.href, e)}
                   className={cn(
                     "text-[11px] xl:text-[13px] font-black uppercase tracking-widest transition-all py-2 px-2.5 xl:px-3.5 rounded-full relative",
                     isActive
@@ -207,35 +240,45 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               exit={{ opacity: 0, y: -20 }}
               className="lg:hidden absolute top-full left-0 right-0 bg-white/95 border-b border-slate-200/80 p-6 shadow-2xl flex flex-col gap-4 backdrop-blur-2xl"
             >
-              {navLinks.map((link) => (
-                link.href.startsWith('/#') || link.href.startsWith('http') ? (
+              {navLinks.map((link) => {
+                const isExternal = link.href.startsWith('http');
+                const isLinkActive = activeSection === link.id || (location.pathname === link.href);
+                const baseClasses = cn(
+                  "font-display font-black uppercase tracking-widest text-[11px] sm:text-xs py-3 px-4 rounded-xl transition-all flex items-center justify-between border",
+                  isLinkActive
+                    ? "text-[#006064] bg-[#e0f2fe]/50 border-sky-200/65 shadow-[0_4px_12px_rgba(14,165,233,0.04)]"
+                    : "text-slate-800 hover:text-brand-teal hover:bg-slate-50 border-transparent"
+                );
+                return isExternal ? (
                   <a
                     key={link.name}
                     href={link.href}
-                    target={link.href.startsWith('http') ? "_blank" : undefined}
-                    rel={link.href.startsWith('http') ? "noopener noreferrer" : undefined}
-                    className="text-slate-800 font-bold px-4 py-2.5 text-lg hover:text-brand-teal transition-colors hover:bg-slate-50 rounded-xl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={baseClasses}
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {link.name}
+                    <span>{link.name}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-slate-400" />
                   </a>
                 ) : (
                   <Link
                     key={link.name}
                     to={link.href}
-                    className="text-slate-800 font-bold px-4 py-2.5 text-lg hover:text-brand-teal transition-colors hover:bg-slate-50 rounded-xl"
-                    onClick={() => setMobileMenuOpen(false)}
+                    className={baseClasses}
+                    onClick={(e) => handleMobileNavClick(link.href, e)}
                   >
-                    {link.name}
+                    <span>{link.name}</span>
+                    <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
                   </Link>
-                )
-              ))}
+                );
+              })}
               <Link 
                 to="/checkup"
-                className="bg-brand-teal text-white px-6 py-4 rounded-xl text-center font-bold text-lg shadow-lg shadow-brand-teal/20"
+                className="bg-brand-teal text-white font-display font-black uppercase tracking-widest text-[10px] py-3.5 px-6 rounded-xl text-center shadow-lg shadow-brand-teal/15 transition-all hover:bg-brand-blue"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                1-min Digital Check-Up
+                1-Min Digital Check-Up
               </Link>
             </motion.div>
           )}
@@ -252,11 +295,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="bg-white py-6 mb-16 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white border border-slate-200 shadow-sm rounded-xl flex items-center justify-center overflow-hidden">
+              <div className="w-10 h-10 flex items-center justify-center overflow-hidden">
                 <img 
-                  src="https://lh3.googleusercontent.com/d/1wXu_Vb5F6ihb6wEcXWhDYkfNjz28mPDA" 
+                  src="https://www.techatriocare.com/logo.webp" 
                   alt="Tech AtrioCare Logo" 
-                  className="w-full h-full object-contain p-1"
+                  className="w-full h-full object-contain"
                   referrerPolicy="no-referrer"
                 />
               </div>

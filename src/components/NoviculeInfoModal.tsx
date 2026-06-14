@@ -170,7 +170,7 @@ export default function NoviculeInfoModal({ isOpen, onClose }: NoviculeInfoModal
   return createPortal(
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 h-screen z-[100] bg-slate-50 overflow-hidden flex flex-col w-full border-t border-slate-200/65 shadow-2xl transition-all duration-500 min-h-0">
+        <div className="fixed inset-0 z-[100] bg-slate-50 overflow-hidden flex flex-col w-full border-t border-slate-200/65 shadow-2xl transition-all duration-500 min-h-0">
           {/* Main Full-Screen Container */}
           <motion.div
             initial={{ opacity: 0, y: '50px' }}
@@ -183,7 +183,7 @@ export default function NoviculeInfoModal({ isOpen, onClose }: NoviculeInfoModal
             {/* Top Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-3 right-3 sm:top-5 sm:right-6 z-[10000] p-2 rounded-xl bg-white/20 backdrop-blur-md border border-white/20 text-white hover:text-slate-900 hover:bg-white hover:border-transparent shadow-md transition-all cursor-pointer flex items-center gap-1.5 px-3 shadow-black/5 text-xs font-black uppercase tracking-wider"
+              className="absolute top-3 right-3 sm:top-5 sm:right-6 z-[10000] p-2 rounded-xl bg-white/20 backdrop-blur-md border border-white/20 text-white hover:text-slate-900 hover:bg-white hover:border-transparent shadow-md transition-all cursor-pointer flex items-center gap-1.5 px-2.5 sm:px-3 shadow-black/5 text-xs font-black uppercase tracking-wider"
               title="Close Panel and Back"
               id="novicule-modal-close-btn"
             >
@@ -199,7 +199,7 @@ export default function NoviculeInfoModal({ isOpen, onClose }: NoviculeInfoModal
               
               {/* Harmonized container ensuring perfect left alignment of product info & tabs with main body contents */}
               <div className="max-w-6xl mx-auto w-full relative z-10">
-                <div className="flex flex-row items-center gap-4 sm:gap-6 pr-10 sm:pr-32">
+                <div className="flex flex-row items-center gap-4 sm:gap-6 pr-12 sm:pr-32">
                   <div className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-22 md:h-22 bg-white rounded-2xl overflow-hidden shadow-md shrink-0 border border-white/20">
                     <img 
                       src="https://lh3.googleusercontent.com/d/1hDSPUhi5jzwhw1_23GtqYx-bngafO8y5" 
@@ -255,9 +255,24 @@ export default function NoviculeInfoModal({ isOpen, onClose }: NoviculeInfoModal
                         />
                       )}
                       {tab === 'overview' && 'Overview'}
-                      {tab === 'ingredients' && 'Ingredients Matrix'}
-                      {tab === 'mechanism' && 'How it Works'}
-                      {tab === 'amr' && 'AMR Fight (Science)'}
+                      {tab === 'ingredients' && (
+                        <>
+                          <span className="sm:hidden">Ingredients</span>
+                          <span className="hidden sm:inline">Ingredients Matrix</span>
+                        </>
+                      )}
+                      {tab === 'mechanism' && (
+                        <>
+                          <span className="sm:hidden">Mechanism</span>
+                          <span className="hidden sm:inline">How It Works</span>
+                        </>
+                      )}
+                      {tab === 'amr' && (
+                        <>
+                          <span className="sm:hidden">AMR Science</span>
+                          <span className="hidden sm:inline">AMR Fight (Science)</span>
+                        </>
+                      )}
                     </button>
                   ))}
                 </div>
@@ -303,7 +318,7 @@ export default function NoviculeInfoModal({ isOpen, onClose }: NoviculeInfoModal
                           </div>
                           
                           <div className="border-l-4 border-rose-500 pl-4 py-1.5 my-4 bg-rose-50/20 rounded-r-xl">
-                            <p className="text-slate-850 font-bold text-base md:text-md italic tracking-tight leading-relaxed">
+                            <p className="text-slate-850 font-bold text-base md:text-base italic tracking-tight leading-relaxed">
                               "True cardiopulmonary recovery begins at the host cell level, not through chemical pathogen aggression."
                             </p>
                           </div>
@@ -430,6 +445,29 @@ export default function NoviculeInfoModal({ isOpen, onClose }: NoviculeInfoModal
                           </div>
                         </div>
                       </div>
+                    </div>
+
+                    {/* Secondary Mobile Friendly Purchase Bar */}
+                    <div className="bg-gradient-to-br from-[#f0f9ff] to-sky-50/55 rounded-3xl p-6 sm:p-8 border border-sky-100 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 hover:shadow-md transition-all duration-300 mt-12 mb-4">
+                      <div className="space-y-2 text-left w-full md:w-auto">
+                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-blue bg-blue-50 px-3 py-1 rounded-full inline-block">
+                          Primary Wellness Precursor
+                        </div>
+                        <h4 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight leading-none uppercase">
+                          Bring Home NOVICULE-TA Today
+                        </h4>
+                        <p className="text-slate-600 text-xs sm:text-sm font-semibold max-w-xl leading-relaxed">
+                          Secure your premium gift for heart and lung wellness. Authentically stored and shipped by TATA 1mg Healthcare Services.
+                        </p>
+                      </div>
+                      <a 
+                        href="https://www.1mg.com/otc/novicule-ta-a-premium-gift-for-heart-lung-wellness-sachet-5-gm-each-orange-sugar-free-otc1059138?srsltid=AfmBOorGTJdADAsQFMzJwo3W8g-MptzPJCgOtA1b0tCwayTkkbpJdHcA&wpsrc=Google+Organic+Search" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="w-full md:w-auto px-8 py-4 bg-brand-blue hover:bg-brand-teal text-white font-black uppercase tracking-widest rounded-2xl text-center transition-all shadow-lg shadow-brand-blue/15 hover:shadow-brand-teal/20 text-xs flex items-center justify-center gap-2.5 cursor-pointer shrink-0"
+                      >
+                        🛒 Buy on TATA 1mg <ArrowRight className="w-4 h-4" />
+                      </a>
                     </div>
                   </motion.div>
                 )}
@@ -793,10 +831,10 @@ export default function NoviculeInfoModal({ isOpen, onClose }: NoviculeInfoModal
           </div>
 
             {/* Bottom Sachet Purchase Button bar */}
-            <div className="bg-white border-t border-slate-200 px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4 shrink-0">
+            <div className="bg-white border-t border-slate-200 px-4 py-3 sm:px-8 sm:py-5 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 shrink-0 pb-[calc(1rem+env(safe-area-inset-bottom,0px))] sm:pb-5">
               <div className="flex items-center gap-3">
-                <Info className="w-5 h-5 text-slate-400" />
-                <span className="text-xs font-semibold text-slate-500 leading-normal">
+                <Info className="w-5 h-5 text-slate-400 shrink-0" />
+                <span className="text-[10px] sm:text-xs font-semibold text-slate-500 leading-normal">
                   Novicule-TA is a premier nutraceutical formulation. Sugar-free and orange flavored.
                 </span>
               </div>
@@ -804,7 +842,7 @@ export default function NoviculeInfoModal({ isOpen, onClose }: NoviculeInfoModal
                 href="https://www.1mg.com/otc/novicule-ta-a-premium-gift-for-heart-lung-wellness-sachet-5-gm-each-orange-sugar-free-otc1059138?srsltid=AfmBOorGTJdADAsQFMzJwo3W8g-MptzPJCgOtA1b0tCwayTkkbpJdHcA&wpsrc=Google+Organic+Search" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="w-full sm:w-auto px-8 py-3 bg-brand-blue text-white font-bold rounded-2xl text-center hover:bg-brand-teal transition-all shadow-lg shadow-brand-blue/15 hover:shadow-brand-teal/20 text-sm flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3 bg-brand-blue text-white font-bold rounded-2xl text-center hover:bg-brand-teal transition-all shadow-lg shadow-brand-blue/15 hover:shadow-brand-teal/20 text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer"
                 id="novicule-buy-now-btn-footer"
               >
                 Buy on TATA 1mg <ArrowRight className="w-4 h-4" />

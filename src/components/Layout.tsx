@@ -1,6 +1,6 @@
 import { Menu, X, Wind, Activity, LayoutDashboard, Sparkles, Database, Mail, ArrowUpRight, Instagram, Linkedin, MapPin, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '../lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
 import NoviculeInfoModal from './NoviculeInfoModal';
@@ -11,6 +11,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [activeSection, setActiveSection] = useState('home');
   const [isNoviculeModalOpen, setIsNoviculeModalOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const handleNavClick = (href: string, e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (href.startsWith('/#')) {
@@ -35,26 +36,34 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   };
 
   const handleMobileNavClick = (href: string, e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
     setMobileMenuOpen(false);
-    if (href.startsWith('/#')) {
-      const elementId = href.replace('/#', '');
-      if (location.pathname === '/') {
-        e.preventDefault();
-        const element = document.getElementById(elementId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    
+    setTimeout(() => {
+      if (href.startsWith('/#')) {
+        const elementId = href.replace('/#', '');
+        if (location.pathname === '/') {
+          const element = document.getElementById(elementId);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+          window.history.pushState(null, '', href);
+          setActiveSection(elementId);
+        } else {
+          navigate(href);
         }
-        window.history.pushState(null, '', href);
-        setActiveSection(elementId);
+      } else if (href === '/') {
+        if (location.pathname === '/') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          window.history.pushState(null, '', '/');
+          setActiveSection('home');
+        } else {
+          navigate('/');
+        }
+      } else {
+        navigate(href);
       }
-    } else if (href === '/') {
-      if (location.pathname === '/') {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        window.history.pushState(null, '', '/');
-        setActiveSection('home');
-      }
-    }
+    }, 150);
   };
 
   useEffect(() => {
@@ -276,7 +285,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <Link 
                 to="/checkup"
                 className="bg-brand-teal text-white font-display font-black uppercase tracking-widest text-[10px] py-3.5 px-6 rounded-xl text-center shadow-lg shadow-brand-teal/15 transition-all hover:bg-brand-blue"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setMobileMenuOpen(false);
+                  setTimeout(() => {
+                    navigate('/checkup');
+                  }, 150);
+                }}
               >
                 1-Min Digital Check-Up
               </Link>

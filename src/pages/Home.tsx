@@ -293,7 +293,7 @@ export default function Home() {
               scale: { duration: 60, repeat: Infinity, ease: "linear" },
               opacity: { duration: 2 },
             }}
-            className="absolute inset-0 bg-cover mix-blend-multiply opacity-[0.88] bg-right sm:bg-[position:right_5%_center]"
+            className="absolute inset-0 bg-cover mix-blend-multiply opacity-[0.88] bg-[position:72%_center] sm:bg-[position:right_5%_center]"
             style={{ backgroundImage: `url(${futuristicLungHero})` }}
           />
 

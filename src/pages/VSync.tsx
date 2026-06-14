@@ -864,35 +864,35 @@ export default function VSyncPage() {
               </div>
 
               {/* Control buttons */}
-              <div className="w-full flex items-center justify-between mt-8 mb-4">
+              <div className="w-full flex items-center justify-between gap-1.5 sm:gap-4 mt-8 mb-4">
                 <button
                   onClick={() => {
                     setIsAutoPlay(false);
                     if (currentStep > 1) setCurrentStep(currentStep - 1);
                   }}
                   disabled={currentStep === 1}
-                  className={`px-10 py-4 rounded-full font-bold text-base tracking-wide transition-all ${
+                  className={`px-3.5 sm:px-10 py-2.5 sm:py-4 rounded-full font-bold text-xs sm:text-base tracking-wide transition-all whitespace-nowrap shrink-0 ${
                     currentStep === 1
                       ? "bg-white/10 text-white/30 cursor-not-allowed border border-transparent"
                       : "bg-white text-[#9333ea] hover:bg-slate-50 border border-white/30 active:scale-95 shadow-lg"
                   }`}
                 >
-                  ← Previous
+                  ← <span className="hidden sm:inline">Previous</span><span className="sm:hidden">Prev</span>
                 </button>
 
                 <button
                   onClick={() => setIsAutoPlay(!isAutoPlay)}
-                  className="px-12 py-4 bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-bold text-base tracking-wide rounded-full flex items-center justify-center gap-3.5 shadow-xl shadow-blue-500/20 border border-blue-400/30 transition-all active:scale-95 animate-pulse-slow"
+                  className="px-3.5 sm:px-12 py-2.5 sm:py-4 bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-bold text-xs sm:text-base tracking-wide rounded-full flex items-center justify-center gap-1 sm:gap-3.5 shadow-xl shadow-blue-500/20 border border-blue-400/30 transition-all active:scale-95 animate-pulse-slow shrink-0 whitespace-nowrap"
                 >
                   {isAutoPlay ? (
                     <>
-                      <Pause className="w-5 h-5 fill-white text-white" />
-                      <span>Pause ({Math.round(100 - autoPlayProgress)}%)</span>
+                      <Pause className="w-3.5 h-3.5 sm:w-5 sm:h-5 fill-white text-white" />
+                      <span>Pause <span className="hidden sm:inline">({Math.round(100 - autoPlayProgress)}%)</span></span>
                     </>
                   ) : (
                     <>
-                      <Play className="w-5 h-5 fill-white text-white" />
-                      <span>Auto Play</span>
+                      <Play className="w-3.5 h-3.5 sm:w-5 sm:h-5 fill-white text-white" />
+                      <span>Auto <span className="hidden sm:inline">Play</span></span>
                     </>
                   )}
                 </button>
@@ -906,9 +906,14 @@ export default function VSyncPage() {
                       setIsTutorialOpen(false);
                     }
                   }}
-                  className="px-12 py-4 bg-gradient-to-r from-[#ff5722] to-[#ff424e] hover:from-[#f44e18] hover:to-[#eb3440] text-white font-bold text-base tracking-wide rounded-full shadow-xl shadow-orange-500/10 hover:shadow-orange-500/20 transition-all active:scale-95"
+                  className="px-4 sm:px-12 py-2.5 sm:py-4 bg-gradient-to-r from-[#ff5722] to-[#ff424e] hover:from-[#f44e18] hover:to-[#eb3440] text-white font-bold text-xs sm:text-base tracking-wide rounded-full shadow-xl shadow-orange-500/10 hover:shadow-orange-500/20 transition-all active:scale-95 whitespace-nowrap shrink-0"
                 >
-                  {currentStep === 7 ? "Complete ✨" : "Next →"}
+                  {currentStep === 7 ? "Complete ✨" : (
+                    <>
+                      <span className="hidden sm:inline">Next →</span>
+                      <span className="sm:hidden">Next</span>
+                    </>
+                  )}
                 </button>
               </div>
 

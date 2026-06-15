@@ -540,7 +540,7 @@ export default function Home() {
             </motion.div>
 
             {/* Advanced & Premium Typography Slogan Block */}
-            <div className="relative pl-8 sm:pl-10 py-4 sm:py-5 pr-6 text-left mb-6 max-w-2xl select-none group">
+            <div className="relative pl-8 sm:pl-10 py-4 sm:py-5 pr-6 text-left mb-2 max-w-2xl select-none group">
               {/* Premium sleek dual-layer accent line left-side */}
               <div className="absolute left-0 top-0 bottom-0 w-[4.5px] bg-gradient-to-b from-[#006064] via-brand-teal to-transparent rounded-full opacity-90 transition-all duration-300 group-hover:shadow-[0_0_12px_rgba(20,184,166,0.6)]" />
               <div className="absolute left-[9px] top-6 bottom-6 w-[1.5px] bg-gradient-to-b from-[#006064]/20 via-slate-200 to-transparent opacity-80" />
@@ -2470,7 +2470,8 @@ export default function Home() {
               <img
                 src="https://www.techatriocare.com/logo.webp"
                 alt="AtrioCare Logo"
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain scale-[1.12] translate-y-[4%]"
+                style={{ clipPath: "inset(0% 0% 23% 0%)" }}
                 referrerPolicy="no-referrer"
               />
             </motion.div>

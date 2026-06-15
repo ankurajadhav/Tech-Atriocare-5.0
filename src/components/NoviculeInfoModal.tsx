@@ -356,7 +356,7 @@ export default function NoviculeInfoModal({ isOpen, onClose }: NoviculeInfoModal
                       </div>
 
                       {/* Right: Who We Are Card */}
-                      <div className="bg-gradient-to-br from-[#094d54] via-[#105e66] to-[#1b747e] rounded-3xl p-6 sm:p-8 lg:p-10 text-white shadow-md flex flex-col justify-between relative overflow-hidden border border-teal-800 hover:shadow-lg transition-all duration-300">
+                      <div className="bg-gradient-to-br from-[#0e616a] via-[#17747e] to-[#228d99] rounded-3xl p-6 sm:p-8 lg:p-10 text-white shadow-md flex flex-col justify-between relative overflow-hidden border border-teal-700/50 hover:shadow-lg transition-all duration-300">
                         {/* Soft visual glow background */}
                         <div className="absolute right-0 bottom-0 w-48 h-48 bg-teal-400/10 rounded-full blur-3xl pointer-events-none" />
                         <div className="absolute top-0 left-0 w-32 h-32 bg-white/5 rounded-full blur-2xl pointer-events-none -ml-10 -mt-10" />

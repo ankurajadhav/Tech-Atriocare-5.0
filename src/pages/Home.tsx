@@ -2229,7 +2229,7 @@ export default function Home() {
       <section className="py-40 px-4 md:px-8 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col items-center text-center mb-24">
-            <h2 className="text-5xl md:text-7xl font-bold font-display text-[#006064] mb-6 tracking-tight">
+            <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold font-display text-[#006064] mb-6 tracking-tight">
               What Our Customers Say
             </h2>
             <p className="text-slate-500 text-lg max-w-2xl font-medium">
@@ -2459,7 +2459,7 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="py-20 px-4 md:px-8">
-        <div className="max-w-7xl mx-auto rounded-[64px] atrio-gradient p-12 md:p-24 text-center text-white relative overflow-hidden shadow-2xl shadow-brand-teal/40">
+        <div className="max-w-7xl mx-auto rounded-[32px] sm:rounded-[48px] md:rounded-[64px] atrio-gradient p-6 sm:p-12 md:p-24 text-center text-white relative overflow-hidden shadow-2xl shadow-brand-teal/40">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/10 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2 animate-pulse pointer-events-none" />
           <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
             <motion.div
@@ -2475,7 +2475,7 @@ export default function Home() {
                 referrerPolicy="no-referrer"
               />
             </motion.div>
-            <h2 className="text-3xl sm:text-5xl md:text-8xl font-bold font-display mb-8 tracking-tighter leading-none">
+            <h2 className="text-2xl sm:text-5xl md:text-7xl lg:text-8xl font-bold font-display mb-8 tracking-tighter leading-none">
               Catalyzing the <br /> Future of Health
             </h2>
             <p className="text-white/80 text-lg md:text-xl mb-12 font-medium">

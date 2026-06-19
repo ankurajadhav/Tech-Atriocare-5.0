@@ -281,7 +281,7 @@ export default function Team() {
        <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-black font-display text-[#006064] uppercase tracking-tight">Interns</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-black font-display text-[#006064] uppercase tracking-tight">Interns</h2>
             <div className="w-16 h-1 bg-brand-teal mx-auto mt-4 rounded-full" />
           </div>
 

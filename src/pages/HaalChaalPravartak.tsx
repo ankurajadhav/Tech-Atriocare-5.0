@@ -311,7 +311,7 @@ export default function HaalChaalPravartak() {
                   </div>
                 </div>
                 <div className="mt-10 lg:mt-12">
-                  <h2 className="text-5xl lg:text-7xl font-black text-brand-blue font-display tracking-tighter leading-none mb-3">
+                  <h2 className="text-3xl sm:text-5xl lg:text-7xl font-black text-brand-blue font-display tracking-tighter leading-none mb-3">
                     9<span className="text-brand-teal">/</span>10
                   </h2>
                   <p className="text-brand-teal font-black uppercase tracking-[0.2em] text-sm md:text-base">
@@ -338,7 +338,7 @@ export default function HaalChaalPravartak() {
                     Of the world's most polluted cities are in India.
                   </p>
                 </div>
-                <h2 className="text-5xl lg:text-7xl font-black text-white font-display tracking-tighter mt-10 leading-none">
+                <h2 className="text-3xl sm:text-5xl lg:text-7xl font-black text-white font-display tracking-tighter mt-10 leading-none">
                   21
                   <span className="text-brand-teal-light/50 text-3xl">/30</span>
                 </h2>
@@ -719,7 +719,7 @@ export default function HaalChaalPravartak() {
       </section>
 
       {/* SECTION 6: How it works */}
-      <section className="py-40 px-6 md:px-12 lg:px-24 mb-16 relative z-10 bg-white">
+      <section className="py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 md:px-12 lg:px-24 mb-16 relative z-10 bg-white">
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center mb-28">
             <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-slate-100 rounded-full mb-8 border border-slate-200">
@@ -732,7 +732,7 @@ export default function HaalChaalPravartak() {
               Your Phone Is Now <br />
               <span className="text-brand-blue">Your Digital Gym</span>
             </h2>
-            <p className="text-3xl text-slate-600 font-medium max-w-3xl mx-auto">
+            <p className="text-xl sm:text-2xl lg:text-3xl text-slate-600 font-medium max-w-3xl mx-auto">
               An instant airway check, powered purely by your voice.
             </p>
           </div>
@@ -880,7 +880,7 @@ export default function HaalChaalPravartak() {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan-50/80 text-cyan-800 rounded-full font-bold text-xs border border-cyan-100 uppercase tracking-widest mb-6">
             ✨ Universal Companion
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-brand-blue mb-6 font-display uppercase tracking-tighter leading-none">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-brand-blue mb-6 font-display uppercase tracking-tighter leading-none">
             Precision Airway Care <br />
             <span className="text-brand-teal">Engineered for Every Lifestyle</span>
           </h2>
@@ -1056,28 +1056,28 @@ export default function HaalChaalPravartak() {
       </section>
 
       {/* SECTION 9: Footer CTA */}
-      <section className="text-center px-6 md:px-12 py-40 max-w-[1200px] mx-auto mb-20 bg-gradient-to-br from-brand-blue to-slate-900 border border-brand-blue/50 rounded-[56px] md:rounded-[80px] relative z-10 overflow-hidden shadow-2xl">
+      <section className="text-center px-4 sm:px-6 md:px-12 py-16 sm:py-24 md:py-40 max-w-[1200px] mx-auto mb-20 bg-gradient-to-br from-brand-blue to-slate-900 border border-brand-blue/50 rounded-[32px] sm:rounded-[56px] md:rounded-[80px] relative z-10 overflow-hidden shadow-2xl">
         <div className="absolute top-0 right-0 w-full md:w-2/3 h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-teal/10 via-transparent to-transparent pointer-events-none" />
         <div className="absolute -bottom-48 -left-48 w-96 h-96 bg-brand-teal/20 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-px bg-gradient-to-r from-transparent via-brand-teal to-transparent opacity-50 relative z-20" />
 
         <div className="relative z-20">
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-10 font-display uppercase tracking-tighter leading-[0.9]">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-10 font-display uppercase tracking-tighter leading-[0.9]">
             Start Your Airway <br />
             Journey Today
           </h2>
-          <p className="text-2xl md:text-3xl text-slate-300 mb-16 font-medium max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-2xl md:text-3xl text-slate-300 mb-12 sm:mb-16 font-medium max-w-3xl mx-auto leading-relaxed">
             No equipment. No clinic visit. Just your voice, your phone, and 7
             seconds.
           </p>
 
           <Link
             to="/checkup"
-            className="inline-flex px-14 py-7 rounded-[2rem] bg-brand-teal text-white font-black tracking-[0.2em] text-sm uppercase hover:bg-white hover:text-brand-blue transition-all shadow-[0_20px_50px_-15px_rgba(0,151,167,0.6)] hover:shadow-[0_20px_50px_-10px_rgba(0,151,167,0.8)] mb-20 gap-5 items-center group hover:-translate-y-2"
+            className="inline-flex px-8 sm:px-14 py-5 sm:py-7 rounded-[1.5rem] sm:rounded-[2rem] bg-brand-teal text-white font-black tracking-[0.2em] text-xs sm:text-sm uppercase hover:bg-white hover:text-brand-blue transition-all shadow-[0_20px_50px_-15px_rgba(0,151,167,0.6)] hover:shadow-[0_20px_50px_-10px_rgba(0,151,167,0.8)] mb-12 sm:mb-20 gap-3 sm:gap-5 items-center group hover:-translate-y-2"
           >
             Try Haal-Chaal Pravartak
-            <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-brand-blue/20 transition-colors">
-              <MoveRight className="w-5 h-5 group-hover:translate-x-1 transition-transform text-white group-hover:text-brand-blue" />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-brand-blue/20 transition-colors">
+              <MoveRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform text-white group-hover:text-brand-blue" />
             </div>
           </Link>
 

@@ -634,7 +634,7 @@ export default function VSyncPage() {
             viewport={{ once: true }}
             className="space-y-12 order-1 lg:order-2"
           >
-            <h2 className="text-6xl md:text-7xl font-bold tracking-tight text-white">
+            <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight text-white">
               How It Works?
             </h2>
             <div className="space-y-10">
@@ -666,7 +666,7 @@ export default function VSyncPage() {
       <section className="py-32 px-6 md:px-20 bg-white/5 backdrop-blur-xl border-y border-white/10 text-white relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-24">
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-white">Client Testimonials</h2>
+            <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight text-white">Client Testimonials</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-10">
             {[
@@ -693,58 +693,58 @@ export default function VSyncPage() {
       </section>
 
       {/* Vaani, Verve, Vibes (Hindi sections) */}
-      <section className="py-40 px-6 md:px-20 bg-transparent space-y-40 text-white">
+      <section className="py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 md:px-20 bg-transparent space-y-20 md:space-y-40 text-white">
         <div className="max-w-7xl mx-auto">
           {/* Vaani */}
-          <div className="grid lg:grid-cols-2 gap-24 items-center">
-            <div className="space-y-12">
-              <h2 className="text-8xl md:text-[160px] font-black text-white leading-none tracking-tighter drop-shadow-[0_8px_32px_rgba(76,29,149,0.5)] select-none">वाणी</h2>
-              <div className="space-y-6">
-                 <p className="text-3xl font-bold text-white leading-relaxed">
+          <div className="grid lg:grid-cols-2 gap-12 lg:grid-cols-2 lg:gap-24 items-center">
+            <div className="space-y-6 sm:space-y-12">
+              <h2 className="text-4xl sm:text-8xl md:text-[160px] font-black text-white leading-none tracking-tighter drop-shadow-[0_8px_32px_rgba(76,29,149,0.5)] select-none">वाणी</h2>
+              <div className="space-y-4 sm:space-y-6">
+                 <p className="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-relaxed">
                    In Hindi, the word "Vaani" (वाणी) translates to "speech" or "voice".
                  </p>
-                 <p className="text-xl font-medium text-slate-100 leading-relaxed max-w-2xl">
+                 <p className="text-base sm:text-lg md:text-xl font-medium text-slate-100 leading-relaxed max-w-2xl">
                    Using your voice (Vaani) as a guide, our 2-tier algorithm will help you and your loved ones test your physiological synchrony. By processing and analyzing the heart rate and breathing rate patterns from the humming voice data, this product can help you find the synchronization % with your significant other, family, and friends.
                  </p>
               </div>
             </div>
             <motion.div 
               whileHover={{ scale: 1.05, rotate: -2 }}
-              className="rounded-[60px] overflow-hidden shadow-[0_30px_60px_rgba(219,39,119,0.4)] bg-white/10 backdrop-blur-3xl border-2 border-white/40 p-4 flex flex-col items-center justify-center aspect-square relative group isolate"
+              className="rounded-[32px] sm:rounded-[48px] md:rounded-[60px] overflow-hidden shadow-[0_30px_60px_rgba(219,39,119,0.4)] bg-white/10 backdrop-blur-3xl border-2 border-white/40 p-4 flex flex-col items-center justify-center aspect-square relative group isolate"
             >
-               <div className="absolute inset-0 rounded-[56px] bg-gradient-to-br from-pink-500/20 to-purple-600/20 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+               <div className="absolute inset-0 rounded-[28px] sm:rounded-[44px] md:rounded-[56px] bg-gradient-to-br from-pink-500/20 to-purple-600/20 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                <img 
                  src={vaaniResonance} 
                  alt="Vaani Vocal Resonance" 
-                 className="absolute inset-0 w-full h-full object-cover rounded-[56px] -z-10 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
+                 className="absolute inset-0 w-full h-full object-cover rounded-[28px] sm:rounded-[44px] md:rounded-[56px] -z-10 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
                />
-               <div className="absolute inset-0 bg-gradient-to-t from-pink-900/80 via-purple-900/30 to-transparent -z-10 rounded-[56px]"></div>
-               <h3 className="w-full text-center text-7xl md:text-8xl font-serif text-white tracking-widest drop-shadow-[0_8px_24px_rgba(255,255,255,0.4)] z-10 font-bold group-hover:scale-110 transition-transform duration-500">Vaani</h3>
+               <div className="absolute inset-0 bg-gradient-to-t from-pink-900/80 via-purple-900/30 to-transparent -z-10 rounded-[28px] sm:rounded-[44px] md:rounded-[56px]"></div>
+               <h3 className="w-full text-center text-4xl sm:text-7xl md:text-8xl font-serif text-white tracking-widest drop-shadow-[0_8px_24px_rgba(255,255,255,0.4)] z-10 font-bold group-hover:scale-110 transition-transform duration-500">Vaani</h3>
             </motion.div>
           </div>
 
           {/* Verve */}
-          <div className="grid lg:grid-cols-2 gap-24 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:grid-cols-2 lg:gap-24 items-center">
             <motion.div 
               whileHover={{ scale: 1.05, rotate: 2 }}
-              className="order-2 lg:order-1 rounded-[60px] overflow-hidden shadow-[0_30px_60px_rgba(219,39,119,0.4)] bg-white/10 backdrop-blur-3xl border-2 border-white/40 p-4 flex flex-col items-center justify-center aspect-square relative group isolate"
+              className="order-2 lg:order-1 rounded-[32px] sm:rounded-[48px] md:rounded-[60px] overflow-hidden shadow-[0_30px_60px_rgba(219,39,119,0.4)] bg-white/10 backdrop-blur-3xl border-2 border-white/40 p-4 flex flex-col items-center justify-center aspect-square relative group isolate"
             >
-               <div className="absolute inset-0 rounded-[56px] bg-gradient-to-br from-pink-500/20 to-purple-600/20 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+               <div className="absolute inset-0 rounded-[28px] sm:rounded-[44px] md:rounded-[56px] bg-gradient-to-br from-pink-500/20 to-purple-600/20 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                <img 
                  src={verveConnection} 
                  alt="Verve Energy Connection" 
-                 className="absolute inset-0 w-full h-full object-cover rounded-[56px] -z-10 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
+                 className="absolute inset-0 w-full h-full object-cover rounded-[28px] sm:rounded-[44px] md:rounded-[56px] -z-10 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
                />
-               <div className="absolute inset-0 bg-gradient-to-t from-pink-900/80 via-purple-900/30 to-transparent -z-10 rounded-[56px]"></div>
-               <h3 className="w-full text-center text-7xl md:text-8xl font-serif text-white tracking-widest drop-shadow-[0_8px_24px_rgba(255,255,255,0.4)] z-10 font-bold group-hover:scale-110 transition-transform duration-500">Verve</h3>
+               <div className="absolute inset-0 bg-gradient-to-t from-pink-900/80 via-purple-900/30 to-transparent -z-10 rounded-[28px] sm:rounded-[44px] md:rounded-[56px]"></div>
+               <h3 className="w-full text-center text-4xl sm:text-7xl md:text-8xl font-serif text-white tracking-widest drop-shadow-[0_8px_24px_rgba(255,255,255,0.4)] z-10 font-bold group-hover:scale-110 transition-transform duration-500">Verve</h3>
             </motion.div>
-            <div className="space-y-12 order-1 lg:order-2">
-              <h2 className="text-8xl md:text-[160px] font-black text-white leading-none tracking-tighter drop-shadow-[0_8px_32px_rgba(76,29,149,0.5)] select-none">उत्साह</h2>
-              <div className="space-y-6">
-                 <p className="text-3xl font-bold text-white leading-relaxed">
+            <div className="space-y-6 sm:space-y-12 order-1 lg:order-2">
+              <h2 className="text-4xl sm:text-8xl md:text-[160px] font-black text-white leading-none tracking-tighter drop-shadow-[0_8px_32px_rgba(76,29,149,0.5)] select-none">उत्साह</h2>
+              <div className="space-y-4 sm:space-y-6">
+                 <p className="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-relaxed">
                    "Verve" is the dynamic and energetic quality of interpersonal connections.
                  </p>
-                 <p className="text-xl font-medium text-slate-100 leading-relaxed max-w-2xl">
+                 <p className="text-base sm:text-lg md:text-xl font-medium text-slate-100 leading-relaxed max-w-2xl">
                    It denotes the existence of vibrant and engaged interactions. It suggests a sense of excitement, passion, and positive engagement, which can help to synchronize physiological responses or improve the quality of interpersonal interactions.
                  </p>
               </div>
@@ -752,30 +752,30 @@ export default function VSyncPage() {
           </div>
 
           {/* Vibes */}
-          <div className="grid lg:grid-cols-2 gap-24 items-center">
-            <div className="space-y-12">
-              <h2 className="text-8xl md:text-[160px] font-black text-white leading-none tracking-tighter drop-shadow-[0_8px_32px_rgba(76,29,149,0.5)] select-none">तरंग</h2>
-              <div className="space-y-6">
-                 <p className="text-3xl font-bold text-white leading-relaxed">
+          <div className="grid lg:grid-cols-2 gap-12 lg:grid-cols-2 lg:gap-24 items-center">
+            <div className="space-y-6 sm:space-y-12">
+              <h2 className="text-4xl sm:text-8xl md:text-[160px] font-black text-white leading-none tracking-tighter drop-shadow-[0_8px_32px_rgba(76,29,149,0.5)] select-none">तरंग</h2>
+              <div className="space-y-4 sm:space-y-6">
+                 <p className="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-relaxed">
                    "Vibes" is the emotional and intuitive energy detected in a person or setting.
                  </p>
-                 <p className="text-xl font-medium text-slate-100 leading-relaxed max-w-2xl">
+                 <p className="text-base sm:text-lg md:text-xl font-medium text-slate-100 leading-relaxed max-w-2xl">
                    In the context of physiological synchrony, "vibes" refer to the emotional and energetic resonance or connection that persons feel. It is about the intuitive wavelength that connects two souls instantly through vocal resonance.
                  </p>
               </div>
             </div>
             <motion.div 
               whileHover={{ scale: 1.05, rotate: -2 }}
-              className="rounded-[60px] overflow-hidden shadow-[0_30px_60px_rgba(219,39,119,0.4)] bg-white/10 backdrop-blur-3xl border-2 border-white/40 p-4 flex flex-col items-center justify-center aspect-square relative group isolate"
+              className="rounded-[32px] sm:rounded-[48px] md:rounded-[60px] overflow-hidden shadow-[0_30px_60px_rgba(219,39,119,0.4)] bg-white/10 backdrop-blur-3xl border-2 border-white/40 p-4 flex flex-col items-center justify-center aspect-square relative group isolate"
             >
-               <div className="absolute inset-0 rounded-[56px] bg-gradient-to-br from-pink-500/20 to-purple-600/20 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+               <div className="absolute inset-0 rounded-[28px] sm:rounded-[44px] md:rounded-[56px] bg-gradient-to-br from-pink-500/20 to-purple-600/20 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                <img 
                  src={vibesResonance} 
                  alt="Vibes Neural Resonance" 
-                 className="absolute inset-0 w-full h-full object-cover rounded-[56px] -z-10 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
+                 className="absolute inset-0 w-full h-full object-cover rounded-[28px] sm:rounded-[44px] md:rounded-[56px] -z-10 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
                />
-               <div className="absolute inset-0 bg-gradient-to-t from-pink-900/80 via-purple-900/30 to-transparent -z-10 rounded-[56px]"></div>
-               <h3 className="w-full text-center text-7xl md:text-8xl font-serif text-white tracking-widest drop-shadow-[0_8px_24px_rgba(255,255,255,0.4)] z-10 font-bold group-hover:scale-110 transition-transform duration-500">Vibes</h3>
+               <div className="absolute inset-0 bg-gradient-to-t from-pink-900/80 via-purple-900/30 to-transparent -z-10 rounded-[28px] sm:rounded-[44px] md:rounded-[56px]"></div>
+               <h3 className="w-full text-center text-4xl sm:text-7xl md:text-8xl font-serif text-white tracking-widest drop-shadow-[0_8px_24px_rgba(255,255,255,0.4)] z-10 font-bold group-hover:scale-110 transition-transform duration-500">Vibes</h3>
             </motion.div>
           </div>
         </div>

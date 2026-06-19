@@ -32,7 +32,7 @@ export default function Blogs() {
               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 group-hover:text-brand-teal transition-colors">Intelligence Repository</span>
             </div>
             
-            <h1 className="text-6xl md:text-8xl font-black text-[#006064] mb-8 font-display tracking-tighter leading-[0.9] uppercase flex flex-col items-center">
+            <h1 className="text-3xl sm:text-6xl md:text-8xl font-black text-[#006064] mb-8 font-display tracking-tighter leading-[0.9] uppercase flex flex-col items-center">
               <span>Enhance Your</span>
               <span className="text-brand-teal drop-shadow-[0_0_15px_rgba(20,184,166,0.1)]">Knowledge</span>
             </h1>

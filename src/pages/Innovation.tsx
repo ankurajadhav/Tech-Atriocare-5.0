@@ -121,7 +121,7 @@ Scenario: ${analysisInput}`
             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-300">Advanced Algorithmic Diagnostics</span>
           </motion.div>
           
-          <h1 className="text-5xl md:text-8xl font-black font-display text-white tracking-tighter leading-[0.8] uppercase">
+          <h1 className="text-3xl sm:text-5xl md:text-8xl font-black font-display text-white tracking-tighter leading-[0.8] uppercase">
             The <span className="text-brand-teal">Intelligent</span> <br /> Standard
           </h1>
           
@@ -308,7 +308,7 @@ Scenario: ${analysisInput}`
         </section>
 
         {/* Team Teaser */}
-        <section className="bg-white rounded-[64px] p-12 md:p-24 border border-brand-border text-center space-y-12 shadow-soft">
+        <section className="bg-white rounded-[32px] sm:rounded-[48px] md:rounded-[64px] p-6 sm:p-12 md:p-24 border border-brand-border text-center space-y-8 md:space-y-12 shadow-soft">
            <div className="max-w-2xl mx-auto space-y-4">
               <h2 className="text-4xl md:text-5xl font-bold font-display text-[#006064] uppercase tracking-tight">Meet the Minds Behind the Tech</h2>
               <p className="text-slate-500 font-medium leading-relaxed">

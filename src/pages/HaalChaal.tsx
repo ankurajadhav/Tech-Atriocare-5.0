@@ -248,7 +248,7 @@ export default function HaalChaal() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white p-10 md:p-16 rounded-[48px] border border-slate-100 shadow-2xl flex flex-col lg:flex-row items-stretch gap-12 lg:gap-16 relative overflow-hidden"
+              className="bg-white p-10 md:p-16 rounded-[48px] border border-slate-100 shadow-2xl flex flex-col lg:flex-row items-center gap-12 lg:gap-16 relative overflow-hidden"
             >
               {/* Winner Details Left */}
               <div className="relative z-10 flex-1 space-y-10 flex flex-col justify-center">
@@ -292,13 +292,13 @@ export default function HaalChaal() {
               </div>
 
               {/* Video Right */}
-              <div className="w-full lg:w-[400px] xl:w-[450px] shrink-0 flex items-center justify-center">
+              <div className="w-full max-w-[280px] sm:max-w-[320px] lg:w-[320px] shrink-0 flex items-center justify-center mx-auto">
                 <EmbeddedVideo 
                   src="https://drive.google.com/file/d/1Z9UZQhUhqkYGfMONidA1uIyibhUaA7J6/preview" 
                   title="Mrs. Parinita Sinha Testimony"
                   thumbnailUrl={parinitaSinhaImg}
                   aspect="aspect-[9/16]"
-                  className="w-full h-full"
+                  className="w-full"
                 />
               </div>
             </motion.div>
@@ -639,9 +639,9 @@ export default function HaalChaal() {
                 </div>
                 
                 {/* Right Side: Image */}
-                <div className="w-full md:w-1/2 md:pl-20 py-8 md:py-20 flex flex-col justify-center border-t border-cyan-100 md:border-t-0">
-                  <div className="w-full bg-white shadow-[0_10px_40px_rgba(0,0,0,0.06)] rounded-[20px] overflow-hidden border border-slate-100">
-                    <img src={item.image} alt={item.title} className="w-full h-auto object-cover" referrerPolicy="no-referrer" />
+                <div className="w-full md:w-1/2 md:pl-8 py-8 md:py-12 flex flex-col justify-center items-center border-t border-cyan-100 md:border-t-0">
+                  <div className="w-full max-w-[580px] aspect-[4/3] bg-white shadow-[0_15px_50px_rgba(0,0,0,0.08)] rounded-[28px] overflow-hidden border border-slate-100/80 transition-all duration-300 hover:scale-[1.02] flex items-center justify-center p-1.5 sm:p-3">
+                    <img src={item.image} alt={item.title} className="w-full h-full object-contain" referrerPolicy="no-referrer" />
                   </div>
                 </div>
               </motion.div>

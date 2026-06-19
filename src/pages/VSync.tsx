@@ -486,13 +486,55 @@ export default function VSyncPage() {
               className="relative max-w-[560px] w-full transform -rotate-1 hover:rotate-0 hover:scale-[1.02] transition-all duration-500 ease-out cursor-default flex flex-col items-center"
             >
               
-              <div className="relative w-full overflow-hidden rounded-[28px] bg-white/90 shadow-inner">
-                <img
-                  src="https://lh3.googleusercontent.com/d/100W_ECAR0u7iK2GhdcA7v5PWU3pXsrpL"
-                  alt="V-sync Original Concept Canvas"
-                  className="w-full h-auto object-cover select-none opacity-95 mix-blend-multiply"
-                  referrerPolicy="no-referrer"
-                />
+              {/* Traditional Highly Designed Premium Border Frame Container */}
+              <div className="relative w-full p-5 md:p-6 rounded-[36px] bg-gradient-to-br from-white/20 via-pink-400/10 to-purple-950/40 backdrop-blur-md border-2 border-white/25 shadow-[0_30px_60px_rgba(145,63,193,0.35)] overflow-hidden group">
+                {/* Traditional Decorative Corner Flourishes */}
+                {/* Top-Left */}
+                <div className="absolute top-3 left-3 w-10 h-10 text-pink-200 pointer-events-none opacity-85 transition-transform duration-500 group-hover:-translate-x-1 group-hover:-translate-y-1">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M22 3H3v19" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M14 7H7v7" strokeLinecap="round" strokeLinejoin="round" />
+                    <circle cx="5" cy="5" r="1.5" fill="currentColor" />
+                  </svg>
+                </div>
+                {/* Top-Right */}
+                <div className="absolute top-3 right-3 w-10 h-10 text-pink-200 pointer-events-none opacity-85 rotate-90 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M22 3H3v19" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M14 7H7v7" strokeLinecap="round" strokeLinejoin="round" />
+                    <circle cx="5" cy="5" r="1.5" fill="currentColor" />
+                  </svg>
+                </div>
+                {/* Bottom-Left */}
+                <div className="absolute bottom-3 left-3 w-10 h-10 text-pink-200 pointer-events-none opacity-85 -rotate-90 transition-transform duration-500 group-hover:-translate-x-1 group-hover:translate-y-1">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M22 3H3v19" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M14 7H7v7" strokeLinecap="round" strokeLinejoin="round" />
+                    <circle cx="5" cy="5" r="1.5" fill="currentColor" />
+                  </svg>
+                </div>
+                {/* Bottom-Right */}
+                <div className="absolute bottom-3 right-3 w-10 h-10 text-pink-200 pointer-events-none opacity-85 rotate-180 transition-transform duration-500 group-hover:translate-x-1 group-hover:translate-y-1">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M22 3H3v19" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M14 7H7v7" strokeLinecap="round" strokeLinejoin="round" />
+                    <circle cx="5" cy="5" r="1.5" fill="currentColor" />
+                  </svg>
+                </div>
+
+                {/* Inner Elegant Dual Border Linings */}
+                <div className="absolute inset-2 border border-white/10 rounded-[28px] pointer-events-none" />
+                <div className="absolute inset-1 border border-white/5 rounded-[32px] pointer-events-none" />
+
+                {/* Actual Image Canvas with Beveled Border */}
+                <div className="relative w-full overflow-hidden rounded-[24px] bg-white/95 p-1 border-2 border-white/40 shadow-inner">
+                  <img
+                    src="https://lh3.googleusercontent.com/d/100W_ECAR0u7iK2GhdcA7v5PWU3pXsrpL"
+                    alt="V-sync Original Concept Canvas"
+                    className="w-full h-auto object-cover select-none opacity-95 mix-blend-multiply rounded-[18px]"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
               </div>
               
               {/* Artistic Concept Blueprint Footer */}

@@ -29,6 +29,7 @@ export default function AirwayCheckup() {
   const [analyzer, setAnalyzer] = useState<AnalyserNode | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [downloadError, setDownloadError] = useState<string | null>(null);
+  const [micError, setMicError] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const reportRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>(0);
@@ -47,6 +48,7 @@ export default function AirwayCheckup() {
 
   // Audio analysis
   const startCapture = async () => {
+    setMicError(null);
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ 
         audio: {
@@ -116,7 +118,7 @@ export default function AirwayCheckup() {
 
     } catch (err) {
       console.error("Error accessing microphone:", err);
-      alert("Microphone access is required for this checkup. Please make sure to grant microphone permissions in your browser.");
+      setMicError("Microphone access is required for this checkup. Please make sure to grant microphone permissions in your browser.");
       setStep('instructions');
     }
   };
@@ -202,6 +204,7 @@ export default function AirwayCheckup() {
     setSpectrograms([]);
     setIsCapturing(false);
     setDownloadError(null);
+    setMicError(null);
   };
 
   const downloadReport = async () => {
@@ -631,6 +634,20 @@ export default function AirwayCheckup() {
               >
                 {recordingsCount === 0 ? 'Start First Recording' : `Start Recording ${recordingsCount + 1}/3`}
               </button>
+
+              {micError && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-5 bg-rose-50 border border-rose-100 rounded-3xl flex items-start gap-3.5 text-rose-800 text-sm font-semibold text-left shadow-sm"
+                >
+                  <AlertCircle className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
+                  <div className="space-y-1">
+                    <p className="font-bold">Microphone Required</p>
+                    <p className="text-rose-600/90 font-medium leading-relaxed">{micError}</p>
+                  </div>
+                </motion.div>
+              )}
             </motion.div>
           )}
 

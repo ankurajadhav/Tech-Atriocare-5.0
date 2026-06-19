@@ -411,35 +411,38 @@ export default function NoviculeInfoModal({ isOpen, onClose }: NoviculeInfoModal
                       ))}
                     </div>
 
-                    {/* Quick Call Out - Structured for Effortless Comprehension, aligned beautiful pills */}
-                    <div className="bg-teal-50/50 border border-teal-100/90 rounded-3xl p-6 sm:p-8 flex flex-col lg:flex-row items-stretch gap-6">
-                      <div className="w-12 h-12 rounded-2xl bg-teal-100/80 border border-teal-200/80 flex items-center justify-center text-[#014f56] shrink-0 self-start shadow-sm shadow-teal-700/5">
+                    {/* Quick Call Out - Structured for Effortless Comprehension, beautiful light website background design */}
+                    <div className="bg-gradient-to-br from-[#0e616a] via-[#17747e] to-[#228d99] border border-teal-600/30 rounded-3xl p-6 sm:p-8 flex flex-col lg:flex-row items-stretch gap-6 shadow-md transition-all duration-300 relative overflow-hidden">
+                      {/* Subtle elegant radial ambient light behind icon */}
+                      <div className="absolute top-0 left-0 w-32 h-32 bg-white/5 rounded-full blur-3xl pointer-events-none" />
+                      
+                      <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-teal-200 shrink-0 self-start shadow-md">
                         <AlertCircle className="w-6 h-6" />
                       </div>
                       
-                      <div className="space-y-5 flex-1">
-                        <h4 className="font-extrabold text-slate-900 text-lg sm:text-xl tracking-tight">
+                      <div className="space-y-5 flex-1 relative z-10">
+                        <h4 className="font-extrabold text-white text-lg sm:text-xl tracking-tight">
                           Primary Recommended Scenarios for Novicule-TA Use
                         </h4>
                         
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                          <div className="space-y-2 p-4 bg-white rounded-2xl border border-teal-100/50 shadow-sm shadow-teal-900/5">
-                            <span className="inline-flex px-2 py-0.5 bg-rose-50 rounded-md text-[9px] font-black uppercase text-rose-600 tracking-wider">💼 Tech Professionals</span>
-                            <p className="text-slate-700 text-xs sm:text-sm font-semibold leading-relaxed">
+                          <div className="space-y-2.5 p-5 bg-white/5 rounded-2xl border-2 border-white/25 shadow-sm transition-all duration-300 hover:bg-white/10 hover:border-white/45 hover:scale-[1.01]">
+                            <span className="inline-flex px-3.5 py-1.5 bg-rose-500/30 border border-white/30 rounded-full text-[11px] sm:text-xs font-black uppercase text-rose-100 tracking-wide shadow-sm">💼 Tech Professionals</span>
+                            <p className="text-teal-50/95 text-xs sm:text-sm font-semibold leading-relaxed">
                               Restores biological stamina during heavy sleepless project deadlines, coding jams, and stressful test schedules.
                             </p>
                           </div>
 
-                          <div className="space-y-2 p-4 bg-white rounded-2xl border border-teal-100/50 shadow-sm shadow-teal-900/5">
-                            <span className="inline-flex px-2 py-0.5 bg-sky-50 rounded-md text-[9px] font-black uppercase text-sky-600 tracking-wider">🏃 Training & Stamina</span>
-                            <p className="text-slate-700 text-xs sm:text-sm font-semibold leading-relaxed">
+                          <div className="space-y-2.5 p-5 bg-white/5 rounded-2xl border-2 border-white/25 shadow-sm transition-all duration-300 hover:bg-white/10 hover:border-white/45 hover:scale-[1.01]">
+                            <span className="inline-flex px-3.5 py-1.5 bg-sky-500/30 border border-white/30 rounded-full text-[11px] sm:text-xs font-black uppercase text-sky-100 tracking-wide shadow-sm">🏃 Training & Stamina</span>
+                            <p className="text-teal-50/95 text-xs sm:text-sm font-semibold leading-relaxed">
                               Significantly optimizes cardiorespirations, increases vascular blood flow, and accelerates physical recovery.
                             </p>
                           </div>
 
-                          <div className="space-y-2 p-4 bg-white rounded-2xl border border-teal-100/50 shadow-sm shadow-teal-900/5">
-                            <span className="inline-flex px-2 py-0.5 bg-teal-50 rounded-md text-[9px] font-black uppercase text-[#006D77] tracking-wider">🍃 Everyday Resilience</span>
-                            <p className="text-slate-700 text-xs sm:text-sm font-semibold leading-relaxed">
+                          <div className="space-y-2.5 p-5 bg-white/5 rounded-2xl border-2 border-white/25 shadow-sm transition-all duration-300 hover:bg-white/10 hover:border-white/45 hover:scale-[1.01]">
+                            <span className="inline-flex px-3.5 py-1.5 bg-teal-500/35 border border-white/30 rounded-full text-[11px] sm:text-xs font-black uppercase text-teal-100 tracking-wide shadow-sm">🍃 Everyday Resilience</span>
+                            <p className="text-teal-50/95 text-xs sm:text-sm font-semibold leading-relaxed">
                               Acts as an active respiratory shield against weather transitions, sudden dust exposure, or seasonal stress waves.
                             </p>
                           </div>

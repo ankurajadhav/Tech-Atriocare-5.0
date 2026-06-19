@@ -15,10 +15,14 @@ const EmbeddedVideo = ({
 }: { 
   src: string; 
   title: string; 
-  thumbnailUrl?: string; 
   aspect?: string; 
   className?: string; 
  }) => {
+  const [useIframeFallback, setUseIframeFallback] = useState(false);
+  const driveIdMatch = src.match(/\/d\/([a-zA-Z0-9_-]+)/) || src.match(/id=([a-zA-Z0-9_-]+)/);
+  const driveId = driveIdMatch ? driveIdMatch[1] : null;
+  const directVideoUrl = driveId ? `https://drive.google.com/uc?export=download&id=${driveId}` : null;
+
   return (
     <div 
       className={cn(
@@ -27,13 +31,39 @@ const EmbeddedVideo = ({
         className
       )}
     >
-      <iframe
-        src={src}
-        title={title}
-        className="w-full h-full border-0 absolute inset-0"
-        allow="autoplay; encrypted-media"
-        allowFullScreen
-      />
+      {directVideoUrl && !useIframeFallback ? (
+        <video
+          src={directVideoUrl}
+          title={title}
+          className="w-full h-full object-cover absolute inset-0"
+          controls
+          playsInline
+          preload="metadata"
+          onError={() => {
+            console.warn("Direct video stream failed, falling back to iframe.");
+            setUseIframeFallback(true);
+          }}
+        />
+      ) : (
+        <iframe
+          src={src}
+          title={title}
+          className="w-full h-full border-0 absolute inset-0"
+          allow="autoplay; encrypted-media"
+          allowFullScreen
+        />
+      )}
+      
+      {/* Super sleek premium link button to open the original Google Drive if there are nested iframe blocks */}
+      <a 
+        href={src.replace('/preview', '/view')} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        title="Open video in new tab if it doesn't load"
+        className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-sm transition-all duration-300 opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 shadow-md border border-white/10"
+      >
+        <ArrowUpRight className="w-4 h-4" />
+      </a>
     </div>
   );
 };
@@ -139,21 +169,29 @@ export default function HaalChaal() {
               </div>
               
               <div className="ml-2">
-                <span className="inline-block px-4 py-1 bg-blue-50 text-[#2563EB] text-[10px] font-black rounded-full border border-blue-100 uppercase tracking-widest">
+                <span className="inline-block px-5 py-1.5 bg-blue-50 text-[#2563EB] text-xs sm:text-xs md:text-sm font-bold rounded-full border border-blue-100 uppercase tracking-wider">
                   Premier Immunity Challenge: The Breathwork Revolution
                 </span>
               </div>
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-[#006064] leading-[0.85] tracking-tighter uppercase font-display">
-                Optimize <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0097A7] to-[#3B82F6]">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black leading-[0.95] tracking-tight uppercase font-display flex flex-col gap-0">
+                <span className="text-[#006064]">
+                  Optimize
+                </span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0097A7] to-[#0D9488]">
                   Breath.
-                </span> <br />
-                Fortify <br />
-                <span className="text-brand-blue">Immunity.</span> <br />
-                Win Big
+                </span>
+                <span className="text-[#006064]">
+                  Fortify
+                </span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0097A7] to-[#0D9488]">
+                  Immunity.
+                </span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D97706] via-[#F59E0B] to-[#FBBF24]">
+                  Win Big
+                </span>
               </h2>
             </div>
 
@@ -296,7 +334,6 @@ export default function HaalChaal() {
                 <EmbeddedVideo 
                   src="https://drive.google.com/file/d/1Z9UZQhUhqkYGfMONidA1uIyibhUaA7J6/preview" 
                   title="Mrs. Parinita Sinha Testimony"
-                  thumbnailUrl={parinitaSinhaImg}
                   aspect="aspect-[9/16]"
                   className="w-full"
                 />
@@ -516,7 +553,6 @@ export default function HaalChaal() {
                 <EmbeddedVideo 
                   src="https://drive.google.com/file/d/1Z9UZQhUhqkYGfMONidA1uIyibhUaA7J6/preview" 
                   title="Mrs. Parinita Sinha Testimony"
-                  thumbnailUrl={parinitaSinhaImg}
                   aspect="aspect-[9/16]"
                   className="w-full"
                 />
@@ -562,9 +598,9 @@ export default function HaalChaal() {
             >
               The 7-Day Journey 📋
             </motion.div>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-[#006064] tracking-tighter leading-tight uppercase font-display">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#006064] tracking-tight leading-[1.1] uppercase font-display">
               Simple steps to <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0097A7] to-[#3B82F6]">lasting health transformation</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#006064] via-[#0097A7] to-[#0D9488]">lasting health transformation</span>
             </h2>
           </div>
 
@@ -580,7 +616,6 @@ export default function HaalChaal() {
               <EmbeddedVideo 
                 src="https://drive.google.com/file/d/1voO2RQTl3ATIN5BzgUES2OUB-rE3cab3/preview" 
                 title="Simple Steps Tutorial"
-                thumbnailUrl="https://lh3.googleusercontent.com/d/13TEduYr7AtBxsvJPP6TNedvtiv0cAxqe"
                 aspect="aspect-video"
                 className="w-full max-w-4xl"
               />
@@ -653,9 +688,14 @@ export default function HaalChaal() {
       {/* FAQ Section */}
       <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Frequently Asked Questions</h2>
-            <p className="text-slate-500 font-normal max-w-3xl mx-auto text-base md:text-lg">
+          <div className="text-center mb-16 space-y-4 flex flex-col items-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-teal-50 text-[#0097A7] rounded-full font-bold text-xs uppercase tracking-widest border border-teal-100/60">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0097A7] animate-pulse" /> FAQ Support
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-black text-[#006064] tracking-tight leading-none uppercase font-display">
+              Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0097A7] to-[#0D9488]">Questions</span>
+            </h2>
+            <p className="text-slate-500 font-semibold max-w-3xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed">
               Everything you need to know about Haal-Chaal Pravartak 1.0 — India's First Immunity Challenge for Smarter Breathing.
             </p>
           </div>
@@ -748,38 +788,38 @@ export default function HaalChaal() {
       </section>
 
       {/* Bottom CTA Section */}
-      <section className="py-12 md:py-24 bg-white relative overflow-hidden">
-        <div className="max-w-[1400px] w-full px-4 md:px-8 mx-auto relative z-10">
-          <div className="bg-gradient-to-br from-[#004D54] to-[#007785] rounded-[48px] md:rounded-[64px] p-8 sm:p-16 md:p-24 lg:p-32 text-white relative overflow-hidden text-center space-y-10 shadow-2xl">
-            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#0097A7]/10 rounded-full blur-[100px] -translate-x-1/3 translate-y-1/3 pointer-events-none" />
+      <section className="py-10 md:py-14 bg-white relative overflow-hidden">
+        <div className="max-w-7xl w-full px-4 md:px-8 mx-auto relative z-10">
+          <div className="bg-gradient-to-br from-[#004D54] to-[#007785] rounded-3xl md:rounded-[40px] py-10 sm:py-12 md:py-14 lg:py-16 px-6 sm:px-10 md:px-12 lg:px-16 text-white relative overflow-hidden text-center space-y-6 md:space-y-8 shadow-2xl">
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#0097A7]/10 rounded-full blur-[80px] -translate-x-1/3 translate-y-1/3 pointer-events-none" />
             
-            <div className="relative z-10 max-w-4xl mx-auto space-y-8">
-              <div className="inline-flex items-center gap-2 px-6 py-2 bg-white/10 text-[#00D2D3] rounded-full font-black text-[10px] sm:text-xs border border-white/10 tracking-[0.3em] uppercase">
+            <div className="relative z-10 max-w-3xl mx-auto space-y-4 md:space-y-5">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 text-[#00D2D3] rounded-full font-black text-[10px] sm:text-xs border border-white/10 tracking-[0.2em] uppercase">
                 🚀 Start Your Transformation
               </div>
-              <h2 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.9] uppercase font-display">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[1.0] uppercase font-display">
                 Your health <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D2D3] to-[#48DBFB]">has a story</span>
               </h2>
-              <p className="text-white/70 text-lg sm:text-xl md:text-2xl font-medium max-w-2xl mx-auto italic">
+              <p className="text-white/80 text-base sm:text-lg md:text-xl font-medium max-w-2xl mx-auto italic">
                 "Uncover the secrets of your heart and lungs in just 7 days."
               </p>
             </div>
 
-            <div className="relative z-10 flex flex-col items-center gap-8 md:gap-10 mt-8 md:mt-12">
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full">
+            <div className="relative z-10 flex flex-col items-center gap-4 md:gap-5 mt-4 md:mt-6">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
                 <Link 
                   to="/challenge-terms"
-                  className="px-12 md:px-16 py-6 md:py-8 bg-white text-[#001D21] rounded-[32px] md:rounded-[40px] font-black text-xl md:text-2xl shadow-2xl hover:scale-105 transition-all w-full sm:w-auto text-center"
+                  className="px-8 md:px-12 py-3.5 md:py-4.5 bg-white text-[#001D21] rounded-2xl md:rounded-3xl font-black text-lg md:text-xl shadow-lg hover:scale-105 transition-all w-full sm:w-auto text-center"
                 >
                   Register Now
                 </Link>
               </div>
-              <Link to="/challenge-terms" className="block text-xs sm:text-sm text-white/60 font-bold uppercase tracking-[0.2em] hover:text-white transition-colors text-center max-w-lg mx-auto">
+              <Link to="/challenge-terms" className="block text-xs text-white/70 font-bold uppercase tracking-[0.15em] hover:text-white transition-colors text-center max-w-lg mx-auto">
                 Click here to agree to our terms and conditions and participate in the challenge
               </Link>
-              <p className="text-2xl sm:text-3xl font-black text-white font-display tracking-widest uppercase text-center">Participation Fees is INR 500/-</p>
+              <p className="text-lg sm:text-xl font-black text-white font-display tracking-widest uppercase text-center">Participation Fees is INR 500/-</p>
             </div>
           </div>
         </div>
@@ -792,10 +832,17 @@ export default function HaalChaal() {
           <div className="flex flex-col lg:flex-row gap-20 items-center">
             <div className="flex-1 space-y-12">
               <div className="space-y-6">
-                <h2 className="text-4xl md:text-5xl font-black text-[#006064] tracking-tighter leading-tight uppercase">
-                  Are you at risk from <br />
-                  <span className="text-[#0097A7]">hidden respiratory issues?</span>
-                </h2>
+                <div className="space-y-3 sm:space-y-4">
+                  <span className="inline-flex items-center gap-2 px-3 py-1 bg-teal-50 text-[#0097A7] rounded-full font-bold text-xs uppercase tracking-widest border border-teal-100/60">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0097A7] animate-pulse" /> Health Risk Monitor
+                  </span>
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[40px] font-black text-[#004D54] tracking-tight leading-[1.15] font-display">
+                    Are you at risk from <br className="hidden lg:inline" />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0097A7] to-[#0D9488]">
+                      hidden respiratory issues?
+                    </span>
+                  </h2>
+                </div>
                 <p className="text-slate-500 text-lg font-medium leading-relaxed">
                   Identify signals early. Our technology is specially designed for those who need it the most.
                 </p>

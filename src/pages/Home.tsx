@@ -540,7 +540,7 @@ export default function Home() {
             </motion.div>
 
             {/* Advanced & Premium Typography Slogan Block */}
-            <div className="relative pl-8 sm:pl-10 py-4 sm:py-5 pr-6 text-left mb-2 max-w-2xl select-none group">
+            <div className="relative pl-8 sm:pl-10 pt-4 pb-1.5 sm:pt-5 sm:pb-2.5 pr-6 text-left mb-1 max-w-2xl select-none group">
               {/* Premium sleek dual-layer accent line left-side */}
               <div className="absolute left-0 top-0 bottom-0 w-[4.5px] bg-gradient-to-b from-[#006064] via-brand-teal to-transparent rounded-full opacity-90 transition-all duration-300 group-hover:shadow-[0_0_12px_rgba(20,184,166,0.6)]" />
               <div className="absolute left-[9px] top-6 bottom-6 w-[1.5px] bg-gradient-to-b from-[#006064]/20 via-slate-200 to-transparent opacity-80" />
@@ -951,13 +951,13 @@ export default function Home() {
       {/* Featured Products Section */}
       <section
         id="products"
-        className="py-40 px-4 md:px-8 bg-gradient-to-b from-sky-100/40 via-white to-[#e0f2fe]/40 relative overflow-hidden"
+        className="py-16 sm:py-20 md:py-24 px-4 md:px-8 bg-gradient-to-b from-sky-100/40 via-white to-[#e0f2fe]/40 relative overflow-hidden"
       >
         {/* Background Gradients */}
         <div className="absolute top-0 right-0 w-1/2 h-full bg-sky-200/20 blur-[120px] rounded-full translate-x-1/4 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-24 gap-8">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
             <div className="max-w-4xl">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -969,25 +969,25 @@ export default function Home() {
                   Product Ecosystem
                 </span>
               </motion.div>
-              <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold font-display text-[#006064] leading-tight mb-6 tracking-tight">
+              <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold font-display text-[#006064] leading-tight mb-4 tracking-tight">
                 Advanced <span className="gradient-text">Heart</span> <br />{" "}
                 and Lung
               </h2>
-              <p className="text-slate-500 text-lg font-medium max-w-xl">
+              <p className="text-slate-500 text-base md:text-lg font-medium max-w-xl">
                 An integrated platform of technology and formulation engineered to transform advanced preventive cardiac wellness.
               </p>
             </div>
           </div>
 
           {/* Our Products Heading */}
-          <div className="mb-20 text-center relative z-10 max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-black text-[#006064] tracking-tight mb-8 font-display">
+          <div className="mb-14 text-center relative z-10 max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-black text-[#006064] tracking-tight mb-6 font-display">
               Our <span className="bg-gradient-to-r from-[#006064] to-brand-teal bg-clip-text text-transparent">Products</span>
             </h2>
-            <div className="w-24 h-1.5 bg-gradient-to-r from-brand-teal to-blue-500 mx-auto rounded-full"></div>
+            <div className="w-20 h-1 bg-gradient-to-r from-brand-teal to-blue-500 mx-auto rounded-full"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8 relative z-10">
             {/* Haal-Chaal Pravartak */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -995,7 +995,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="group relative bg-white/60 backdrop-blur-xl rounded-[32px] border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,96,100,0.1)] transition-all duration-500"
             >
-              <div className="aspect-[4/3] overflow-hidden relative bg-slate-50">
+              <div className="aspect-[16/11] overflow-hidden relative bg-slate-50">
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent z-10 pointer-events-none" />
                 <img
                   src="https://lh3.googleusercontent.com/d/1EvUgiFzzksFr0vEBLi6Cr7cC49YNVNf9"
@@ -1004,35 +1004,35 @@ export default function Home() {
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <div className="p-8 flex flex-col flex-1 relative z-20">
-                <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 flex items-center justify-center shadow-lg absolute -top-7 left-8 group-hover:-translate-y-1 group-hover:shadow-brand-teal/20 transition-all duration-500 text-brand-teal">
-                  <Mic className="w-6 h-6" />
+              <div className="p-6 md:p-6 lg:p-6 xl:p-7 flex flex-col flex-1 relative z-20">
+                <div className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center shadow-lg absolute -top-6 left-6 md:left-7 group-hover:-translate-y-1 group-hover:shadow-brand-teal/20 transition-all duration-500 text-brand-teal">
+                  <Mic className="w-5 h-5" />
                 </div>
                 <Link
                   to="/haal-chaal-pravartak"
                   className="hover:text-[#0097A7] transition-colors text-left group-hover:text-[#006064]"
                 >
-                  <h3 className="text-xl font-bold text-[#006064] mt-2 mb-3 tracking-tight">
+                  <h3 className="text-lg md:text-xl font-bold text-[#006064] mt-2 mb-2 tracking-tight">
                     Haal-Chaal Pravartak
                   </h3>
                 </Link>
-                <p className="text-slate-500 text-sm leading-relaxed mb-8 flex-1 font-medium">
+                <p className="text-slate-500 text-sm leading-relaxed mb-4 flex-1 font-medium">
                   The world's first digital wellness portal for heart and lung health. Evaluate your airway patency in under 60 seconds with a single voice hum on your smartphone. No clinical visits or complex equipment required.
                 </p>
-                <div className="space-y-3 mb-10">
+                <div className="space-y-2 mb-6">
                   <div className="flex items-center gap-3 text-xs font-bold text-slate-600">
-                    <CheckCircle2 className="w-4 h-4 text-brand-teal" />
+                    <CheckCircle2 className="w-4 h-4 text-brand-teal flex-shrink-0" />
                     Acoustic Vocal Marker Assessment
                   </div>
                   <div className="flex items-center gap-3 text-xs font-bold text-slate-600">
-                    <CheckCircle2 className="w-4 h-4 text-brand-teal" />
+                    <CheckCircle2 className="w-4 h-4 text-brand-teal flex-shrink-0" />
                     Digital Signal Processing (DSP) Airway Scoring
                   </div>
                 </div>
                 <div className="flex flex-col gap-3 mt-auto">
                   <Link
                     to="/haal-chaal-pravartak"
-                    className="w-full py-4 rounded-2xl bg-brand-blue text-white font-bold text-center hover:bg-brand-teal transition-all shadow-lg shadow-brand-blue/10 cursor-pointer"
+                    className="w-full py-3 rounded-2xl bg-brand-blue text-white font-bold text-center hover:bg-brand-teal transition-all shadow-lg shadow-brand-blue/10 cursor-pointer text-sm"
                   >
                     View Product
                   </Link>
@@ -1048,7 +1048,7 @@ export default function Home() {
               transition={{ delay: 0.1 }}
               className="group relative bg-white/60 backdrop-blur-xl rounded-[32px] border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,96,100,0.1)] transition-all duration-500"
             >
-              <div className="aspect-[4/3] overflow-hidden relative bg-slate-50">
+              <div className="aspect-[16/11] overflow-hidden relative bg-slate-50">
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent z-10 pointer-events-none" />
                 <img
                   src="https://lh3.googleusercontent.com/d/1upNggZQ_44AhyV441cKaaW3kCdofcvhq"
@@ -1057,35 +1057,35 @@ export default function Home() {
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <div className="p-8 flex flex-col flex-1 relative z-20">
-                <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 flex items-center justify-center shadow-lg absolute -top-7 left-8 group-hover:-translate-y-1 group-hover:shadow-brand-teal/20 transition-all duration-500 text-brand-teal">
-                  <Activity className="w-6 h-6" />
+              <div className="p-6 md:p-6 lg:p-6 xl:p-7 flex flex-col flex-1 relative z-20">
+                <div className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center shadow-lg absolute -top-6 left-6 md:left-7 group-hover:-translate-y-1 group-hover:shadow-brand-teal/20 transition-all duration-500 text-brand-teal">
+                  <Activity className="w-5 h-5" />
                 </div>
                 <Link
                   to="/haal-chaal"
                   className="hover:text-[#0097A7] transition-colors text-left group-hover:text-[#006064]"
                 >
-                  <h3 className="text-xl font-bold text-[#006064] mt-2 mb-3 tracking-tight">
+                  <h3 className="text-lg md:text-xl font-bold text-[#006064] mt-2 mb-2 tracking-tight">
                     Haal-Chaal Pravartak 1.0
                   </h3>
                 </Link>
-                <p className="text-slate-500 text-sm leading-relaxed mb-8 flex-1 font-medium">
+                <p className="text-slate-500 text-sm leading-relaxed mb-4 flex-1 font-medium">
                   India's premier 14-day respiration habituation program and group breath challenge. Engage your vital respiratory system with daily 7-second humming routines, monitored by research-validated acoustic telemetry.
                 </p>
-                <div className="space-y-3 mb-10">
+                <div className="space-y-2 mb-6">
                   <div className="flex items-center gap-3 text-xs font-bold text-slate-600">
-                    <CheckCircle2 className="w-4 h-4 text-brand-teal" />
+                    <CheckCircle2 className="w-4 h-4 text-brand-teal flex-shrink-0" />
                     7-Second Acoustic Screener
                   </div>
                   <div className="flex items-center gap-3 text-xs font-bold text-slate-600">
-                    <CheckCircle2 className="w-4 h-4 text-brand-teal" />
+                    <CheckCircle2 className="w-4 h-4 text-brand-teal flex-shrink-0" />
                     Structured Bio-Feedback Training
                   </div>
                 </div>
                 <div className="flex flex-col gap-3 mt-auto">
                   <Link
                     to="/haal-chaal"
-                    className="w-full py-4 rounded-2xl bg-brand-blue text-white font-bold text-center hover:bg-brand-teal transition-all shadow-lg shadow-brand-blue/10 cursor-pointer"
+                    className="w-full py-3 rounded-2xl bg-brand-blue text-white font-bold text-center hover:bg-brand-teal transition-all shadow-lg shadow-brand-blue/10 cursor-pointer text-sm"
                   >
                     Explore Haal-Chaal
                   </Link>
@@ -1101,7 +1101,7 @@ export default function Home() {
               transition={{ delay: 0.2 }}
               className="group relative bg-white/60 backdrop-blur-xl rounded-[32px] border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(37,99,235,0.1)] transition-all duration-500"
             >
-              <div className="aspect-[4/3] overflow-hidden relative bg-slate-50">
+              <div className="aspect-[16/11] overflow-hidden relative bg-slate-50">
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent z-10 pointer-events-none" />
                 <img
                   src="https://lh3.googleusercontent.com/d/1ptFsvNYiSlaSkINiBjUHMtppYWtrvYSC"
@@ -1110,43 +1110,43 @@ export default function Home() {
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <div className="p-8 flex flex-col flex-1 relative z-20">
-                <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 flex items-center justify-center shadow-lg absolute -top-7 left-8 group-hover:-translate-y-1 group-hover:shadow-blue-500/20 transition-all duration-500 text-blue-600">
-                  <TrendingUp className="w-6 h-6" />
+              <div className="p-6 md:p-6 lg:p-6 xl:p-7 flex flex-col flex-1 relative z-20">
+                <div className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center shadow-lg absolute -top-6 left-6 md:left-7 group-hover:-translate-y-1 group-hover:shadow-blue-500/20 transition-all duration-500 text-blue-600">
+                  <TrendingUp className="w-5 h-5" />
                 </div>
-                <h3 className="text-xl font-bold text-[#006064] mt-2 mb-3 tracking-tight group-hover:text-blue-700 transition-colors">
+                <h3 className="text-lg md:text-xl font-bold text-[#006064] mt-2 mb-2 tracking-tight group-hover:text-blue-700 transition-colors">
                   V-sync (Digital Physio)
                 </h3>
-                <p className="text-slate-500 text-sm leading-relaxed mb-8 flex-1 font-medium">
+                <p className="text-slate-500 text-sm leading-relaxed mb-4 flex-1 font-medium">
                   An advanced vocal bio-resonance platform verifying cardio-respiratory synchrony. Explores acoustic voice properties (Vaani), dynamic interpersonal energy (Verve), and emotional resonance (Vibes) to measure physiological alignment.
                 </p>
-                <div className="space-y-3 mb-10">
+                <div className="space-y-2 mb-6">
                   <div className="flex items-center gap-3 text-xs font-bold text-slate-600">
-                    <CheckCircle2 className="w-4 h-4 text-brand-teal" />
+                    <CheckCircle2 className="w-4 h-4 text-brand-teal flex-shrink-0" />
                     Dual-Stage Harmony Calibration Algorithm
                   </div>
                   <div className="flex items-center gap-3 text-xs font-bold text-slate-600">
-                    <CheckCircle2 className="w-4 h-4 text-brand-teal" />
+                    <CheckCircle2 className="w-4 h-4 text-brand-teal flex-shrink-0" />
                     High-Fidelity Vocal Resonance Profiling
                   </div>
                 </div>
                 <div className="flex flex-col gap-3 mt-auto">
                   <Link
                     to="/vsync?action=quickstart"
-                    className="w-full py-4 rounded-2xl bg-brand-blue text-white font-bold text-center hover:bg-brand-teal transition-all shadow-lg shadow-brand-blue/10 flex items-center justify-center cursor-pointer"
+                    className="w-full py-3 rounded-2xl bg-brand-blue text-white font-bold text-center hover:bg-brand-teal transition-all shadow-lg shadow-brand-blue/10 flex items-center justify-center cursor-pointer text-sm"
                   >
                     🚀 Quick Start Tutorial
                   </Link>
                   <div className="grid grid-cols-2 gap-3">
                     <Link
                       to="/vsync"
-                      className="py-3 rounded-2xl border border-slate-200 text-slate-700 font-bold text-xs uppercase tracking-wide text-center hover:bg-slate-50 transition-all flex items-center justify-center"
+                      className="py-2 rounded-2xl border border-slate-200 text-slate-700 font-bold text-[10px] uppercase tracking-wide text-center hover:bg-slate-50 transition-all flex items-center justify-center"
                     >
                       Discover Info
                     </Link>
                     <Link
                       to="/vsync?action=subscribe"
-                      className="py-3 rounded-2xl border-2 border-blue-600 text-blue-600 font-extrabold text-xs uppercase tracking-wider text-center hover:bg-blue-600 hover:text-white transition-all flex items-center justify-center"
+                      className="py-2 rounded-2xl border-2 border-blue-600 text-blue-600 font-extrabold text-[10px] uppercase tracking-wider text-center hover:bg-blue-600 hover:text-white transition-all flex items-center justify-center"
                     >
                       Get License
                     </Link>
@@ -1163,7 +1163,7 @@ export default function Home() {
               transition={{ delay: 0.3 }}
               className="group relative bg-white/60 backdrop-blur-xl rounded-[32px] border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(244,63,94,0.1)] transition-all duration-500"
             >
-              <div className="aspect-[4/3] overflow-hidden relative bg-slate-50">
+              <div className="aspect-[16/11] overflow-hidden relative bg-slate-50">
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent z-10 pointer-events-none" />
                 <img
                   src="https://lh3.googleusercontent.com/d/1hDSPUhi5jzwhw1_23GtqYx-bngafO8y5"
@@ -1172,23 +1172,23 @@ export default function Home() {
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <div className="p-8 flex flex-col flex-1 relative z-20">
-                <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 flex items-center justify-center shadow-lg absolute -top-7 left-8 group-hover:-translate-y-1 group-hover:shadow-rose-500/20 transition-all duration-500 text-rose-500">
-                  <Leaf className="w-6 h-6" />
+              <div className="p-6 md:p-6 lg:p-6 xl:p-7 flex flex-col flex-1 relative z-20">
+                <div className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center shadow-lg absolute -top-6 left-6 md:left-7 group-hover:-translate-y-1 group-hover:shadow-rose-500/20 transition-all duration-500 text-rose-500">
+                  <Leaf className="w-5 h-5" />
                 </div>
-                <h3 className="text-xl font-bold text-[#006064] mt-2 mb-3 tracking-tight group-hover:text-rose-600 transition-colors">
+                <h3 className="text-lg md:text-xl font-bold text-[#006064] mt-2 mb-2 tracking-tight group-hover:text-rose-600 transition-colors">
                   NOVICULE-TA
                 </h3>
-                <p className="text-slate-500 text-sm leading-relaxed mb-8 flex-1 font-medium">
+                <p className="text-slate-500 text-sm leading-relaxed mb-4 flex-1 font-medium">
                   A premium, clinically formulated sugar-free nutraceutical engineered for comprehensive cardiopulmonary support. Formulated with synergistic counts of L-Citrulline, L-Glutamine, L-Hydroxyproline, and Vitamin C for optimized respiratory immunity.
                 </p>
-                <div className="space-y-3 mb-10">
+                <div className="space-y-2 mb-6">
                   <div className="flex items-center gap-3 text-xs font-bold text-slate-600">
-                    <CheckCircle2 className="w-4 h-4 text-brand-teal" />
+                    <CheckCircle2 className="w-4 h-4 text-brand-teal flex-shrink-0" />
                     Synergistic Amino Acid Bio-Precursors
                   </div>
                   <div className="flex items-center gap-3 text-xs font-bold text-slate-600">
-                    <CheckCircle2 className="w-4 h-4 text-brand-teal" />
+                    <CheckCircle2 className="w-4 h-4 text-brand-teal flex-shrink-0" />
                     Host-Directed Immune & Cellular Defense
                   </div>
                 </div>
@@ -1197,13 +1197,13 @@ export default function Home() {
                     href="https://www.1mg.com/otc/novicule-ta-a-premium-gift-for-heart-lung-wellness-sachet-5-gm-each-orange-sugar-free-otc1059138?srsltid=AfmBOorGTJdADAsQFMzJwo3W8g-MptzPJCgOtA1b0tCwayTkkbpJdHcA&wpsrc=Google+Organic+Search"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-4 rounded-2xl bg-brand-blue text-white font-bold text-center hover:bg-brand-teal transition-all shadow-lg shadow-brand-blue/10 flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-3 rounded-2xl bg-brand-blue text-white font-bold text-center hover:bg-brand-teal transition-all shadow-lg shadow-brand-blue/10 flex items-center justify-center gap-2 cursor-pointer text-sm"
                   >
                     🛒 Buy on TATA 1mg
                   </a>
                   <button
                     onClick={() => setIsNoviculeModalOpen(true)}
-                    className="w-full py-3.5 rounded-2xl border border-slate-200 text-slate-700 font-bold text-xs uppercase tracking-wider text-center hover:bg-slate-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-3 rounded-2xl border border-slate-200 text-slate-700 font-bold text-xs uppercase tracking-wider text-center hover:bg-slate-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Info className="w-4 h-4 text-brand-teal" /> Discover Info
                   </button>

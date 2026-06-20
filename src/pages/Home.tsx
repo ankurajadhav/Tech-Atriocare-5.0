@@ -293,7 +293,7 @@ export default function Home() {
               scale: { duration: 60, repeat: Infinity, ease: "linear" },
               opacity: { duration: 2 },
             }}
-            className="absolute inset-0 bg-no-repeat bg-[size:155%_auto] bg-[position:right_center] sm:bg-cover sm:bg-[position:right_5%_center] mix-blend-multiply opacity-[0.88]"
+            className="absolute inset-0 bg-no-repeat bg-[size:155%_auto] bg-left sm:bg-cover sm:bg-[position:right_5%_center] mix-blend-multiply opacity-[0.88]"
             style={{ backgroundImage: `url(${futuristicLungHero})` }}
           />
 
@@ -569,12 +569,10 @@ export default function Home() {
                 </span>
                 .
               </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-start justify-start gap-6 w-full">
+            </div>             <div className="flex flex-col sm:flex-row items-start justify-start gap-6 w-full">
               <Link
                 to="/checkup"
-                className="relative atrio-gradient text-white px-12 py-7 rounded-full font-black shadow-[0_20px_50px_rgba(20,184,166,0.3)] hover:-translate-y-2.5 transition-all flex items-center gap-7 group w-full sm:w-auto justify-center overflow-hidden active:scale-95"
+                className="relative atrio-gradient text-white px-7 py-4.5 sm:px-12 sm:py-7 rounded-full font-black shadow-[0_20px_50px_rgba(20,184,166,0.3)] hover:-translate-y-2.5 transition-all flex items-center gap-4 sm:gap-7 group w-full sm:w-auto justify-center overflow-hidden active:scale-95"
               >
                 {/* Advanced Light dynamics */}
                 <motion.div
@@ -602,12 +600,12 @@ export default function Home() {
                 />
 
                 <div className="flex flex-col items-start leading-tight relative z-10 text-left">
-                  <span className="text-xl uppercase tracking-tighter font-display leading-tight py-1 bg-clip-text">
+                  <span className="text-base sm:text-xl uppercase tracking-tighter font-display leading-tight py-1 bg-clip-text">
                     1-min Digital <br className="md:hidden" /> Check-Up
                   </span>
                 </div>
-                <div className="bg-white p-3 rounded-full relative z-10 text-brand-teal shadow-2xl group-hover:scale-125 transition-all duration-500">
-                  <ArrowRight className="w-6 h-6" />
+                <div className="bg-white p-2.5 sm:p-3 rounded-full relative z-10 text-brand-teal shadow-2xl group-hover:scale-125 transition-all duration-500 shrink-0">
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
               </Link>
             </div>

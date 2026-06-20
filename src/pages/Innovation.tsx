@@ -125,7 +125,7 @@ Scenario: ${analysisInput}`
             The <span className="text-brand-teal">Intelligent</span> <br /> Standard
           </h1>
           
-          <p className="text-slate-400 text-lg md:text-xl font-medium leading-relaxed max-w-2xl mx-auto drop-shadow-sm">
+          <p className="text-slate-400 text-sm sm:text-base md:text-xl font-medium leading-relaxed max-w-2xl mx-auto drop-shadow-sm">
             Experience the future of healthcare with our clinical-grade algorithmic recommendation engine. 
             Designed for respiratory excellence and patient-first diagnostics.
           </p>
@@ -138,8 +138,8 @@ Scenario: ${analysisInput}`
             {/* Input Side */}
             <div className="p-8 md:p-16 space-y-12 bg-white/5 border-r border-white/5">
               <div className="space-y-6">
-                <h2 className="text-4xl font-black text-white font-display uppercase tracking-tight">Biometric Insight</h2>
-                <p className="text-slate-400 font-medium text-lg leading-relaxed">Input clinical symptoms or respiratory patterns to synthesize a high-precision technology recommendation.</p>
+                <h2 className="text-2xl sm:text-4xl font-black text-white font-display uppercase tracking-tight">Biometric Insight</h2>
+                <p className="text-slate-400 font-medium text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed">Input clinical symptoms or respiratory patterns to synthesize a high-precision technology recommendation.</p>
               </div>
 
               <div className="space-y-8">
@@ -255,8 +255,8 @@ Scenario: ${analysisInput}`
                  <div className="w-14 h-14 rounded-2xl bg-brand-bg border border-brand-border flex items-center justify-center text-brand-teal group-hover:scale-110 transition-transform shadow-sm">
                     <Search className="w-7 h-7" />
                  </div>
-                 <h3 className="text-3xl font-bold font-display text-[#006064]">Global Clinical Intelligence</h3>
-                 <p className="text-slate-500 font-medium text-lg max-w-md leading-relaxed">
+                 <h3 className="text-xl sm:text-3xl font-bold font-display text-[#006064]">Global Clinical Intelligence</h3>
+                 <p className="text-slate-500 font-medium text-xs sm:text-sm lg:text-lg max-w-md leading-relaxed">
                    Leverage our proprietary database of millions of clinical records to validate diagnostic theories and treatment protocols instantly.
                  </p>
               </div>
@@ -271,8 +271,8 @@ Scenario: ${analysisInput}`
               <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-white/10 blur-[80px] rounded-full group-hover:scale-150 transition-transform" />
               <div className="relative z-10 space-y-6">
                 <Fingerprint className="w-12 h-12 text-white/50" />
-                <h3 className="text-3xl font-bold font-display leading-tight">Patient Data Shield</h3>
-                <p className="text-white/80 font-medium">Military-grade encryption for all patient screenings and historical records.</p>
+                <h3 className="text-xl sm:text-3xl font-bold font-display leading-tight">Patient Data Shield</h3>
+                <p className="text-white/80 font-medium text-xs sm:text-sm md:text-base">Military-grade encryption for all patient screenings and historical records.</p>
               </div>
               <Link 
                 to="/terms"
@@ -284,15 +284,15 @@ Scenario: ${analysisInput}`
 
            <div className="bg-white p-12 rounded-[48px] border border-brand-border shadow-sm group hover:border-brand-teal transition-all duration-300">
               <Activity className="w-12 h-12 text-brand-teal mb-8 group-hover:rotate-12 transition-transform" />
-              <h3 className="text-2xl font-bold font-display text-[#006064] mb-4">Real-time Vitals</h3>
-              <p className="text-slate-500 font-medium leading-relaxed">Integrated syncing with NOVICULE-TA hardware for millisecond precision monitoring.</p>
+              <h3 className="text-lg sm:text-2xl font-bold font-display text-[#006064] mb-4">Real-time Vitals</h3>
+              <p className="text-slate-500 font-medium text-xs sm:text-sm md:text-base leading-relaxed">Integrated syncing with NOVICULE-TA hardware for millisecond precision monitoring.</p>
            </div>
 
             <div className="lg:col-span-2 bg-slate-900 p-12 rounded-[48px] flex flex-col md:flex-row gap-12 items-center overflow-hidden relative">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,#0097a720,transparent)]" />
               <div className="relative z-10 flex-grow space-y-6">
-                 <h3 className="text-3xl font-bold font-display text-white">Innovation Partnership</h3>
-                 <p className="text-slate-400 font-medium text-lg leading-relaxed max-w-md">Join 1500+ institutions pioneer with Tech AtrioCare research protocols and shared data lakes.</p>
+                 <h3 className="text-xl sm:text-3xl font-bold font-display text-white">Innovation Partnership</h3>
+                 <p className="text-slate-400 font-medium text-xs sm:text-sm lg:text-lg leading-relaxed max-w-md">Join 1500+ institutions pioneer with Tech AtrioCare research protocols and shared data lakes.</p>
                  <button 
                    onClick={() => setIsModalOpen(true)}
                    className="flex items-center gap-3 text-brand-teal font-black uppercase tracking-widest text-xs hover:gap-5 transition-all outline-none cursor-pointer"

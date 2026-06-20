@@ -188,15 +188,15 @@ export default function Reviews() {
       </section>
 
       {/* Improvement Form Section - Now Tinted */}
-      <section className="py-40 bg-slate-50 relative overflow-hidden">
+      <section className="py-16 sm:py-24 md:py-40 bg-slate-50 relative overflow-hidden">
         <div className="max-w-5xl mx-auto px-4 relative z-10">
-          <div className="bg-brand-teal/[0.03] rounded-[64px] p-12 md:p-24 border border-brand-teal/10 shadow-2xl shadow-brand-teal/5 relative">
-            <div className="text-center mb-20">
-              <span className="text-brand-teal font-black text-[10px] uppercase tracking-[0.5em] mb-6 block">Innovation Loop</span>
-              <h2 className="text-4xl md:text-7xl font-black font-display text-[#006064] uppercase tracking-tighter mb-8 leading-none">
+          <div className="bg-brand-teal/[0.03] rounded-[32px] sm:rounded-[64px] p-6 sm:p-12 md:p-24 border border-brand-teal/10 shadow-2xl shadow-brand-teal/5 relative">
+            <div className="text-center mb-12 sm:mb-20">
+              <span className="text-brand-teal font-black text-[10px] uppercase tracking-[0.5em] mb-4 sm:mb-6 block animate-pulse">Innovation Loop</span>
+              <h2 className="text-3xl sm:text-5xl md:text-7xl font-black font-display text-[#006064] uppercase tracking-tighter mb-4 sm:mb-8 leading-none">
                 Help Us <span className="text-brand-teal">Evolve</span>
               </h2>
-              <p className="text-slate-500 font-bold text-xl max-w-xl mx-auto leading-relaxed">
+              <p className="text-slate-500 font-bold text-sm sm:text-xl max-w-xl mx-auto leading-relaxed">
                 Your direct feedback on our website functionality and product efficacy drives our next major release.
               </p>
             </div>
@@ -205,30 +205,30 @@ export default function Reviews() {
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="text-center py-24 bg-brand-teal/5 rounded-[48px] border-2 border-dashed border-brand-teal/20"
+                className="text-center py-16 sm:py-24 bg-brand-teal/5 rounded-[24px] sm:rounded-[48px] border-2 border-dashed border-brand-teal/20 px-4"
               >
-                <div className="w-24 h-24 rounded-full bg-brand-teal flex items-center justify-center text-white mx-auto mb-8 shadow-xl shadow-brand-teal/20">
-                  <CheckCircle2 size={40} />
+                <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-brand-teal flex items-center justify-center text-white mx-auto mb-6 sm:mb-8 shadow-xl shadow-brand-teal/20">
+                  <CheckCircle2 className="w-8 h-8 sm:w-12 sm:h-12" />
                 </div>
-                <h3 className="text-4xl font-black text-[#006064] uppercase tracking-tight mb-4">Feedback Logged</h3>
-                <p className="text-slate-500 font-bold">Thank you for contributing to the AtrioCare ecosystem.</p>
+                <h3 className="text-2xl sm:text-4xl font-black text-[#006064] uppercase tracking-tight mb-3 sm:mb-4">Feedback Logged</h3>
+                <p className="text-sm sm:text-base text-slate-500 font-bold">Thank you for contributing to the AtrioCare ecosystem.</p>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-12">
-                <div className="grid md:grid-cols-2 gap-10">
-                  <div className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-12">
+                <div className="grid md:grid-cols-2 gap-6 sm:gap-10">
+                  <div className="space-y-2 sm:space-y-4">
                     <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 ml-4">Subject identity</label>
                     <input 
                       required
                       type="text" 
                       placeholder="Jane Doe"
-                      className="w-full px-10 py-7 rounded-[32px] bg-white border border-slate-100 focus:outline-none focus:ring-4 focus:ring-brand-teal/20 focus:border-brand-teal text-slate-900 font-bold text-xl transition-all placeholder:text-slate-300"
+                      className="w-full px-6 sm:px-10 py-4.5 sm:py-7 rounded-[20px] sm:rounded-[32px] bg-white border border-slate-100 focus:outline-none focus:ring-4 focus:ring-brand-teal/20 focus:border-brand-teal text-slate-900 font-bold text-base sm:text-xl transition-all placeholder:text-slate-300"
                     />
                   </div>
-                  <div className="space-y-4">
+                  <div className="space-y-2 sm:space-y-4">
                     <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 ml-4">Feedback Domain</label>
                     <div className="relative">
-                      <select className="w-full px-10 py-7 rounded-[32px] bg-white border border-slate-100 focus:outline-none focus:ring-4 focus:ring-brand-teal/20 focus:border-brand-teal text-slate-900 font-bold text-xl transition-all appearance-none cursor-pointer">
+                      <select className="w-full px-6 sm:px-10 py-4.5 sm:py-7 rounded-[20px] sm:rounded-[32px] bg-white border border-slate-100 focus:outline-none focus:ring-4 focus:ring-brand-teal/20 focus:border-brand-teal text-slate-900 font-bold text-base sm:text-xl transition-all appearance-none cursor-pointer">
                         <option>Website UX/UI Improvement</option>
                         <option>Novicule-TA Efficacy</option>
                         <option>Haal-Chaal Protocol</option>
@@ -238,22 +238,22 @@ export default function Reviews() {
                   </div>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-2 sm:space-y-4">
                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 ml-4">Clinical Observations / Suggestions</label>
                   <textarea 
                     required
                     rows={6}
                     placeholder="Describe your assessment or suggested improvement..."
-                    className="w-full px-10 py-10 rounded-[48px] bg-white border border-slate-100 focus:outline-none focus:ring-4 focus:ring-brand-teal/20 focus:border-brand-teal text-slate-900 font-bold text-xl transition-all resize-none placeholder:text-slate-300"
+                    className="w-full px-6 sm:px-10 py-6 sm:py-10 rounded-[24px] sm:rounded-[48px] bg-white border border-slate-100 focus:outline-none focus:ring-4 focus:ring-brand-teal/20 focus:border-brand-teal text-slate-900 font-bold text-base sm:text-xl transition-all resize-none placeholder:text-slate-300"
                   />
                 </div>
 
                 <button 
                   type="submit"
-                  className="w-full py-8 atrio-gradient text-white rounded-full font-black uppercase tracking-[0.5em] shadow-2xl shadow-brand-teal/30 flex items-center justify-center gap-6 group hover:-translate-y-2 active:scale-95 transition-all text-sm"
+                  className="w-full py-5 sm:py-8 atrio-gradient text-white rounded-full font-black uppercase tracking-[0.15em] sm:tracking-[0.5em] shadow-2xl shadow-brand-teal/30 flex items-center justify-center gap-4 sm:gap-6 group hover:-translate-y-2 active:scale-95 transition-all text-xs sm:text-sm"
                 >
                   Broadcast Feedback
-                  <Send className="w-5 h-5 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform" />
+                  <Send className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform" />
                 </button>
               </form>
             )}
@@ -262,16 +262,16 @@ export default function Reviews() {
       </section>
 
       {/* Bottom Quote */}
-      <section className="py-48 px-4 bg-white relative">
+      <section className="py-16 sm:py-24 md:py-48 px-4 bg-white relative">
         <div className="max-w-4xl mx-auto text-center">
-          <Quote className="w-24 h-24 text-brand-teal/10 mx-auto mb-16" />
-          <h2 className="text-4xl md:text-6xl font-black font-display text-[#006064] uppercase tracking-tighter leading-[0.8] mb-16 italic">
+          <Quote className="w-12 h-12 sm:w-24 sm:h-24 text-brand-teal/10 mx-auto mb-8 sm:mb-16" />
+          <h2 className="text-2xl sm:text-4xl md:text-6xl font-black font-display text-[#006064] uppercase tracking-tighter leading-tight mb-8 sm:mb-16 italic">
             "Your feedback is <span className="text-brand-teal italic underline decoration-brand-teal/20 underline-offset-4 decoration-8">Precision</span>."
           </h2>
-          <div className="flex items-center justify-center gap-8">
-            <div className="h-[1px] w-24 bg-slate-100" />
-            <p className="text-slate-400 font-black text-[10px] uppercase tracking-[0.8em]">AtrioCare Research Team</p>
-            <div className="h-[1px] w-24 bg-slate-100" />
+          <div className="flex items-center justify-center gap-4 sm:gap-8">
+            <div className="h-[1px] w-12 sm:w-24 bg-slate-100" />
+            <p className="text-slate-400 font-black text-[9px] sm:text-[10px] uppercase tracking-[0.4em] sm:tracking-[0.8em]">AtrioCare Research Team</p>
+            <div className="h-[1px] w-12 sm:w-24 bg-slate-100" />
           </div>
         </div>
       </section>

@@ -105,17 +105,17 @@ export default function BlogDetail() {
 
       {/* Main Image - BELOW THE HEADER LIKE SCREENSHOT 4/5 */}
       {blog.image && (
-        <div className="max-w-5xl mx-auto px-6 -mt-10 md:-mt-16 relative z-20">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 -mt-10 md:-mt-16 relative z-20">
           <motion.div
             initial={{ opacity: 0, y: 40, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="rounded-[40px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] border-[6px] border-white"
+            className="rounded-[24px] sm:rounded-[40px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] border-4 sm:border-[6px] border-white"
           >
             <img 
               src={blog.image} 
               alt={blog.title}
-              className="w-full aspect-[21/9] object-cover"
+              className="w-full aspect-[3/2] sm:aspect-[16/9] md:aspect-[21/9] object-cover"
             />
           </motion.div>
         </div>
@@ -176,7 +176,7 @@ export default function BlogDetail() {
                 transition={{ delay: rIdx * 0.1 }}
               >
                 <Link to={`/blogs/${rec.id}`} className="group flex flex-col h-full bg-white rounded-3xl p-4 border border-slate-200 hover:border-brand-teal/30 transition-all shadow-sm">
-                  <div className="aspect-[16/10] rounded-2xl overflow-hidden mb-6 bg-slate-100 flex items-center justify-center">
+                  <div className="aspect-[3/2] sm:aspect-[16/10] rounded-2xl overflow-hidden mb-6 bg-slate-100 flex items-center justify-center">
                     {rec.image ? (
                       <motion.img 
                         src={rec.image} 

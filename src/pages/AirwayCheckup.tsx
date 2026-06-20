@@ -480,7 +480,7 @@ export default function AirwayCheckup() {
                 </p>
               </div>
 
-              <div className="bg-white/60 backdrop-blur-xl border border-white rounded-[48px] p-12 shadow-2xl shadow-[#006D77]/5 space-y-10">
+              <div className="bg-white/60 backdrop-blur-xl border border-white rounded-[28px] sm:rounded-[48px] p-6 sm:p-12 shadow-2xl shadow-[#006D77]/5 space-y-10">
                 <div className="space-y-2">
                   <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em]">Today's AQI (your area)</p>
                   {aqi === null ? (
@@ -534,7 +534,7 @@ export default function AirwayCheckup() {
                  <p className="text-slate-400 font-bold text-xs uppercase tracking-widest">Calibration {recordingsCount + 1} of 3</p>
               </div>
               
-              <div className="bg-white rounded-[40px] p-10 border border-slate-100 shadow-xl space-y-8 relative overflow-hidden">
+              <div className="bg-white rounded-[28px] sm:rounded-[40px] p-6 sm:p-10 border border-slate-100 shadow-xl space-y-8 relative overflow-hidden">
                 <div className="absolute top-10 right-10 opacity-10">
                    <Mic className="w-32 h-32 text-[#006D77]" />
                 </div>
@@ -765,7 +765,7 @@ export default function AirwayCheckup() {
                   <h2 className="text-4xl md:text-5xl font-black text-[#006D77] uppercase leading-tight">Digital Airway <br /> Health Report</h2>
                 </div>
 
-                <div className="bg-white rounded-[48px] p-10 border border-slate-100 shadow-2xl space-y-10">
+                <div className="bg-white rounded-[28px] sm:rounded-[48px] p-6 sm:p-10 border border-slate-100 shadow-2xl space-y-10">
                   <div className="flex flex-col md:flex-row items-center gap-10">
                     <div className="text-center md:text-left space-y-2">
                       <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest">Airway Patency Score</p>
@@ -837,7 +837,7 @@ export default function AirwayCheckup() {
                   </div>
                 </div>
 
-                <div className="bg-[#0097A7] text-white rounded-[40px] p-10 flex flex-col md:flex-row items-center gap-8 shadow-xl shadow-[#0097A7]/20">
+                <div className="bg-[#0097A7] text-white rounded-[28px] sm:rounded-[40px] p-6 sm:p-10 flex flex-col md:flex-row items-center gap-8 shadow-xl shadow-[#0097A7]/20">
                    <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center shrink-0">
                       <Activity className="w-10 h-10 text-[#0097A7]" />
                    </div>

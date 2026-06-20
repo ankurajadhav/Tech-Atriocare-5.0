@@ -53,12 +53,12 @@ export default function Blogs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="bg-white rounded-[40px] overflow-hidden group border border-slate-100 flex flex-col h-full hover:border-brand-teal/30 hover:-translate-y-3 transition-all duration-500 shadow-[0_32px_64px_rgba(31,41,55,0.06)]"
+              className="bg-white rounded-[24px] sm:rounded-[40px] overflow-hidden group border border-slate-100 flex flex-col h-full hover:border-brand-teal/30 hover:-translate-y-3 transition-all duration-500 shadow-[0_32px_64px_rgba(31,41,55,0.06)]"
             >
               {/* Image Container with Padding like screenshot */}
               <div className="p-4 relative">
                 <Link to={`/blogs/${blog.id}`} className="block">
-                  <div className="aspect-[1.6] overflow-hidden rounded-[20px] bg-slate-50 flex items-center justify-center border border-slate-100">
+                  <div className="aspect-[3/2] sm:aspect-[1.6] overflow-hidden rounded-[20px] bg-slate-50 flex items-center justify-center border border-slate-100">
                     {blog.image ? (
                       <motion.img 
                         src={blog.image} 

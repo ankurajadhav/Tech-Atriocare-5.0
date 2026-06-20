@@ -571,7 +571,7 @@ export default function VSyncPage() {
             <h2 className="text-5xl md:text-7xl font-bold tracking-tight leading-none text-white font-sans">
               Unleash the vibe check with V-sync!
             </h2>
-            <p className="text-xl font-medium text-slate-100 leading-relaxed max-w-xl">
+            <p className="text-xs sm:text-base md:text-xl font-medium text-slate-100 leading-relaxed max-w-xl">
               V-sync, powered by its bi-layered sync algorithm, is the world's first relationship wellness platform that calculates your vibe check through your voice! ✨
             </p>
             <div className="space-y-6">
@@ -653,7 +653,7 @@ export default function VSyncPage() {
                         {step.t}
                       </span>
                     </div>
-                    <p className="text-xl md:text-2xl font-bold leading-snug text-white">{step.d}</p>
+                    <p className="text-base sm:text-xl md:text-2xl font-bold leading-snug text-white">{step.d}</p>
                   </div>
                 </div>
               ))}
@@ -681,7 +681,7 @@ export default function VSyncPage() {
                 transition={{ delay: i * 0.1, duration: 0.8 }}
                 className="bg-white/15 p-10 rounded-[32px] border border-white/20 shadow-xl flex flex-col justify-between hover:scale-[1.02] hover:border-white/30 hover:shadow-2xl transition-all duration-300"
               >
-                <p className="text-xl font-semibold text-white leading-relaxed mb-12">"{t.q}"</p>
+                <p className="text-base sm:text-xl font-semibold text-white leading-relaxed mb-12">"{t.q}"</p>
                 <div className="flex flex-col items-end">
                    <div className="h-0.5 w-12 bg-white/35 mb-4" />
                    <span className="text-base font-extrabold uppercase tracking-widest text-pink-200">— {t.a}</span>
@@ -700,10 +700,10 @@ export default function VSyncPage() {
             <div className="space-y-6 sm:space-y-12">
               <h2 className="text-4xl sm:text-8xl md:text-[160px] font-black text-white leading-none tracking-tighter drop-shadow-[0_8px_32px_rgba(76,29,149,0.5)] select-none">वाणी</h2>
               <div className="space-y-4 sm:space-y-6">
-                 <p className="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-relaxed">
+                 <p className="text-base sm:text-2xl md:text-3xl font-bold text-white leading-relaxed">
                    In Hindi, the word "Vaani" (वाणी) translates to "speech" or "voice".
                  </p>
-                 <p className="text-base sm:text-lg md:text-xl font-medium text-slate-100 leading-relaxed max-w-2xl">
+                 <p className="text-xs sm:text-lg md:text-xl font-medium text-slate-100 leading-relaxed max-w-2xl">
                    Using your voice (Vaani) as a guide, our 2-tier algorithm will help you and your loved ones test your physiological synchrony. By processing and analyzing the heart rate and breathing rate patterns from the humming voice data, this product can help you find the synchronization % with your significant other, family, and friends.
                  </p>
               </div>
@@ -741,10 +741,10 @@ export default function VSyncPage() {
             <div className="space-y-6 sm:space-y-12 order-1 lg:order-2">
               <h2 className="text-4xl sm:text-8xl md:text-[160px] font-black text-white leading-none tracking-tighter drop-shadow-[0_8px_32px_rgba(76,29,149,0.5)] select-none">उत्साह</h2>
               <div className="space-y-4 sm:space-y-6">
-                 <p className="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-relaxed">
+                 <p className="text-base sm:text-2xl md:text-3xl font-bold text-white leading-relaxed">
                    "Verve" is the dynamic and energetic quality of interpersonal connections.
                  </p>
-                 <p className="text-base sm:text-lg md:text-xl font-medium text-slate-100 leading-relaxed max-w-2xl">
+                 <p className="text-xs sm:text-lg md:text-xl font-medium text-slate-100 leading-relaxed max-w-2xl">
                    It denotes the existence of vibrant and engaged interactions. It suggests a sense of excitement, passion, and positive engagement, which can help to synchronize physiological responses or improve the quality of interpersonal interactions.
                  </p>
               </div>
@@ -756,10 +756,10 @@ export default function VSyncPage() {
             <div className="space-y-6 sm:space-y-12">
               <h2 className="text-4xl sm:text-8xl md:text-[160px] font-black text-white leading-none tracking-tighter drop-shadow-[0_8px_32px_rgba(76,29,149,0.5)] select-none">तरंग</h2>
               <div className="space-y-4 sm:space-y-6">
-                 <p className="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-relaxed">
+                 <p className="text-base sm:text-2xl md:text-3xl font-bold text-white leading-relaxed">
                    "Vibes" is the emotional and intuitive energy detected in a person or setting.
                  </p>
-                 <p className="text-base sm:text-lg md:text-xl font-medium text-slate-100 leading-relaxed max-w-2xl">
+                 <p className="text-xs sm:text-lg md:text-xl font-medium text-slate-100 leading-relaxed max-w-2xl">
                    In the context of physiological synchrony, "vibes" refer to the emotional and energetic resonance or connection that persons feel. It is about the intuitive wavelength that connects two souls instantly through vocal resonance.
                  </p>
               </div>
@@ -876,15 +876,15 @@ export default function VSyncPage() {
               </div>
 
               {/* Main Step Detail Card */}
-              <div className="w-full bg-[#fdf2f4]/95 backdrop-blur-md rounded-[32px] md:rounded-[40px] p-8 md:p-14 relative overflow-hidden shadow-2xl border border-white/40 flex items-center min-h-[300px]">
+              <div className="w-full bg-[#fdf2f4]/95 backdrop-blur-md rounded-[32px] md:rounded-[40px] p-6 sm:p-10 md:p-14 relative overflow-hidden shadow-2xl border border-white/40 flex items-center min-h-[260px] md:min-h-[300px]">
                 {/* Decorative shapes to match browser container details */}
                 <div className="absolute -left-12 -bottom-12 w-48 h-48 rounded-full bg-blue-300/10 blur-2xl pointer-events-none" />
                 <div className="absolute -right-12 -top-12 w-64 h-64 rounded-full bg-[#eb7cd5]/15 blur-3xl pointer-events-none" />
                 
-                <div className="w-full flex flex-col md:flex-row items-center gap-8 md:gap-14 relative z-10">
+                <div className="w-full flex flex-col md:flex-row items-center gap-5 sm:gap-8 md:gap-14 relative z-10">
                   {/* Step Circle & Step Icon Row */}
                   <div className="flex items-center gap-6 md:gap-8 shrink-0 w-full md:w-auto justify-center md:justify-start">
-                    <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-full text-white font-extrabold text-4xl sm:text-5xl flex items-center justify-center shadow-lg shrink-0 transition-colors duration-300 ${getStepCircleColor(currentStep)}`}>
+                    <div className={`w-16 h-16 sm:w-24 sm:h-24 rounded-full text-white font-extrabold text-3xl sm:text-5xl flex items-center justify-center shadow-lg shrink-0 transition-colors duration-300 ${getStepCircleColor(currentStep)}`}>
                       {currentStep}
                     </div>
                     
@@ -894,11 +894,11 @@ export default function VSyncPage() {
                   </div>
 
                   {/* Instruction Text Block */}
-                  <div className="space-y-4 text-center md:text-left flex-1">
-                    <h2 className="text-3xl md:text-5xl font-extrabold text-[#111827] leading-none tracking-tight font-sans">
+                  <div className="space-y-2 sm:space-y-4 text-center md:text-left flex-1">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-[#111827] leading-tight tracking-tight font-sans">
                       {tutorialSteps[currentStep - 1].title}
                     </h2>
-                    <p className="text-lg md:text-xl text-slate-600 font-medium leading-relaxed font-sans">
+                    <p className="text-base sm:text-lg md:text-xl text-slate-600 font-medium leading-relaxed font-sans">
                       {tutorialSteps[currentStep - 1].description}
                     </p>
                   </div>

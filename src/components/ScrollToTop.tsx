@@ -11,7 +11,13 @@ export default function ScrollToTop() {
       const scrollToSection = () => {
         const element = document.getElementById(elementId);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          const headerOffset = 90;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
         }
       };
 

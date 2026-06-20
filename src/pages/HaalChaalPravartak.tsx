@@ -146,12 +146,12 @@ export default function HaalChaalPravartak() {
                 </span>
               </h1>
 
-              <p className="text-2xl lg:text-3xl font-bold text-slate-800 mb-6 tracking-tight max-w-2xl font-display">
+              <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-800 mb-6 tracking-tight max-w-2xl font-display">
                 Introducing Haal-Chaal Pravartak — the Digital Gym for Heart &
                 Lung Wellness.
               </p>
 
-              <p className="text-slate-500 text-lg md:text-xl font-medium leading-relaxed mb-12 max-w-xl">
+              <p className="text-slate-500 text-sm sm:text-base md:text-xl font-medium leading-relaxed mb-12 max-w-xl">
                 Your airways are working every second of every day, yet most of
                 us never think about them until something goes wrong. With just{" "}
                 <strong className="text-brand-blue font-bold">
@@ -277,7 +277,7 @@ export default function HaalChaalPravartak() {
                 You More Than You Think
               </span>
             </motion.h2>
-            <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto font-medium leading-relaxed relative z-10">
+            <p className="text-xs sm:text-base md:text-xl text-slate-600 max-w-3xl mx-auto font-medium leading-relaxed relative z-10">
               India is home to some of the most polluted air on the planet.
               Millions of people from urban professionals to children breathe
               air laced with particulate matter, dust, and pollutants every
@@ -293,7 +293,7 @@ export default function HaalChaalPravartak() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="md:col-span-8 bg-white/80 backdrop-blur-xl rounded-[32px] md:rounded-[40px] p-8 md:p-10 lg:p-12 border border-white shadow-2xl shadow-slate-200/50 flex flex-col justify-between overflow-hidden relative group z-10 hover:bg-white transition-all duration-500"
+              className="md:col-span-8 bg-white/80 backdrop-blur-xl rounded-[24px] sm:rounded-[32px] md:rounded-[40px] p-5 sm:p-8 md:p-10 lg:p-12 border border-white shadow-2xl shadow-slate-200/50 flex flex-col justify-between overflow-hidden relative group z-10 hover:bg-white transition-all duration-500"
             >
               <div className="absolute -right-20 -top-20 w-96 h-96 bg-brand-teal/5 rounded-full blur-3xl group-hover:bg-brand-teal/10 transition-colors duration-1000 pointer-events-none" />
               <div className="relative z-10 h-full flex flex-col">
@@ -305,7 +305,7 @@ export default function HaalChaalPravartak() {
                     <h3 className="text-2xl font-bold text-brand-blue mb-2 font-display">
                       Global Impact
                     </h3>
-                    <p className="text-slate-500 font-medium text-lg max-w-sm">
+                    <p className="text-slate-500 font-medium text-xs sm:text-sm lg:text-lg max-w-sm">
                       Breathe air that exceeds WHO safety limits
                     </p>
                   </div>
@@ -326,7 +326,7 @@ export default function HaalChaalPravartak() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="md:col-span-4 bg-gradient-to-br from-brand-blue to-slate-900 rounded-[32px] md:rounded-[40px] p-8 md:p-10 border border-brand-blue/50 shadow-2xl relative overflow-hidden group z-10 animate-fade-in"
+              className="md:col-span-4 bg-gradient-to-br from-brand-blue to-slate-900 rounded-[24px] sm:rounded-[32px] md:rounded-[40px] p-5 sm:p-8 md:p-10 border border-brand-blue/50 shadow-2xl relative overflow-hidden group z-10 animate-fade-in"
             >
               <div className="absolute bottom-0 right-0 w-64 h-64 bg-brand-teal/20 blur-[80px] rounded-full pointer-events-none"></div>
               <div className="relative z-10 flex flex-col h-full justify-between">
@@ -334,7 +334,7 @@ export default function HaalChaalPravartak() {
                   <h3 className="text-xl md:text-2xl font-bold text-white mb-2 font-display">
                     Indian Cities
                   </h3>
-                  <p className="text-brand-teal-light/80 font-medium text-base">
+                  <p className="text-brand-teal-light/80 font-medium text-xs sm:text-sm md:text-base">
                     Of the world's most polluted cities are in India.
                   </p>
                 </div>
@@ -350,7 +350,7 @@ export default function HaalChaalPravartak() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="md:col-span-5 bg-white/80 backdrop-blur-xl rounded-[32px] md:rounded-[40px] p-8 md:p-10 border border-white shadow-xl flex flex-col justify-center gap-5 z-10 group hover:bg-white transition-all duration-500"
+              className="md:col-span-5 bg-white/80 backdrop-blur-xl rounded-[24px] sm:rounded-[32px] md:rounded-[40px] p-5 sm:p-8 md:p-10 border border-white shadow-xl flex flex-col justify-center gap-5 z-10 group hover:bg-white transition-all duration-500"
             >
               <div className="w-20 h-20 rounded-2xl bg-slate-50 flex items-center justify-center shrink-0 border border-slate-100 group-hover:bg-brand-teal/5 transition-colors">
                 <span className="text-3xl font-black text-brand-teal font-display">
@@ -361,7 +361,7 @@ export default function HaalChaalPravartak() {
                 <h4 className="font-bold text-brand-blue text-xl leading-tight mb-2 font-display">
                   Leading risk factor globally
                 </h4>
-                <p className="text-slate-500 font-medium text-base">
+                <p className="text-slate-500 font-medium text-xs sm:text-sm md:text-base">
                   For non-communicable diseases.
                 </p>
               </div>
@@ -372,14 +372,14 @@ export default function HaalChaalPravartak() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="md:col-span-7 bg-white/80 backdrop-blur-xl rounded-[32px] md:rounded-[40px] p-8 md:p-10 border border-white shadow-xl flex flex-col md:flex-row items-center gap-8 justify-between relative overflow-hidden z-10 group hover:bg-white transition-all duration-500"
+              className="md:col-span-7 bg-white/80 backdrop-blur-xl rounded-[24px] sm:rounded-[32px] md:rounded-[40px] p-5 sm:p-8 md:p-10 border border-white shadow-xl flex flex-col md:flex-row items-center gap-6 sm:gap-8 justify-between relative overflow-hidden z-10 group hover:bg-white transition-all duration-500"
             >
               <div className="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-slate-50/50 to-transparent pointer-events-none group-hover:from-slate-100/50 transition-colors" />
               <div className="relative z-10">
                 <h4 className="text-2xl md:text-3xl font-black text-brand-blue mb-3 font-display uppercase tracking-tight">
                   Most at Risk <br className="hidden md:inline" />& Unaware
                 </h4>
-                <p className="text-slate-600 font-medium text-base">
+                <p className="text-slate-600 font-medium text-xs sm:text-sm md:text-base">
                   Children, the elderly, and outdoor workers.
                 </p>
               </div>
@@ -400,7 +400,7 @@ export default function HaalChaalPravartak() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-r from-rose-50 to-orange-50 border border-white p-8 md:p-10 rounded-[32px] md:rounded-[40px] text-center max-w-4xl mx-auto shadow-xl relative overflow-hidden"
+            className="bg-gradient-to-r from-rose-50 to-orange-50 border border-white p-5 sm:p-8 md:p-10 rounded-[24px] sm:rounded-[32px] md:rounded-[40px] text-center max-w-4xl mx-auto shadow-xl relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/50 blur-3xl rounded-full pointer-events-none" />
             <h4 className="text-2xl lg:text-3xl font-black text-brand-blue tracking-tight font-display leading-[1.3] relative z-10">
@@ -417,8 +417,8 @@ export default function HaalChaalPravartak() {
       </section>
 
       {/* SECTION 3: UAO */}
-      <section className="px-6 md:px-12 lg:px-24 mb-32 max-w-[1400px] mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-24 items-center">
+      <section className="px-4 sm:px-12 lg:px-24 mb-12 sm:mb-32 max-w-[1400px] mx-auto relative z-10">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-24 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -440,12 +440,12 @@ export default function HaalChaalPravartak() {
             <motion.div
               animate={{ y: [0, -15, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -right-12 bottom-20 bg-white/80 backdrop-blur-2xl p-8 rounded-[32px] shadow-2xl border border-white/50 z-30 max-w-[300px]"
+              className="absolute right-4 md:-right-12 bottom-6 md:bottom-20 bg-white/80 backdrop-blur-2xl p-5 md:p-8 rounded-[20px] md:rounded-[32px] shadow-2xl border border-white/50 z-30 max-w-[220px] md:max-w-[300px]"
             >
               <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-100 to-rose-50 flex items-center justify-center mb-6 shadow-inner border border-rose-200/50">
                 <ShieldAlert className="w-8 h-8 text-rose-500" />
               </div>
-              <p className="text-lg font-bold text-slate-800 leading-snug">
+              <p className="text-xs sm:text-base lg:text-lg font-bold text-slate-800 leading-snug">
                 Operates silently at the very entry point of your respiratory
                 system.
               </p>
@@ -458,26 +458,26 @@ export default function HaalChaalPravartak() {
             viewport={{ once: true }}
             className="order-1 lg:order-2"
           >
-            <div className="inline-flex items-center gap-3 mb-8 px-4 py-2 bg-slate-100 rounded-full border border-slate-200">
+            <div className="inline-flex items-center gap-3 mb-4 sm:mb-8 px-4 py-2 bg-slate-100 rounded-full border border-slate-200">
               <span className="w-2 h-2 bg-brand-teal rounded-full animate-pulse"></span>
               <span className="text-brand-teal font-black uppercase tracking-widest text-xs">
                 The Silent Threat
               </span>
             </div>
-            <h2 className="text-3xl lg:text-5xl font-black text-brand-blue mb-8 tracking-tighter font-display uppercase leading-[1]">
-              What Is Upper <br /> Airway Obstruction?
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-brand-blue mb-4 sm:mb-8 tracking-tighter font-display uppercase leading-[1.1] sm:leading-[1]">
+              What Is Upper <br className="hidden sm:inline" /> Airway Obstruction?
             </h2>
-            <p className="text-slate-600 text-2xl font-medium leading-relaxed mb-12">
+            <p className="text-[#334155] sm:text-slate-600 text-xs sm:text-base md:text-xl font-medium leading-relaxed mb-6 sm:mb-10">
               Upper Airway Obstruction (UAO) refers to the narrowing or blockage
               of the passages through which we breathe — the nose, throat, and
               upper trachea.
             </p>
 
-            <div className="bg-white/80 backdrop-blur-xl rounded-[40px] p-10 lg:p-12 border border-white shadow-xl shadow-slate-200/40 mb-10">
-              <h4 className="font-black text-brand-blue mb-8 font-display text-2xl uppercase tracking-tight">
+            <div className="bg-white/80 backdrop-blur-xl rounded-[20px] sm:rounded-[40px] p-5 sm:p-10 lg:p-12 border border-white shadow-xl shadow-slate-200/40 mb-6 sm:mb-10">
+              <h4 className="font-black text-brand-blue mb-4 sm:mb-8 font-display text-lg sm:text-2xl uppercase tracking-tight">
                 Causes & Aggravators
               </h4>
-              <ul className="space-y-6">
+              <ul className="space-y-3 sm:space-y-6">
                 {[
                   "Chronic exposure to polluted or dusty air",
                   "Allergies and inflammatory responses",
@@ -487,12 +487,12 @@ export default function HaalChaalPravartak() {
                 ].map((item, i) => (
                   <li
                     key={i}
-                    className="flex items-center gap-5 text-slate-700 font-bold text-lg"
+                    className="flex items-start gap-3 sm:gap-5 text-slate-700 font-bold text-sm sm:text-lg"
                   >
-                    <div className="w-8 h-8 rounded-full bg-brand-teal/10 flex items-center justify-center shrink-0 border border-brand-teal/20">
-                      <div className="w-2.5 h-2.5 rounded-full bg-brand-teal"></div>
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-brand-teal/10 flex items-center justify-center shrink-0 border border-brand-teal/20 mt-0.5 sm:mt-1">
+                      <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-brand-teal"></div>
                     </div>
-                    <span>{item}</span>
+                    <span className="leading-snug">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -501,19 +501,19 @@ export default function HaalChaalPravartak() {
             <motion.div 
               whileHover={{ y: -6, scale: 1.01, boxShadow: "0 20px 40px rgba(0, 96, 100, 0.15)" }}
               transition={{ type: "spring", stiffness: 100, damping: 15 }}
-              className="bg-gradient-to-br from-brand-blue to-slate-900 text-white p-10 lg:p-12 rounded-[40px] relative overflow-hidden shadow-2xl border border-brand-blue/30"
+              className="bg-gradient-to-br from-brand-blue to-slate-900 text-white p-6 sm:p-10 lg:p-12 rounded-[24px] sm:rounded-[40px] relative overflow-hidden shadow-2xl border border-brand-blue/30"
             >
               <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05] mix-blend-overlay"></div>
               <div className="absolute top-0 right-0 w-64 h-64 bg-brand-teal/20 blur-[80px] rounded-full pointer-events-none"></div>
 
-              <h4 className="font-black text-brand-teal mb-6 font-display uppercase tracking-tight text-3xl relative z-10 flex items-center gap-4">
-                <ShieldAlert className="w-8 h-8 text-rose-400" />
+              <h4 className="font-black text-brand-teal mb-4 sm:mb-6 font-display uppercase tracking-tight text-xl sm:text-3xl relative z-10 flex items-center gap-3 sm:gap-4">
+                <ShieldAlert className="w-6 h-6 sm:w-8 sm:h-8 text-rose-400" />
                 Why it matters
               </h4>
-              <p className="text-slate-205 font-bold text-lg md:text-xl leading-relaxed relative z-10">
+              <p className="text-slate-200 font-bold text-sm sm:text-lg md:text-xl leading-relaxed relative z-10">
                 Left untracked, narrowed airways reduce oxygen efficiency,
                 strain your heart, disrupt sleep, and reduce stamina.
-                <span className="text-white font-black block mt-6 text-xl md:text-2xl border-l-4 border-brand-teal pl-6 leading-normal">
+                <span className="text-white font-black block mt-4 sm:mt-6 text-base sm:text-xl md:text-2xl border-l-4 border-brand-teal pl-4 sm:pl-6 leading-normal">
                   The problem isn't just that people have UAO. It's that most
                   don't know they do.
                 </span>
@@ -546,10 +546,10 @@ export default function HaalChaalPravartak() {
                 </span>
               </h2>
               <div className="h-1 w-20 bg-brand-teal mb-5 rounded-full shadow-sm" />
-              <p className="text-xl md:text-2xl text-brand-teal-light font-black leading-tight mb-5 font-display uppercase tracking-tight">
+              <p className="text-base sm:text-xl md:text-2xl text-brand-teal-light font-black leading-tight mb-5 font-display uppercase tracking-tight">
                 Science Now Confirms It.
               </p>
-              <p className="text-base md:text-lg text-slate-300 font-medium leading-relaxed mb-6 max-w-2xl text-center font-sans">
+              <p className="text-xs sm:text-base md:text-lg text-slate-300 font-medium leading-relaxed mb-6 max-w-2xl text-center font-sans">
                 Thousands of years ago, Indian yogic tradition developed
                 Bhramari Pranayama, the "bee breath" — a humming breathing
                 exercise known to calm the mind, open airways, and strengthen
@@ -572,21 +572,21 @@ export default function HaalChaalPravartak() {
       </section>
 
       {/* SECTION 5: Technology */}
-      <section className="py-16 md:py-24 px-6 md:px-12 lg:px-24 mb-10 relative z-10">
+      <section className="py-12 md:py-24 px-4 sm:px-12 lg:px-24 mb-6 sm:mb-10 relative z-10">
         <div className="max-w-[1400px] mx-auto">
-          <div className="text-center mb-16 md:mb-20">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-brand-blue mb-8 font-display uppercase tracking-tighter leading-none">
+          <div className="text-center mb-10 sm:mb-20">
+            <h2 className="text-2xl sm:text-5xl lg:text-6xl font-black text-brand-blue mb-4 sm:mb-8 font-display uppercase tracking-tighter leading-none">
               The Science <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-teal to-brand-blue">
                 Behind the Hum
               </span>
             </h2>
-            <div className="inline-block px-6 py-3 bg-brand-teal/10 rounded-full mb-8 border border-brand-teal/20">
-              <p className="text-xl text-brand-teal font-black uppercase tracking-widest text-sm">
+            <div className="inline-block px-4 py-2 sm:px-6 sm:py-3 bg-brand-teal/10 rounded-full mb-6 sm:mb-8 border border-brand-teal/20">
+              <p className="text-brand-teal font-black uppercase tracking-wider text-xs sm:text-sm">
                 Digital Signal Processing meets Respiratory Medicine
               </p>
             </div>
-            <p className="text-slate-600 text-xl md:text-2xl font-medium max-w-4xl mx-auto leading-relaxed">
+            <p className="text-slate-600 text-xs sm:text-lg md:text-xl font-medium max-w-4xl mx-auto leading-relaxed">
               When you hum, your vocal cords, nasal passages, and upper airway
               work together to produce a unique acoustic signal. Our proprietary
               DSP engine decodes what your airways are telling us.
@@ -598,23 +598,23 @@ export default function HaalChaalPravartak() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white/80 backdrop-blur-xl rounded-[32px] md:rounded-[40px] p-8 md:p-10 lg:p-12 border border-white shadow-2xl flex flex-col items-start relative overflow-hidden group hover:bg-white transition-all duration-500"
+              className="bg-white/80 backdrop-blur-xl rounded-[24px] sm:rounded-[32px] md:rounded-[40px] p-5 sm:p-10 lg:p-12 border border-white shadow-2xl flex flex-col items-start relative overflow-hidden group hover:bg-white transition-all duration-500"
             >
               <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-brand-teal/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
               <div className="w-16 h-16 bg-slate-50 border border-slate-100 rounded-[22px] flex items-center justify-center mb-6 shadow-sm relative z-10">
                 <Activity className="w-8 h-8 text-brand-teal" />
               </div>
-              <h3 className="text-3xl font-black text-brand-blue mb-3 font-display uppercase tracking-tight relative z-10">
+              <h3 className="text-xl sm:text-3xl font-black text-brand-blue mb-2 sm:mb-3 font-display uppercase tracking-tight relative z-10">
                 Airway Patency Score
               </h3>
-              <p className="text-slate-600 text-lg leading-relaxed mb-6 font-medium relative z-10 max-w-lg">
+              <p className="text-slate-600 text-xs sm:text-sm lg:text-lg leading-relaxed mb-4 sm:mb-6 font-medium relative z-10 max-w-lg">
                 Airway patency refers to how open and unobstructed your airway
                 is. Our algorithm generates a patency score by analysing the
                 harmonic content and resonance characteristics of your humming
                 signal.
               </p>
 
-              <div className="bg-slate-50/80 p-6 rounded-[24px] border border-slate-100 w-full relative z-10 mt-auto">
+              <div className="bg-slate-50/80 p-4 sm:p-6 rounded-[20px] sm:rounded-[24px] border border-slate-100 w-full relative z-10 mt-auto">
                 <h4 className="font-black text-brand-blue mb-4 uppercase tracking-[0.2em] text-xs">
                   Status Categories
                 </h4>
@@ -659,7 +659,7 @@ export default function HaalChaalPravartak() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
               whileHover={{ y: -6, scale: 1.01, boxShadow: "0 20px 40px rgba(0, 96, 100, 0.15)" }}
-              className="bg-gradient-to-br from-brand-blue to-slate-900 rounded-[32px] md:rounded-[40px] p-8 md:p-10 lg:p-12 border border-brand-blue/30 text-white shadow-2xl relative overflow-hidden group"
+              className="bg-gradient-to-br from-brand-blue to-slate-900 rounded-[24px] sm:rounded-[40px] p-5 sm:p-10 lg:p-12 border border-brand-blue/30 text-white shadow-2xl relative overflow-hidden group"
             >
               <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
               <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-teal/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
@@ -668,7 +668,7 @@ export default function HaalChaalPravartak() {
                 <div className="w-16 h-16 bg-white/5 rounded-[22px] flex items-center justify-center mb-6 border border-white/10 backdrop-blur-md">
                   <Cpu className="w-8 h-8 text-brand-teal-light" />
                 </div>
-                <h3 className="text-3xl font-black text-white mb-6 font-display uppercase tracking-tight">
+                <h3 className="text-xl sm:text-3xl font-black text-white mb-4 sm:mb-6 font-display uppercase tracking-tight">
                   What the Report <br />
                   Tells You
                 </h3>
@@ -719,20 +719,20 @@ export default function HaalChaalPravartak() {
       </section>
 
       {/* SECTION 6: How it works */}
-      <section className="py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 md:px-12 lg:px-24 mb-16 relative z-10 bg-white">
+      <section className="py-10 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-12 lg:px-24 mb-10 sm:mb-16 relative z-10 bg-white">
         <div className="max-w-[1400px] mx-auto">
-          <div className="text-center mb-28">
-            <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-slate-100 rounded-full mb-8 border border-slate-200">
+          <div className="text-center mb-12 sm:mb-28">
+            <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-slate-100 rounded-full mb-6 sm:mb-8 border border-slate-200">
               <Zap className="w-4 h-4 text-brand-teal" />
               <span className="text-xs font-black tracking-[0.2em] uppercase text-slate-800">
                 Under 1 Minute
               </span>
             </div>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-brand-blue mb-8 font-display uppercase tracking-tighter leading-none">
+            <h2 className="text-2xl sm:text-5xl lg:text-6xl font-black text-brand-blue mb-4 sm:mb-8 font-display uppercase tracking-tighter leading-none">
               Your Phone Is Now <br />
               <span className="text-brand-blue">Your Digital Gym</span>
             </h2>
-            <p className="text-xl sm:text-2xl lg:text-3xl text-slate-600 font-medium max-w-3xl mx-auto">
+            <p className="text-xs sm:text-2xl lg:text-3xl text-slate-600 font-medium max-w-3xl mx-auto">
               An instant airway check, powered purely by your voice.
             </p>
           </div>
@@ -773,18 +773,18 @@ export default function HaalChaalPravartak() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.6 }}
-                className="bg-slate-50/50 p-10 pt-16 rounded-[40px] border border-slate-100 flex flex-col items-center text-center relative overflow-hidden group hover:bg-white hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 z-10"
+                className="bg-slate-50/50 p-6 pt-12 sm:p-10 sm:pt-16 rounded-[24px] sm:rounded-[40px] border border-slate-100 flex flex-col items-center text-center relative overflow-hidden group hover:bg-white hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 z-10"
               >
-                <div className="text-8xl font-black text-slate-900/[0.03] absolute -top-12 -left-8 font-display select-none transition-transform duration-700 group-hover:scale-105 group-hover:text-slate-900/[0.05] pointer-events-none leading-none z-0">
+                <div className="text-6xl sm:text-8xl font-black text-slate-900/[0.03] absolute -top-12 -left-8 font-display select-none transition-transform duration-700 group-hover:scale-105 group-hover:text-slate-900/[0.05] pointer-events-none leading-none z-0">
                   {item.step}
                 </div>
-                <div className="w-24 h-24 bg-white rounded-[32px] flex items-center justify-center shadow-lg shadow-slate-200/50 mb-10 relative z-10 border border-slate-100 group-hover:-translate-y-2 transition-transform duration-500">
-                  <item.icon className="w-10 h-10 text-brand-teal" />
+                <div className="w-16 h-16 sm:w-24 sm:h-24 bg-white rounded-2xl sm:rounded-[32px] flex items-center justify-center shadow-lg shadow-slate-200/50 mb-6 sm:mb-10 relative z-10 border border-slate-100 group-hover:-translate-y-2 transition-transform duration-500">
+                  <item.icon className="w-8 h-8 sm:w-10 sm:h-10 text-brand-teal" />
                 </div>
-                <h3 className="text-3xl font-black text-brand-blue mb-4 relative z-10 uppercase tracking-tight font-display">
+                <h3 className="text-xl sm:text-3xl font-black text-brand-blue mb-2 sm:mb-4 relative z-10 uppercase tracking-tight font-display">
                   {item.title}
                 </h3>
-                <p className="text-slate-600 font-medium text-lg relative z-10 leading-relaxed font-sans">
+                <p className="text-slate-600 font-medium text-sm sm:text-lg relative z-10 leading-relaxed font-sans">
                   {item.desc}
                 </p>
               </motion.div>
@@ -794,21 +794,21 @@ export default function HaalChaalPravartak() {
       </section>
 
       {/* SECTION 7: Choose your mode */}
-      <section className="mx-6 md:mx-12 lg:mx-24 my-10 py-12 md:py-16 px-6 md:px-12 bg-gradient-to-br from-brand-blue to-slate-900 border border-brand-blue/50 rounded-[40px] md:rounded-[48px] relative overflow-hidden z-10 shadow-2xl">
+      <section className="mx-4 sm:mx-6 md:mx-12 lg:mx-24 my-10 py-8 sm:py-16 px-4 sm:px-12 bg-gradient-to-br from-brand-blue to-slate-900 border border-brand-blue/50 rounded-[28px] sm:rounded-[48px] relative overflow-hidden z-10 shadow-2xl">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[200%] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brand-teal/10 via-transparent to-transparent pointer-events-none"></div>
         <div className="absolute top-12 left-12 w-96 h-96 bg-brand-teal/20 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="max-w-[1400px] mx-auto text-center relative z-10 font-display">
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-10 uppercase tracking-tight leading-none text-white">
+          <h2 className="text-2xl sm:text-5xl lg:text-6xl font-black mb-6 sm:mb-10 uppercase tracking-tight leading-none text-white">
             Choose Your Mode
           </h2>
 
-          <div className="grid lg:grid-cols-2 gap-8 mb-4 text-left">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 mb-4 text-left">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-white/5 border border-white/10 p-8 md:p-10 rounded-[32px] hover:border-brand-teal/40 hover:bg-white/10 shadow-xl transition-all duration-500 group flex flex-col justify-between backdrop-blur-md relative overflow-hidden"
+              className="bg-white/5 border border-white/10 p-5 sm:p-10 rounded-[24px] sm:rounded-[32px] hover:border-brand-teal/40 hover:bg-white/10 shadow-xl transition-all duration-500 group flex flex-col justify-between backdrop-blur-md relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
               <div className="relative z-10">
@@ -818,7 +818,7 @@ export default function HaalChaalPravartak() {
                 <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-tight font-display">
                   WhatsApp Mode
                 </h3>
-                <p className="text-slate-300 leading-relaxed font-semibold text-base">
+                <p className="text-slate-300 leading-relaxed font-semibold text-xs sm:text-base">
                   Weekly trend assessment. Track how your airway health evolves
                   over days and weeks, delivered directly in WhatsApp, no app
                   download needed.
@@ -843,7 +843,7 @@ export default function HaalChaalPravartak() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="bg-white/5 border border-white/10 p-8 md:p-10 rounded-[32px] hover:border-brand-teal/40 hover:bg-white/10 shadow-xl transition-all duration-500 group relative overflow-hidden flex flex-col justify-between backdrop-blur-md"
+              className="bg-white/5 border border-white/10 p-5 sm:p-10 rounded-[24px] sm:rounded-[32px] hover:border-brand-teal/40 hover:bg-white/10 shadow-xl transition-all duration-500 group relative overflow-hidden flex flex-col justify-between backdrop-blur-md"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
               <div className="relative z-10">
@@ -853,7 +853,7 @@ export default function HaalChaalPravartak() {
                 <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-tight font-display">
                   Web Platform Mode
                 </h3>
-                <p className="text-slate-300 leading-relaxed font-semibold text-base mb-6">
+                <p className="text-slate-300 leading-relaxed font-semibold text-xs sm:text-base mb-6">
                   Instant score. Open the platform, hum, and get your result in
                   real time. Ideal for first-time users and quick check-ins.
                 </p>
@@ -875,27 +875,27 @@ export default function HaalChaalPravartak() {
       </section>
 
       {/* SECTION 8: Who is this for */}
-      <section className="py-20 px-6 md:px-12 lg:px-24 mb-32 max-w-[1400px] mx-auto relative z-10">
-        <div className="text-center mb-20 flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan-50/80 text-cyan-800 rounded-full font-bold text-xs border border-cyan-100 uppercase tracking-widest mb-6">
+      <section className="py-10 sm:py-20 px-4 sm:px-12 lg:px-24 mb-12 sm:mb-32 max-w-[1400px] mx-auto relative z-10">
+        <div className="text-center mb-10 sm:mb-20 flex flex-col items-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan-50/80 text-cyan-800 rounded-full font-bold text-xs border border-cyan-100 uppercase tracking-widest mb-4 sm:mb-6">
             ✨ Universal Companion
           </div>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-brand-blue mb-6 font-display uppercase tracking-tighter leading-none">
+          <h2 className="text-xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-brand-blue mb-4 sm:mb-6 font-display uppercase tracking-tighter leading-none">
             Precision Airway Care <br />
             <span className="text-brand-teal">Engineered for Every Lifestyle</span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {/* Card 1: Urban Professionals - Wide Layout, Horizontal */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="md:col-span-2 lg:col-span-2 bg-gradient-to-br from-white to-slate-50/50 p-8 md:p-10 rounded-[48px] border border-slate-100 shadow-xl hover:shadow-2xl hover:border-brand-teal/20 transition-all duration-500 group flex flex-col md:flex-row items-center gap-8 relative overflow-hidden"
+            className="md:col-span-2 lg:col-span-2 bg-gradient-to-br from-white to-slate-50/50 p-5 sm:p-8 md:p-10 rounded-[28px] sm:rounded-[48px] border border-slate-100 shadow-xl hover:shadow-2xl hover:border-brand-teal/20 transition-all duration-500 group flex flex-col md:flex-row items-center gap-6 sm:gap-8 relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-teal/5 blur-2xl rounded-full pointer-events-none" />
-            <div className="w-full md:w-[45%] shrink-0 relative overflow-hidden rounded-[32px]">
+            <div className="w-full md:w-[45%] shrink-0 relative overflow-hidden rounded-[20px] sm:rounded-[32px]">
               <CardImage 
                 src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80" 
                 alt="Urban Professionals" 
@@ -905,12 +905,12 @@ export default function HaalChaalPravartak() {
                 <Users className="w-5 h-5 text-[#00E5FF]" />
               </div>
             </div>
-            <div className="flex-1 space-y-4">
+            <div className="flex-1 space-y-3 sm:space-y-4">
               <span className="text-brand-teal text-xs font-black uppercase tracking-widest bg-teal-50 px-3 py-1 rounded-full border border-teal-100 inline-block">Daily Stressors</span>
-              <h4 className="text-2xl md:text-3xl font-black text-brand-blue font-display uppercase tracking-tight">
+              <h4 className="text-xl sm:text-2xl md:text-3xl font-black text-brand-blue font-display uppercase tracking-tight">
                 Urban Professionals
               </h4>
-              <p className="text-[#334155] font-semibold text-lg leading-relaxed">
+              <p className="text-[#334155] font-semibold text-xs sm:text-lg leading-relaxed">
                 Battling daily traffic congestion, smog, recirculated office air, PM2.5 particulates, and systemic workspace stress that constricts breathing.
               </p>
             </div>
@@ -922,11 +922,11 @@ export default function HaalChaalPravartak() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="bg-gradient-to-br from-white to-slate-50/50 p-8 rounded-[48px] border border-slate-100 shadow-xl hover:shadow-2xl hover:border-brand-teal/20 transition-all duration-500 group flex flex-col justify-between gap-6 relative overflow-hidden"
+            className="bg-gradient-to-br from-white to-slate-50/50 p-5 sm:p-8 rounded-[28px] sm:rounded-[48px] border border-slate-100 shadow-xl hover:shadow-2xl hover:border-brand-teal/20 transition-all duration-500 group flex flex-col justify-between gap-6 relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-teal/5 blur-2xl rounded-full pointer-events-none" />
             <div className="flex flex-col h-full justify-between">
-              <div className="relative overflow-hidden rounded-[32px] mb-6">
+              <div className="relative overflow-hidden rounded-[20px] sm:rounded-[32px] mb-6">
                 <CardImage 
                   src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80" 
                   alt="Industrial & Field Workers" 
@@ -938,10 +938,10 @@ export default function HaalChaalPravartak() {
               </div>
               <div>
                 <span className="text-blue-500 text-xs font-black uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full border border-blue-100 inline-block mb-3">High Exposure</span>
-                <h4 className="text-2xl font-black text-brand-blue font-display uppercase tracking-tight mb-3">
+                <h4 className="text-xl sm:text-2xl font-black text-brand-blue font-display uppercase tracking-tight mb-2 sm:mb-3">
                   Industrial Workers
                 </h4>
-                <p className="text-[#334155] font-semibold text-base leading-relaxed">
+                <p className="text-[#334155] font-semibold text-xs sm:text-base leading-relaxed">
                   Exposed to abrasive silica dust, combustion fumes, organic fibers, and heavy industrial aerosols on site.
                 </p>
               </div>
@@ -954,20 +954,20 @@ export default function HaalChaalPravartak() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="bg-gradient-to-br from-white to-slate-50/50 p-8 rounded-[48px] border border-slate-100 shadow-xl hover:shadow-2xl hover:border-brand-teal/20 transition-all duration-500 group flex flex-col justify-between gap-6 relative overflow-hidden"
+            className="bg-gradient-to-br from-white to-slate-50/50 p-5 sm:p-8 rounded-[28px] sm:rounded-[48px] border border-slate-100 shadow-xl hover:shadow-2xl hover:border-brand-teal/20 transition-all duration-500 group flex flex-col justify-between gap-6 relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-teal/5 blur-2xl rounded-full pointer-events-none" />
             <div className="flex flex-col gap-6 h-full justify-between">
               <div>
                 <span className="text-rose-500 text-xs font-black uppercase tracking-widest bg-rose-50 px-3 py-1 rounded-full border border-rose-100 inline-block mb-3">Airway Elasticity</span>
-                <h4 className="text-2xl font-black text-brand-blue font-display uppercase tracking-tight mb-3">
+                <h4 className="text-xl sm:text-2xl font-black text-brand-blue font-display uppercase tracking-tight mb-2 sm:mb-3">
                   Senior Citizens
                 </h4>
-                <p className="text-[#334155] font-semibold text-base leading-relaxed mb-4">
+                <p className="text-[#334155] font-semibold text-xs sm:text-base leading-relaxed mb-4">
                   Easily track natural age-related changes in airway compliance, optimal gas transfer, and diaphragmatic rhythm.
                 </p>
               </div>
-              <div className="relative overflow-hidden rounded-[32px] mt-auto">
+              <div className="relative overflow-hidden rounded-[20px] sm:rounded-[32px] mt-auto">
                 <CardImage 
                   src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80" 
                   alt="Senior Citizens" 
@@ -986,11 +986,11 @@ export default function HaalChaalPravartak() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="md:col-span-2 lg:col-span-2 bg-gradient-to-br from-white to-slate-50/50 p-8 md:p-10 rounded-[48px] border border-slate-100 shadow-xl hover:shadow-2xl hover:border-brand-teal/20 transition-all duration-500 group flex flex-col md:flex-row items-center gap-8 relative overflow-hidden"
+            className="md:col-span-2 lg:col-span-2 bg-gradient-to-br from-white to-slate-50/50 p-5 sm:p-8 md:p-10 rounded-[28px] sm:rounded-[48px] border border-slate-100 shadow-xl hover:shadow-2xl hover:border-brand-teal/20 transition-all duration-500 group flex flex-col md:flex-row items-center gap-6 sm:gap-8 relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-teal/5 blur-2xl rounded-full pointer-events-none" />
-            <div className="w-full md:w-[45%] shrink-0 relative overflow-hidden rounded-[32px]">
-              <div className="w-full aspect-[16/10] overflow-hidden rounded-[24px] relative border border-slate-100">
+            <div className="w-full md:w-[45%] shrink-0 relative overflow-hidden rounded-[20px] sm:rounded-[32px]">
+              <div className="w-full aspect-[16/10] overflow-hidden rounded-[20px] sm:rounded-[24px] relative border border-slate-100">
                 <img 
                   src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" 
                   alt="Children & Parents" 
@@ -1003,12 +1003,12 @@ export default function HaalChaalPravartak() {
                 </div>
               </div>
             </div>
-            <div className="flex-1 space-y-4">
+            <div className="flex-1 space-y-3 sm:space-y-4">
               <span className="text-violet-500 text-xs font-black uppercase tracking-widest bg-violet-50 px-3 py-1 rounded-full border border-violet-100 inline-block">Proactive Care</span>
-              <h4 className="text-2xl md:text-3xl font-black text-brand-blue font-display uppercase tracking-tight">
+              <h4 className="text-xl sm:text-2xl md:text-3xl font-black text-brand-blue font-display uppercase tracking-tight">
                 Children & Parents
               </h4>
-              <p className="text-[#334155] font-semibold text-lg leading-relaxed">
+              <p className="text-[#334155] font-semibold text-xs sm:text-lg leading-relaxed">
                 Empower families with quick, non-invasive digital check-ups to safeguard sensitive pediatric lung passages from triggers.
               </p>
             </div>
@@ -1020,13 +1020,13 @@ export default function HaalChaalPravartak() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="md:col-span-2 lg:col-span-3 bg-gradient-to-br from-white to-slate-50/50 p-8 md:p-12 rounded-[48px] border border-slate-100 shadow-xl hover:shadow-2xl hover:border-brand-teal/20 transition-all duration-500 group flex flex-col lg:flex-row items-center gap-10 relative overflow-hidden"
+            className="md:col-span-2 lg:col-span-3 bg-gradient-to-br from-white to-slate-50/50 p-5 sm:p-8 md:p-12 rounded-[28px] sm:rounded-[48px] border border-slate-100 shadow-xl hover:shadow-2xl hover:border-brand-teal/20 transition-all duration-500 group flex flex-col lg:flex-row items-center gap-6 sm:gap-10 relative overflow-hidden"
           >
             {/* Visual background ambient light */}
             <div className="absolute -bottom-20 -right-20 w-[600px] h-[600px] bg-brand-teal/5 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute top-0 left-0 w-32 h-32 bg-blue-500/5 blur-2xl rounded-full pointer-events-none" />
 
-            <div className="w-full lg:w-[40%] shrink-0 relative overflow-hidden rounded-[32px] border border-slate-100 shadow-xl">
+            <div className="w-full lg:w-[40%] shrink-0 relative overflow-hidden rounded-[20px] sm:rounded-[32px] border border-slate-100 shadow-xl">
               <CardImage 
                 src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=80" 
                 alt="Healthcare Professionals" 
@@ -1037,12 +1037,12 @@ export default function HaalChaalPravartak() {
               </div>
             </div>
             
-            <div className="flex-1 space-y-6">
+            <div className="flex-1 space-y-3 sm:space-y-6">
               <span className="text-brand-teal text-xs font-black uppercase tracking-widest bg-teal-50 px-4 py-1.5 rounded-full border border-teal-100 inline-block">Clinical Applications</span>
-              <h4 className="text-3xl md:text-4xl font-black text-brand-blue font-display uppercase tracking-tight">
+              <h4 className="text-xl sm:text-3xl md:text-4xl font-black text-brand-blue font-display uppercase tracking-tight">
                 Healthcare Providers
               </h4>
-              <p className="text-[#334155] font-semibold text-lg md:text-xl leading-relaxed">
+              <p className="text-[#334155] font-semibold text-xs sm:text-lg md:text-xl leading-relaxed">
                 Equip clinical workspaces, wellness programs, and community clinics with a non-invasive, instant, cost-effective screening tool that complements traditional PFT testing flawlessly.
               </p>
               <div className="pt-2 flex flex-wrap gap-4">
@@ -1056,24 +1056,24 @@ export default function HaalChaalPravartak() {
       </section>
 
       {/* SECTION 9: Footer CTA */}
-      <section className="text-center px-4 sm:px-6 md:px-12 py-16 sm:py-24 md:py-40 max-w-[1200px] mx-auto mb-20 bg-gradient-to-br from-brand-blue to-slate-900 border border-brand-blue/50 rounded-[32px] sm:rounded-[56px] md:rounded-[80px] relative z-10 overflow-hidden shadow-2xl">
+      <section className="text-center mx-4 sm:mx-auto px-4 sm:px-6 md:px-12 py-10 sm:py-24 md:py-40 max-w-[1200px] mb-10 sm:mb-20 bg-gradient-to-br from-brand-blue to-slate-900 border border-brand-blue/50 rounded-[28px] sm:rounded-[56px] md:rounded-[80px] relative z-10 overflow-hidden shadow-2xl">
         <div className="absolute top-0 right-0 w-full md:w-2/3 h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-teal/10 via-transparent to-transparent pointer-events-none" />
         <div className="absolute -bottom-48 -left-48 w-96 h-96 bg-brand-teal/20 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-px bg-gradient-to-r from-transparent via-brand-teal to-transparent opacity-50 relative z-20" />
 
         <div className="relative z-20">
-          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-10 font-display uppercase tracking-tighter leading-[0.9]">
+          <h2 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 sm:mb-10 font-display uppercase tracking-tighter leading-[1.1] sm:leading-[0.9]">
             Start Your Airway <br />
             Journey Today
           </h2>
-          <p className="text-lg sm:text-2xl md:text-3xl text-slate-300 mb-12 sm:mb-16 font-medium max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-2xl md:text-3xl text-slate-300 mb-8 sm:mb-16 font-medium max-w-3xl mx-auto leading-relaxed">
             No equipment. No clinic visit. Just your voice, your phone, and 7
             seconds.
           </p>
 
           <Link
             to="/checkup"
-            className="inline-flex px-8 sm:px-14 py-5 sm:py-7 rounded-[1.5rem] sm:rounded-[2rem] bg-brand-teal text-white font-black tracking-[0.2em] text-xs sm:text-sm uppercase hover:bg-white hover:text-brand-blue transition-all shadow-[0_20px_50px_-15px_rgba(0,151,167,0.6)] hover:shadow-[0_20px_50px_-10px_rgba(0,151,167,0.8)] mb-12 sm:mb-20 gap-3 sm:gap-5 items-center group hover:-translate-y-2"
+            className="inline-flex px-6 py-4 sm:px-14 sm:py-7 rounded-2xl sm:rounded-[2rem] bg-brand-teal text-white font-black tracking-[0.2em] text-xs sm:text-sm uppercase hover:bg-white hover:text-brand-blue transition-all shadow-[0_20px_50px_-15px_rgba(0,151,167,0.6)] hover:shadow-[0_20px_50px_-10px_rgba(0,151,167,0.8)] mb-8 sm:mb-20 gap-3 sm:gap-5 items-center group hover:-translate-y-2"
           >
             Try Haal-Chaal Pravartak
             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-brand-blue/20 transition-colors">
@@ -1081,7 +1081,7 @@ export default function HaalChaalPravartak() {
             </div>
           </Link>
 
-          <div className="text-slate-400 font-medium space-y-6 pt-16 border-t border-white/10 w-full max-w-xl mx-auto">
+          <div className="text-slate-400 font-medium space-y-3 sm:space-y-6 pt-8 sm:pt-16 border-t border-white/10 w-full max-w-xl mx-auto">
             <p className="text-brand-teal-light uppercase tracking-[0.3em] font-black text-sm">
               Breathe Strong. Live Strong.
             </p>

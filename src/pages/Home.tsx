@@ -293,7 +293,7 @@ export default function Home() {
               scale: { duration: 60, repeat: Infinity, ease: "linear" },
               opacity: { duration: 2 },
             }}
-            className="absolute inset-0 bg-no-repeat bg-[size:155%_auto] bg-left sm:bg-cover sm:bg-[position:right_5%_center] mix-blend-multiply opacity-[0.88]"
+            className="absolute inset-0 bg-no-repeat bg-[size:155%_auto] bg-[position:right_center] sm:bg-cover sm:bg-[position:right_5%_center] mix-blend-multiply opacity-[0.88]"
             style={{ backgroundImage: `url(${futuristicLungHero})` }}
           />
 
@@ -556,7 +556,7 @@ export default function Home() {
                 “
               </span>
 
-              <p className="relative z-10 text-slate-700 text-lg sm:text-xl md:text-2xl font-sans font-light leading-relaxed sm:leading-relaxed tracking-wide">
+              <p className="relative z-10 text-slate-700 text-base sm:text-lg md:text-2xl font-sans font-light leading-relaxed sm:leading-relaxed tracking-wide">
                 <span className="text-slate-500 font-light">In the atrium of </span>
                 <span className="font-extrabold tracking-tight bg-gradient-to-r from-[#004d40] via-[#006064] to-brand-teal bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300 inline-block pr-1">
                   innovation
@@ -623,7 +623,7 @@ export default function Home() {
       {/* About Our Mission Section */}
       <section
         id="about"
-        className="py-32 px-4 md:px-8 bg-gradient-to-b from-[#f0f9fa]/80 via-white to-sky-50/20 relative"
+        className="py-16 sm:py-24 md:py-32 px-4 md:px-8 bg-gradient-to-b from-[#f0f9fa]/80 via-white to-sky-50/20 relative"
       >
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-teal-400/5 blur-[140px] rounded-full pointer-events-none -z-10" />
 
@@ -973,7 +973,7 @@ export default function Home() {
                 Advanced <span className="gradient-text">Heart</span> <br />{" "}
                 and Lung
               </h2>
-              <p className="text-slate-500 text-base md:text-lg font-medium max-w-xl">
+              <p className="text-slate-500 text-xs sm:text-base md:text-lg font-medium max-w-xl">
                 An integrated platform of technology and formulation engineered to transform advanced preventive cardiac wellness.
               </p>
             </div>
@@ -1217,7 +1217,7 @@ export default function Home() {
       {/* Services and Expert Solutions Section */}
       <section
         id="services"
-        className="py-32 px-4 md:px-8 bg-[#f8fafc] relative overflow-hidden"
+        className="py-16 sm:py-24 md:py-32 px-4 md:px-8 bg-[#f8fafc] relative overflow-hidden"
       >
         {/* Subtle geometric pattern / glow */}
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent" />
@@ -1362,7 +1362,7 @@ export default function Home() {
                     <span className="text-cyan-300 font-extrabold text-[11px] uppercase tracking-[0.2em] block mb-1">
                       OUR CORE COMMITMENT
                     </span>
-                    <p className="text-lg sm:text-[21px] font-black font-display text-white uppercase tracking-tight leading-snug">
+                    <p className="text-base sm:text-[21px] font-black font-display text-white uppercase tracking-tight leading-snug">
                       We turn confusion into clear decisions.
                     </p>
                   </div>
@@ -1964,7 +1964,7 @@ export default function Home() {
       {/* Areas of R&D Section */}
       <section
         id="randd-areas"
-        className="py-40 px-4 md:px-8 bg-gradient-to-b from-white via-[#f0f9fa]/40 to-white relative overflow-hidden"
+        className="py-16 sm:py-24 md:py-40 px-4 md:px-8 bg-gradient-to-b from-white via-[#f0f9fa]/40 to-white relative overflow-hidden"
       >
         {/* Subtle decorative background lights */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-200/10 blur-[130px] rounded-full pointer-events-none" />
@@ -1976,7 +1976,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-black font-display text-[#006064] mb-4 tracking-tight">
               Areas of R&D
             </h2>
-            <p className="text-slate-500 font-medium text-base md:text-lg leading-relaxed">
+            <p className="text-slate-500 font-medium text-xs sm:text-base md:text-lg leading-relaxed">
               Pioneering research in cutting-edge technologies for
               next-generation healthcare solutions
             </p>
@@ -2226,13 +2226,13 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-40 px-4 md:px-8 bg-white relative overflow-hidden">
+      <section className="py-16 sm:py-24 md:py-40 px-4 md:px-8 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col items-center text-center mb-24">
             <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold font-display text-[#006064] mb-6 tracking-tight">
               What Our Customers Say
             </h2>
-            <p className="text-slate-500 text-lg max-w-2xl font-medium">
+            <p className="text-slate-500 text-xs sm:text-lg max-w-2xl font-medium">
               Real experiences from people who've tried Novicule TA
             </p>
           </div>
@@ -2355,7 +2355,7 @@ export default function Home() {
       {/* Latest Blogs Section */}
       <section
         id="blogs"
-        className="py-32 px-4 md:px-8 bg-gradient-to-b from-[#e0f2fe]/40 to-slate-50 relative overflow-hidden"
+        className="py-16 sm:py-24 md:py-32 px-4 md:px-8 bg-gradient-to-b from-[#e0f2fe]/40 to-slate-50 relative overflow-hidden"
       >
         {/* Decorative elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-sky-400/10 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
@@ -2408,7 +2408,7 @@ export default function Home() {
               >
                 <div className="p-3">
                   <Link to={`/blogs/${blog.id}`} className="block">
-                    <div className="aspect-[1.6] overflow-hidden rounded-[20px] bg-slate-100 flex items-center justify-center">
+                    <div className="aspect-[3/2] sm:aspect-[1.6] overflow-hidden rounded-[20px] bg-slate-100 flex items-center justify-center">
                       {blog.image ? (
                         <motion.img
                           src={blog.image}
@@ -2478,7 +2478,7 @@ export default function Home() {
             <h2 className="text-2xl sm:text-5xl md:text-7xl lg:text-8xl font-bold font-display mb-8 tracking-tighter leading-none">
               Catalyzing the <br /> Future of Health
             </h2>
-            <p className="text-white/80 text-lg md:text-xl mb-12 font-medium">
+            <p className="text-white/80 text-xs sm:text-lg md:text-xl mb-12 font-medium">
               Join our network of innovators and bring world-class healthcare to
               every doorstep. Experience the Tech AtrioCare difference today.
             </p>

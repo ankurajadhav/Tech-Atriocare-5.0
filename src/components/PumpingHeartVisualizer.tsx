@@ -226,7 +226,7 @@ export default function PumpingHeartVisualizer() {
       </div>
 
       {/* 5. Live Telemetry Respiratory Diagnostics */}
-      <div className="relative z-10 grid grid-cols-4 gap-4 pt-2 border-t border-sky-100">
+      <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-y-3 gap-x-4 pt-2 border-t border-sky-100">
         <div className="space-y-0.5">
           <p className="text-[9px] text-slate-400 uppercase font-bold tracking-widest leading-none">
             RESP. RATE

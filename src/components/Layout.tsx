@@ -20,7 +20,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         e.preventDefault();
         const element = document.getElementById(elementId);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          const headerOffset = 90;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
         }
         window.history.pushState(null, '', href);
         setActiveSection(elementId);
@@ -38,13 +44,21 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const handleMobileNavClick = (href: string, e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
     
-    // 1. Scroll or navigate synchronously to provide instant feedback on single touch
+    // Close mobile menu immediately to update layout before scrolling or navigating with 100% responsiveness
+    setMobileMenuOpen(false);
+    
     if (href.startsWith('/#')) {
       const elementId = href.replace('/#', '');
       if (location.pathname === '/') {
         const element = document.getElementById(elementId);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          const headerOffset = 90;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
         }
         window.history.pushState(null, '', href);
         setActiveSection(elementId);
@@ -62,11 +76,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     } else {
       navigate(href);
     }
-
-    // 2. Delay closing the mobile menu slightly to avoid breaking touch sequences or causing click-through
-    setTimeout(() => {
-      setMobileMenuOpen(false);
-    }, 250);
   };
 
   useEffect(() => {
@@ -239,6 +248,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             className="lg:hidden p-2 text-slate-800 hover:text-brand-teal focus:outline-none"
             onClick={(e) => {
               e.preventDefault();
+              e.stopPropagation();
               setMobileMenuOpen(!mobileMenuOpen);
             }}
           >
@@ -247,67 +257,58 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
 
         {/* Mobile Menu */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div 
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="lg:hidden absolute top-full left-0 right-0 bg-white/95 border-b border-slate-200/80 p-6 shadow-2xl flex flex-col gap-4 backdrop-blur-2xl"
-            >
-              {navLinks.map((link) => {
-                const isExternal = link.href.startsWith('http');
-                const isLinkActive = activeSection === link.id || (location.pathname === link.href);
-                const baseClasses = cn(
-                  "font-display font-black uppercase tracking-widest text-[11px] sm:text-xs py-3 px-4 rounded-xl transition-all flex items-center justify-between border",
-                  isLinkActive
-                    ? "text-[#006064] bg-[#e0f2fe]/50 border-sky-200/65 shadow-[0_4px_12px_rgba(14,165,233,0.04)]"
-                    : "text-slate-800 hover:text-brand-teal hover:bg-slate-50 border-transparent"
-                );
-                return isExternal ? (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={baseClasses}
-                    onClick={() => {
-                      setTimeout(() => {
-                        setMobileMenuOpen(false);
-                      }, 250);
-                    }}
-                  >
-                    <span>{link.name}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-slate-400" />
-                  </a>
-                ) : (
-                  <Link
-                    key={link.name}
-                    to={link.href}
-                    className={baseClasses}
-                    onClick={(e) => handleMobileNavClick(link.href, e)}
-                  >
-                    <span>{link.name}</span>
-                    <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-                  </Link>
-                );
-              })}
-              <Link 
-                to="/checkup"
-                className="bg-brand-teal text-white font-display font-black uppercase tracking-widest text-[10px] py-3.5 px-6 rounded-xl text-center shadow-lg shadow-brand-teal/15 transition-all hover:bg-brand-blue"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate('/checkup');
-                  setTimeout(() => {
+        {mobileMenuOpen && (
+          <div 
+            className="lg:hidden absolute top-full left-0 right-0 bg-white/95 border-b border-slate-200/80 p-6 shadow-2xl flex flex-col gap-4 backdrop-blur-2xl"
+          >
+            {navLinks.map((link) => {
+              const isExternal = link.href.startsWith('http');
+              const isLinkActive = activeSection === link.id || (location.pathname === link.href);
+              const baseClasses = cn(
+                "font-display font-black uppercase tracking-widest text-[11px] sm:text-xs py-3 px-4 rounded-xl transition-all flex items-center justify-between border",
+                isLinkActive
+                  ? "text-[#006064] bg-[#e0f2fe]/50 border-sky-200/65 shadow-[0_4px_12px_rgba(14,165,233,0.04)]"
+                  : "text-slate-800 hover:text-brand-teal hover:bg-slate-50 border-transparent"
+              );
+              return isExternal ? (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={baseClasses}
+                  onClick={() => {
                     setMobileMenuOpen(false);
-                  }, 250);
-                }}
-              >
-                1-Min Digital Check-Up
-              </Link>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                  }}
+                >
+                  <span>{link.name}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-slate-400" />
+                </a>
+              ) : (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className={baseClasses}
+                  onClick={(e) => handleMobileNavClick(link.href, e)}
+                >
+                  <span>{link.name}</span>
+                  <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+                </Link>
+              );
+            })}
+            <Link 
+              to="/checkup"
+              className="bg-brand-teal text-white font-display font-black uppercase tracking-widest text-[10px] py-3.5 px-6 rounded-xl text-center shadow-lg shadow-brand-teal/15 transition-all hover:bg-brand-blue"
+              onClick={(e) => {
+                e.preventDefault();
+                setMobileMenuOpen(false);
+                navigate('/checkup');
+              }}
+            >
+              1-Min Digital Check-Up
+            </Link>
+          </div>
+        )}
       </nav>
 
       <main className="relative z-10">

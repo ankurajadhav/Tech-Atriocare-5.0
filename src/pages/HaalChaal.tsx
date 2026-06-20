@@ -86,7 +86,7 @@ const FaqItem = ({
         className="w-full text-left p-6 md:p-8 flex items-start justify-between gap-4 hover:bg-slate-50/40 transition-colors cursor-pointer"
         aria-expanded={isOpen}
       >
-        <span className="text-lg md:text-xl font-black text-slate-900 tracking-tight leading-snug">{q}</span>
+        <span className="text-base sm:text-lg md:text-xl font-black text-slate-900 tracking-tight leading-snug">{q}</span>
         <div className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-1">
           {isOpen ? (
             <Minus className="w-5 h-5 text-blue-600 stroke-[3px]" />
@@ -103,7 +103,7 @@ const FaqItem = ({
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
           >
-            <div className="px-6 pb-6 md:px-8 md:pb-8 border-t border-slate-50 pt-5 text-slate-600 font-semibold leading-relaxed text-base">
+            <div className="px-5 pb-5 sm:px-8 sm:pb-8 border-t border-slate-50 pt-5 text-slate-600 font-semibold leading-relaxed text-xs sm:text-sm md:text-base">
               {a}
             </div>
           </motion.div>
@@ -162,8 +162,8 @@ export default function HaalChaal() {
             className="flex-1 space-y-8"
           >
             <div className="space-y-6">
-              <div className="inline-flex items-center px-8 py-3 bg-white border border-blue-100 rounded-full shadow-sm">
-                <h1 className="text-2xl md:text-3xl font-black text-[#2563EB] tracking-tighter">
+              <div className="inline-flex items-center px-6 sm:px-8 py-2 sm:py-3 bg-white border border-blue-100 rounded-full shadow-sm">
+                <h1 className="text-xl sm:text-2xl md:text-3xl font-black text-[#2563EB] tracking-tighter">
                   Haal-Chaal Pravartak 1.0
                 </h1>
               </div>
@@ -176,7 +176,7 @@ export default function HaalChaal() {
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black leading-[0.95] tracking-tight uppercase font-display flex flex-col gap-0">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-black leading-tight sm:leading-[0.95] tracking-tight uppercase font-display flex flex-col gap-0">
                 <span className="text-[#006064]">
                   Optimize
                 </span>
@@ -195,12 +195,12 @@ export default function HaalChaal() {
               </h2>
             </div>
 
-            <p className="text-slate-600 text-xl font-medium leading-relaxed max-w-xl">
+            <p className="text-slate-600 text-sm sm:text-base md:text-xl font-medium leading-relaxed max-w-xl">
               Revolutionary acoustic screening: track your respiratory health with just 7 seconds of humming. Join our premier immunity challenge and claim your rewards.
-              <br /><span className="text-[#0097A7] font-black mt-6 inline-block px-8 py-3 bg-teal-50 border border-teal-100 rounded-2xl uppercase tracking-widest text-sm shadow-sm">Participation fees is INR 500/-</span>
+              <br /><span className="text-[#0097A7] font-black mt-4 sm:mt-6 inline-block px-5 sm:px-8 py-2 sm:py-3 bg-teal-50 border border-teal-100 rounded-2xl uppercase tracking-widest text-xs sm:text-sm shadow-sm">Participation fees is INR 500/-</span>
             </p>
 
-            <div className="bg-white border border-slate-100 rounded-[48px] p-8 shadow-[0_20px_50px_rgba(0,0,0,0.05)] space-y-6 max-w-md relative overflow-hidden">
+            <div className="bg-white border border-slate-100 rounded-[28px] sm:rounded-[48px] p-5 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.05)] space-y-6 max-w-md relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50/50 blur-2xl rounded-full" />
                 <div className="space-y-1 text-center">
                   <h4 className="font-bold text-slate-700 text-sm">Online Registration Window Closes In</h4>
@@ -214,7 +214,7 @@ export default function HaalChaal() {
                     { label: 'Seconds', value: timeLeft.seconds }
                   ].map((unit) => (
                     <div key={unit.label} className="text-center space-y-2">
-                      <div className="bg-gradient-to-b from-[#0097A7] to-[#3B82F6] text-white py-4 rounded-xl font-black text-2xl shadow-lg font-display">
+                      <div className="bg-gradient-to-b from-[#0097A7] to-[#3B82F6] text-white py-4 rounded-xl font-black text-lg sm:text-2xl shadow-lg font-display">
                         {unit.value.toString().padStart(2, '0')}
                       </div>
                       <p className="text-[10px] font-bold text-slate-400 capitalize tracking-wide">{unit.label}</p>
@@ -245,8 +245,8 @@ export default function HaalChaal() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex-1 relative w-full"
           >
-            <div className="bg-white p-3 rounded-[40px] shadow-[0_40px_100px_rgba(0,0,0,0.1)] border border-slate-100">
-               <div className="rounded-[32px] overflow-hidden">
+            <div className="bg-white p-2 sm:p-3 rounded-[24px] sm:rounded-[40px] shadow-[0_40px_100px_rgba(0,0,0,0.1)] border border-slate-100">
+               <div className="rounded-[20px] sm:rounded-[32px] overflow-hidden">
                   <img 
                     src="https://lh3.googleusercontent.com/d/13TEduYr7AtBxsvJPP6TNedvtiv0cAxqe" 
                     alt="Haal-Chaal Pravartak Challenge"
@@ -273,10 +273,10 @@ export default function HaalChaal() {
             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full font-bold text-xs border border-blue-100 uppercase tracking-widest">
               Smarter Breathing Challenge
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-[#0097A7] uppercase tracking-tighter font-display">
+            <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-[#0097A7] uppercase tracking-tighter font-display">
               Challenge Winners
             </h2>
-            <p className="text-slate-500 font-medium max-w-2xl mx-auto">
+            <p className="text-slate-500 font-medium max-w-2xl mx-auto text-xs sm:text-base">
               Celebrating the participants who demonstrated exceptional consistency and improvement during the Haal-Chaal Pravartak Challenge.
             </p>
           </div>
@@ -286,7 +286,7 @@ export default function HaalChaal() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white p-10 md:p-16 rounded-[48px] border border-slate-100 shadow-2xl flex flex-col lg:flex-row items-center gap-12 lg:gap-16 relative overflow-hidden"
+              className="bg-white p-6 sm:p-10 md:p-16 rounded-[28px] sm:rounded-[48px] border border-slate-100 shadow-2xl flex flex-col lg:flex-row items-center gap-12 lg:gap-16 relative overflow-hidden"
             >
               {/* Winner Details Left */}
               <div className="relative z-10 flex-1 space-y-10 flex flex-col justify-center">
@@ -305,24 +305,24 @@ export default function HaalChaal() {
                 </div>
 
                 <div className="space-y-4 text-center lg:text-left">
-                   <h3 className="text-3xl md:text-5xl font-black text-[#006064] tracking-tighter font-display uppercase">Mrs. Parinita Sinha</h3>
+                   <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-[#006064] tracking-tighter font-display uppercase">Mrs. Parinita Sinha</h3>
                    <div className="inline-block px-6 py-2 bg-brand-teal/10 text-brand-teal text-xs font-black rounded-full border border-brand-teal/20 uppercase tracking-[0.3em] leading-none">
                      Level 4 Winner
                    </div>
-                   <p className="text-slate-500 text-lg font-medium leading-relaxed italic pt-4">
+                   <p className="text-slate-500 text-xs sm:text-lg font-medium leading-relaxed italic pt-4">
                      "Achieved the highest overall score through perfect adherence and exceptional airway patency improvement."
                    </p>
                 </div>
 
-                <div className="bg-slate-50 rounded-[32px] p-6 border border-slate-100 mt-auto text-center lg:text-left w-full">
+                <div className="bg-slate-50 rounded-[20px] sm:rounded-[32px] p-4 sm:p-6 border border-slate-100 mt-auto text-center lg:text-left w-full">
                    <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.3em] mb-2 leading-none">Challenge Reward</p>
-                   <div className="text-3xl md:text-5xl font-black font-display tracking-tight text-brand-teal">
+                   <div className="text-2xl sm:text-3xl md:text-5xl font-black font-display tracking-tight text-brand-teal">
                     ₹500
                   </div>
                 </div>
 
                 <div className="pt-4 border-t border-slate-100 text-center lg:text-left">
-                  <p className="text-lg md:text-xl font-bold leading-relaxed tracking-tight italic text-[#006064] font-display">
+                  <p className="text-xs sm:text-lg md:text-xl font-bold leading-relaxed tracking-tight italic text-[#006064] font-display">
                     "हाल-चाल प्रवर्तक एक पारदर्शी, तथ्यपूर्ण और तकनीकियुक्त परियोजना है, जिससे मुझे स्पष्ट स्वास्थ्य लाभ मिला। <br />
                     मेरी शुभकामना है कि यह आम जनों के लिये भी लाभदायक सिद्ध हो।"
                   </p>
@@ -361,13 +361,13 @@ export default function HaalChaal() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group p-10 rounded-[40px] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl transition-all duration-500 space-y-6"
+                className="group p-6 sm:p-10 rounded-[28px] sm:rounded-[40px] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl transition-all duration-500 space-y-6"
               >
                 <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 flex items-center justify-center text-blue-600 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
                   {stat.icon}
                 </div>
                 <div className="space-y-2">
-                  <div className="text-3xl sm:text-4xl font-black text-slate-800 tracking-tight">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-800 tracking-tight">
                     {stat.value}
                   </div>
                   <p className="text-slate-500 font-bold text-xs uppercase tracking-widest leading-relaxed">{stat.label}</p>
@@ -382,7 +382,7 @@ export default function HaalChaal() {
             viewport={{ once: true }}
             whileHover={{ y: -6, scale: 1.01, boxShadow: "0 25px 50px -12px rgba(0, 96, 100, 0.25)" }}
             transition={{ type: "spring", stiffness: 100, damping: 15 }}
-            className="mt-16 bg-gradient-to-br from-brand-blue to-slate-900 rounded-[48px] p-10 md:p-14 text-white border border-brand-blue/50 relative overflow-hidden shadow-2xl select-none group"
+            className="mt-16 bg-gradient-to-br from-brand-blue to-slate-900 rounded-[28px] sm:rounded-[48px] p-6 sm:p-10 md:p-14 text-white border border-brand-blue/50 relative overflow-hidden shadow-2xl select-none group"
           >
             {/* Ambient Animated Floating Orbs for High-Tech Feel */}
             <motion.div 
@@ -419,7 +419,7 @@ export default function HaalChaal() {
                  whileInView={{ opacity: 0.12, scale: 1, x: 0 }}
                  viewport={{ once: true }}
                  transition={{ delay: 0.2, duration: 0.8 }}
-                 className="text-6xl sm:text-8xl md:text-[10rem] font-black text-brand-teal pointer-events-none absolute left-0 top-0 leading-none select-none tracking-tight opacity-10"
+                 className="text-5xl sm:text-8xl md:text-[10rem] font-black text-brand-teal pointer-events-none absolute left-0 top-0 leading-none select-none tracking-tight opacity-10"
                >
                  94.83%
                </motion.div>
@@ -443,7 +443,7 @@ export default function HaalChaal() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1, duration: 0.6 }}
-                    className="text-xl sm:text-2xl md:text-3xl lg:text-3.5xl font-black tracking-tight leading-tight text-white font-display"
+                    className="text-sm sm:text-2xl md:text-3xl lg:text-3.5xl font-black tracking-tight leading-tight text-white font-display"
                   >
                     94.83% of Accuracy in Heart Rate estimation through our technology when demonstrated before experts/mentor in IIT Delhi
                   </motion.p>
@@ -453,7 +453,7 @@ export default function HaalChaal() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.2, duration: 0.6 }}
-                    className="text-slate-300 font-medium leading-relaxed text-sm md:text-base md:max-w-4xl"
+                    className="text-slate-300 font-medium leading-relaxed text-xs sm:text-sm md:text-base md:max-w-4xl"
                   >
                     Demonstrated and verified using advanced proprietary signal processing algorithms under <span className="text-brand-teal-light font-black uppercase tracking-wider bg-white/5 py-1 px-3 rounded-lg border border-white/10 inline-block mt-1">FITT, IIT Delhi</span>.
                   </motion.p>
@@ -467,11 +467,11 @@ export default function HaalChaal() {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto mb-20 space-y-6">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-[1.1] uppercase">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight leading-tight sm:leading-[1.1] uppercase">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#006064] to-[#00838F]">From unseen risks</span> <span className="text-brand-teal">to clear insights</span> <span className="text-[#006064]">—</span> <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-teal-500">redefine your heart and lung wellness</span>
             </h2>
-            <p className="text-slate-500 text-lg font-medium">
+            <p className="text-slate-500 text-xs sm:text-lg font-medium">
               Experience scientifically-backed benefits through a structured breathing challenge and proprietary immune system optimization.
             </p>
           </div>
@@ -505,7 +505,7 @@ export default function HaalChaal() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="group p-12 rounded-[56px] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl transition-all duration-500 space-y-8 relative overflow-hidden"
+                className="group p-6 sm:p-10 md:p-12 rounded-[28px] sm:rounded-[56px] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl transition-all duration-500 space-y-6 sm:space-y-8 relative overflow-hidden"
               >
                 <div className="absolute top-6 right-8 text-4xl opacity-20 group-hover:opacity-100 transition-opacity">
                    {benefit.emoji}
@@ -519,8 +519,8 @@ export default function HaalChaal() {
                   {benefit.icon}
                 </div>
                 <div className="space-y-4">
-                  <h3 className="text-2xl font-black text-[#006064] tracking-tight group-hover:text-brand-teal transition-colors leading-tight font-display uppercase">{benefit.title}</h3>
-                  <p className="text-slate-500 font-medium leading-relaxed">{benefit.desc}</p>
+                  <h3 className="text-lg sm:text-2xl font-black text-[#006064] tracking-tight group-hover:text-brand-teal transition-colors leading-tight font-display uppercase">{benefit.title}</h3>
+                  <p className="text-slate-500 text-xs sm:text-sm md:text-base font-medium leading-relaxed">{benefit.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -533,10 +533,10 @@ export default function HaalChaal() {
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-200 to-transparent" />
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-[#006064] tracking-tighter uppercase font-display">
+            <h2 className="text-2xl sm:text-4xl md:text-6xl font-black text-[#006064] tracking-tighter uppercase font-display">
               What Our Community Says
             </h2>
-            <p className="text-slate-500 font-medium text-lg md:text-xl max-w-xl mx-auto">
+            <p className="text-slate-500 font-medium text-xs sm:text-base md:text-xl max-w-xl mx-auto">
               Real feedback from the participants of the pilot cohort.
             </p>
           </div>
@@ -557,7 +557,7 @@ export default function HaalChaal() {
                   className="w-full"
                 />
               </div>
-              <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed italic text-center max-w-[380px]">
+              <p className="text-slate-500 text-xs sm:text-sm md:text-base font-medium leading-relaxed italic text-center max-w-[380px]">
                 Haal Chaal Pravartak 1.0 participant, <strong className="text-slate-900 font-extrabold">Mrs. Parinita Sinha</strong>, renowned Hindi poet and science enthusiast.
               </p>
             </motion.div>
@@ -570,7 +570,7 @@ export default function HaalChaal() {
               transition={{ delay: 0.15 }}
               className="flex flex-col items-center space-y-6 w-full"
             >
-              <div className="w-full max-w-[380px] aspect-[9/16] rounded-[32px] overflow-hidden bg-white border-8 border-slate-50 shadow-2xl relative flex items-center justify-center">
+              <div className="w-full max-w-[380px] aspect-[4/5] sm:aspect-[3/4] md:aspect-[9/16] rounded-[24px] sm:rounded-[32px] overflow-hidden bg-white border-4 sm:border-8 border-slate-50 shadow-2xl relative flex items-center justify-center">
                 <img 
                   className="w-full h-full object-cover"
                   src="https://lh3.googleusercontent.com/d/1kWDKWggY6tX_-FYO3vwXDrVuKCE9d0Se" 
@@ -578,7 +578,7 @@ export default function HaalChaal() {
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed italic text-center max-w-[380px]">
+              <p className="text-slate-500 text-xs sm:text-sm md:text-base font-medium leading-relaxed italic text-center max-w-[380px]">
                 One of the participants in the pilot cohort, <strong className="text-slate-900 font-extrabold">Mr. Anil Gupta</strong>, renowned Indian scholar in the area of grassroots innovations, founder of the Honey Bee Network, retired as a full-time professor at the Indian Institute of Management, Ahmedabad.
               </p>
             </motion.div>
@@ -598,7 +598,7 @@ export default function HaalChaal() {
             >
               The 7-Day Journey 📋
             </motion.div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#006064] tracking-tight leading-[1.1] uppercase font-display">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#006064] tracking-tight leading-tight sm:leading-[1.1] uppercase font-display">
               Simple steps to <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#006064] via-[#0097A7] to-[#0D9488]">lasting health transformation</span>
             </h2>
@@ -616,7 +616,7 @@ export default function HaalChaal() {
               <EmbeddedVideo 
                 src="https://drive.google.com/file/d/1voO2RQTl3ATIN5BzgUES2OUB-rE3cab3/preview" 
                 title="Simple Steps Tutorial"
-                aspect="aspect-video"
+                aspect="aspect-[4/3] sm:aspect-video"
                 className="w-full max-w-4xl"
               />
             </div>
@@ -664,18 +664,18 @@ export default function HaalChaal() {
                 className="flex flex-col md:flex-row min-h-[300px] w-full"
               >
                 {/* Left Side: Step Text */}
-                <div className="w-full md:w-1/2 md:pr-20 py-12 md:py-20 flex flex-col justify-center">
-                  <div className="bg-[#E5F9FC] text-[#0B5CBA] font-bold text-sm px-5 py-2 rounded-full w-fit mb-6">
+                <div className="w-full md:w-1/2 md:pr-20 py-6 md:py-16 flex flex-col justify-center">
+                  <div className="bg-[#E5F9FC] text-[#0B5CBA] font-bold text-xs sm:text-sm px-4 sm:px-5 py-1.5 sm:py-2 rounded-full w-fit mb-4 sm:mb-6">
                     Step {item.step}
                   </div>
-                  <h3 className="text-3xl md:text-[36px] font-bold text-[#006064] leading-tight">
+                  <h3 className="text-lg sm:text-2xl md:text-[36px] font-bold text-[#006064] leading-tight font-display">
                     {item.title}
                   </h3>
                 </div>
                 
                 {/* Right Side: Image */}
-                <div className="w-full md:w-1/2 md:pl-8 py-8 md:py-12 flex flex-col justify-center items-center border-t border-cyan-100 md:border-t-0">
-                  <div className="w-full max-w-[580px] aspect-[4/3] bg-white shadow-[0_15px_50px_rgba(0,0,0,0.08)] rounded-[28px] overflow-hidden border border-slate-100/80 transition-all duration-300 hover:scale-[1.02] flex items-center justify-center p-1.5 sm:p-3">
+                <div className="w-full md:w-1/2 md:pl-8 py-4 md:py-8 flex flex-col justify-center items-center border-t border-cyan-100 md:border-t-0">
+                  <div className="w-full max-w-[580px] aspect-[4/3] bg-white shadow-[0_15px_50px_rgba(0,0,0,0.08)] rounded-[20px] sm:rounded-[28px] overflow-hidden border border-slate-100/80 transition-all duration-300 hover:scale-[1.02] flex items-center justify-center p-1 sm:p-3">
                     <img src={item.image} alt={item.title} className="w-full h-full object-contain" referrerPolicy="no-referrer" />
                   </div>
                 </div>
@@ -692,10 +692,10 @@ export default function HaalChaal() {
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-teal-50 text-[#0097A7] rounded-full font-bold text-xs uppercase tracking-widest border border-teal-100/60">
               <span className="w-1.5 h-1.5 rounded-full bg-[#0097A7] animate-pulse" /> FAQ Support
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-black text-[#006064] tracking-tight leading-none uppercase font-display">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-[46px] font-black text-[#006064] tracking-tight leading-none uppercase font-display">
               Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0097A7] to-[#0D9488]">Questions</span>
             </h2>
-            <p className="text-slate-500 font-semibold max-w-3xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed">
+            <p className="text-slate-500 font-semibold max-w-3xl mx-auto text-xs sm:text-base md:text-lg leading-relaxed">
               Everything you need to know about Haal-Chaal Pravartak 1.0 — India's First Immunity Challenge for Smarter Breathing.
             </p>
           </div>
@@ -798,11 +798,11 @@ export default function HaalChaal() {
               <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 text-[#00D2D3] rounded-full font-black text-[10px] sm:text-xs border border-white/10 tracking-[0.2em] uppercase">
                 🚀 Start Your Transformation
               </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[1.0] uppercase font-display">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-tight sm:leading-[1.0] uppercase font-display">
                 Your health <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D2D3] to-[#48DBFB]">has a story</span>
               </h2>
-              <p className="text-white/80 text-base sm:text-lg md:text-xl font-medium max-w-2xl mx-auto italic">
+              <p className="text-white/80 text-xs sm:text-base md:text-xl font-medium max-w-2xl mx-auto italic">
                 "Uncover the secrets of your heart and lungs in just 7 days."
               </p>
             </div>
@@ -836,14 +836,14 @@ export default function HaalChaal() {
                   <span className="inline-flex items-center gap-2 px-3 py-1 bg-teal-50 text-[#0097A7] rounded-full font-bold text-xs uppercase tracking-widest border border-teal-100/60">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#0097A7] animate-pulse" /> Health Risk Monitor
                   </span>
-                  <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[40px] font-black text-[#004D54] tracking-tight leading-[1.15] font-display">
+                  <h2 className="text-xl sm:text-3xl lg:text-4xl xl:text-[40px] font-black text-[#004D54] tracking-tight leading-tight sm:leading-[1.15] font-display">
                     Are you at risk from <br className="hidden lg:inline" />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0097A7] to-[#0D9488]">
                       hidden respiratory issues?
                     </span>
                   </h2>
                 </div>
-                <p className="text-slate-500 text-lg font-medium leading-relaxed">
+                <p className="text-slate-500 text-xs sm:text-lg font-medium leading-relaxed">
                   Identify signals early. Our technology is specially designed for those who need it the most.
                 </p>
               </div>
@@ -860,17 +860,17 @@ export default function HaalChaal() {
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="p-8 bg-white rounded-3xl border border-slate-100 shadow-md space-y-3 hover:border-[#0097A7]/40 transition-colors"
+                    className="p-5 sm:p-8 bg-white rounded-3xl border border-slate-100 shadow-md space-y-3 hover:border-[#0097A7]/40 transition-colors"
                   >
-                    <h4 className="font-bold text-xl text-[#006064]">{item.title}</h4>
-                    <p className="text-slate-600 text-sm md:text-base leading-relaxed">{item.desc}</p>
+                    <h4 className="font-bold text-base sm:text-xl text-[#006064]">{item.title}</h4>
+                    <p className="text-slate-600 text-xs sm:text-sm md:text-base leading-relaxed">{item.desc}</p>
                   </motion.div>
                 ))}
               </div>
             </div>
 
                 <div className="flex-1">
-                  <div className="bg-gradient-to-br from-[#004D54] to-[#007785] p-12 rounded-[56px] text-white space-y-8 relative overflow-hidden shadow-2xl">
+                  <div className="bg-gradient-to-br from-[#004D54] to-[#007785] p-6 sm:p-10 md:p-12 rounded-[28px] sm:rounded-[56px] text-white space-y-6 sm:space-y-8 relative overflow-hidden shadow-2xl">
                      <div className="absolute top-0 right-0 w-32 h-32 bg-[#00D2D3]/10 blur-3xl rounded-full" />
                      <h3 className="text-3xl font-extrabold italic font-display text-white/95">Common Symptoms to Watch:</h3>
                      <ul className="space-y-4">
@@ -885,7 +885,7 @@ export default function HaalChaal() {
                            <div className="w-7 h-7 rounded-full bg-[#00D2D3]/20 flex items-center justify-center shrink-0 group-hover:bg-[#00D2D3]/40 transition-colors mt-0.5">
                              <div className="w-2.5 h-2.5 rounded-full bg-[#00D2D3]" />
                            </div>
-                           <span className="text-white/95 text-lg md:text-xl font-medium leading-normal group-hover:text-white transition-colors">{symptom}</span>
+                           <span className="text-white/95 text-base sm:text-lg md:text-xl font-medium leading-normal group-hover:text-white transition-colors">{symptom}</span>
                          </li>
                        ))}
                      </ul>

@@ -124,7 +124,7 @@ export default function Team() {
               Visionaries <br /> behind <span className="text-brand-teal">Tech AtrioCare</span>
             </h1>
             
-            <p className="text-black text-lg md:text-xl font-semibold leading-relaxed max-w-2xl mx-auto">
+            <p className="text-black text-sm sm:text-base md:text-xl font-semibold leading-relaxed max-w-2xl mx-auto">
               Our diverse collective of researchers, clinicians, and digital architects is unified by a mission of Redefining respiratory health through precision innovation.
             </p>
           </motion.div>
@@ -258,7 +258,7 @@ export default function Team() {
                       </div>
                     </div>
                     
-                    <p className="text-black font-bold leading-relaxed italic text-lg">
+                    <p className="text-black font-bold leading-relaxed italic text-xs sm:text-base md:text-lg">
                       "{mention.bio}"
                     </p>
 

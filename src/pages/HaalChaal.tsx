@@ -41,13 +41,6 @@ const EmbeddedVideo = ({
     ? `https://drive.google.com/thumbnail?id=${driveId}&sz=w800`
     : "";
 
-  const handleReset = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsPlaying(false);
-    setVideoError(false);
-    setKey(prev => prev + 1);
-  };
-
   const handlePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsPlaying(true);
@@ -56,13 +49,13 @@ const EmbeddedVideo = ({
   return (
     <div 
       className={cn(
-        "group relative z-10 w-full overflow-hidden rounded-[16px] sm:rounded-[32px] bg-[#00171a] border-2 sm:border-4 md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center", 
-        aspect, 
+        "group relative z-10 w-full overflow-hidden rounded-[16px] sm:rounded-[32px] bg-black border-2 sm:border-4 md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center", 
+        !isPlaying ? aspect : "h-auto", 
         className
       )}
     >
       {isPlaying ? (
-        <div className="absolute inset-0 w-full h-full z-10">
+        <div className="relative w-full h-auto bg-black p-0 flex items-center justify-center">
           {!videoError ? (
             <video
               key={key}
@@ -71,8 +64,12 @@ const EmbeddedVideo = ({
               controls
               playsInline
               webkit-playsinline="true"
+              x5-playsinline="true"
+              x5-video-player-type="h5-page"
+              x5-video-player-fullscreen="false"
               autoPlay
-              className="w-full h-full bg-black object-contain absolute inset-0"
+              className="w-full h-auto block max-h-[75vh] mx-auto rounded-[12px] sm:rounded-[24px]"
+              onEnded={() => setIsPlaying(false)}
               onError={() => setVideoError(true)}
             />
           ) : (
@@ -83,22 +80,17 @@ const EmbeddedVideo = ({
               controls
               playsInline
               webkit-playsinline="true"
+              x5-playsinline="true"
+              x5-video-player-type="h5-page"
+              x5-video-player-fullscreen="false"
               autoPlay
-              className="w-full h-full bg-black object-contain absolute inset-0"
+              className="w-full h-auto block max-h-[75vh] mx-auto rounded-[12px] sm:rounded-[24px]"
+              onEnded={() => setIsPlaying(false)}
               onError={(e) => {
                 console.error("Both stream methods failed:", e);
               }}
             />
           )}
-
-          {/* Elegant Top-Left reset button to go back to thumbnail, safe from bottom mobile video overlays */}
-          <button 
-            onClick={handleReset}
-            title="Reset video to thumbnail"
-            className="absolute top-3 left-3 z-[25] w-8 h-8 rounded-full bg-slate-900/90 hover:bg-slate-900 text-white flex items-center justify-center backdrop-blur-sm shadow-md border border-white/10 active:scale-95 transition-all outline-none cursor-pointer"
-          >
-            <RefreshCcw className="w-3.5 h-3.5" />
-          </button>
         </div>
       ) : (
         <div 
@@ -107,10 +99,10 @@ const EmbeddedVideo = ({
         >
           {thumbnailSrc ? (
             <img 
-              src={thumbnailSrc} 
-              alt={title}
-              className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
-              referrerPolicy="no-referrer"
+               src={thumbnailSrc} 
+               alt={title}
+               className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
+               referrerPolicy="no-referrer"
             />
           ) : (
             <div className="absolute inset-0 bg-[#001D21]" />
@@ -129,17 +121,19 @@ const EmbeddedVideo = ({
         </div>
       )}
       
-      {/* Super sleek premium link button to open the original Google Drive if they want to view in a separate tab */}
-      <a 
-        href={viewUrl} 
-        target="_blank" 
-        rel="noopener noreferrer"
-        title="Open video in new tab"
-        className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-8 h-8 rounded-full bg-[#0097A7]/95 hover:bg-[#0097A7] text-white flex items-center justify-center backdrop-blur-sm shadow-lg border border-white/20 active:scale-105 transition-all outline-none"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <ArrowUpRight className="w-3.5 h-3.5" />
-      </a>
+      {/* Super sleek premium link button to open the original Google Drive, hidden while playing to prevent leaving the page */}
+      {!isPlaying && (
+        <a 
+          href={viewUrl} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          title="Open video in new tab"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-8 h-8 rounded-full bg-[#0097A7]/95 hover:bg-[#0097A7] text-white flex items-center justify-center backdrop-blur-sm shadow-lg border border-white/20 active:scale-105 transition-all outline-none"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <ArrowUpRight className="w-3.5 h-3.5" />
+        </a>
+      )}
     </div>
   );
 };

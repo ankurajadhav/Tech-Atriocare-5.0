@@ -38,20 +38,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate();
   const navRef = useRef<HTMLElement>(null);
 
-  // Prevent background scrolling on mobile when the mobile menu is open,
-  // preventing any scroll-induced layout jumps or auto-closes.
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [mobileMenuOpen]);
-
-  // We have removed the handleClickOutside listener to prevent unexpected automatic closing of the navigation menu on mobile devices.
+  // We have removed body scroll lock and the handleClickOutside listener to prevent unexpected automatic closing of the navigation menu on mobile devices.
   // The user now has full manual control over when the navigation bar is closed.
 
   const handleNavClick = (href: string, e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -260,7 +247,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-1.5 xl:gap-3">
             {navLinks.map((link) => {
-              const isActive = activeSection === link.id || (location.pathname === link.href);
+              const isActive = activeSection === link.id;
               return (
                 <Link
                   key={link.name}
@@ -333,71 +320,119 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <AnimatePresence>
           {mobileMenuOpen && (
             <>
-              {/* Full-bleed overlay layout with zero delay */}
+              {/* Clean background overlay with zero delay */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0 }}
-                className="lg:hidden fixed inset-0 top-0 bg-[#001d21]/30 backdrop-blur-[3px] -z-10 pointer-events-none"
+                className="lg:hidden fixed inset-0 top-0 bg-[#001d21]/20 backdrop-blur-[2px] -z-10 pointer-events-none"
               />
               <motion.div 
-                initial={{ opacity: 0, y: 0 }}
+                initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 0 }}
-                transition={{ duration: 0 }}
-                className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-200/80 p-6 shadow-2xl flex flex-col gap-4 backdrop-blur-2xl"
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="lg:hidden absolute top-full left-0 right-0 bg-white/98 border-b-4 border-[#0097A7]/45 px-5 py-7 shadow-[0_30px_60px_rgba(0,29,33,0.22)] flex flex-col gap-4 backdrop-blur-3xl rounded-b-[32px] border-x border-slate-100 z-[99]"
               >
-                {navLinks.map((link) => {
-                  const isExternal = link.href.startsWith('http');
-                  const isLinkActive = activeSection === link.id || (location.pathname === link.href);
-                  const baseClasses = cn(
-                    "font-display font-black uppercase tracking-widest text-[11px] sm:text-xs py-3.5 px-4 rounded-xl transition-all flex items-center justify-between border",
-                    isLinkActive
-                      ? "text-[#006064] bg-[#e0f2fe]/50 border-sky-200/65 shadow-[0_4px_12px_rgba(14,165,233,0.04)]"
-                      : "text-slate-800 hover:text-brand-teal hover:bg-slate-50 border-transparent"
-                  );
-                  return isExternal ? (
-                    <a
-                      key={link.name}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={baseClasses}
-                    >
-                      <span>{link.name}</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-slate-400" />
-                    </a>
-                  ) : (
-                    <Link
-                      key={link.name}
-                      to={link.href}
-                      className={baseClasses}
-                      onClick={(e) => handleMobileNavClick(link.href, e)}
-                    >
-                      <span>{link.name}</span>
-                      <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-                    </Link>
-                  );
-                })}
+                <div className="grid grid-cols-1 gap-2.5">
+                  {navLinks.map((link) => {
+                    const isExternal = link.href.startsWith('http');
+                    const isLinkActive = activeSection === link.id || (location.pathname === link.href);
+                    const meta = getLinkMeta(link.id);
+                    const IconComponent = meta.icon;
 
-                <div className="flex flex-col gap-2 mt-2 pt-2 border-t border-slate-100">
+                    const baseClasses = cn(
+                      "group flex items-center gap-4 p-3 rounded-2xl transition-all border text-left active:scale-[0.99]",
+                      isLinkActive
+                        ? "bg-cyan-50/75 border-[#0097A7]/40 shadow-sm shadow-cyan-900/5 text-[#006064]"
+                        : "bg-slate-50/55 border-slate-200/50 hover:bg-slate-100 hover:border-slate-350 text-slate-800"
+                    );
+
+                    return isExternal ? (
+                      <a
+                        key={link.name}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={baseClasses}
+                      >
+                        <div className={cn(
+                          "w-11 h-11 rounded-xl flex items-center justify-center border font-bold shrink-0 shadow-sm transition-all",
+                          isLinkActive ? "bg-white text-[#0097A7] border-cyan-250 shadow-md scale-105" : meta.color
+                        )}>
+                          <IconComponent className="w-5 h-5" />
+                        </div>
+                        
+                        <div className="flex flex-col flex-1 min-w-0">
+                          <span className="font-display font-black uppercase tracking-widest text-[11px] sm:text-xs">
+                            {link.name}
+                          </span>
+                          <span className="text-[10px] font-semibold text-slate-500 mt-1 lines-1">
+                            {meta.desc}
+                          </span>
+                        </div>
+
+                        <div className="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 group-hover:text-[#0097A7] transition-all">
+                          <ArrowUpRight className="w-4 h-4" />
+                        </div>
+                      </a>
+                    ) : (
+                      <Link
+                        key={link.name}
+                        to={link.href}
+                        className={baseClasses}
+                        onClick={(e) => handleMobileNavClick(link.href, e)}
+                      >
+                        <div className={cn(
+                          "w-11 h-11 rounded-xl flex items-center justify-center border font-bold shrink-0 shadow-sm transition-all",
+                          isLinkActive ? "bg-white text-[#0097A7] border-cyan-200 shadow-md scale-105" : meta.color
+                        )}>
+                          <IconComponent className="w-5 h-5" />
+                        </div>
+                        
+                        <div className="flex flex-col flex-1 min-w-0">
+                          <span className="font-display font-black uppercase tracking-widest text-[11px] sm:text-xs flex items-center gap-2">
+                            {link.name}
+                            {isLinkActive && (
+                              <span className="w-2 h-2 rounded-full bg-[#0097A7]" />
+                            )}
+                          </span>
+                          <span className="text-[10px] font-semibold text-slate-500 mt-1 lines-1">
+                            {meta.desc}
+                          </span>
+                        </div>
+
+                        <div className={cn(
+                          "shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-all",
+                          isLinkActive ? "bg-white border border-cyan-200 text-[#0097A7] shadow-sm scale-110" : "text-slate-400 group-hover:text-[#0097A7] group-hover:translate-x-0.5"
+                        )}>
+                          <ChevronRight className="w-4 h-4" />
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+
+                <div className="flex flex-col gap-3 mt-3 pt-3 border-t border-dashed border-slate-200">
                   <Link 
                     to="/checkup"
-                    className="bg-brand-teal text-white font-display font-black uppercase tracking-widest text-[10px] py-3.5 px-6 rounded-xl text-center shadow-lg shadow-brand-teal/15 transition-all hover:bg-brand-blue"
-                    onClick={(e) => {
-                      e.preventDefault();
+                    className="group relative bg-[#0097A7] hover:bg-[#007681] text-white font-display font-black uppercase tracking-widest text-[11px] sm:text-xs py-4 px-6 rounded-2xl text-center shadow-lg shadow-cyan-900/15 transition-all flex items-center justify-center gap-3 active:scale-[0.98] overflow-hidden"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
                       navigate('/checkup');
                     }}
                   >
-                    1-Min Digital Check-Up
+                    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span>Launch 1-Min Digital Check-Up</span>
+                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </Link>
 
                   <button
                     onClick={() => setMobileMenuOpen(false)}
-                    className="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-display font-black uppercase tracking-widest text-[10px] rounded-xl text-center transition-all border border-slate-200/50 flex items-center justify-center gap-1.5"
+                    className="w-full py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 active:scale-[0.98] font-display font-black uppercase tracking-widest text-[11px] rounded-2xl text-center transition-all border border-slate-200/50 flex items-center justify-center gap-2"
                   >
-                    <X className="w-3.5 h-3.5" />
+                    <X className="w-4 h-4 text-slate-500 font-extrabold" />
                     Close Navigation Overview
                   </button>
                 </div>

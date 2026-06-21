@@ -441,11 +441,11 @@ export default function AirwayCheckup() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F0FBFA] pt-32 pb-32">
-      <div className="max-w-3xl mx-auto px-4">
+    <div className="min-h-screen bg-[#F0FBFA] pt-20 sm:pt-32 pb-20 sm:pb-32">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6">
         {/* Progress Tracker */}
         {step !== 'landing' && step !== 'results' && (
-          <div className="max-w-xs mx-auto mb-12 flex justify-between gap-2">
+          <div className="max-w-xs mx-auto mb-6 sm:mb-12 flex justify-between gap-2">
             {[1, 2, 3].map((i) => (
               <div 
                 key={i} 
@@ -466,40 +466,40 @@ export default function AirwayCheckup() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="text-center space-y-12"
+              className="text-center space-y-8 sm:space-y-12"
             >
-              <div className="space-y-4 mb-8">
-                <p className="text-[#0097A7] font-black tracking-[0.2em] text-xs uppercase mb-2">
+              <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+                <p className="text-[#0097A7] font-black tracking-[0.2em] text-[10px] sm:text-xs uppercase mb-1 sm:mb-2">
                   1-Minute
                 </p>
-                <h1 className="text-5xl md:text-7xl font-black text-[#006D77] tracking-tight uppercase leading-[1.1]">
+                <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-[#006D77] tracking-tight uppercase leading-[1.1] sm:leading-[1.1]">
                   Digital Airway <br className="hidden md:block" /> Checkup
                 </h1>
-                <p className="text-slate-500 font-bold tracking-widest text-[10px] uppercase">
+                <p className="text-slate-500 font-bold tracking-widest text-[9px] sm:text-[10px] uppercase">
                   Revolutionizing Preventive Lung Care
                 </p>
               </div>
 
-              <div className="bg-white/60 backdrop-blur-xl border border-white rounded-[28px] sm:rounded-[48px] p-6 sm:p-12 shadow-2xl shadow-[#006D77]/5 space-y-10">
-                <div className="space-y-2">
-                  <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em]">Today's AQI (your area)</p>
+              <div className="bg-white/60 backdrop-blur-xl border border-white rounded-[24px] sm:rounded-[48px] p-5 sm:p-12 shadow-2xl shadow-[#006D77]/5 space-y-8 sm:space-y-10">
+                <div className="space-y-1 sm:space-y-2">
+                  <p className="text-slate-400 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em]">Today's AQI (your area)</p>
                   {aqi === null ? (
-                    <div className="flex items-center justify-center gap-3 text-2xl font-black text-slate-300 animate-pulse">
-                      <RefreshCcw className="w-6 h-6 animate-spin" />
+                    <div className="flex items-center justify-center gap-2 sm:gap-3 text-lg sm:text-2xl font-black text-slate-300 animate-pulse">
+                      <RefreshCcw className="w-5 h-5 sm:w-6 sm:h-6 animate-spin" />
                       Fetching air quality...
                     </div>
                   ) : (
-                    <div className="text-5xl font-black text-[#0097A7]">{aqi} – Good</div>
+                    <div className="text-3xl sm:text-5xl font-black text-[#0097A7]">{aqi} – Good</div>
                   )}
                 </div>
 
-                <p className="text-slate-600 font-medium leading-relaxed max-w-sm mx-auto">
+                <p className="text-slate-600 font-medium text-xs sm:text-base leading-relaxed max-w-sm mx-auto">
                   A quick voice-based check to understand how today's air may be affecting your breath.
                 </p>
 
                 <button 
                   onClick={() => setStep('instructions')}
-                  className="w-full py-6 bg-[#3B82F6] text-white rounded-3xl font-black text-xl shadow-xl shadow-blue-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                  className="w-full py-4 sm:py-6 bg-[#3B82F6] text-white rounded-2xl sm:rounded-3xl font-black text-base sm:text-xl shadow-xl shadow-blue-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all"
                 >
                   Let's Start
                 </button>
@@ -527,31 +527,31 @@ export default function AirwayCheckup() {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
-              className="space-y-12"
+              className="space-y-8 sm:space-y-12"
             >
-              <div className="text-center space-y-4">
-                 <h2 className="text-4xl font-black text-[#006D77] uppercase">Step {recordingsCount + 1}: Hum Sustain</h2>
+              <div className="text-center space-y-2 sm:space-y-4">
+                 <h2 className="text-2xl sm:text-4xl font-black text-[#006D77] uppercase">Step {recordingsCount + 1}: Hum Sustain</h2>
                  <p className="text-slate-400 font-bold text-xs uppercase tracking-widest">Calibration {recordingsCount + 1} of 3</p>
               </div>
               
-              <div className="bg-white rounded-[28px] sm:rounded-[40px] p-6 sm:p-10 border border-slate-100 shadow-xl space-y-8 relative overflow-hidden">
-                <div className="absolute top-10 right-10 opacity-10">
+              <div className="bg-white rounded-[20px] sm:rounded-[40px] p-5 sm:p-10 border border-slate-100 shadow-xl space-y-6 sm:space-y-8 relative overflow-hidden">
+                <div className="absolute top-10 right-10 opacity-10 hidden sm:block">
                    <Mic className="w-32 h-32 text-[#006D77]" />
                 </div>
                 
-                <div className="space-y-6 relative z-10">
-                  <div className="flex gap-4 items-start">
-                    <div className="w-8 h-8 rounded-full border-2 border-[#006D77] flex items-center justify-center text-[#006D77] font-black shrink-0">1</div>
-                    <p className="text-xl font-bold text-slate-700">Take a deep breath</p>
+                <div className="space-y-4 sm:space-y-6 relative z-10">
+                  <div className="flex gap-3 sm:gap-4 items-start">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-[#006D77] flex items-center justify-center text-[#006D77] font-black shrink-0 text-xs sm:text-base">1</div>
+                    <p className="text-sm sm:text-xl font-bold text-slate-700 pt-0.5 sm:pt-0">Take a deep breath</p>
                   </div>
-                  <div className="flex gap-4 items-start">
-                    <div className="w-8 h-8 rounded-full border-2 border-[#006D77] flex items-center justify-center text-[#006D77] font-black shrink-0">2</div>
-                    <p className="text-xl font-bold text-slate-700">Keep mouth closed</p>
+                  <div className="flex gap-3 sm:gap-4 items-start">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-[#006D77] flex items-center justify-center text-[#006D77] font-black shrink-0 text-xs sm:text-base">2</div>
+                    <p className="text-sm sm:text-xl font-bold text-slate-700 pt-0.5 sm:pt-0">Keep mouth closed</p>
                   </div>
-                  <div className="flex gap-4 items-start">
-                    <div className="w-8 h-8 rounded-full border-2 border-[#006D77] flex items-center justify-center text-[#006D77] font-black shrink-0">3</div>
-                    <div className="space-y-3">
-                      <p className="text-xl font-bold text-slate-700">Hum "MMMM" steadily for 5 seconds</p>
+                  <div className="flex gap-3 sm:gap-4 items-start">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-[#006D77] flex items-center justify-center text-[#006D77] font-black shrink-0 text-xs sm:text-base">3</div>
+                    <div className="space-y-2 sm:space-y-3">
+                      <p className="text-sm sm:text-xl font-bold text-slate-700 pt-0.5 sm:pt-0">Hum "MMMM" steadily for 5 seconds</p>
                       <button 
                         onClick={() => {
                           const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
@@ -571,42 +571,42 @@ export default function AirwayCheckup() {
                           oscillator.start();
                           oscillator.stop(audioCtx.currentTime + 1.5);
                         }}
-                        className="flex items-center gap-2 px-4 py-2 bg-slate-100 rounded-xl text-[10px] font-bold text-brand-teal hover:bg-brand-teal/10 transition-colors uppercase tracking-widest border border-slate-200 shadow-sm"
+                        className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 rounded-lg text-[9px] sm:text-[10px] font-bold text-brand-teal hover:bg-brand-teal/10 transition-colors uppercase tracking-widest border border-slate-200 shadow-sm"
                       >
-                        <Play className="w-3 h-3 fill-current" />
+                        <Play className="w-2.5 h-2.5 fill-current" />
                         Play Sample Hum
                       </button>
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-slate-50">
-                  <p className="text-[10px] text-slate-400 leading-relaxed max-w-md">
+                <div className="pt-4 sm:pt-6 border-t border-slate-50">
+                  <p className="text-[9px] sm:text-[10px] text-slate-400 leading-relaxed max-w-md">
                     By tapping <span className="font-bold">Start Recording</span>, you consent to microphone access solely for real-time analysis. Audio is processed temporarily and <span className="font-bold">never stored</span>.
                   </p>
                 </div>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {[1, 2, 3].map((i) => (
                   <div 
                     key={i} 
                     className={cn(
-                      "p-5 rounded-3xl border flex items-center justify-between transition-all duration-500",
+                      "p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border flex items-center justify-between transition-all duration-500",
                       recordingsCount >= i 
-                        ? "bg-emerald-50 border-emerald-100 shadow-sm shadow-emerald-500/5 translate-x-2" 
+                        ? "bg-emerald-50 border-emerald-100 shadow-sm shadow-emerald-500/5 translate-x-1 sm:translate-x-2" 
                         : "bg-white/80 border-white shadow-sm"
                     )}
                   >
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-3 sm:gap-4">
                       <div className={cn(
-                        "w-8 h-8 rounded-xl flex items-center justify-center font-bold text-xs",
+                        "w-6 h-6 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl flex items-center justify-center font-bold text-[10px] sm:text-xs",
                         recordingsCount >= i ? "bg-emerald-500 text-white" : "bg-slate-100 text-slate-400"
                       )}>
                         {i}
                       </div>
                       <span className={cn(
-                        "font-bold text-sm",
+                        "font-bold text-xs sm:text-sm",
                         recordingsCount >= i ? "text-emerald-700" : "text-slate-500"
                       )}>
                         Recording {i} {recordingsCount >= i ? '— Analysis Saved!' : '(Ready)'}
@@ -617,7 +617,7 @@ export default function AirwayCheckup() {
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                       >
-                        <CheckCircle2 className="w-6 h-6 text-emerald-500" />
+                        <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-500" />
                       </motion.div>
                     )}
                   </div>
@@ -630,7 +630,7 @@ export default function AirwayCheckup() {
                     startCapture();
                   }
                 }}
-                className="w-full py-6 bg-[#3B82F6] text-white rounded-3xl font-black text-xl shadow-xl shadow-blue-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                className="w-full py-4 sm:py-6 bg-[#3B82F6] text-white rounded-2xl sm:rounded-3xl font-black text-base sm:text-xl shadow-xl shadow-blue-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
                 {recordingsCount === 0 ? 'Start First Recording' : `Start Recording ${recordingsCount + 1}/3`}
               </button>
@@ -639,11 +639,11 @@ export default function AirwayCheckup() {
                 <motion.div 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-5 bg-rose-50 border border-rose-100 rounded-3xl flex items-start gap-3.5 text-rose-800 text-sm font-semibold text-left shadow-sm"
+                  className="p-4 sm:p-5 bg-rose-50 border border-rose-100 rounded-2xl sm:rounded-3xl flex items-start gap-3 sm:gap-3.5 text-rose-800 text-xs sm:text-sm font-semibold text-left shadow-sm"
                 >
                   <AlertCircle className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
                   <div className="space-y-1">
-                    <p className="font-bold">Microphone Required</p>
+                    <p className="font-bold text-sm sm:text-base">Microphone Required</p>
                     <p className="text-rose-600/90 font-medium leading-relaxed">{micError}</p>
                   </div>
                 </motion.div>
@@ -658,40 +658,40 @@ export default function AirwayCheckup() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, y: -20 }}
-              className="text-center space-y-12"
+              className="text-center space-y-6 sm:space-y-12"
             >
-              <div className="space-y-4 text-center">
-                <h2 className="text-4xl font-black text-[#006D77] uppercase">Hum into the phone</h2>
-                <div className="flex items-center justify-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                  <p className="text-sm font-bold text-red-500 uppercase tracking-widest">Recording & Analyzing Live...</p>
+              <div className="space-y-2 sm:space-y-4 text-center">
+                <h2 className="text-2xl sm:text-4xl font-black text-[#006D77] uppercase">Hum into the phone</h2>
+                <div className="flex items-center justify-center gap-2 sm:gap-3">
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-500 animate-pulse" />
+                  <p className="text-xs sm:text-sm font-bold text-red-500 uppercase tracking-widest">Recording & Analyzing Live...</p>
                 </div>
               </div>
 
-              <div className="relative aspect-square max-w-[320px] mx-auto bg-white rounded-full flex items-center justify-center shadow-2xl border-8 border-slate-50/50 overflow-hidden">
+              <div className="relative aspect-square max-w-[260px] sm:max-w-[320px] mx-auto bg-white rounded-full flex items-center justify-center shadow-2xl border-4 sm:border-8 border-slate-50/50 overflow-hidden">
                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from- emerald-500/10 via-transparent to-transparent animate-pulse" />
                  <canvas 
                     ref={canvasRef} 
                     width={250} 
                     height={150}
-                    className="w-56 h-32 mb-12 relative z-10"
+                    className="w-44 h-24 sm:w-56 sm:h-32 mb-8 sm:mb-12 relative z-10"
                  />
-                 <div className="absolute bottom-16 text-[#006D77] font-black flex flex-col items-center gap-2">
-                    <Activity className="w-6 h-6 animate-pulse" />
-                    <span className="text-[10px] tracking-widest uppercase">FFT Telemetry active</span>
+                 <div className="absolute bottom-10 sm:bottom-16 text-[#006D77] font-black flex flex-col items-center gap-1 sm:gap-2">
+                    <Activity className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse" />
+                    <span className="text-[8px] sm:text-[10px] tracking-widest uppercase">FFT Telemetry active</span>
                  </div>
               </div>
 
-              <div className="max-w-xs mx-auto space-y-6">
-                <div className="p-8 rounded-[32px] bg-white border border-brand-teal/20 shadow-xl shadow-brand-teal/5">
-                  <p className="text-[#006D77] text-sm font-bold leading-relaxed italic">
+              <div className="max-w-xs mx-auto space-y-4 sm:space-y-6">
+                <div className="p-5 sm:p-8 rounded-[24px] sm:rounded-[32px] bg-white border border-brand-teal/20 shadow-xl shadow-brand-teal/5">
+                  <p className="text-[#006D77] text-xs sm:text-sm font-bold leading-relaxed italic">
                     "Keep it steady and deep... Almost there"
                   </p>
                 </div>
                 
                 <button 
                   onClick={() => stopCapture()}
-                  className="w-full py-4 border-2 border-slate-200 rounded-2xl font-bold text-slate-400 hover:bg-slate-50 transition-all text-xs uppercase tracking-widest"
+                  className="w-full py-3 sm:py-4 border-2 border-slate-200 rounded-xl sm:rounded-2xl font-bold text-slate-400 hover:bg-slate-50 transition-all text-[11px] sm:text-xs uppercase tracking-widest"
                 >
                   Stop Recording Early
                 </button>
@@ -705,10 +705,10 @@ export default function AirwayCheckup() {
               key="analysis"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-center py-20 space-y-12"
+              className="text-center py-10 sm:py-20 space-y-8 sm:space-y-12"
             >
               <div className="flex justify-center">
-                <div className="relative w-40 h-40">
+                <div className="relative w-28 h-28 sm:w-40 sm:h-40">
                   <motion.div 
                     animate={{ rotate: 360 }}
                     transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
@@ -717,17 +717,17 @@ export default function AirwayCheckup() {
                   <motion.div 
                     animate={{ rotate: -360 }}
                     transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-4 border-2 border-blue-500 border-b-transparent rounded-full"
+                    className="absolute inset-3 sm:inset-4 border-2 border-blue-500 border-b-transparent rounded-full"
                   />
-                  <div className="absolute inset-0 m-auto w-12 h-12 flex items-center justify-center">
-                    <Microscope className="w-10 h-10 text-[#006D77]" />
+                  <div className="absolute inset-0 m-auto w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
+                    <Microscope className="w-8 h-8 sm:w-10 sm:h-10 text-[#006D77]" />
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-6">
-                <h2 className="text-4xl font-black text-[#006D77] tracking-tight uppercase">Generating Report</h2>
-                <div className="max-w-xs mx-auto space-y-3">
+              <div className="space-y-4 sm:space-y-6">
+                <h2 className="text-2xl sm:text-4xl font-black text-[#006D77] tracking-tight uppercase">Generating Report</h2>
+                <div className="max-w-xs mx-auto space-y-2.5 sm:space-y-3">
                   {[
                     'Synchronizing Spectrograms...',
                     'Calculating Bio-Resonance Index...',
@@ -739,10 +739,10 @@ export default function AirwayCheckup() {
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.8 }}
-                      className="flex items-center gap-3 text-left"
+                      className="flex items-center gap-2.5 sm:gap-3 text-left"
                     >
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                      <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">{text}</span>
+                      <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500 shrink-0" />
+                      <span className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest">{text}</span>
                     </motion.div>
                   ))}
                 </div>
@@ -756,40 +756,40 @@ export default function AirwayCheckup() {
               key="results"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="space-y-12"
+              className="space-y-6 sm:space-y-12"
             >
               {/* Wrapped content for PDF capture */}
-              <div ref={reportRef} id="health-report" className="space-y-12 p-2">
+              <div ref={reportRef} id="health-report" className="space-y-6 sm:space-y-12 p-2">
                 <div className="text-center space-y-2">
-                  <div className="inline-block px-4 py-1 bg-emerald-100 text-emerald-700 rounded-full text-[10px] font-black uppercase tracking-widest mb-4">Checkup Complete</div>
-                  <h2 className="text-4xl md:text-5xl font-black text-[#006D77] uppercase leading-tight">Digital Airway <br /> Health Report</h2>
+                  <div className="inline-block px-4 py-1 bg-emerald-100 text-emerald-700 rounded-full text-[10px] font-black uppercase tracking-widest mb-2 sm:mb-4">Checkup Complete</div>
+                  <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#006D77] uppercase leading-tight">Digital Airway <br /> Health Report</h2>
                 </div>
 
-                <div className="bg-white rounded-[28px] sm:rounded-[48px] p-6 sm:p-10 border border-slate-100 shadow-2xl space-y-10">
-                  <div className="flex flex-col md:flex-row items-center gap-10">
+                <div className="bg-white rounded-[20px] sm:rounded-[48px] p-4 sm:p-10 border border-slate-100 shadow-2xl space-y-6 sm:space-y-10">
+                  <div className="flex flex-col md:flex-row items-stretch md:items-center gap-6 sm:gap-10">
                     <div className="text-center md:text-left space-y-2">
                       <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest">Airway Patency Score</p>
-                      <div className="text-8xl font-black text-[#006D77]">0.11</div>
-                      <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-amber-50 text-amber-700 rounded-2xl text-xs font-bold border border-amber-100">
-                         <TrendingDown className="w-4 h-4" />
+                      <div className="text-5xl sm:text-7xl md:text-8xl font-black text-[#006D77]">0.11</div>
+                      <div className="mt-2 sm:mt-4 inline-flex items-center gap-2 px-4 py-1.5 sm:py-2 bg-amber-50 text-amber-700 rounded-[14px] sm:rounded-2xl text-[11px] sm:text-xs font-bold border border-amber-100">
+                         <TrendingDown className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                          Below Optimal Range
                       </div>
                     </div>
 
-                    <div className="flex-1 w-full space-y-4">
-                       <p className="text-sm font-bold text-slate-600">Your results compared to healthy baseline:</p>
-                       <div className="space-y-6">
+                    <div className="flex-1 w-full space-y-3 sm:space-y-4">
+                       <p className="text-xs sm:text-sm font-bold text-slate-600">Your results compared to healthy baseline:</p>
+                       <div className="space-y-4 sm:space-y-6">
                           {[
                             { label: 'Bio-Resonance', val: 15, color: 'bg-emerald-500' },
                             { label: 'Spectral Stability', val: 22, color: 'bg-blue-500' },
                             { label: 'Airway Resistance', val: 88, color: 'bg-amber-500' },
                           ].map(bar => (
-                            <div key={bar.label} className="space-y-2">
-                              <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-slate-400">
+                            <div key={bar.label} className="space-y-1 sm:space-y-2">
+                              <div className="flex justify-between text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400">
                                 <span>{bar.label}</span>
                                 <span className={cn("text-xs", bar.val > 70 ? "text-amber-600" : "text-emerald-600")}>{bar.val}%</span>
                               </div>
-                              <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
+                              <div className="h-2.5 sm:h-3 bg-slate-100 rounded-full overflow-hidden">
                                 <motion.div 
                                   initial={{ width: 0 }}
                                   animate={{ width: `${bar.val}%` }}
@@ -803,20 +803,20 @@ export default function AirwayCheckup() {
                     </div>
                   </div>
                   
-                  <div className="pt-10 border-t border-slate-50 space-y-6">
-                     <h4 className="text-lg font-bold text-[#006D77] uppercase tracking-tight">Spectrogram Signatures:</h4>
-                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="pt-6 sm:pt-10 border-t border-slate-50 space-y-4 sm:space-y-6">
+                     <h4 className="text-sm sm:text-lg font-bold text-[#006D77] uppercase tracking-tight">Spectrogram Signatures:</h4>
+                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         {spectrograms.map((data, i) => (
-                          <div key={i} className="bg-slate-50 rounded-3xl p-4 border border-slate-100">
-                             <div className="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-3">Recording {i + 1}</div>
-                             <div className="aspect-square bg-white rounded-2xl border border-slate-100 relative overflow-hidden flex items-end p-4">
-                                <div className="w-full h-full flex items-end gap-[4px]">
+                          <div key={i} className="bg-slate-50 rounded-2xl sm:rounded-3xl p-3 sm:p-4 border border-slate-100">
+                             <div className="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-2 sm:mb-3">Recording {i + 1}</div>
+                             <div className="aspect-square bg-white rounded-xl sm:rounded-2xl border border-slate-100 relative overflow-hidden flex items-end p-3 sm:p-4">
+                                <div className="w-full h-full flex items-end gap-[2px] sm:gap-[4px]">
                                    {data.filter((_, idx) => idx % 64 === 0).slice(0, 16).map((intensity, idx) => (
                                      <motion.div 
                                        key={idx} 
                                        initial={{ height: 0 }}
                                        animate={{ height: `${Math.max(10, (intensity / 255) * 100)}%` }}
-                                       className="flex-1 rounded-t-lg transition-all duration-500" 
+                                       className="flex-1 rounded-t sm:rounded-t-lg transition-all duration-500" 
                                        style={{ 
                                          background: `linear-gradient(to top, #0097A7, #4DD0E1)`,
                                          opacity: 0.6 + (intensity / 500)
@@ -828,74 +828,74 @@ export default function AirwayCheckup() {
                           </div>
                         ))}
                         {Array.from({ length: Math.max(0, 3 - spectrograms.length) }).map((_, i) => (
-                          <div key={`empty-${i}`} className="bg-slate-50 rounded-3xl p-4 border border-slate-100 opacity-40">
-                             <div className="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-3">Recording {spectrograms.length + i + 1}</div>
-                             <div className="aspect-square bg-white/50 rounded-2xl border border-dashed border-slate-200" />
+                          <div key={`empty-${i}`} className="bg-slate-50 rounded-2xl sm:rounded-3xl p-3 sm:p-4 border border-slate-100 opacity-40">
+                             <div className="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-2 sm:mb-3">Recording {spectrograms.length + i + 1}</div>
+                             <div className="aspect-square bg-white/50 rounded-xl sm:rounded-2xl border border-dashed border-slate-200" />
                           </div>
                         ))}
                      </div>
                   </div>
                 </div>
 
-                <div className="bg-[#0097A7] text-white rounded-[28px] sm:rounded-[40px] p-6 sm:p-10 flex flex-col md:flex-row items-center gap-8 shadow-xl shadow-[#0097A7]/20">
-                   <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center shrink-0">
-                      <Activity className="w-10 h-10 text-[#0097A7]" />
+                <div className="bg-[#0097A7] text-white rounded-[20px] sm:rounded-[40px] p-5 sm:p-10 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-8 shadow-xl shadow-[#0097A7]/20">
+                   <div className="w-14 h-14 sm:w-20 sm:h-20 bg-white rounded-2xl sm:rounded-3xl flex items-center justify-center shrink-0">
+                      <Activity className="w-7 h-7 sm:w-10 sm:h-10 text-[#0097A7]" />
                    </div>
-                   <div className="space-y-2">
-                      <h4 className="text-2xl font-black uppercase">Analysis Insights</h4>
-                      <p className="text-white/80 font-medium leading-relaxed">
+                   <div className="space-y-1.5 sm:space-y-2">
+                      <h4 className="text-lg sm:text-2xl font-black uppercase">Analysis Insights</h4>
+                      <p className="text-white/80 font-medium text-xs sm:text-sm md:text-base leading-relaxed">
                          Your humming analysis indicates a high level of vocal turbulence, which often correlates with early-stage airway restriction due to pollutants. We recommend scheduling a clinical Spirometry test.
                       </p>
                    </div>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-5 print:hidden">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 print:hidden">
                 <button 
                   onClick={resetCheckup}
-                  className="flex-1 py-6 border-2 border-[#006D77] text-[#006D77] rounded-[32px] font-black text-lg hover:bg-[#006D77]/5 transition-all flex items-center justify-center gap-3"
+                  className="flex-1 py-4 sm:py-6 border-2 border-[#006D77] text-[#006D77] rounded-2xl sm:rounded-[32px] font-black text-sm sm:text-lg hover:bg-[#006D77]/5 transition-all flex items-center justify-center gap-2 sm:gap-3"
                 >
-                  <RefreshCcw className="w-6 h-6" /> Retake Test
+                  <RefreshCcw className="w-5 h-5 sm:w-6 sm:h-6" /> Retake Test
                 </button>
                 <button 
                   onClick={downloadReport}
                   disabled={isGenerating}
                   className={cn(
-                    "flex-1 py-6 bg-[#3B82F6] text-white rounded-[32px] font-black text-lg shadow-xl shadow-blue-500/30 transition-all flex items-center justify-center gap-3",
+                    "flex-1 py-4 sm:py-6 bg-[#3B82F6] text-white rounded-2xl sm:rounded-[32px] font-black text-sm sm:text-lg shadow-xl shadow-blue-500/30 transition-all flex items-center justify-center gap-2 sm:gap-3",
                     isGenerating ? "opacity-70 cursor-not-allowed" : "hover:scale-[1.02] active:scale-[0.98]"
                   )}
                 >
                   {isGenerating ? (
                     <>
-                      <RefreshCcw className="w-6 h-6 animate-spin" /> Generating...
+                      <RefreshCcw className="w-5 h-5 sm:w-6 sm:h-6 animate-spin" /> Generating...
                     </>
                   ) : (
                     <>
-                      Download Full Report <ChevronRight className="w-6 h-6" />
+                      Download Full Report <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
                     </>
                   )}
                 </button>
               </div>
 
               {downloadError && (
-                <div className="p-6 bg-amber-50 rounded-[32px] border border-amber-200/60 shadow-md max-w-md mx-auto text-center space-y-4">
+                <div className="p-5 sm:p-6 bg-amber-50 rounded-2xl sm:rounded-[32px] border border-amber-200/60 shadow-md max-w-md mx-auto text-center space-y-3 sm:space-y-4">
                   <div className="flex items-center justify-center gap-2 text-amber-800 font-bold">
-                    <AlertCircle className="w-5 h-5 animate-pulse" />
+                    <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 animate-pulse" />
                     <span>Download Sandbox Information</span>
                   </div>
-                  <p className="text-xs text-amber-700 font-semibold leading-relaxed">
+                  <p className="text-[11px] sm:text-xs text-amber-700 font-semibold leading-relaxed">
                     {downloadError}
                   </p>
                   <button
                     onClick={() => window.print()}
-                    className="w-full py-4.5 bg-[#006D77] hover:bg-[#005a63] text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2.5 shadow-lg shadow-teal-700/10 active:scale-[0.98]"
+                    className="w-full py-3.5 sm:py-4.5 bg-[#006D77] hover:bg-[#005a63] text-white rounded-xl sm:rounded-2xl font-black text-[10px] sm:text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 sm:gap-2.5 shadow-lg shadow-teal-700/10 active:scale-[0.98]"
                   >
-                    <Printer className="w-4 h-4" /> Open Native Print / Save PDF
+                    <Printer className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> Open Native Print / Save PDF
                   </button>
                 </div>
               )}
 
-              <p className="text-center text-slate-400 text-xs font-medium max-w-sm mx-auto">
+              <p className="text-center text-slate-400 text-[10px] sm:text-xs font-medium max-w-sm mx-auto">
                 Note: This is a preliminary digital screening. Consult a certified pulmonologist for medical advice.
               </p>
             </motion.div>

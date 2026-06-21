@@ -5,9 +5,33 @@ import { cn } from '../lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
 import NoviculeInfoModal from './NoviculeInfoModal';
 
+let globalMobileMenuOpen = false;
+const mobileMenuListeners = new Set<(open: boolean) => void>();
+
+function setGlobalMobileMenuOpen(val: boolean) {
+  globalMobileMenuOpen = val;
+  mobileMenuListeners.forEach(listener => listener(val));
+}
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileMenuOpen, _setMobileMenuOpen] = useState(globalMobileMenuOpen);
+
+  useEffect(() => {
+    const handleGlobalChange = (val: boolean) => {
+      _setMobileMenuOpen(val);
+    };
+    mobileMenuListeners.add(handleGlobalChange);
+    return () => {
+      mobileMenuListeners.delete(handleGlobalChange);
+    };
+  }, []);
+
+  const setMobileMenuOpen = (val: boolean | ((prev: boolean) => boolean)) => {
+    const nextVal = typeof val === 'function' ? val(globalMobileMenuOpen) : val;
+    setGlobalMobileMenuOpen(nextVal);
+  };
+
   const [activeSection, setActiveSection] = useState('home');
   const [isNoviculeModalOpen, setIsNoviculeModalOpen] = useState(false);
   const location = useLocation();
@@ -309,147 +333,72 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <AnimatePresence>
           {mobileMenuOpen && (
             <>
-              {/* Beautiful blurred focus-holding backdrop overlay (Purely visual, no accidental click-to-close) */}
+              {/* Full-bleed overlay layout with zero delay */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="lg:hidden fixed inset-0 top-0 bg-[#001d21]/45 backdrop-blur-[6px] -z-10 pointer-events-none"
+                transition={{ duration: 0 }}
+                className="lg:hidden fixed inset-0 top-0 bg-[#001d21]/30 backdrop-blur-[3px] -z-10 pointer-events-none"
               />
               <motion.div 
-                initial={{ opacity: 0, y: -20 }}
+                initial={{ opacity: 0, y: 0 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="lg:hidden absolute top-full left-0 right-0 bg-white/98 border-b-4 border-[#0097A7]/45 px-5 py-7 shadow-[0_30px_60px_rgba(0,29,33,0.22)] flex flex-col gap-4 backdrop-blur-3xl max-h-[84vh] overflow-y-auto rounded-b-[32px] border-x border-slate-100"
+                exit={{ opacity: 0, y: 0 }}
+                transition={{ duration: 0 }}
+                className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-200/80 p-6 shadow-2xl flex flex-col gap-4 backdrop-blur-2xl"
               >
-                {/* Header within Mobile Menu */}
-                <div className="flex items-center justify-between pb-4 border-b border-dashed border-slate-200/80 mb-2 px-1">
-                  <div className="flex flex-col">
-                    <span className="text-[10px] font-black uppercase tracking-[0.18em] text-[#0097A7] leading-none mb-1.5">Interactive Portal</span>
-                    <span className="text-base font-extrabold text-slate-900 leading-none">Main Navigation</span>
-                  </div>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-cyan-50/70 text-[#0097A7] text-[10px] font-black rounded-full border border-cyan-100/50 uppercase tracking-widest">
-                    <Sparkles className="w-3 h-3 text-cyan-600 animate-pulse" />
-                    Immunity Live
-                  </span>
-                </div>
+                {navLinks.map((link) => {
+                  const isExternal = link.href.startsWith('http');
+                  const isLinkActive = activeSection === link.id || (location.pathname === link.href);
+                  const baseClasses = cn(
+                    "font-display font-black uppercase tracking-widest text-[11px] sm:text-xs py-3.5 px-4 rounded-xl transition-all flex items-center justify-between border",
+                    isLinkActive
+                      ? "text-[#006064] bg-[#e0f2fe]/50 border-sky-200/65 shadow-[0_4px_12px_rgba(14,165,233,0.04)]"
+                      : "text-slate-800 hover:text-brand-teal hover:bg-slate-50 border-transparent"
+                  );
+                  return isExternal ? (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={baseClasses}
+                    >
+                      <span>{link.name}</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-slate-400" />
+                    </a>
+                  ) : (
+                    <Link
+                      key={link.name}
+                      to={link.href}
+                      className={baseClasses}
+                      onClick={(e) => handleMobileNavClick(link.href, e)}
+                    >
+                      <span>{link.name}</span>
+                      <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+                    </Link>
+                  );
+                })}
 
-                <div className="grid grid-cols-1 gap-2.5">
-                  {navLinks.map((link, idx) => {
-                    const isExternal = link.href.startsWith('http');
-                    const isLinkActive = activeSection === link.id || (location.pathname === link.href);
-                    const meta = getLinkMeta(link.id);
-                    const IconComponent = meta.icon;
-
-                    const baseClasses = cn(
-                      "group flex items-center gap-4 p-3 rounded-2xl transition-all duration-300 border text-left active:scale-[0.99]",
-                      isLinkActive
-                        ? "bg-cyan-50/75 border-[#0097A7]/40 shadow-md shadow-cyan-900/5"
-                        : "bg-slate-50/55 border-slate-200/50 hover:bg-slate-100 hover:border-slate-350"
-                    );
-
-                    return isExternal ? (
-                      <motion.a
-                        key={link.name}
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={baseClasses}
-                        initial={{ opacity: 0, x: -8 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: idx * 0.04 }}
-                      >
-                        <div className={cn(
-                          "w-11 h-11 rounded-xl flex items-center justify-center border font-bold shrink-0 shadow-sm transition-all duration-300",
-                          isLinkActive ? "bg-white text-[#0097A7] border-cyan-250 shadow-md scale-105" : meta.color
-                        )}>
-                          <IconComponent className="w-5 h-5" />
-                        </div>
-                        
-                        <div className="flex flex-col flex-1 min-w-0">
-                          <span className={cn(
-                            "font-display font-black uppercase tracking-widest text-[11px] sm:text-xs flex items-center gap-1.5 transition-colors",
-                            isLinkActive ? "text-[#006064]" : "text-slate-800 group-hover:text-[#0097A7]"
-                          )}>
-                            {link.name}
-                          </span>
-                          <span className="text-[10px] font-semibold text-slate-500 mt-1 lines-1">
-                            {meta.desc}
-                          </span>
-                        </div>
-
-                        <div className="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 group-hover:text-[#0097A7] transition-all">
-                          <ArrowUpRight className="w-4 h-4" />
-                        </div>
-                      </motion.a>
-                    ) : (
-                      <motion.div
-                        key={link.name}
-                        initial={{ opacity: 0, x: -8 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: idx * 0.04 }}
-                      >
-                        <Link
-                          to={link.href}
-                          className={baseClasses}
-                          onClick={(e) => handleMobileNavClick(link.href, e)}
-                        >
-                          <div className={cn(
-                            "w-11 h-11 rounded-xl flex items-center justify-center border font-bold shrink-0 shadow-sm transition-all duration-300",
-                            isLinkActive ? "bg-white text-[#0097A7] border-cyan-200 shadow-md scale-105" : meta.color
-                          )}>
-                            <IconComponent className="w-5 h-5" />
-                          </div>
-                          
-                          <div className="flex flex-col flex-1 min-w-0">
-                            <span className={cn(
-                              "font-display font-black uppercase tracking-widest text-[11px] sm:text-xs flex items-center gap-2 transition-colors",
-                              isLinkActive ? "text-[#006064]" : "text-slate-800 group-hover:text-[#0097A7]"
-                            )}>
-                              {link.name}
-                              {isLinkActive && (
-                                <span className="w-2 h-2 rounded-full bg-[#0097A7] animate-ping" />
-                              )}
-                            </span>
-                            <span className="text-[10px] font-semibold text-slate-500 mt-1 lines-1">
-                              {meta.desc}
-                            </span>
-                          </div>
-
-                          <div className={cn(
-                            "shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300",
-                            isLinkActive ? "bg-white border border-cyan-200 text-[#0097A7] shadow-sm scale-110" : "text-slate-400 group-hover:text-[#0097A7] group-hover:translate-x-0.5"
-                          )}>
-                            <ChevronRight className="w-4 h-4" />
-                          </div>
-                        </Link>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-
-                <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-dashed border-slate-200">
+                <div className="flex flex-col gap-2 mt-2 pt-2 border-t border-slate-100">
                   <Link 
                     to="/checkup"
-                    className="group relative bg-[#0097A7] hover:bg-[#007681] text-white font-display font-black uppercase tracking-widest text-[11px] sm:text-xs py-4.5 px-6 rounded-2xl text-center shadow-lg shadow-cyan-900/15 transition-all duration-300 flex items-center justify-center gap-3 active:scale-[0.98] overflow-hidden"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
+                    className="bg-brand-teal text-white font-display font-black uppercase tracking-widest text-[10px] py-3.5 px-6 rounded-xl text-center shadow-lg shadow-brand-teal/15 transition-all hover:bg-brand-blue"
+                    onClick={(e) => {
+                      e.preventDefault();
                       navigate('/checkup');
                     }}
                   >
-                    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <span>Launch 1-Min Digital Check-Up</span>
-                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    1-Min Digital Check-Up
                   </Link>
 
                   <button
                     onClick={() => setMobileMenuOpen(false)}
-                    className="w-full py-4 bg-slate-100 hover:bg-slate-200 text-slate-705 text-slate-700 active:scale-[0.98] font-display font-black uppercase tracking-widest text-[11px] rounded-2xl text-center transition-all border border-slate-200/50 flex items-center justify-center gap-2"
+                    className="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-display font-black uppercase tracking-widest text-[10px] rounded-xl text-center transition-all border border-slate-200/50 flex items-center justify-center gap-1.5"
                   >
-                    <X className="w-4 h-4 text-slate-500 font-extrabold" />
-                    Close Navigation Portal
+                    <X className="w-3.5 h-3.5" />
+                    Close Navigation Overview
                   </button>
                 </div>
               </motion.div>

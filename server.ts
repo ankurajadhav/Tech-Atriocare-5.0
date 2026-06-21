@@ -104,6 +104,74 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
+// High-performance video streaming proxy route with multi-chunk range response support for iOS/Android HTML5 players
+app.get("/api/video-stream", async (req, res) => {
+  const { id } = req.query;
+  if (!id || typeof id !== "string") {
+    return res.status(400).send("Video ID is required");
+  }
+
+  const url = `https://drive.google.com/uc?export=download&id=${id}`;
+
+  try {
+    let targetUrl = url;
+    
+    // Follow redirect to obtain direct content delivery network link
+    const redirectRes = await fetch(url, { redirect: "manual" });
+    if ([301, 302, 303, 307, 308].includes(redirectRes.status)) {
+      const location = redirectRes.headers.get("location");
+      if (location) {
+        targetUrl = location;
+      }
+    }
+
+    const headers: Record<string, string> = {
+      "User-Agent": req.headers["user-agent"] || "",
+    };
+    
+    if (req.headers.range) {
+      headers["Range"] = req.headers.range;
+    }
+
+    const driveRes = await fetch(targetUrl, {
+      method: "GET",
+      headers,
+    });
+
+    if (!driveRes.ok && driveRes.status !== 206) {
+      return res.status(driveRes.status).send(`Failed cache stream validation from cloud storage.`);
+    }
+
+    // Set precise video content range and transfer-encoding headers for native HTML5 compatibility
+    const contentType = driveRes.headers.get("content-type");
+    const contentLength = driveRes.headers.get("content-length");
+    const contentRange = driveRes.headers.get("content-range");
+    const acceptRanges = driveRes.headers.get("accept-ranges");
+
+    if (contentType) res.setHeader("Content-Type", contentType);
+    if (contentLength) res.setHeader("Content-Length", contentLength);
+    if (contentRange) res.setHeader("Content-Range", contentRange);
+    res.setHeader("Accept-Ranges", acceptRanges || "bytes");
+
+    res.status(driveRes.status);
+
+    if (driveRes.body) {
+      const reader = driveRes.body.getReader();
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        res.write(value);
+      }
+      res.end();
+    } else {
+      res.end();
+    }
+  } catch (error) {
+    console.error("Video proxy streaming exception:", error);
+    res.status(500).send("Video streaming pipeline error occurred.");
+  }
+});
+
 async function startServer() {
   if (!process.env.VERCEL) {
     if (process.env.NODE_ENV !== "production") {

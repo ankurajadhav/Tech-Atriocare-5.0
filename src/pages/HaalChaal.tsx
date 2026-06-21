@@ -66,7 +66,7 @@ const EmbeddedVideo = ({
           {!videoError ? (
             <video
               key={key}
-              src={`https://drive.google.com/uc?export=download&id=${driveId}`}
+              src={`/api/video-stream?id=${driveId}`}
               title={title}
               controls
               playsInline

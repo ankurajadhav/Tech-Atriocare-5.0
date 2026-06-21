@@ -4,54 +4,54 @@ import { ArrowRight, FileText } from "lucide-react";
 
 export default function ChallengeTerms() {
   return (
-    <div className="min-h-screen bg-white pt-24 pb-32">
-      <div className="max-w-4xl mx-auto px-4 md:px-8">
+    <div className="min-h-screen bg-white pt-20 sm:pt-24 pb-20 sm:pb-32">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="space-y-12"
+          className="space-y-8 sm:space-y-12"
         >
-          <div className="text-center space-y-6">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-teal/10 text-brand-teal mb-4">
-              <FileText className="w-8 h-8" />
+          <div className="text-center space-y-4 sm:space-y-6">
+            <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-brand-teal/10 text-brand-teal mb-2 sm:mb-4">
+              <FileText className="w-7 h-7 sm:w-8 sm:h-8" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-black text-[#006064] uppercase tracking-tight font-display">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#006064] uppercase tracking-tight font-display leading-tight">
               Haal-Chaal Pravartak 1.0
             </h1>
-            <p className="text-xl text-slate-600 font-medium tracking-tight">
+            <p className="text-base sm:text-xl text-slate-600 font-medium tracking-tight">
               India's First Immunity Challenge for Smarter Breathing
             </p>
-            <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-sm font-black uppercase tracking-widest mt-2">
+            <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs sm:text-sm font-black uppercase tracking-widest mt-2">
               Participation fees is INR 500/-
             </div>
           </div>
 
-          <div className="flex justify-center">
+          <div className="flex justify-center w-full px-2 sm:px-0">
             <a 
               href="https://docs.google.com/forms/d/e/1FAIpQLSfebqYEWS4uKAd-61QfPpMom-bg8aPCaOZQ7pZ-fV4MWx5ZrQ/viewform"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-brand-teal text-white rounded-full font-black uppercase tracking-widest shadow-xl shadow-brand-teal/20 hover:scale-105 active:scale-95 transition-all text-sm group text-center"
+              className="inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-8 py-3.5 sm:py-4 bg-brand-teal text-white rounded-xl sm:rounded-full font-black uppercase tracking-wide sm:tracking-widest shadow-xl shadow-brand-teal/20 hover:scale-[1.03] active:scale-95 transition-all text-[11px] sm:text-sm group text-center w-full sm:w-auto"
             >
               <span>Click here to agree to our terms and conditions and participate in the challenge</span>
-              <ArrowRight className="w-5 h-5 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
 
-          <div className="bg-slate-50 rounded-[48px] p-8 md:p-12 border border-slate-100 shadow-sm mt-12">
-            <h2 className="text-2xl md:text-3xl font-black text-[#006064] uppercase tracking-tight mb-8 text-center border-b border-slate-200 pb-8">
+          <div className="bg-slate-50 rounded-[28px] sm:rounded-[48px] p-5 sm:p-12 border border-slate-100 shadow-sm mt-8 sm:mt-12">
+            <h2 className="text-lg sm:text-2xl md:text-3xl font-black text-[#006064] uppercase tracking-tight mb-6 sm:mb-8 text-center border-b border-slate-200 pb-6 sm:pb-8">
               TERMS AND CONDITIONS <br/>
-              <span className="text-brand-teal text-lg md:text-xl mt-2 block">INDIA'S FIRST IMMUNITY CHALLENGE FOR SMARTER BREATHING</span>
+              <span className="text-brand-teal text-sm sm:text-lg md:text-xl mt-2 block">INDIA'S FIRST IMMUNITY CHALLENGE FOR SMARTER BREATHING</span>
             </h2>
 
-            <div className="space-y-10 text-slate-600">
+            <div className="space-y-8 sm:space-y-10 text-slate-600 text-xs sm:text-base">
               <p className="font-medium leading-relaxed italic text-slate-500">
                 By participating in "India's First Immunity Challenge for Smarter Breathing" (hereinafter referred to as "the Challenge"), you ("the Participant") acknowledge, understand, and agree to be bound by the following Terms and Conditions. Please read them carefully before proceeding with registration and payment.
               </p>
 
               <section>
-                <h3 className="text-xl font-bold text-[#006064] mb-4 font-display uppercase tracking-wider">1. Acceptance of Terms</h3>
-                <div className="space-y-4 pl-4 border-l-2 border-slate-200">
+                <h3 className="text-sm sm:text-xl font-bold text-[#006064] mb-3 sm:mb-4 font-display uppercase tracking-wider">1. Acceptance of Terms</h3>
+                <div className="space-y-3 sm:space-y-4 pl-3 sm:pl-4 border-l-2 border-slate-200">
                   <p>1.1. Your registration for and participation in the Challenge signifies your unconditional acceptance of these Terms and Conditions, as they may be amended from time to time by Tech Atriocare Pvt. Ltd. ("the Company").</p>
                   <p>1.2. The Company reserves the right to modify or update these Terms and Conditions at any time without prior notice. Continued participation after any such changes shall constitute your consent to such changes.</p>
                 </div>
@@ -233,16 +233,16 @@ export default function ChallengeTerms() {
                 </div>
               </section>
 
-              <section className="pt-12 border-t border-slate-200 mt-12 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
+              <section className="pt-8 sm:pt-12 border-t border-slate-200 mt-8 sm:mt-12 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6">
                 <div>
-                  <h4 className="text-lg font-black text-[#006064] uppercase tracking-tight font-display mb-2">Tech Atriocare Pvt. Ltd.</h4>
-                  <p className="text-slate-500 text-sm leading-relaxed">
+                  <h4 className="text-sm sm:text-lg font-black text-[#006064] uppercase tracking-tight font-display mb-1 sm:mb-2">Tech Atriocare Pvt. Ltd.</h4>
+                  <p className="text-slate-500 text-xs sm:text-sm leading-relaxed">
                     Krastay, Saidulajab, Saiyad Ul Ajaib Village, <br className="hidden md:block" /> 
                     Sainik Farm, New Delhi, Delhi 110030
                   </p>
                 </div>
                 <div>
-                  <a href="mailto:service.techatriocare@gmail.com" className="text-brand-teal font-bold text-lg hover:underline transition-all">
+                  <a href="mailto:service.techatriocare@gmail.com" className="text-brand-teal font-black text-sm sm:text-lg hover:underline transition-all break-all">
                     service.techatriocare@gmail.com
                   </a>
                 </div>
@@ -250,17 +250,17 @@ export default function ChallengeTerms() {
             </div>
           </div>
 
-          <div className="pt-8 flex flex-col items-center gap-6">
+          <div className="pt-6 sm:pt-8 flex flex-col items-center gap-4 sm:gap-6 w-full px-2 sm:px-0">
             <a 
               href="https://docs.google.com/forms/d/e/1FAIpQLSfebqYEWS4uKAd-61QfPpMom-bg8aPCaOZQ7pZ-fV4MWx5ZrQ/viewform"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-slate-900 hover:bg-brand-teal text-white rounded-full font-black uppercase tracking-widest shadow-xl shadow-slate-900/20 hover:shadow-brand-teal/20 hover:scale-105 transition-all group"
+              className="inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-10 py-3.5 sm:py-5 bg-slate-900 hover:bg-brand-teal text-white rounded-xl sm:rounded-full font-black uppercase tracking-wide sm:tracking-widest shadow-xl shadow-slate-900/20 hover:shadow-brand-teal/20 hover:scale-[1.03] transition-all text-[11px] sm:text-sm group text-center w-full sm:w-auto"
             >
-              Click here to agree to our terms and conditions and participate in the challenge
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1" />
+              <span>Click here to agree to our terms and conditions and participate in the challenge</span>
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
             </a>
-            <Link to="/haal-chaal" className="text-slate-400 font-bold text-xs uppercase tracking-widest hover:text-brand-teal transition-colors mt-4">
+            <Link to="/haal-chaal" className="text-slate-400 font-bold text-[11px] sm:text-xs uppercase tracking-widest hover:text-brand-teal transition-colors mt-2">
               Back to Haal-Chaal
             </Link>
           </div>

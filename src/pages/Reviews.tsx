@@ -93,7 +93,7 @@ export default function Reviews() {
   return (
     <div className="min-h-screen bg-slate-50 selection:bg-brand-teal/10">
       {/* Header Section */}
-      <section className="relative pt-48 pb-10 px-4 text-center overflow-hidden bg-gradient-to-b from-white to-slate-50">
+      <section className="relative pt-28 md:pt-48 pb-10 px-4 text-center overflow-hidden bg-gradient-to-b from-white to-slate-50">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-50 pointer-events-none">
           <div className="absolute top-20 right-0 w-96 h-96 bg-brand-teal/10 blur-[120px] rounded-full" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-light-teal/10 blur-[120px] rounded-full" />
@@ -102,7 +102,7 @@ export default function Reviews() {
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-6xl font-black font-display text-[#006064] uppercase tracking-tight mb-6 relative z-10"
+          className="text-3xl sm:text-4xl md:text-6xl font-black font-display text-[#006064] uppercase tracking-tight mb-6 relative z-10"
         >
           What Our <span className="text-brand-teal">Customers</span> Say
         </motion.h1>
@@ -110,14 +110,14 @@ export default function Reviews() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-slate-500 font-bold text-lg md:text-2xl max-w-2xl mx-auto leading-relaxed relative z-10"
+          className="text-slate-500 font-bold text-base md:text-2xl max-w-2xl mx-auto leading-relaxed relative z-10"
         >
           Real experiences from people who've tried Tech AtrioCare solutions.
         </motion.p>
       </section>
 
       {/* Review Cards Section */}
-      <section className="pb-40 pt-20 px-4 md:px-8 max-w-7xl mx-auto">
+      <section className="pb-24 sm:pb-40 pt-10 sm:pt-20 px-4 md:px-8 max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
           {initialReviews.slice(0, 3).map((review, i) => (
             <motion.div
@@ -127,12 +127,12 @@ export default function Reviews() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               className={cn(
-                "p-10 rounded-[32px] border-2 border-dashed bg-white shadow-xl flex flex-col relative transition-all duration-500 hover:-translate-y-2",
+                "p-6 sm:p-10 rounded-[24px] sm:rounded-[32px] border-2 border-dashed bg-white shadow-xl flex flex-col relative transition-all duration-500 hover:-translate-y-2",
                 cardStyles[i]
               )}
             >
               <div className="mb-1">
-                <h3 className="font-bold text-xl text-[#006064]">{review.name}</h3>
+                <h3 className="font-bold text-lg sm:text-xl text-[#006064]">{review.name}</h3>
               </div>
               <p className="text-slate-400 text-xs mb-6">{review.date}</p>
 
@@ -161,12 +161,12 @@ export default function Reviews() {
               viewport={{ once: true }}
               transition={{ delay: (i + 3) * 0.1 }}
               className={cn(
-                "p-10 rounded-[32px] border-2 border-dashed bg-white shadow-xl flex flex-col relative transition-all duration-500 hover:-translate-y-2",
+                "p-6 sm:p-10 rounded-[24px] sm:rounded-[32px] border-2 border-dashed bg-white shadow-xl flex flex-col relative transition-all duration-500 hover:-translate-y-2",
                 cardStyles[i + 3]
               )}
             >
               <div className="mb-1">
-                <h3 className="font-bold text-xl text-[#006064]">{review.name}</h3>
+                <h3 className="font-bold text-lg sm:text-xl text-[#006064]">{review.name}</h3>
               </div>
               <p className="text-slate-400 text-xs mb-6">{review.date}</p>
 

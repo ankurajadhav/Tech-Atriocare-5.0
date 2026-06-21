@@ -4,38 +4,38 @@ import { Link } from 'react-router-dom';
 
 export default function Terms() {
   return (
-    <div className="min-h-screen bg-white pt-24 pb-32">
-      <div className="max-w-4xl mx-auto px-4">
+    <div className="min-h-screen bg-white pt-20 sm:pt-24 pb-20 sm:pb-32">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="space-y-12"
+          className="space-y-8 sm:space-y-12"
         >
-          <div className="text-center space-y-6">
-            <div className="w-20 h-20 rounded-3xl bg-brand-teal/10 flex items-center justify-center text-brand-teal mx-auto shadow-sm">
-              <Shield className="w-10 h-10" />
+          <div className="text-center space-y-4 sm:space-y-6">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl bg-brand-teal/10 flex items-center justify-center text-brand-teal mx-auto shadow-sm">
+              <Shield className="w-8 h-8 sm:w-10 sm:h-10" />
             </div>
-            <h1 className="text-4xl md:text-6xl font-black text-[#006064] uppercase tracking-tight font-display">
+            <h1 className="text-2xl sm:text-4xl md:text-6xl font-black text-[#006064] uppercase tracking-tight font-display leading-[1.1] sm:leading-none">
               Terms & <span className="text-brand-teal">Conditions</span>
             </h1>
-            <p className="text-slate-500 font-medium">Last Updated: June 2026</p>
+            <p className="text-slate-500 font-medium text-xs sm:text-sm">Last Updated: June 2026</p>
           </div>
 
-          <div className="bg-slate-50 rounded-[48px] p-8 md:p-16 border border-slate-100 shadow-sm space-y-12">
+          <div className="bg-slate-50 rounded-[24px] sm:rounded-[48px] p-5 sm:p-12 md:p-16 border border-slate-100 shadow-sm space-y-8 sm:space-y-12">
             <div className="prose prose-slate max-w-none">
-              <h2 className="text-2xl font-black text-[#006064] uppercase tracking-tight mb-8">OVERVIEW</h2>
+              <h2 className="text-xl sm:text-2xl font-black text-[#006064] uppercase tracking-tight mb-6 sm:mb-8">OVERVIEW</h2>
               
-              <p className="text-slate-600 font-medium leading-relaxed mb-4">
+              <p className="text-slate-600 font-medium text-xs sm:text-base leading-relaxed mb-4">
                 This website is operated by Tech Atriocare Private Limited. Throughout the site, the terms "we", "us" and "our" refer to Tech Atriocare Private Limited. Tech Atriocare Private Limited offers this website, including all information, tools, and services available from this site to you, the user, conditioned upon your acceptance of all terms, conditions, policies, and notices stated here.
               </p>
-              <p className="text-slate-600 font-medium leading-relaxed mb-4">
+              <p className="text-slate-600 font-medium text-xs sm:text-base leading-relaxed mb-4">
                 By visiting our site and/or purchasing something from us, you engage in our "Service" and agree to be bound by the following Terms of Service ("Terms"), including additional terms and conditions and policies referenced herein. These Terms of Service apply to all users of the site, including browsers, vendors, customers, merchants, and/or contributors of content.
               </p>
-              <p className="text-slate-600 font-medium leading-relaxed mb-8">
+              <p className="text-slate-600 font-medium text-xs sm:text-base leading-relaxed mb-6 sm:mb-8">
                 Please read these Terms of Service carefully before accessing or using our website. By accessing or using any part of the site, you agree to be bound by these Terms. If you do not agree, you may not access the website or use any services. Any new features or tools added to the current store shall also be subject to these Terms.
               </p>
 
-              <div className="space-y-10">
+              <div className="space-y-8 sm:space-y-10 text-xs sm:text-sm md:text-base">
                 <section>
                   <h3 className="text-xl font-bold text-[#006064] mb-4 font-display">SECTION 1 - ONLINE STORE TERMS</h3>
                   <p className="text-slate-600 leading-relaxed">
@@ -188,17 +188,17 @@ export default function Terms() {
                   </p>
                 </section>
 
-                <section className="pt-12 border-t border-slate-200">
-                  <h3 className="text-xl font-bold text-[#006064] mb-4 font-display">SECTION 20 - CONTACT INFORMATION</h3>
-                  <p className="text-slate-600 mb-2">Questions about the Terms of Service should be sent to us at:</p>
-                  <p className="text-brand-teal font-bold text-lg">service.techatriocare@gmail.com</p>
+                <section className="pt-8 sm:pt-12 border-t border-slate-200">
+                  <h3 className="text-base sm:text-xl font-bold text-[#006064] mb-3 sm:mb-4 font-display">SECTION 20 - CONTACT INFORMATION</h3>
+                  <p className="text-slate-600 mb-2 text-xs sm:text-sm">Questions about the Terms of Service should be sent to us at:</p>
+                  <p className="text-brand-teal font-black text-sm sm:text-lg break-all">service.techatriocare@gmail.com</p>
                 </section>
               </div>
             </div>
 
-            <div className="pt-8 flex flex-col items-center gap-6">
-              <Link to="/" className="inline-flex items-center gap-3 px-10 py-5 bg-brand-teal text-white rounded-full font-black uppercase tracking-widest shadow-xl shadow-brand-teal/20 hover:scale-105 transition-all group">
-                Back to Home <ArrowRight className="w-5 h-5 group-hover:translate-x-1" />
+            <div className="pt-6 sm:pt-8 flex flex-col items-center gap-6">
+              <Link to="/" className="inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-10 py-3 sm:py-5 bg-brand-teal text-white rounded-xl sm:rounded-full font-black uppercase tracking-wide sm:tracking-widest shadow-xl shadow-brand-teal/20 hover:scale-105 active:scale-95 transition-all text-xs sm:text-sm group w-full sm:w-auto text-center">
+                Back to Home <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </div>

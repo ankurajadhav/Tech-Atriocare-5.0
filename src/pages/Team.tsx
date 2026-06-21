@@ -120,7 +120,7 @@ export default function Team() {
               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-black">The Human Algorithm</span>
             </div>
             
-            <h1 className="text-3xl sm:text-5xl md:text-8xl font-black font-display text-[#006064] tracking-tighter leading-[0.8] uppercase">
+            <h1 className="text-3xl sm:text-5xl md:text-8xl font-black font-display text-[#006064] tracking-tighter leading-[1.1] sm:leading-[1.0] md:leading-[0.8] uppercase">
               Visionaries <br /> behind <span className="text-brand-teal">Tech AtrioCare</span>
             </h1>
             
@@ -132,8 +132,8 @@ export default function Team() {
       </section>
 
       {/* Leadership Section */}
-      <section className="py-24 max-w-7xl mx-auto px-4 relative z-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      <section className="py-16 sm:py-24 max-w-7xl mx-auto px-4 relative z-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
           {teamMembers.map((member, idx) => (
             <motion.div
               key={member.name}
@@ -141,9 +141,9 @@ export default function Team() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="bg-white rounded-[48px] p-12 border border-slate-100 shadow-[0_32px_64px_rgba(30,41,59,0.08)] hover:border-brand-teal/30 hover:-translate-y-2 transition-all group h-full flex flex-col text-center"
+              className="bg-white rounded-[32px] sm:rounded-[48px] p-6 sm:p-12 border border-slate-100 shadow-[0_32px_64px_rgba(30,41,59,0.08)] hover:border-brand-teal/30 hover:-translate-y-2 transition-all group h-full flex flex-col text-center"
             >
-              <div className="w-52 h-52 rounded-full overflow-hidden mb-10 mx-auto border-[10px] border-slate-50 relative shadow-xl group">
+              <div className="w-40 h-40 sm:w-52 sm:h-52 rounded-full overflow-hidden mb-8 sm:mb-10 mx-auto border-[6px] sm:border-[10px] border-slate-50 relative shadow-xl group">
                 <img 
                   src={member.image} 
                   alt={member.name}
@@ -152,9 +152,9 @@ export default function Team() {
                 />
                 <div className="absolute inset-0 ring-1 ring-inset ring-slate-200/20 rounded-full" />
               </div>
-              <h3 className="text-2xl font-black font-display text-[#006064] mb-2 uppercase tracking-tight leading-none h-14 flex items-center justify-center">{member.name}</h3>
-              <p className="text-brand-teal font-black text-[10px] uppercase tracking-[0.2em] mb-8 leading-tight min-h-[40px] flex items-center justify-center border-y border-slate-100 py-2">{member.role}</p>
-              <p className="text-black text-sm leading-relaxed font-semibold">
+              <h3 className="text-xl sm:text-2xl font-black font-display text-[#006064] mb-2 uppercase tracking-tight leading-none min-h-[3rem] sm:h-14 flex items-center justify-center">{member.name}</h3>
+              <p className="text-brand-teal font-black text-[10px] uppercase tracking-[0.2em] mb-6 sm:mb-8 leading-tight min-h-[40px] flex items-center justify-center border-y border-slate-100 py-2">{member.role}</p>
+              <p className="text-black text-xs sm:text-sm leading-relaxed font-semibold">
                 {member.bio}
               </p>
             </motion.div>
@@ -163,23 +163,23 @@ export default function Team() {
       </section>
 
       {/* Mentors Section */}
-      <section className="py-24 bg-brand-light-teal/10">
+      <section className="py-16 sm:py-24 bg-brand-light-teal/10">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black font-display text-[#006064] mb-4 uppercase tracking-tight">Our Mentors!</h2>
-            <div className="w-24 h-1 bg-brand-teal mx-auto rounded-full" />
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-4xl font-black font-display text-[#006064] mb-4 uppercase tracking-tight">Our Mentors!</h2>
+            <div className="w-16 sm:w-24 h-1 bg-brand-teal mx-auto rounded-full" />
           </div>
 
-          <div className="space-y-12">
+          <div className="space-y-8 sm:space-y-12">
             {mentors.map((mentor, idx) => (
               <motion.div
                 key={mentor.name}
                 initial={{ opacity: 0, scale: 0.98 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-[40px] p-8 md:p-12 border border-brand-border shadow-soft flex flex-col md:flex-row items-center gap-12 group hover:shadow-xl transition-all"
+                className="bg-white rounded-[24px] sm:rounded-[40px] p-5 sm:p-8 md:p-12 border border-brand-border shadow-soft flex flex-col md:flex-row items-center gap-6 sm:gap-12 group hover:shadow-xl transition-all"
               >
-                <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shrink-0 border-8 border-brand-teal/5 shadow-inner relative group">
+                <div className="w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-full overflow-hidden shrink-0 border-4 sm:border-8 border-brand-teal/5 shadow-inner relative group">
                   <img 
                     src={mentor.image} 
                     alt={mentor.name}
@@ -188,12 +188,12 @@ export default function Team() {
                   />
                   <div className="absolute inset-0 ring-1 ring-inset ring-brand-teal/10 rounded-full" />
                 </div>
-                <div className="space-y-6 text-center md:text-left">
+                <div className="space-y-4 sm:space-y-6 text-center md:text-left">
                   <div>
-              <h3 className="text-3xl font-black font-display text-[#006064] leading-tight uppercase tracking-tighter">{mentor.name}</h3>
-              <p className="text-brand-teal font-black text-xs uppercase tracking-widest mt-1">{mentor.role}</p>
-            </div>
-            <p className="text-black leading-relaxed max-w-4xl font-semibold text-base">
+                    <h3 className="text-xl sm:text-3xl font-black font-display text-[#006064] leading-tight uppercase tracking-tighter">{mentor.name}</h3>
+                    <p className="text-brand-teal font-black text-[10px] sm:text-xs uppercase tracking-widest mt-1">{mentor.role}</p>
+                  </div>
+                  <p className="text-black leading-relaxed max-w-4xl font-semibold text-xs sm:text-base">
                     {mentor.bio}
                   </p>
                 </div>
@@ -227,11 +227,11 @@ export default function Team() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-white rounded-[60px] p-12 md:p-16 border border-brand-border shadow-2xl relative overflow-hidden"
+                className="bg-white rounded-[32px] sm:rounded-[60px] p-6 sm:p-12 md:p-16 border border-brand-border shadow-2xl relative overflow-hidden"
               >
-                <div className="grid md:grid-cols-2 gap-16 items-center">
+                <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
                   <div className="relative">
-                    <div className="w-full aspect-square rounded-[40px] overflow-hidden border-8 border-slate-50 shadow-inner group">
+                    <div className="w-full aspect-square rounded-[24px] sm:rounded-[40px] overflow-hidden border-4 sm:border-8 border-slate-50 shadow-inner group">
                       <img 
                         src={mention.image} 
                         alt={mention.name} 
@@ -239,30 +239,30 @@ export default function Team() {
                         referrerPolicy="no-referrer"
                       />
                     </div>
-                    <div className="absolute -bottom-6 -right-6 w-16 h-16 bg-brand-teal rounded-2xl flex items-center justify-center text-white shadow-xl">
-                      <Heart className="w-8 h-8 fill-current" />
+                    <div className="absolute -bottom-3 -right-3 sm:-bottom-6 sm:-right-6 w-12 h-12 sm:w-16 sm:h-16 bg-brand-teal rounded-xl sm:rounded-2xl flex items-center justify-center text-white shadow-xl">
+                      <Heart className="w-5 h-5 sm:w-8 sm:h-8 fill-current" />
                     </div>
                   </div>
 
-                  <div className="text-left space-y-6">
+                  <div className="text-left space-y-4 sm:space-y-6">
                     <div>
-                      <h3 className="text-4xl font-black text-[#006064] tracking-tighter uppercase font-display leading-none">{mention.name}</h3>
-                      <div className="flex flex-wrap items-center gap-3 mt-3">
-                        <span className="text-brand-teal font-black text-sm uppercase tracking-widest">{mention.role}</span>
+                      <h3 className="text-2xl sm:text-4xl font-black text-[#006064] tracking-tighter uppercase font-display leading-tight sm:leading-none">{mention.name}</h3>
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-3">
+                        <span className="text-brand-teal font-black text-xs sm:text-sm uppercase tracking-widest">{mention.role}</span>
                         {mention.years && (
                           <>
                             <div className="w-1.5 h-1.5 rounded-full bg-slate-300" />
-                            <span className="text-slate-600 font-bold text-sm tracking-widest">{mention.years}</span>
+                            <span className="text-slate-600 font-bold text-xs sm:text-sm tracking-widest">{mention.years}</span>
                           </>
                         )}
                       </div>
                     </div>
                     
-                    <p className="text-black font-bold leading-relaxed italic text-xs sm:text-base md:text-lg">
+                    <p className="text-black font-bold leading-relaxed italic text-sm sm:text-base md:text-lg">
                       "{mention.bio}"
                     </p>
 
-                    <div className="pt-6 flex items-center gap-4 text-slate-600">
+                    <div className="pt-4 sm:pt-6 flex items-center gap-4 text-slate-600">
                        <div className="h-[1px] flex-1 bg-slate-100" />
                        <p className="text-[10px] uppercase font-black tracking-[0.3em]">{mention.type}</p>
                        <div className="h-[1px] flex-1 bg-slate-100" />
@@ -316,7 +316,7 @@ export default function Team() {
       <section className="py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="space-y-4 mb-20 text-center">
-             <h2 className="text-3xl sm:text-5xl md:text-8xl font-black font-display text-[#006064] uppercase tracking-tighter">Life at Tech AtrioCare</h2>
+             <h2 className="text-3xl sm:text-5xl md:text-8xl font-black font-display text-[#006064] uppercase tracking-tighter leading-tight sm:leading-none">Life at Tech AtrioCare</h2>
              <p className="text-black font-black text-xs uppercase tracking-[0.4em]">Chronicles of Innovation & Synergy</p>
              <div className="w-24 h-1.5 bg-brand-teal mx-auto rounded-full mt-8" />
           </div>

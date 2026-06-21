@@ -219,14 +219,14 @@ export default function HaalChaal() {
                 <div className="space-y-4 pt-2">
                   <Link 
                     to="/challenge-terms"
-                    className="group w-full py-5 bg-[#0097A7] text-white rounded-2xl font-black text-lg shadow-xl shadow-[#0097A7]/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex flex-col items-center justify-center gap-1 leading-tight"
+                    className="group w-full py-4 sm:py-5 bg-[#0097A7] text-white rounded-2xl font-black text-sm sm:text-lg shadow-xl shadow-[#0097A7]/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex flex-col items-center justify-center gap-0.5 sm:gap-1 leading-tight text-center"
                   >
                     <span>Register for Challenge</span>
-                    <span className="text-[10px] opacity-80 font-medium tracking-tight">Click here to agree to terms & participate</span>
+                    <span className="text-[9px] sm:text-[10px] opacity-80 font-medium tracking-tight">Click here to agree to terms & participate</span>
                   </Link>
                   <Link 
                     to="/challenge-terms" 
-                    className="block text-[11px] text-center text-slate-400 font-bold leading-relaxed px-4 hover:text-brand-teal transition-colors"
+                    className="block text-[10px] sm:text-xs text-center text-slate-400 font-bold leading-[1.3] px-3 sm:px-4 hover:text-brand-teal transition-colors"
                   >
                     Click here to agree to our terms and conditions and participate in the challenge
                   </Link>
@@ -802,19 +802,19 @@ export default function HaalChaal() {
               </p>
             </div>
 
-            <div className="relative z-10 flex flex-col items-center gap-4 md:gap-5 mt-4 md:mt-6">
+            <div className="relative z-10 flex flex-col items-center gap-3 sm:gap-4 md:gap-5 mt-4 md:mt-6 w-full px-2 sm:px-0">
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
                 <Link 
                   to="/challenge-terms"
-                  className="px-8 md:px-12 py-3.5 md:py-4.5 bg-white text-[#001D21] rounded-2xl md:rounded-3xl font-black text-lg md:text-xl shadow-lg hover:scale-105 transition-all w-full sm:w-auto text-center"
+                  className="px-6 md:px-12 py-3 sm:py-4.5 bg-white text-[#001D21] rounded-xl md:rounded-3xl font-black text-sm sm:text-lg md:text-xl shadow-lg hover:scale-[1.03] active:scale-95 transition-all w-full sm:w-auto text-center"
                 >
                   Register Now
                 </Link>
               </div>
-              <Link to="/challenge-terms" className="block text-xs text-white/70 font-bold uppercase tracking-[0.15em] hover:text-white transition-colors text-center max-w-lg mx-auto">
+              <Link to="/challenge-terms" className="block text-[10px] sm:text-xs text-white/70 font-bold uppercase tracking-wide sm:tracking-[0.15em] hover:text-white transition-colors text-center max-w-lg mx-auto px-2 leading-relaxed">
                 Click here to agree to our terms and conditions and participate in the challenge
               </Link>
-              <p className="text-lg sm:text-xl font-black text-white font-display tracking-widest uppercase text-center">Participation Fees is INR 500/-</p>
+              <p className="text-sm sm:text-xl font-black text-white font-display tracking-widest uppercase text-center mt-1">Participation Fees is INR 500/-</p>
             </div>
           </div>
         </div>

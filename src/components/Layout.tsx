@@ -72,8 +72,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const handleMobileNavClick = (href: string, e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
     
-    // We removed automatic closing here so the user can easily select and navigate to different sections
-    // without the navigation bar snapping closed automatically. It remains open until manually closed.
+    // Auto-close menu on item selection so the presentation immediately switches to the selected section
+    setMobileMenuOpen(false);
     
     if (href.startsWith('/#')) {
       const elementId = href.replace('/#', '');
@@ -327,8 +327,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0 }}
-                className="lg:hidden fixed inset-0 top-[80px] bg-[#001d21]/20 backdrop-blur-[2px] -z-10 pointer-events-none"
+                transition={{ duration: 0.15 }}
+                onClick={() => setMobileMenuOpen(false)}
+                className="lg:hidden fixed inset-0 top-[80px] bg-[#001d21]/30 backdrop-blur-[2px] z-[90] pointer-events-auto cursor-pointer"
               />
               <motion.div 
                 initial={{ opacity: 0, y: -20 }}

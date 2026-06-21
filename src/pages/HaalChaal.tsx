@@ -22,41 +22,16 @@ const EmbeddedVideo = ({
   const driveIdMatch = src.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
   const driveId = driveIdMatch ? driveIdMatch[1] : null;
 
-  if (driveId) {
-    const directUrl = `https://docs.google.com/uc?export=download&id=${driveId}`;
-    
-    return (
-      <div 
-        className={cn(
-          "group relative z-10 w-full overflow-hidden rounded-[16px] sm:rounded-[32px] bg-black border-2 sm:border-4 md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center", 
-          aspect, 
-          className
-        )}
-      >
-        <video
-          src={directUrl}
-          title={title}
-          controls
-          playsInline
-          preload="metadata"
-          className="w-full h-full object-contain absolute inset-0 bg-black z-10"
-        />
-        
-        {/* Super sleek premium link button to open the original Google Drive */}
-        <a 
-          href={`https://drive.google.com/file/d/${driveId}/view`} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          title="Open in Google Drive"
-          className="absolute top-4 right-4 z-20 w-10 h-10 md:w-8 md:h-8 rounded-full bg-[#0097A7]/95 hover:bg-[#0097A7] text-white flex items-center justify-center backdrop-blur-sm shadow-lg border border-white/20 active:scale-95 transition-all outline-none opacity-100 md:opacity-0 md:group-hover:opacity-100"
-        >
-          <ArrowUpRight className="w-4 h-4" />
-        </a>
-      </div>
-    );
-  }
+  // Utilize the official Google Drive Embedded Player Preview URL which handles antivirus check, authentication, 
+  // and renders Google's beautiful, fully-responsive, touch-optimized player.
+  const embedUrl = driveId 
+    ? `https://drive.google.com/file/d/${driveId}/preview`
+    : src;
 
-  // Fallback to iframe for other video sources
+  const viewUrl = driveId
+    ? `https://drive.google.com/file/d/${driveId}/view`
+    : src;
+
   return (
     <div 
       className={cn(
@@ -66,21 +41,21 @@ const EmbeddedVideo = ({
       )}
     >
       <iframe
-        src={src}
+        src={embedUrl}
         title={title}
-        className="w-full h-full border-0 absolute inset-0"
+        className="w-full h-full border-0 absolute inset-0 z-10 bg-black"
         allow="autoplay; encrypted-media; picture-in-picture"
         allowFullScreen
         referrerPolicy="no-referrer"
       />
       
-      {/* Super sleek premium link button to open the original Google Drive if there are nested iframe blocks */}
+      {/* Super sleek premium link button to open the original Google Drive if they want to view in app */}
       <a 
-        href={src.replace('/preview', '/view')} 
+        href={viewUrl} 
         target="_blank" 
         rel="noopener noreferrer"
-        title="Open video in new tab if it doesn't load font-medium text-xs text-slate-500"
-        className="absolute top-4 right-4 z-20 w-10 h-10 md:w-8 md:h-8 rounded-full bg-[#0097A7]/90 hover:bg-[#0097A7] text-white flex items-center justify-center backdrop-blur-sm shadow-lg border border-white/20 active:scale-95 transition-all outline-none opacity-100 md:opacity-0 md:group-hover:opacity-100 md:scale-90 md:group-hover:scale-100 md:bg-black/60 md:hover:bg-black/80"
+        title="Open video in new tab"
+        className="absolute top-4 right-4 z-20 w-10 h-10 md:w-8 md:h-8 rounded-full bg-[#0097A7]/95 hover:bg-[#0097A7] text-white flex items-center justify-center backdrop-blur-sm shadow-lg border border-white/20 active:scale-105 transition-all outline-none opacity-100 md:scale-95 md:hover:scale-105"
       >
         <ArrowUpRight className="w-4 h-4" />
       </a>

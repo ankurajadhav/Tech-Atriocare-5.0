@@ -18,7 +18,8 @@ const EmbeddedVideo = ({
   aspect?: string; 
   className?: string; 
  }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [videoError, setVideoError] = useState(false);
   const [key, setKey] = useState(0);
 
   // Extract file ID from Google Drive preview link if present
@@ -42,35 +43,63 @@ const EmbeddedVideo = ({
 
   const handleReset = (e: React.MouseEvent) => {
     e.stopPropagation();
+    setIsPlaying(false);
+    setVideoError(false);
     setKey(prev => prev + 1);
   };
 
-  // Block parent page scrolling when the fullscreen lightbox modal is open for native-app immersion
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isOpen]);
-
-  const isPortrait = aspect.includes('9/16') || aspect.includes('3/4');
+  const handlePlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsPlaying(true);
+  };
 
   return (
-    <>
-      {/* Clickable Card Thumbnail (Displays perfect branding, avoids distortion in column grid) */}
-      <div 
-        className={cn(
-          "group relative z-10 w-full overflow-hidden rounded-[16px] sm:rounded-[32px] bg-[#00171a] border-2 sm:border-4 md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center cursor-pointer", 
-          aspect, 
-          className
-        )}
-        onClick={() => setIsOpen(true)}
-      >
-        <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center z-10 p-4">
+    <div 
+      className={cn(
+        "group relative z-10 w-full overflow-hidden rounded-[16px] sm:rounded-[32px] bg-[#00171a] border-2 sm:border-4 md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center", 
+        aspect, 
+        className
+      )}
+    >
+      {isPlaying ? (
+        <div className="absolute inset-0 w-full h-full z-10">
+          {!videoError ? (
+            <video
+              key={key}
+              src={`https://drive.google.com/uc?export=download&id=${driveId}`}
+              title={title}
+              controls
+              playsInline
+              autoPlay
+              className="w-full h-full bg-black object-contain absolute inset-0"
+              onError={() => setVideoError(true)}
+            />
+          ) : (
+            <iframe
+              key={key}
+              src={`${embedUrl}${embedUrl.includes('?') ? '&' : '?'}autoplay=1`}
+              title={title}
+              className="w-full h-full border-0 absolute inset-0 bg-black"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowFullScreen
+              referrerPolicy="no-referrer"
+            />
+          )}
+
+          {/* Elegant Top-Left reset button to go back to thumbnail, safe from bottom mobile video overlays */}
+          <button 
+            onClick={handleReset}
+            title="Reset video to thumbnail"
+            className="absolute top-3 left-3 z-[25] w-8 h-8 rounded-full bg-slate-900/90 hover:bg-slate-900 text-white flex items-center justify-center backdrop-blur-sm shadow-md border border-white/10 active:scale-95 transition-all outline-none cursor-pointer"
+          >
+            <RefreshCcw className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      ) : (
+        <div 
+          className="absolute inset-0 w-full h-full flex flex-col items-center justify-center z-10 p-4 cursor-pointer"
+          onClick={handlePlay}
+        >
           {thumbnailSrc ? (
             <img 
               src={thumbnailSrc} 
@@ -93,93 +122,20 @@ const EmbeddedVideo = ({
             Click to Play Video
           </span>
         </div>
-        
-        {/* Super sleek premium link button to open the original Google Drive if they want to view in a separate tab */}
-        <a 
-          href={viewUrl} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          title="Open video in new tab"
-          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-8 h-8 rounded-full bg-[#0097A7]/95 hover:bg-[#0097A7] text-white flex items-center justify-center backdrop-blur-sm shadow-lg border border-white/20 active:scale-105 transition-all outline-none"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <ArrowUpRight className="w-3.5 h-3.5" />
-        </a>
-      </div>
-
-      {/* Modern Backdrop-Blurred Responsive Fullscreen Lightbox Modal */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-3 sm:p-6"
-            onClick={() => setIsOpen(false)}
-          >
-            {/* Elegant, high-visibility Top-Right exit button */}
-            <button 
-              onClick={() => setIsOpen(false)}
-              title="Close Player"
-              className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2.5 rounded-full text-white/80 hover:text-white bg-white/10 hover:bg-white/20 active:scale-95 transition-all outline-none cursor-pointer border border-white/10 z-[10000] shadow-lg backdrop-blur-md"
-            >
-              <X className="w-6 h-6" />
-            </button>
-
-            {/* Inner Content holding the video player and user actions */}
-            <motion.div
-              initial={{ scale: 0.95, y: 15 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.95, y: 15 }}
-              transition={{ type: "spring", damping: 25, stiffness: 350 }}
-              className="flex flex-col items-center justify-center w-full max-w-4xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div 
-                className={cn(
-                  "relative w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10 shadow-2xl bg-black flex items-center justify-center",
-                  isPortrait 
-                    ? "h-[70vh] sm:h-[75vh] max-h-[720px] aspect-[9/16] mx-auto" 
-                    : "aspect-video max-w-4xl"
-                )}
-              >
-                <iframe
-                  key={key}
-                  src={`${embedUrl}${embedUrl.includes('?') ? '&' : '?'}autoplay=1`}
-                  title={title}
-                  className="w-full h-full border-0 absolute inset-0 bg-black"
-                  allow="autoplay; encrypted-media; picture-in-picture"
-                  allowFullScreen
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-
-              {/* Utility action bar for reset & secondary access */}
-              <div className="flex items-center justify-between gap-4 mt-4 w-full max-w-full px-2 sm:px-0">
-                <button 
-                  onClick={handleReset}
-                  title="Reload/Reset video"
-                  className="flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 bg-white/10 hover:bg-white/15 active:scale-95 text-white/90 text-[10px] sm:text-xs font-black uppercase tracking-wider rounded-xl transition-all border border-white/10 cursor-pointer"
-                >
-                  <RefreshCcw className="w-3.5 h-3.5" />
-                  <span>Reset Video</span>
-                </button>
-                
-                <a 
-                  href={viewUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 bg-[#0097A7] text-white hover:bg-[#0097A7]/85 active:scale-95 text-[10px] sm:text-xs font-black uppercase tracking-wider rounded-xl transition-all shadow-md cursor-pointer"
-                >
-                  <span>Open Video in Drive</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+      )}
+      
+      {/* Super sleek premium link button to open the original Google Drive if they want to view in a separate tab */}
+      <a 
+        href={viewUrl} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        title="Open video in new tab"
+        className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-8 h-8 rounded-full bg-[#0097A7]/95 hover:bg-[#0097A7] text-white flex items-center justify-center backdrop-blur-sm shadow-lg border border-white/20 active:scale-105 transition-all outline-none"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <ArrowUpRight className="w-3.5 h-3.5" />
+      </a>
+    </div>
   );
 };
 

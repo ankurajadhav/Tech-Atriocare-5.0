@@ -26,12 +26,6 @@ const EmbeddedVideo = ({
   const driveIdMatch = src.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
   const driveId = driveIdMatch ? driveIdMatch[1] : null;
 
-  // Utilize the official Google Drive Embedded Player Preview URL which handles antivirus check, authentication, 
-  // and renders Google's beautiful, fully-responsive, touch-optimized player.
-  const embedUrl = driveId 
-    ? `https://drive.google.com/file/d/${driveId}/preview`
-    : src;
-
   const viewUrl = driveId
     ? `https://drive.google.com/file/d/${driveId}/view`
     : src;
@@ -49,48 +43,38 @@ const EmbeddedVideo = ({
   return (
     <div 
       className={cn(
-        "group relative z-10 w-full overflow-hidden rounded-[16px] sm:rounded-[32px] bg-black border-2 sm:border-4 md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center", 
-        !isPlaying ? aspect : "h-auto", 
+        "group relative z-10 w-full max-w-[280px] xs:max-w-[320px] md:max-w-[340px] overflow-hidden rounded-[20px] sm:rounded-[28px] bg-black border-2 sm:border-4 md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center placeholder-black aspect-[9/16]", 
         className
       )}
+      style={{
+        maxHeight: "min(60vh, 560px)",
+      }}
     >
       {isPlaying ? (
-        <div className="relative w-full h-auto bg-black p-0 flex items-center justify-center">
-          {!videoError ? (
-            <video
-              key={key}
-              src={`/api/video-stream?id=${driveId}`}
-              title={title}
-              controls
-              playsInline
-              webkit-playsinline="true"
-              x5-playsinline="true"
-              x5-video-player-type="h5-page"
-              x5-video-player-fullscreen="false"
-              autoPlay
-              className="w-full h-auto block max-h-[75vh] mx-auto rounded-[12px] sm:rounded-[24px]"
-              onEnded={() => setIsPlaying(false)}
-              onError={() => setVideoError(true)}
-            />
-          ) : (
-            <video
-              key={key + "-fallback"}
-              src={`https://drive.google.com/uc?export=download&id=${driveId}`}
-              title={title}
-              controls
-              playsInline
-              webkit-playsinline="true"
-              x5-playsinline="true"
-              x5-video-player-type="h5-page"
-              x5-video-player-fullscreen="false"
-              autoPlay
-              className="w-full h-auto block max-h-[75vh] mx-auto rounded-[12px] sm:rounded-[24px]"
-              onEnded={() => setIsPlaying(false)}
-              onError={(e) => {
-                console.error("Both stream methods failed:", e);
-              }}
-            />
-          )}
+        <div className="relative w-full h-full bg-black p-0 flex items-center justify-center">
+          <video
+            key={key}
+            src={!videoError ? `/api/video-stream?id=${driveId}` : `https://drive.google.com/uc?export=download&id=${driveId}`}
+            title={title}
+            controls
+            playsInline={true}
+            autoPlay
+            className="w-full h-full bg-black object-contain rounded-[12px] sm:rounded-[20px]"
+            onEnded={() => setIsPlaying(false)}
+            onError={() => {
+              if (!videoError) {
+                setVideoError(true);
+              } else {
+                console.error("Both stream sources failed.");
+              }
+            }}
+            {...({
+              "webkit-playsinline": "true",
+              "x5-playsinline": "true",
+              "x5-video-player-type": "h5-page",
+              "x5-video-player-fullscreen": "false"
+            } as any)}
+          />
         </div>
       ) : (
         <div 
@@ -111,8 +95,8 @@ const EmbeddedVideo = ({
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/50 z-0" />
           
           {/* Visual play button */}
-          <div className="relative z-10 w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-brand-teal/90 text-white flex items-center justify-center shadow-2xl shadow-brand-teal/40 group-hover:scale-110 active:scale-95 transition-all duration-300 group-hover:bg-[#0097A7]">
-            <Play className="w-6 h-6 sm:w-10 sm:h-10 fill-current translate-x-0.5" />
+          <div className="relative z-10 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-brand-teal/90 text-white flex items-center justify-center shadow-2xl shadow-brand-teal/40 group-hover:scale-110 active:scale-95 transition-all duration-300 group-hover:bg-[#0097A7]">
+            <Play className="w-5 h-5 sm:w-8 sm:h-8 fill-current translate-x-0.5" />
           </div>
 
           <span className="relative z-10 mt-3 sm:mt-4 text-[9px] sm:text-xs font-black text-white bg-slate-900/80 py-1.5 px-3.5 rounded-full backdrop-blur-sm uppercase tracking-widest border border-white/10 group-hover:bg-brand-teal/90 transition-colors">
@@ -128,10 +112,10 @@ const EmbeddedVideo = ({
           target="_blank" 
           rel="noopener noreferrer"
           title="Open video in new tab"
-          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-8 h-8 rounded-full bg-[#0097A7]/95 hover:bg-[#0097A7] text-white flex items-center justify-center backdrop-blur-sm shadow-lg border border-white/20 active:scale-105 transition-all outline-none"
+          className="absolute top-2.5 right-2.5 z-20 w-7 h-7 rounded-full bg-[#0097A7]/95 hover:bg-[#0097A7] text-white flex items-center justify-center backdrop-blur-sm shadow-lg border border-white/20 active:scale-105 transition-all outline-none"
           onClick={(e) => e.stopPropagation()}
         >
-          <ArrowUpRight className="w-3.5 h-3.5" />
+          <ArrowUpRight className="w-3 h-3" />
         </a>
       )}
     </div>

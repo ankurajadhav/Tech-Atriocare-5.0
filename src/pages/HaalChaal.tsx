@@ -70,19 +70,24 @@ const EmbeddedVideo = ({
               title={title}
               controls
               playsInline
+              webkit-playsinline="true"
               autoPlay
               className="w-full h-full bg-black object-contain absolute inset-0"
               onError={() => setVideoError(true)}
             />
           ) : (
-            <iframe
-              key={key}
-              src={`${embedUrl}${embedUrl.includes('?') ? '&' : '?'}autoplay=1`}
+            <video
+              key={key + "-fallback"}
+              src={`https://drive.google.com/uc?export=download&id=${driveId}`}
               title={title}
-              className="w-full h-full border-0 absolute inset-0 bg-black"
-              allow="autoplay; encrypted-media; picture-in-picture"
-              allowFullScreen
-              referrerPolicy="no-referrer"
+              controls
+              playsInline
+              webkit-playsinline="true"
+              autoPlay
+              className="w-full h-full bg-black object-contain absolute inset-0"
+              onError={(e) => {
+                console.error("Both stream methods failed:", e);
+              }}
             />
           )}
 
@@ -687,8 +692,8 @@ export default function HaalChaal() {
               <EmbeddedVideo 
                 src="https://drive.google.com/file/d/1voO2RQTl3ATIN5BzgUES2OUB-rE3cab3/preview" 
                 title="Simple Steps Tutorial"
-                aspect="aspect-video"
-                className="w-full max-w-4xl"
+                aspect="aspect-[9/16]"
+                className="w-full max-w-[380px]"
               />
             </div>
             <p className="text-center mt-6 text-slate-400 font-bold uppercase tracking-widest text-xs">

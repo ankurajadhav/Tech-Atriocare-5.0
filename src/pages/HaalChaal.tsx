@@ -18,48 +18,29 @@ const EmbeddedVideo = ({
   aspect?: string; 
   className?: string; 
  }) => {
-  const [useIframeFallback, setUseIframeFallback] = useState(false);
-  const driveIdMatch = src.match(/\/d\/([a-zA-Z0-9_-]+)/) || src.match(/id=([a-zA-Z0-9_-]+)/);
-  const driveId = driveIdMatch ? driveIdMatch[1] : null;
-  const directVideoUrl = driveId ? `https://drive.google.com/uc?export=download&id=${driveId}` : null;
-
   return (
     <div 
       className={cn(
-        "group relative z-10 w-full overflow-hidden rounded-[24px] sm:rounded-[32px] bg-black border-4 md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center", 
+        "group relative z-10 w-full overflow-hidden rounded-[24px] sm:rounded-[32px] bg-[#00171a] border-4 md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center", 
         aspect, 
         className
       )}
     >
-      {directVideoUrl && !useIframeFallback ? (
-        <video
-          src={directVideoUrl}
-          title={title}
-          className="w-full h-full object-cover absolute inset-0"
-          controls
-          playsInline
-          preload="metadata"
-          onError={() => {
-            console.warn("Direct video stream failed, falling back to iframe.");
-            setUseIframeFallback(true);
-          }}
-        />
-      ) : (
-        <iframe
-          src={src}
-          title={title}
-          className="w-full h-full border-0 absolute inset-0"
-          allow="autoplay; encrypted-media"
-          allowFullScreen
-        />
-      )}
+      <iframe
+        src={src}
+        title={title}
+        className="w-full h-full border-0 absolute inset-0"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowFullScreen
+        referrerPolicy="no-referrer"
+      />
       
       {/* Super sleek premium link button to open the original Google Drive if there are nested iframe blocks */}
       <a 
         href={src.replace('/preview', '/view')} 
         target="_blank" 
         rel="noopener noreferrer"
-        title="Open video in new tab if it doesn't load"
+        title="Open video in new tab if it doesn't load font-medium text-xs text-slate-500"
         className="absolute top-4 right-4 z-20 w-10 h-10 md:w-8 md:h-8 rounded-full bg-[#0097A7]/90 hover:bg-[#0097A7] text-white flex items-center justify-center backdrop-blur-sm shadow-lg border border-white/20 active:scale-95 transition-all outline-none opacity-100 md:opacity-0 md:group-hover:opacity-100 md:scale-90 md:group-hover:scale-100 md:bg-black/60 md:hover:bg-black/80"
       >
         <ArrowUpRight className="w-4 h-4" />
@@ -610,7 +591,7 @@ export default function HaalChaal() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-4xl mx-auto mb-32 -mt-8 px-0 sm:px-4"
+            className="max-w-4xl mx-auto mb-2 md:mb-24 -mt-12 md:-mt-8 px-2 sm:px-4 w-full"
           >
             <div className="w-full flex justify-center">
               <EmbeddedVideo 
@@ -625,7 +606,7 @@ export default function HaalChaal() {
             </p>
           </motion.div>
 
-          <div className="flex flex-col relative w-full pt-10">
+          <div className="flex flex-col relative w-full pt-0 md:pt-10">
             {/* The vertical timeline line */}
             <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-[#00D4E5]/40" />
             
@@ -661,10 +642,10 @@ export default function HaalChaal() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                className="flex flex-col md:flex-row min-h-[300px] w-full"
+                className="flex flex-col md:flex-row min-h-0 md:min-h-[300px] w-full"
               >
                 {/* Left Side: Step Text */}
-                <div className="w-full md:w-1/2 md:pr-20 py-6 md:py-16 flex flex-col justify-center">
+                <div className="w-full md:w-1/2 md:pr-20 py-2 sm:py-6 md:py-16 flex flex-col justify-center">
                   <div className="bg-[#E5F9FC] text-[#0B5CBA] font-bold text-xs sm:text-sm px-4 sm:px-5 py-1.5 sm:py-2 rounded-full w-fit mb-4 sm:mb-6">
                     Step {item.step}
                   </div>

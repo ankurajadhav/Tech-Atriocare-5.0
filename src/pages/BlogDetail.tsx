@@ -86,7 +86,7 @@ export default function BlogDetail() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-10 leading-[1.05] tracking-tight"
+              className="text-xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 sm:mb-10 leading-[1.1] sm:leading-[1.05] tracking-tight"
             >
               {blog.title}
             </motion.h1>
@@ -95,7 +95,7 @@ export default function BlogDetail() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-xl md:text-3xl text-white/80 font-medium leading-relaxed max-w-4xl"
+              className="text-sm sm:text-lg md:text-2xl lg:text-3xl text-white/80 font-medium leading-relaxed max-w-4xl"
             >
               {blog.desc}
             </motion.p>
@@ -127,9 +127,9 @@ export default function BlogDetail() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.8 }}
-          className="prose prose-slate prose-lg max-w-none"
+          className="prose prose-slate prose-sm sm:prose-base md:prose-lg max-w-none"
         >
-          <div className="markdown-body blog-content text-slate-600 space-y-8 leading-[1.8] text-[1.15rem]">
+          <div className="markdown-body blog-content text-slate-600 space-y-6 sm:space-y-8 leading-relaxed sm:leading-[1.8] text-sm sm:text-base md:text-[1.15rem]">
             <ReactMarkdown>{blog.content || "Content is being updated..."}</ReactMarkdown>
           </div>
 
@@ -160,7 +160,7 @@ export default function BlogDetail() {
         <div className="absolute inset-0 medical-grid opacity-[0.2]" />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="flex items-center justify-between mb-12">
-            <h2 className="text-3xl font-black font-display text-[#006064] uppercase tracking-tight">Recommended for you</h2>
+            <h2 className="text-xl sm:text-3xl font-black font-display text-[#006064] uppercase tracking-tight">Recommended for you</h2>
             <Link to="/blogs" className="text-brand-teal font-black text-xs uppercase tracking-widest hover:underline flex items-center gap-2 font-black">
               Browse More <ArrowRight className="w-4 h-4" />
             </Link>
@@ -189,7 +189,7 @@ export default function BlogDetail() {
                       <BookOpen className="w-8 h-8 text-slate-300" />
                     )}
                   </div>
-                  <h4 className="text-lg font-bold text-[#006064] group-hover:text-brand-teal transition-colors line-clamp-2 uppercase font-display tracking-tight">
+                  <h4 className="text-base sm:text-lg font-bold text-[#006064] group-hover:text-brand-teal transition-colors line-clamp-2 uppercase font-display tracking-tight">
                     {rec.title}
                   </h4>
                 </Link>

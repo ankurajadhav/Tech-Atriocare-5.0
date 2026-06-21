@@ -1,5 +1,5 @@
 import { Menu, X, Wind, Activity, LayoutDashboard, Sparkles, Database, Mail, ArrowUpRight, Instagram, Linkedin, MapPin, ChevronRight } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '../lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
@@ -12,6 +12,40 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [isNoviculeModalOpen, setIsNoviculeModalOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const navRef = useRef<HTMLElement>(null);
+
+  // Prevent background scrolling on mobile when the mobile menu is open,
+  // preventing any scroll-induced layout jumps or auto-closes.
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
+  // Clean outside click/tap handling to close menu only when clicking off of it
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (!target || !document.body.contains(target)) {
+        // Safe-guard: if the clicked element has been unmounted or detached from the document body
+        // (such as when changing the icon from Menu to X, or other responsive state updates),
+        // we should ignore it and NOT automatically close the mobile menu.
+        return;
+      }
+      if (mobileMenuOpen && navRef.current && !navRef.current.contains(target)) {
+        setMobileMenuOpen(false);
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [mobileMenuOpen]);
 
   const handleNavClick = (href: string, e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (href.startsWith('/#')) {
@@ -162,6 +196,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </div>
 
       <nav 
+        ref={navRef}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
           isScrolled 
@@ -257,58 +292,75 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
 
         {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div 
-            className="lg:hidden absolute top-full left-0 right-0 bg-white/95 border-b border-slate-200/80 p-6 shadow-2xl flex flex-col gap-4 backdrop-blur-2xl"
-          >
-            {navLinks.map((link) => {
-              const isExternal = link.href.startsWith('http');
-              const isLinkActive = activeSection === link.id || (location.pathname === link.href);
-              const baseClasses = cn(
-                "font-display font-black uppercase tracking-widest text-[11px] sm:text-xs py-3 px-4 rounded-xl transition-all flex items-center justify-between border",
-                isLinkActive
-                  ? "text-[#006064] bg-[#e0f2fe]/50 border-sky-200/65 shadow-[0_4px_12px_rgba(14,165,233,0.04)]"
-                  : "text-slate-800 hover:text-brand-teal hover:bg-slate-50 border-transparent"
-              );
-              return isExternal ? (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={baseClasses}
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                  }}
-                >
-                  <span>{link.name}</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-slate-400" />
-                </a>
-              ) : (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  className={baseClasses}
-                  onClick={(e) => handleMobileNavClick(link.href, e)}
-                >
-                  <span>{link.name}</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-                </Link>
-              );
-            })}
-            <Link 
-              to="/checkup"
-              className="bg-brand-teal text-white font-display font-black uppercase tracking-widest text-[10px] py-3.5 px-6 rounded-xl text-center shadow-lg shadow-brand-teal/15 transition-all hover:bg-brand-blue"
-              onClick={(e) => {
-                e.preventDefault();
-                setMobileMenuOpen(false);
-                navigate('/checkup');
-              }}
-            >
-              1-Min Digital Check-Up
-            </Link>
-          </div>
-        )}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <>
+              {/* Semi-transparent backdrop overlay */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="lg:hidden fixed inset-0 top-0 bg-[#00171a]/30 backdrop-blur-[3px] -z-10 cursor-pointer pointer-events-auto"
+                onClick={() => setMobileMenuOpen(false)}
+              />
+              <motion.div 
+                initial={{ opacity: 0, y: -12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+                className="lg:hidden absolute top-full left-0 right-0 bg-white/95 border-b border-slate-200/80 p-6 shadow-2xl flex flex-col gap-4 backdrop-blur-2xl"
+              >
+              {navLinks.map((link) => {
+                const isExternal = link.href.startsWith('http');
+                const isLinkActive = activeSection === link.id || (location.pathname === link.href);
+                const baseClasses = cn(
+                  "font-display font-black uppercase tracking-widest text-[11px] sm:text-xs py-3 px-4 rounded-xl transition-all flex items-center justify-between border",
+                  isLinkActive
+                    ? "text-[#006064] bg-[#e0f2fe]/50 border-sky-200/65 shadow-[0_4px_12px_rgba(14,165,233,0.04)]"
+                    : "text-slate-800 hover:text-brand-teal hover:bg-slate-55 border-transparent"
+                );
+                return isExternal ? (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={baseClasses}
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                    }}
+                  >
+                    <span>{link.name}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-slate-400" />
+                  </a>
+                ) : (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    className={baseClasses}
+                    onClick={(e) => handleMobileNavClick(link.href, e)}
+                  >
+                    <span>{link.name}</span>
+                    <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+                  </Link>
+                );
+              })}
+              <Link 
+                to="/checkup"
+                className="bg-brand-teal text-white font-display font-black uppercase tracking-widest text-[10px] py-3.5 px-6 rounded-xl text-center shadow-lg shadow-brand-teal/15 transition-all hover:bg-brand-blue"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setMobileMenuOpen(false);
+                  navigate('/checkup');
+                }}
+              >
+                1-Min Digital Check-Up
+              </Link>
+            </motion.div>
+            </>
+          )}
+        </AnimatePresence>
       </nav>
 
       <main className="relative z-10">

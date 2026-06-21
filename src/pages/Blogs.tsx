@@ -32,12 +32,12 @@ export default function Blogs() {
               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 group-hover:text-brand-teal transition-colors">Intelligence Repository</span>
             </div>
             
-            <h1 className="text-3xl sm:text-6xl md:text-8xl font-black text-[#006064] mb-8 font-display tracking-tighter leading-[0.9] uppercase flex flex-col items-center">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-[#006064] mb-8 font-display tracking-tighter leading-[0.9] uppercase flex flex-col items-center">
               <span>Enhance Your</span>
               <span className="text-brand-teal drop-shadow-[0_0_15px_rgba(20,184,166,0.1)]">Knowledge</span>
             </h1>
             
-            <p className="text-lg md:text-xl text-slate-500 font-bold max-w-2xl mx-auto leading-relaxed border-t border-slate-200 pt-12 mt-12 uppercase tracking-[0.4em] opacity-80">
+            <p className="text-[15px] sm:text-lg md:text-xl text-slate-500 font-bold max-w-2xl mx-auto leading-relaxed border-t border-slate-200 pt-12 mt-12 uppercase tracking-[0.4em] opacity-80">
               Future-Proofing Human Immunity <br />
               <span className="text-xs font-medium tracking-[0.6em] text-brand-teal">Research Nodes Active</span>
             </p>
@@ -88,7 +88,7 @@ export default function Blogs() {
                   {blog.date}
                 </div>
                 <Link to={`/blogs/${blog.id}`} className="block group/title">
-                  <h3 className="text-xl font-bold text-[#006064] group-hover/title:text-brand-teal transition-colors mb-4 line-clamp-2 leading-tight uppercase font-display tracking-tight">
+                  <h3 className="text-lg sm:text-xl font-bold text-[#006064] group-hover/title:text-brand-teal transition-colors mb-4 line-clamp-2 leading-tight uppercase font-display tracking-tight">
                     {blog.title}
                   </h3>
                 </Link>

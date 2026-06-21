@@ -213,12 +213,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <nav 
         ref={navRef}
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-          isScrolled 
-            ? "bg-[#e0f2fe]/85 backdrop-blur-xl py-2.5 border-b border-sky-100/50 shadow-[0_12px_40px_rgba(14,165,233,0.06)]" 
-            : (location.pathname === '/' || location.pathname === '/vsync')
-              ? "bg-[#e0f2fe]/35 backdrop-blur-md py-4.5 border-b border-sky-100/20" 
-              : "bg-white/95 backdrop-blur-lg py-4 border-b border-slate-200/50"
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          mobileMenuOpen
+            ? "bg-white py-3 border-b border-slate-200 shadow-sm lg:bg-[#e0f2fe]/85 lg:backdrop-blur-xl lg:py-2.5 lg:border-sky-100/50 lg:shadow-[0_12px_40px_rgba(14,165,233,0.06)]"
+            : isScrolled 
+              ? "bg-[#e0f2fe]/85 backdrop-blur-xl py-2.5 border-b border-sky-100/50 shadow-[0_12px_40px_rgba(14,165,233,0.06)]" 
+              : (location.pathname === '/' || location.pathname === '/vsync')
+                ? "bg-[#e0f2fe]/35 backdrop-blur-md py-4.5 border-b border-sky-100/20" 
+                : "bg-white/95 backdrop-blur-lg py-4 border-b border-slate-200/50"
         )}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between lg:justify-start gap-1 lg:gap-12 w-full">
@@ -320,13 +322,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <AnimatePresence>
           {mobileMenuOpen && (
             <>
-              {/* Clean background overlay with zero delay */}
+              {/* Clean background overlay with zero delay starting below the header to keep the header background solid white */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0 }}
-                className="lg:hidden fixed inset-0 top-0 bg-[#001d21]/20 backdrop-blur-[2px] -z-10 pointer-events-none"
+                className="lg:hidden fixed inset-0 top-[80px] bg-[#001d21]/20 backdrop-blur-[2px] -z-10 pointer-events-none"
               />
               <motion.div 
                 initial={{ opacity: 0, y: -20 }}
@@ -412,22 +414,61 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       </Link>
                     );
                   })}
+
+                  {/* 1-Min Digital Check-Up Option styled in the precise bento grid layout as requested */}
+                  {(() => {
+                    const isCheckupActive = location.pathname === '/checkup';
+                    const checkupClasses = cn(
+                      "group flex items-center gap-4 p-3 rounded-2xl transition-all border text-left active:scale-[0.99]",
+                      isCheckupActive
+                        ? "bg-cyan-50/75 border-[#0097A7]/40 shadow-sm shadow-cyan-900/5 text-[#006064]"
+                        : "bg-slate-50/55 border-slate-200/50 hover:bg-slate-100 hover:border-slate-350 text-slate-800"
+                    );
+
+                    return (
+                      <Link
+                        to="/checkup"
+                        className={checkupClasses}
+                        onClick={(e) => {
+                          setMobileMenuOpen(false);
+                          handleMobileNavClick('/checkup', e);
+                        }}
+                      >
+                        <div className={cn(
+                          "w-11 h-11 rounded-xl flex items-center justify-center border font-bold shrink-0 shadow-sm transition-all",
+                          isCheckupActive 
+                            ? "bg-white text-[#0097A7] border-cyan-200 shadow-md scale-105" 
+                            : "text-[#0097A7] bg-cyan-50/80 border-cyan-100/60"
+                        )}>
+                          <Sparkles className="w-5 h-5 animate-pulse-slow" />
+                        </div>
+                        
+                        <div className="flex flex-col flex-1 min-w-0">
+                          <span className="font-display font-black uppercase tracking-widest text-[11px] sm:text-xs flex items-center gap-2 text-slate-900">
+                            1-Min Digital Check-Up
+                            {isCheckupActive && (
+                              <span className="w-2 h-2 rounded-full bg-[#0097A7]" />
+                            )}
+                          </span>
+                          <span className="text-[10px] font-semibold text-slate-500 mt-1 lines-1 font-sans">
+                            Instant digital health assessment
+                          </span>
+                        </div>
+
+                        <div className={cn(
+                          "shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-all",
+                          isCheckupActive 
+                            ? "bg-white border border-cyan-200 text-[#0097A7] shadow-sm scale-110" 
+                            : "text-slate-400 group-hover:text-[#0097A7] group-hover:translate-x-0.5"
+                        )}>
+                          <ChevronRight className="w-4 h-4" />
+                        </div>
+                      </Link>
+                    );
+                  })()}
                 </div>
 
                 <div className="flex flex-col gap-3 mt-3 pt-3 border-t border-dashed border-slate-200">
-                  <Link 
-                    to="/checkup"
-                    className="group relative bg-[#0097A7] hover:bg-[#007681] text-white font-display font-black uppercase tracking-widest text-[11px] sm:text-xs py-4 px-6 rounded-2xl text-center shadow-lg shadow-cyan-900/15 transition-all flex items-center justify-center gap-3 active:scale-[0.98] overflow-hidden"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      navigate('/checkup');
-                    }}
-                  >
-                    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <span>Launch 1-Min Digital Check-Up</span>
-                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </Link>
-
                   <button
                     onClick={() => setMobileMenuOpen(false)}
                     className="w-full py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 active:scale-[0.98] font-display font-black uppercase tracking-widest text-[11px] rounded-2xl text-center transition-all border border-slate-200/50 flex items-center justify-center gap-2"

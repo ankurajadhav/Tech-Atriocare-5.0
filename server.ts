@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import { GoogleGenAI, Type } from "@google/genai";
 import dotenv from "dotenv";
+import { Readable } from "stream";
 
 dotenv.config();
 
@@ -115,28 +116,76 @@ app.get("/api/video-stream", async (req, res) => {
 
   try {
     let targetUrl = url;
-    
-    // Follow redirect to obtain direct content delivery network link
-    const redirectRes = await fetch(url, { redirect: "manual" });
-    if ([301, 302, 303, 307, 308].includes(redirectRes.status)) {
-      const location = redirectRes.headers.get("location");
+    const initialHeaders: Record<string, string> = {
+      "User-Agent": req.headers["user-agent"] || "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+    };
+
+    // Step 1: Initial request to see if we get redirected or receive download warning cookies
+    let driveRes = await fetch(url, { 
+      method: "GET", 
+      headers: initialHeaders,
+      redirect: "manual" 
+    });
+
+    let isRedirect = [301, 302, 303, 307, 308].includes(driveRes.status);
+    let cookieHeader = driveRes.headers.get("set-cookie") || "";
+
+    if (isRedirect) {
+      const location = driveRes.headers.get("location");
       if (location) {
         targetUrl = location;
+        driveRes = await fetch(targetUrl, { 
+          method: "GET", 
+          headers: initialHeaders 
+        });
+        const nextCookie = driveRes.headers.get("set-cookie");
+        if (nextCookie) {
+          cookieHeader = [cookieHeader, nextCookie].filter(Boolean).join("; ");
+        }
       }
     }
 
-    const headers: Record<string, string> = {
-      "User-Agent": req.headers["user-agent"] || "",
-    };
-    
-    if (req.headers.range) {
-      headers["Range"] = req.headers.range;
-    }
+    // Step 2: Check if Google returns the HTML virus warning confirmation screen
+    const contentTypeHeader = driveRes.headers.get("content-type") || "";
+    if (contentTypeHeader.includes("text/html")) {
+      const htmlText = await driveRes.text();
+      // Look for the confirmation token from the form action or link
+      const confirmMatch = htmlText.match(/confirm=([a-zA-Z0-9_-]+)/);
+      if (confirmMatch) {
+        const confirmToken = confirmMatch[1];
+        targetUrl = `https://drive.google.com/uc?export=download&id=${id}&confirm=${confirmToken}`;
+        
+        const finalHeaders: Record<string, string> = {
+          "User-Agent": req.headers["user-agent"] || initialHeaders["User-Agent"],
+        };
+        if (cookieHeader) {
+          finalHeaders["Cookie"] = cookieHeader;
+        }
+        if (req.headers.range) {
+          finalHeaders["Range"] = req.headers.range;
+        }
 
-    const driveRes = await fetch(targetUrl, {
-      method: "GET",
-      headers,
-    });
+        driveRes = await fetch(targetUrl, {
+          method: "GET",
+          headers: finalHeaders,
+        });
+      }
+    } else {
+      // Step 3: If it is already a direct stream, we re-fetch with user's Range headers if needed
+      if (req.headers.range) {
+        const rangeHeaders: Record<string, string> = {
+          "User-Agent": req.headers["user-agent"] || initialHeaders["User-Agent"],
+          "Range": req.headers.range,
+        };
+        if (cookieHeader) {
+          rangeHeaders["Cookie"] = cookieHeader;
+        }
+        driveRes = await fetch(targetUrl, {
+          method: "GET",
+          headers: rangeHeaders,
+        });
+      }
+    }
 
     if (!driveRes.ok && driveRes.status !== 206) {
       return res.status(driveRes.status).send(`Failed cache stream validation from cloud storage.`);
@@ -156,13 +205,7 @@ app.get("/api/video-stream", async (req, res) => {
     res.status(driveRes.status);
 
     if (driveRes.body) {
-      const reader = driveRes.body.getReader();
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        res.write(value);
-      }
-      res.end();
+      Readable.fromWeb(driveRes.body as any).pipe(res);
     } else {
       res.end();
     }

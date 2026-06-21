@@ -1,4 +1,4 @@
-import { Menu, X, Wind, Activity, LayoutDashboard, Sparkles, Database, Mail, ArrowUpRight, Instagram, Linkedin, MapPin, ChevronRight } from 'lucide-react';
+import { Menu, X, Wind, Activity, LayoutDashboard, Sparkles, Database, Mail, ArrowUpRight, Instagram, Linkedin, MapPin, ChevronRight, Home, Info, BookOpen, Users, Star } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '../lib/utils';
@@ -27,25 +27,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     };
   }, [mobileMenuOpen]);
 
-  // Clean outside click/tap handling to close menu only when clicking off of it
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Node;
-      if (!target || !document.body.contains(target)) {
-        // Safe-guard: if the clicked element has been unmounted or detached from the document body
-        // (such as when changing the icon from Menu to X, or other responsive state updates),
-        // we should ignore it and NOT automatically close the mobile menu.
-        return;
-      }
-      if (mobileMenuOpen && navRef.current && !navRef.current.contains(target)) {
-        setMobileMenuOpen(false);
-      }
-    };
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [mobileMenuOpen]);
+  // We have removed the handleClickOutside listener to prevent unexpected automatic closing of the navigation menu on mobile devices.
+  // The user now has full manual control over when the navigation bar is closed.
 
   const handleNavClick = (href: string, e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (href.startsWith('/#')) {
@@ -78,8 +61,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const handleMobileNavClick = (href: string, e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
     
-    // Close mobile menu immediately to update layout before scrolling or navigating with 100% responsiveness
-    setMobileMenuOpen(false);
+    // We removed automatic closing here so the user can easily select and navigate to different sections
+    // without the navigation bar snapping closed automatically. It remains open until manually closed.
     
     if (href.startsWith('/#')) {
       const elementId = href.replace('/#', '');
@@ -144,6 +127,27 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     handleScrollActive();
     return () => window.removeEventListener('scroll', handleScrollActive);
   }, [location]);
+
+  const getLinkMeta = (id: string) => {
+    switch(id) {
+      case 'home':
+        return { icon: Home, desc: 'Welcome & highlights', color: 'text-cyan-600 bg-cyan-50 border-cyan-100/50' };
+      case 'about':
+        return { icon: Info, desc: 'Our mission and pathology', color: 'text-blue-600 bg-blue-50 border-blue-100/50' };
+      case 'products':
+        return { icon: Database, desc: 'Clinical medical solutions', color: 'text-teal-600 bg-teal-50 border-teal-100/50' };
+      case 'services':
+        return { icon: Activity, desc: 'Custom diagnostic programs', color: 'text-[#0097A7] bg-cyan-50/80 border-cyan-100/60' };
+      case 'blogs':
+        return { icon: BookOpen, desc: 'Smarter breathing findings', color: 'text-indigo-600 bg-indigo-50 border-indigo-100/50' };
+      case 'team':
+        return { icon: Users, desc: 'Expert medical panel & founders', color: 'text-emerald-650 bg-emerald-50 border-emerald-100/50' };
+      case 'reviews':
+        return { icon: Star, desc: 'Patient voices & experiences', color: 'text-amber-500 bg-amber-50 border-amber-100/50' };
+      default:
+        return { icon: Sparkles, desc: 'Explore Tech AtrioCare', color: 'text-slate-600 bg-slate-50 border-slate-100/50' };
+    }
+  };
 
   const navLinks = [
     { name: 'Home', href: '/', id: 'home' },
@@ -280,14 +284,24 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           <button 
-            className="lg:hidden p-2 text-slate-800 hover:text-brand-teal focus:outline-none"
+            className="lg:hidden px-3 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 hover:text-[#0097A7] focus:outline-none active:scale-95 transition-all flex items-center gap-2 border border-slate-200/60 shadow-sm"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               setMobileMenuOpen(!mobileMenuOpen);
             }}
           >
-            {mobileMenuOpen ? <X /> : <Menu />}
+            {mobileMenuOpen ? (
+              <>
+                <span className="text-[10px] font-black uppercase tracking-wider text-slate-600">Close</span>
+                <X className="w-4 h-4" />
+              </>
+            ) : (
+              <>
+                <span className="text-[10px] font-black uppercase tracking-wider text-slate-600">Menu</span>
+                <Menu className="w-4 h-4" />
+              </>
+            )}
           </button>
         </div>
 
@@ -295,69 +309,150 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <AnimatePresence>
           {mobileMenuOpen && (
             <>
-              {/* Semi-transparent backdrop overlay */}
+              {/* Beautiful blurred focus-holding backdrop overlay (Purely visual, no accidental click-to-close) */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="lg:hidden fixed inset-0 top-0 bg-[#00171a]/30 backdrop-blur-[3px] -z-10 cursor-pointer pointer-events-auto"
-                onClick={() => setMobileMenuOpen(false)}
+                transition={{ duration: 0.3 }}
+                className="lg:hidden fixed inset-0 top-0 bg-[#001d21]/45 backdrop-blur-[6px] -z-10 pointer-events-none"
               />
               <motion.div 
-                initial={{ opacity: 0, y: -12 }}
+                initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                className="lg:hidden absolute top-full left-0 right-0 bg-white/95 border-b border-slate-200/80 p-6 shadow-2xl flex flex-col gap-4 backdrop-blur-2xl"
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="lg:hidden absolute top-full left-0 right-0 bg-white/98 border-b-4 border-[#0097A7]/45 px-5 py-7 shadow-[0_30px_60px_rgba(0,29,33,0.22)] flex flex-col gap-4 backdrop-blur-3xl max-h-[84vh] overflow-y-auto rounded-b-[32px] border-x border-slate-100"
               >
-              {navLinks.map((link) => {
-                const isExternal = link.href.startsWith('http');
-                const isLinkActive = activeSection === link.id || (location.pathname === link.href);
-                const baseClasses = cn(
-                  "font-display font-black uppercase tracking-widest text-[11px] sm:text-xs py-3 px-4 rounded-xl transition-all flex items-center justify-between border",
-                  isLinkActive
-                    ? "text-[#006064] bg-[#e0f2fe]/50 border-sky-200/65 shadow-[0_4px_12px_rgba(14,165,233,0.04)]"
-                    : "text-slate-800 hover:text-brand-teal hover:bg-slate-55 border-transparent"
-                );
-                return isExternal ? (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={baseClasses}
+                {/* Header within Mobile Menu */}
+                <div className="flex items-center justify-between pb-4 border-b border-dashed border-slate-200/80 mb-2 px-1">
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-black uppercase tracking-[0.18em] text-[#0097A7] leading-none mb-1.5">Interactive Portal</span>
+                    <span className="text-base font-extrabold text-slate-900 leading-none">Main Navigation</span>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-cyan-50/70 text-[#0097A7] text-[10px] font-black rounded-full border border-cyan-100/50 uppercase tracking-widest">
+                    <Sparkles className="w-3 h-3 text-cyan-600 animate-pulse" />
+                    Immunity Live
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 gap-2.5">
+                  {navLinks.map((link, idx) => {
+                    const isExternal = link.href.startsWith('http');
+                    const isLinkActive = activeSection === link.id || (location.pathname === link.href);
+                    const meta = getLinkMeta(link.id);
+                    const IconComponent = meta.icon;
+
+                    const baseClasses = cn(
+                      "group flex items-center gap-4 p-3 rounded-2xl transition-all duration-300 border text-left active:scale-[0.99]",
+                      isLinkActive
+                        ? "bg-cyan-50/75 border-[#0097A7]/40 shadow-md shadow-cyan-900/5"
+                        : "bg-slate-50/55 border-slate-200/50 hover:bg-slate-100 hover:border-slate-350"
+                    );
+
+                    return isExternal ? (
+                      <motion.a
+                        key={link.name}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={baseClasses}
+                        initial={{ opacity: 0, x: -8 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: idx * 0.04 }}
+                      >
+                        <div className={cn(
+                          "w-11 h-11 rounded-xl flex items-center justify-center border font-bold shrink-0 shadow-sm transition-all duration-300",
+                          isLinkActive ? "bg-white text-[#0097A7] border-cyan-250 shadow-md scale-105" : meta.color
+                        )}>
+                          <IconComponent className="w-5 h-5" />
+                        </div>
+                        
+                        <div className="flex flex-col flex-1 min-w-0">
+                          <span className={cn(
+                            "font-display font-black uppercase tracking-widest text-[11px] sm:text-xs flex items-center gap-1.5 transition-colors",
+                            isLinkActive ? "text-[#006064]" : "text-slate-800 group-hover:text-[#0097A7]"
+                          )}>
+                            {link.name}
+                          </span>
+                          <span className="text-[10px] font-semibold text-slate-500 mt-1 lines-1">
+                            {meta.desc}
+                          </span>
+                        </div>
+
+                        <div className="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 group-hover:text-[#0097A7] transition-all">
+                          <ArrowUpRight className="w-4 h-4" />
+                        </div>
+                      </motion.a>
+                    ) : (
+                      <motion.div
+                        key={link.name}
+                        initial={{ opacity: 0, x: -8 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: idx * 0.04 }}
+                      >
+                        <Link
+                          to={link.href}
+                          className={baseClasses}
+                          onClick={(e) => handleMobileNavClick(link.href, e)}
+                        >
+                          <div className={cn(
+                            "w-11 h-11 rounded-xl flex items-center justify-center border font-bold shrink-0 shadow-sm transition-all duration-300",
+                            isLinkActive ? "bg-white text-[#0097A7] border-cyan-200 shadow-md scale-105" : meta.color
+                          )}>
+                            <IconComponent className="w-5 h-5" />
+                          </div>
+                          
+                          <div className="flex flex-col flex-1 min-w-0">
+                            <span className={cn(
+                              "font-display font-black uppercase tracking-widest text-[11px] sm:text-xs flex items-center gap-2 transition-colors",
+                              isLinkActive ? "text-[#006064]" : "text-slate-800 group-hover:text-[#0097A7]"
+                            )}>
+                              {link.name}
+                              {isLinkActive && (
+                                <span className="w-2 h-2 rounded-full bg-[#0097A7] animate-ping" />
+                              )}
+                            </span>
+                            <span className="text-[10px] font-semibold text-slate-500 mt-1 lines-1">
+                              {meta.desc}
+                            </span>
+                          </div>
+
+                          <div className={cn(
+                            "shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300",
+                            isLinkActive ? "bg-white border border-cyan-200 text-[#0097A7] shadow-sm scale-110" : "text-slate-400 group-hover:text-[#0097A7] group-hover:translate-x-0.5"
+                          )}>
+                            <ChevronRight className="w-4 h-4" />
+                          </div>
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+
+                <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-dashed border-slate-200">
+                  <Link 
+                    to="/checkup"
+                    className="group relative bg-[#0097A7] hover:bg-[#007681] text-white font-display font-black uppercase tracking-widest text-[11px] sm:text-xs py-4.5 px-6 rounded-2xl text-center shadow-lg shadow-cyan-900/15 transition-all duration-300 flex items-center justify-center gap-3 active:scale-[0.98] overflow-hidden"
                     onClick={() => {
                       setMobileMenuOpen(false);
+                      navigate('/checkup');
                     }}
                   >
-                    <span>{link.name}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-slate-400" />
-                  </a>
-                ) : (
-                  <Link
-                    key={link.name}
-                    to={link.href}
-                    className={baseClasses}
-                    onClick={(e) => handleMobileNavClick(link.href, e)}
-                  >
-                    <span>{link.name}</span>
-                    <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+                    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span>Launch 1-Min Digital Check-Up</span>
+                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </Link>
-                );
-              })}
-              <Link 
-                to="/checkup"
-                className="bg-brand-teal text-white font-display font-black uppercase tracking-widest text-[10px] py-3.5 px-6 rounded-xl text-center shadow-lg shadow-brand-teal/15 transition-all hover:bg-brand-blue"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setMobileMenuOpen(false);
-                  navigate('/checkup');
-                }}
-              >
-                1-Min Digital Check-Up
-              </Link>
-            </motion.div>
+
+                  <button
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full py-4 bg-slate-100 hover:bg-slate-200 text-slate-705 text-slate-700 active:scale-[0.98] font-display font-black uppercase tracking-widest text-[11px] rounded-2xl text-center transition-all border border-slate-200/50 flex items-center justify-center gap-2"
+                  >
+                    <X className="w-4 h-4 text-slate-500 font-extrabold" />
+                    Close Navigation Portal
+                  </button>
+                </div>
+              </motion.div>
             </>
           )}
         </AnimatePresence>

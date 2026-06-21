@@ -21,7 +21,7 @@ const EmbeddedVideo = ({
   return (
     <div 
       className={cn(
-        "group relative z-10 w-full overflow-hidden rounded-[24px] sm:rounded-[32px] bg-[#00171a] border-4 md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center", 
+        "group relative z-10 w-full overflow-hidden rounded-[16px] sm:rounded-[32px] bg-[#00171a] border-2 sm:border-4 md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center", 
         aspect, 
         className
       )}
@@ -311,7 +311,7 @@ export default function HaalChaal() {
               </div>
 
               {/* Video Right */}
-              <div className="w-full max-w-[280px] sm:max-w-[320px] lg:w-[320px] shrink-0 flex items-center justify-center mx-auto">
+              <div className="w-full max-w-[310px] sm:max-w-[320px] lg:w-[320px] shrink-0 flex items-center justify-center mx-auto">
                 <EmbeddedVideo 
                   src="https://drive.google.com/file/d/1Z9UZQhUhqkYGfMONidA1uIyibhUaA7J6/preview" 
                   title="Mrs. Parinita Sinha Testimony"
@@ -530,7 +530,7 @@ export default function HaalChaal() {
               viewport={{ once: true }}
               className="flex flex-col items-center space-y-6 w-full"
             >
-              <div className="w-full max-w-[380px] flex justify-center">
+              <div className="w-full max-w-[400px] flex justify-center">
                 <EmbeddedVideo 
                   src="https://drive.google.com/file/d/1Z9UZQhUhqkYGfMONidA1uIyibhUaA7J6/preview" 
                   title="Mrs. Parinita Sinha Testimony"
@@ -570,7 +570,7 @@ export default function HaalChaal() {
       {/* Simple Steps Section (The 7-Day Protocol) */}
       <section className="py-24 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-24 space-y-6">
+          <div className="text-center mb-8 md:mb-16 space-y-6">
             <motion.div 
                initial={{ opacity: 0, scale: 0.9 }}
                whileInView={{ opacity: 1, scale: 1 }}
@@ -591,13 +591,13 @@ export default function HaalChaal() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-4xl mx-auto mb-2 md:mb-24 -mt-12 md:-mt-8 px-2 sm:px-4 w-full"
+            className="max-w-4xl mx-auto mb-10 md:mb-24 px-0 sm:px-4 w-full"
           >
             <div className="w-full flex justify-center">
               <EmbeddedVideo 
                 src="https://drive.google.com/file/d/1voO2RQTl3ATIN5BzgUES2OUB-rE3cab3/preview" 
                 title="Simple Steps Tutorial"
-                aspect="aspect-[4/3] sm:aspect-video"
+                aspect="aspect-video"
                 className="w-full max-w-4xl"
               />
             </div>

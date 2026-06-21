@@ -26,7 +26,7 @@ const EmbeddedVideo = ({
   return (
     <div 
       className={cn(
-        "group relative z-10 w-full overflow-hidden rounded-[32px] bg-black border-[6px] md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center", 
+        "group relative z-10 w-full overflow-hidden rounded-[24px] sm:rounded-[32px] bg-black border-4 md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center", 
         aspect, 
         className
       )}
@@ -60,7 +60,7 @@ const EmbeddedVideo = ({
         target="_blank" 
         rel="noopener noreferrer"
         title="Open video in new tab if it doesn't load"
-        className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-sm transition-all duration-300 opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 shadow-md border border-white/10"
+        className="absolute top-4 right-4 z-20 w-10 h-10 md:w-8 md:h-8 rounded-full bg-[#0097A7]/90 hover:bg-[#0097A7] text-white flex items-center justify-center backdrop-blur-sm shadow-lg border border-white/20 active:scale-95 transition-all outline-none opacity-100 md:opacity-0 md:group-hover:opacity-100 md:scale-90 md:group-hover:scale-100 md:bg-black/60 md:hover:bg-black/80"
       >
         <ArrowUpRight className="w-4 h-4" />
       </a>
@@ -598,7 +598,7 @@ export default function HaalChaal() {
             >
               The 7-Day Journey 📋
             </motion.div>
-            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#006064] tracking-tight leading-tight sm:leading-[1.1] uppercase font-display">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#006064] tracking-tight leading-tight sm:leading-[1.1] uppercase font-display">
               Simple steps to <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#006064] via-[#0097A7] to-[#0D9488]">lasting health transformation</span>
             </h2>
@@ -610,7 +610,7 @@ export default function HaalChaal() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-4xl mx-auto mb-32 -mt-8 px-4"
+            className="max-w-4xl mx-auto mb-32 -mt-8 px-0 sm:px-4"
           >
             <div className="w-full flex justify-center">
               <EmbeddedVideo 
@@ -692,7 +692,7 @@ export default function HaalChaal() {
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-teal-50 text-[#0097A7] rounded-full font-bold text-xs uppercase tracking-widest border border-teal-100/60">
               <span className="w-1.5 h-1.5 rounded-full bg-[#0097A7] animate-pulse" /> FAQ Support
             </div>
-            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-[46px] font-black text-[#006064] tracking-tight leading-none uppercase font-display">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-black text-[#006064] tracking-tight leading-none uppercase font-display">
               Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0097A7] to-[#0D9488]">Questions</span>
             </h2>
             <p className="text-slate-500 font-semibold max-w-3xl mx-auto text-xs sm:text-base md:text-lg leading-relaxed">
@@ -836,7 +836,7 @@ export default function HaalChaal() {
                   <span className="inline-flex items-center gap-2 px-3 py-1 bg-teal-50 text-[#0097A7] rounded-full font-bold text-xs uppercase tracking-widest border border-teal-100/60">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#0097A7] animate-pulse" /> Health Risk Monitor
                   </span>
-                  <h2 className="text-xl sm:text-3xl lg:text-4xl xl:text-[40px] font-black text-[#004D54] tracking-tight leading-tight sm:leading-[1.15] font-display">
+                  <h2 className="text-3xl sm:text-3xl lg:text-4xl xl:text-[40px] font-black text-[#004D54] tracking-tight leading-tight sm:leading-[1.15] font-display">
                     Are you at risk from <br className="hidden lg:inline" />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0097A7] to-[#0D9488]">
                       hidden respiratory issues?

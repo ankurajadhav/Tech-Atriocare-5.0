@@ -51,13 +51,18 @@ const EmbeddedVideo = ({
       }}
     >
       {driveId && isPlaying ? (
-        <iframe
-          src={`https://drive.google.com/file/d/${driveId}/preview`}
-          title={title}
-          className="w-full h-full border-0 rounded-[12px] sm:rounded-[20px] absolute inset-0 z-10"
-          allow="autoplay; encrypted-media"
-          allowFullScreen
-        />
+        <video
+          src={`/api/video-stream?id=${driveId}`}
+          controls
+          autoPlay
+          playsInline
+          webkit-playsinline="true"
+          preload="auto"
+          onEnded={() => setIsPlaying(false)}
+          className="absolute inset-0 w-full h-full bg-black object-contain rounded-[12px] sm:rounded-[20px] focus:outline-none z-10"
+        >
+          Your browser does not support the video tag.
+        </video>
       ) : (
         <div 
           className="absolute inset-0 w-full h-full flex flex-col items-center justify-center z-20 cursor-pointer bg-black"

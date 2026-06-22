@@ -19,6 +19,7 @@ const EmbeddedVideo = ({
   className?: string; 
  }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Extract file ID from Google Drive preview link if present
   const driveIdMatch = src.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
@@ -36,6 +37,15 @@ const EmbeddedVideo = ({
   const handlePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsPlaying(true);
+    if (videoRef.current) {
+      videoRef.current.preload = "auto";
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.warn("Mobile playback play() call was deferred or blocked:", err);
+        });
+      }
+    }
   };
 
   const isPortrait = aspect.includes("9/16") || aspect.includes("portrait");
@@ -55,20 +65,26 @@ const EmbeddedVideo = ({
         height: isPlaying ? "auto" : undefined,
       }}
     >
-      {isPlaying && driveId ? (
-        <div className="w-full h-full bg-transparent flex items-center justify-center overflow-hidden">
+      {driveId && (
+        <div className={cn(
+          "w-full h-full bg-transparent flex items-center justify-center overflow-hidden",
+          !isPlaying ? "absolute inset-0 opacity-0 pointer-events-none w-0 h-0 overflow-hidden" : ""
+        )}>
           <video
+            ref={videoRef}
             src={`/api/video-stream?id=${driveId}`}
             title={title}
             controls
             playsInline
-            autoPlay
-            preload="auto"
+            webkit-playsinline="true"
+            preload="none"
             className="w-full h-auto max-h-[80vh] bg-transparent object-contain rounded-[12px] sm:rounded-[20px]"
             onEnded={() => setIsPlaying(false)}
           />
         </div>
-      ) : (
+      )}
+
+      {!isPlaying && (
         <div 
           className="absolute inset-0 w-full h-full flex flex-col items-center justify-center z-10 p-4 cursor-pointer"
           onClick={handlePlay}

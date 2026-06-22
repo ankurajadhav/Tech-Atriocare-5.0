@@ -19,6 +19,7 @@ const EmbeddedVideo = ({
   className?: string; 
  }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [thumbError, setThumbError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -40,7 +41,9 @@ const EmbeddedVideo = ({
   const handlePlayClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsPlaying(true);
+    setIsLoading(true);
     if (videoRef.current) {
+      videoRef.current.load();
       videoRef.current.play().catch((err) => {
         console.warn("Playback failed or was deferred:", err);
       });
@@ -64,14 +67,25 @@ const EmbeddedVideo = ({
       {driveId && (
         <video
           ref={videoRef}
-          src={`https://drive.usercontent.com/download?id=${driveId}&export=download`}
+          src={`/api/video-stream?id=${driveId}`}
           controls={isPlaying}
           playsInline
           webkit-playsinline="true"
-          preload="metadata"
+          preload="none"
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
-          onEnded={() => setIsPlaying(false)}
+          onEnded={() => {
+            setIsPlaying(false);
+            if (videoRef.current) {
+              videoRef.current.load();
+            }
+          }}
+          onLoadStart={() => {
+            if (isPlaying) setIsLoading(true);
+          }}
+          onWaiting={() => setIsLoading(true)}
+          onPlaying={() => setIsLoading(false)}
+          onCanPlay={() => setIsLoading(false)}
           className={cn(
             "absolute inset-0 w-full h-full bg-black object-contain rounded-[12px] sm:rounded-[20px] focus:outline-none transition-all duration-300",
             isPlaying ? "opacity-100 z-10 scale-100" : "opacity-0 z-0 pointer-events-none scale-95"
@@ -79,6 +93,14 @@ const EmbeddedVideo = ({
         >
           Your browser does not support the video tag.
         </video>
+      )}
+
+      {/* Premium loading spinner overlay */}
+      {isPlaying && isLoading && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 z-30 pointer-events-none">
+          <div className="w-10 h-10 border-4 border-[#0097A7]/30 border-t-[#0097A7] rounded-full animate-spin mb-2" />
+          <p className="text-[10px] uppercase tracking-wider font-semibold text-white/90">Connecting Secure Stream...</p>
+        </div>
       )}
 
       {/* Premium play overlay that transitions opacity during play state */}

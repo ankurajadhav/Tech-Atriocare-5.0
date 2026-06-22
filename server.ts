@@ -11,36 +11,71 @@ const PORT = 3000;
 
 app.use(express.json());
 
-// Shared in-memory video stream cache to prevent multiple fetches and rate-limiting from Google Drive CDN
-const videoCache = new Map<string, { buffer: Buffer; contentType: string }>();
+// Shared in-memory cache for resolved Google Drive download URLs to bypass antivirus checkpoints and rate limits
+const directUrlCache = new Map<string, { url: string; headers: Record<string, string> }>();
 
-function serveBufferWithRanges(req: express.Request, res: express.Response, buffer: Buffer, contentType: string) {
-  const totalLength = buffer.length;
-  res.setHeader("Accept-Ranges", "bytes");
-  res.setHeader("Content-Type", contentType);
-
-  const range = req.headers.range;
-  if (!range) {
-    res.setHeader("Content-Length", totalLength);
-    return res.status(200).send(buffer);
+async function resolveDriveUrl(id: string): Promise<{ url: string; headers: Record<string, string> }> {
+  if (directUrlCache.has(id)) {
+    return directUrlCache.get(id)!;
   }
 
-  const parts = range.replace(/bytes=/, "").split("-");
-  const start = parseInt(parts[0], 10);
-  const end = parts[1] ? parseInt(parts[1], 10) : totalLength - 1;
+  const initialUrl = `https://drive.google.com/uc?export=download&id=${id}`;
+  const initialHeaders = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+  };
 
-  if (start >= totalLength || end >= totalLength || start > end) {
-    res.setHeader("Content-Range", `bytes */${totalLength}`);
-    return res.status(416).send("Requested Range Not Satisfiable");
+  // Step 1: Initial request to handle potential 302 redirects and collect confirmation cookies
+  let res = await fetch(initialUrl, {
+    method: "GET",
+    headers: initialHeaders,
+    redirect: "manual"
+  });
+
+  let status = res.status;
+  let cookieHeader = res.headers.get("set-cookie") || "";
+  let finalUrl = initialUrl;
+
+  if ([301, 302, 303, 307, 308].includes(status)) {
+    const loc = res.headers.get("location");
+    if (loc) {
+      finalUrl = loc;
+      // Follow the redirect manually to collect any warning skip keys
+      res = await fetch(finalUrl, {
+        method: "GET",
+         headers: {
+          ...initialHeaders,
+          ...(cookieHeader ? { "Cookie": cookieHeader } : {})
+        },
+        redirect: "manual"
+      });
+      const nextCookie = res.headers.get("set-cookie");
+      if (nextCookie) {
+        cookieHeader = [cookieHeader, nextCookie].filter(Boolean).join("; ");
+      }
+    }
   }
 
-  const chunksize = (end - start) + 1;
-  const chunk = buffer.subarray(start, end + 1);
+  // Step 2: Check for Google's large file virus confirmation gate page
+  const contentType = res.headers.get("content-type") || "";
+  if (contentType.includes("text/html")) {
+    const htmlText = await res.text();
+    const confirmMatch = htmlText.match(/confirm=([a-zA-Z0-9_-]+)/);
+    if (confirmMatch) {
+      const confirmToken = confirmMatch[1];
+      finalUrl = `https://drive.google.com/uc?export=download&id=${id}&confirm=${confirmToken}`;
+    }
+  }
 
-  res.status(206);
-  res.setHeader("Content-Range", `bytes ${start}-${end}/${totalLength}`);
-  res.setHeader("Content-Length", chunksize);
-  res.send(chunk);
+  const result = {
+    url: finalUrl,
+    headers: {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+      ...(cookieHeader ? { "Cookie": cookieHeader } : {})
+    }
+  };
+
+  directUrlCache.set(id, result);
+  return result;
 }
 
 // Lazy initialization for Gemini to catch missing API keys gracefully
@@ -137,7 +172,7 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
-// High-performance video streaming proxy route with multi-chunk range response support and aggressive memory caching to bypass Google Drive limits on mobile
+// High-performance video streaming proxy route with multi-chunk range response support and non-blocking streaming
 app.get("/api/video-stream", async (req, res) => {
   const { id } = req.query;
   if (!id || typeof id !== "string") {
@@ -145,85 +180,56 @@ app.get("/api/video-stream", async (req, res) => {
   }
 
   try {
-    // Check cache
-    if (videoCache.has(id)) {
-      const cached = videoCache.get(id)!;
-      return serveBufferWithRanges(req, res, cached.buffer, cached.contentType);
+    const { url, headers } = await resolveDriveUrl(id);
+
+    // Prepare range headers if requested by the mobile browser / client video player
+    const driveHeaders: Record<string, string> = { ...headers };
+    if (req.headers.range) {
+      driveHeaders["Range"] = req.headers.range;
     }
 
-    let targetUrl = `https://drive.google.com/uc?export=download&id=${id}`;
-    const initialHeaders: Record<string, string> = {
-      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-    };
-
-    // Step 1: Initial request to see if we get redirected or receive download warning cookies
-    let driveRes = await fetch(targetUrl, { 
-      method: "GET", 
-      headers: initialHeaders,
-      redirect: "manual" 
+    // Step 3: Fetch the range segment from Google Drive
+    let driveRes = await fetch(url, {
+      method: "GET",
+      headers: driveHeaders,
     });
 
-    let isRedirect = [301, 302, 303, 307, 308].includes(driveRes.status);
-    let cookieHeader = driveRes.headers.get("set-cookie") || "";
-
-    if (isRedirect) {
-      const location = driveRes.headers.get("location");
-      if (location) {
-        targetUrl = location;
-        driveRes = await fetch(targetUrl, { 
-          method: "GET", 
-          headers: initialHeaders 
-        });
-        const nextCookie = driveRes.headers.get("set-cookie");
-        if (nextCookie) {
-          cookieHeader = [cookieHeader, nextCookie].filter(Boolean).join("; ");
-        }
+    if (!driveRes.ok && driveRes.status !== 206) {
+      // If we got a stale URL or rate-limit error, delete the cached URL and resolve again
+      directUrlCache.delete(id);
+      const retry = await resolveDriveUrl(id);
+      const retryHeaders = { ...retry.headers };
+      if (req.headers.range) {
+        retryHeaders["Range"] = req.headers.range;
+      }
+      driveRes = await fetch(retry.url, {
+        method: "GET",
+        headers: retryHeaders,
+      });
+      if (!driveRes.ok && driveRes.status !== 206) {
+        return res.status(driveRes.status).send("Failed to stream from remote file storage.");
       }
     }
 
-    let contentTypeHeader = driveRes.headers.get("content-type") || "";
-    let buffer: Buffer;
+    // Step 4: Map status, copy headers, and pipe stream chunks directly to bypass any memory buffers:
+    const contentType = driveRes.headers.get("content-type") || "video/mp4";
+    const contentLength = driveRes.headers.get("content-length");
+    const contentRange = driveRes.headers.get("content-range");
+    const acceptRanges = driveRes.headers.get("accept-ranges");
 
-    // Step 2: Check if Google returns the HTML virus warning confirmation screen
-    if (contentTypeHeader.includes("text/html")) {
-      const htmlText = await driveRes.text();
-      // Look for the confirmation token from the form action or link
-      const confirmMatch = htmlText.match(/confirm=([a-zA-Z0-9_-]+)/);
-      if (confirmMatch) {
-        const confirmToken = confirmMatch[1];
-        targetUrl = `https://drive.google.com/uc?export=download&id=${id}&confirm=${confirmToken}`;
-        
-        const finalHeaders: Record<string, string> = {
-          "User-Agent": initialHeaders["User-Agent"],
-        };
-        if (cookieHeader) {
-          finalHeaders["Cookie"] = cookieHeader;
-        }
+    res.setHeader("Content-Disposition", "inline");
+    res.setHeader("Content-Type", contentType.includes("text/html") ? "video/mp4" : contentType);
+    if (contentLength) res.setHeader("Content-Length", contentLength);
+    if (contentRange) res.setHeader("Content-Range", contentRange);
+    res.setHeader("Accept-Ranges", acceptRanges || "bytes");
 
-        const confirmRes = await fetch(targetUrl, {
-          method: "GET",
-          headers: finalHeaders,
-        });
+    res.status(driveRes.status);
 
-        const arrayBuf = await confirmRes.arrayBuffer();
-        buffer = Buffer.from(arrayBuf);
-        contentTypeHeader = confirmRes.headers.get("content-type") || "video/mp4";
-      } else {
-        // Fallback: download direct target input
-        const arrayBuf = await fetch(targetUrl, { method: "GET", headers: initialHeaders }).then(r => r.arrayBuffer());
-        buffer = Buffer.from(arrayBuf);
-      }
+    if (driveRes.body) {
+      Readable.fromWeb(driveRes.body as any).pipe(res);
     } else {
-      const arrayBuf = await driveRes.arrayBuffer();
-      buffer = Buffer.from(arrayBuf);
+      res.end();
     }
-
-    // Set fallback content type and save to server memory cache
-    const finalContentType = contentTypeHeader.includes("text/html") ? "video/mp4" : contentTypeHeader;
-    videoCache.set(id, { buffer, contentType: finalContentType });
-
-    // Serve with support for client-side range headers
-    return serveBufferWithRanges(req, res, buffer, finalContentType);
   } catch (error) {
     console.error("Video proxy streaming exception:", error);
     res.status(500).send("Video streaming pipeline error occurred.");

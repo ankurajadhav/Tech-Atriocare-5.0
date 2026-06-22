@@ -34,6 +34,22 @@ const EmbeddedVideo = ({
     ? `https://drive.google.com/thumbnail?id=${driveId}&sz=w800`
     : "";
 
+  // Dynamic video source for client-side fallback (e.g. when hosted on static Vercel)
+  const [videoSrc, setVideoSrc] = useState(`/api/video-stream?id=${driveId}`);
+
+  useEffect(() => {
+    setVideoSrc(`/api/video-stream?id=${driveId}`);
+  }, [driveId]);
+
+  const handleVideoError = () => {
+    // If proxy api route fails/404s, fall back directly to the Google Drive direct download link
+    const directUrl = `https://docs.google.com/uc?export=download&id=${driveId}`;
+    if (videoSrc !== directUrl) {
+      console.log(`Video streaming API failed/unreachable. Falling back to direct Google Drive stream: ${directUrl}`);
+      setVideoSrc(directUrl);
+    }
+  };
+
   const handlePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsPlaying(true);
@@ -47,6 +63,18 @@ const EmbeddedVideo = ({
       }
     }
   };
+
+  useEffect(() => {
+    if (isPlaying && videoRef.current) {
+      videoRef.current.preload = "auto";
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.warn("Automatic playback for source transfer was deferred or blocked:", err);
+        });
+      }
+    }
+  }, [isPlaying, videoSrc]);
 
   const isPortrait = aspect.includes("9/16") || aspect.includes("portrait");
 
@@ -67,7 +95,7 @@ const EmbeddedVideo = ({
       {driveId && (
         <video
           ref={videoRef}
-          src={`/api/video-stream?id=${driveId}`}
+          src={videoSrc}
           title={title}
           controls
           playsInline
@@ -75,6 +103,7 @@ const EmbeddedVideo = ({
           preload="metadata"
           className="w-full h-full bg-black object-contain rounded-[12px] sm:rounded-[20px]"
           onEnded={() => setIsPlaying(false)}
+          onError={handleVideoError}
         />
       )}
 

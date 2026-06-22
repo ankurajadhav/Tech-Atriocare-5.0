@@ -19,9 +19,6 @@ const EmbeddedVideo = ({
   className?: string; 
  }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [videoError, setVideoError] = useState(false);
-  const [key, setKey] = useState(0);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   // Extract file ID from Google Drive preview link if present
   const driveIdMatch = src.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
@@ -39,20 +36,7 @@ const EmbeddedVideo = ({
   const handlePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsPlaying(true);
-    if (videoRef.current) {
-      videoRef.current.play().catch(err => {
-        console.warn("Direct play trigger failed, fallback to state trigger.", err);
-      });
-    }
   };
-
-  useEffect(() => {
-    if (isPlaying && videoRef.current) {
-      videoRef.current.play().catch(err => {
-        console.warn("Autoplay was prevented, showing native play controls instead:", err);
-      });
-    }
-  }, [isPlaying, key]);
 
   const isPortrait = aspect.includes("9/16") || aspect.includes("portrait");
 
@@ -70,28 +54,17 @@ const EmbeddedVideo = ({
         maxHeight: isPortrait ? "min(85vh, 800px)" : "none",
       }}
     >
-      <div className="absolute inset-0 w-full h-full bg-black p-0 flex items-center justify-center">
-        <video
-          ref={videoRef}
-          key={key}
-          src={!videoError ? `/api/video-stream?id=${driveId}` : `https://drive.google.com/uc?export=download&id=${driveId}`}
-          title={title}
-          controls
-          playsInline={true}
-          preload="metadata"
-          className="w-full h-full bg-black object-contain rounded-[12px] sm:rounded sm:rounded-[20px]"
-          onEnded={() => setIsPlaying(false)}
-          onError={() => {
-            if (!videoError) {
-              setVideoError(true);
-            } else {
-              console.error("Both stream sources failed.");
-            }
-          }}
-        />
-      </div>
-
-      {!isPlaying && (
+      {isPlaying && driveId ? (
+        <div className="absolute inset-0 w-full h-full bg-black p-0 flex items-center justify-center">
+          <iframe
+            src={`https://drive.google.com/file/d/${driveId}/preview?autoplay=1`}
+            title={title}
+            className="w-full h-full bg-black border-none"
+            allow="autoplay; encrypted-media; picture-in-picture; clipboard-write; microphone; camera"
+            allowFullScreen
+          />
+        </div>
+      ) : (
         <div 
           className="absolute inset-0 w-full h-full flex flex-col items-center justify-center z-10 p-4 cursor-pointer"
           onClick={handlePlay}
@@ -399,7 +372,7 @@ export default function HaalChaal() {
               </div>
 
               {/* Video Right */}
-              <div className="w-full max-w-[290px] xs:max-w-[330px] sm:max-w-[400px] lg:max-w-[450px] lg:w-[450px] shrink-0 flex items-center justify-center mx-auto">
+              <div className="w-full max-w-[290px] xs:max-w-[330px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[450px] lg:w-[450px] shrink-0 flex items-center justify-center mx-auto">
                 <EmbeddedVideo 
                   src="https://drive.google.com/file/d/1Z9UZQhUhqkYGfMONidA1uIyibhUaA7J6/preview" 
                   title="Mrs. Parinita Sinha Testimony"
@@ -618,7 +591,7 @@ export default function HaalChaal() {
               viewport={{ once: true }}
               className="flex flex-col items-center space-y-6 w-full"
             >
-              <div className="w-full max-w-[290px] xs:max-w-[330px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[450px] flex justify-center">
+              <div className="w-full max-w-[290px] xs:max-w-[330px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[450px] flex justify-center mx-auto">
                 <EmbeddedVideo 
                   src="https://drive.google.com/file/d/1Z9UZQhUhqkYGfMONidA1uIyibhUaA7J6/preview" 
                   title="Mrs. Parinita Sinha Testimony"

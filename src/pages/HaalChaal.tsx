@@ -20,6 +20,7 @@ const EmbeddedVideo = ({
  }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [thumbError, setThumbError] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Extract file ID from Google Drive preview link if present
   const driveIdMatch = src.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
@@ -36,6 +37,16 @@ const EmbeddedVideo = ({
 
   const isPortrait = aspect.includes("9/16") || aspect.includes("portrait");
 
+  const handlePlayClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsPlaying(true);
+    if (videoRef.current) {
+      videoRef.current.play().catch((err) => {
+        console.warn("Playback failed or was deferred:", err);
+      });
+    }
+  };
+
   return (
     <div 
       className={cn(
@@ -50,48 +61,57 @@ const EmbeddedVideo = ({
         maxHeight: isPortrait ? "min(85vh, 800px)" : "none",
       }}
     >
-      {driveId && isPlaying ? (
+      {driveId && (
         <video
-          src={`/api/video-stream?id=${driveId}`}
-          controls
-          autoPlay
+          ref={videoRef}
+          src={`https://drive.usercontent.com/download?id=${driveId}&export=download`}
+          controls={isPlaying}
           playsInline
           webkit-playsinline="true"
-          preload="auto"
+          preload="metadata"
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
           onEnded={() => setIsPlaying(false)}
-          className="absolute inset-0 w-full h-full bg-black object-contain rounded-[12px] sm:rounded-[20px] focus:outline-none z-10"
+          className={cn(
+            "absolute inset-0 w-full h-full bg-black object-contain rounded-[12px] sm:rounded-[20px] focus:outline-none transition-all duration-300",
+            isPlaying ? "opacity-100 z-10 scale-100" : "opacity-0 z-0 pointer-events-none scale-95"
+          )}
         >
           Your browser does not support the video tag.
         </video>
-      ) : (
-        <div 
-          className="absolute inset-0 w-full h-full flex flex-col items-center justify-center z-20 cursor-pointer bg-black"
-          onClick={() => setIsPlaying(true)}
-        >
-          {thumbnailSrc && !thumbError ? (
-            <img 
-               src={thumbnailSrc} 
-               alt={title}
-               className="absolute inset-0 w-full h-full object-contain opacity-85 group-hover:scale-105 transition-transform duration-700 bg-black"
-               referrerPolicy="no-referrer"
-               onError={() => setThumbError(true)}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-[#001D21] via-[#004D40] to-[#001518]" />
-          )}
-          {/* Ambient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/60 z-0" />
-          
-          {/* Visual play button */}
-          <div className="relative z-10 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-brand-teal/90 text-white flex items-center justify-center shadow-2xl shadow-brand-teal/40 group-hover:scale-110 active:scale-95 transition-all duration-300 group-hover:bg-[#0097A7]">
-            <Play className="w-5 h-5 sm:w-8 sm:h-8 fill-current translate-x-0.5" />
-          </div>
-
-          <span className="relative z-10 mt-3 sm:mt-4 text-[9px] sm:text-xs font-black text-white bg-slate-900/80 py-1.5 px-3.5 rounded-full backdrop-blur-sm uppercase tracking-widest border border-white/10 group-hover:bg-brand-teal/90 transition-colors">
-            Click to Play Video
-          </span>
-        </div>
       )}
+
+      {/* Premium play overlay that transitions opacity during play state */}
+      <div 
+        className={cn(
+          "absolute inset-0 w-full h-full flex flex-col items-center justify-center z-20 cursor-pointer bg-black transition-all duration-300",
+          isPlaying ? "opacity-0 pointer-events-none scale-95" : "opacity-100 scale-100"
+        )}
+        onClick={handlePlayClick}
+      >
+        {thumbnailSrc && !thumbError ? (
+          <img 
+             src={thumbnailSrc} 
+             alt={title}
+             className="absolute inset-0 w-full h-full object-contain opacity-85 group-hover:scale-105 transition-transform duration-700 bg-black"
+             referrerPolicy="no-referrer"
+             onError={() => setThumbError(true)}
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-[#001D21] via-[#004D40] to-[#001518]" />
+        )}
+        {/* Ambient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/60 z-0" />
+        
+        {/* Visual play button */}
+        <div className="relative z-10 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-brand-teal/90 text-white flex items-center justify-center shadow-2xl shadow-brand-teal/40 group-hover:scale-110 active:scale-95 transition-all duration-300 group-hover:bg-[#0097A7]">
+          <Play className="w-5 h-5 sm:w-8 sm:h-8 fill-current translate-x-0.5" />
+        </div>
+
+        <span className="relative z-10 mt-3 sm:mt-4 text-[9px] sm:text-xs font-black text-white bg-slate-900/80 py-1.5 px-3.5 rounded-full backdrop-blur-sm uppercase tracking-widest border border-white/10 group-hover:bg-brand-teal/90 transition-colors">
+          Click to Play Video
+        </span>
+      </div>
       
       {/* Super sleek premium link button to open the original Google Drive, hidden while playing to prevent leaving the page */}
       {!isPlaying && (

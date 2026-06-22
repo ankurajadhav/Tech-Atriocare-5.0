@@ -19,6 +19,7 @@ const EmbeddedVideo = ({
   className?: string; 
  }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [thumbError, setThumbError] = useState(false);
 
   // Extract file ID from Google Drive preview link if present
   const driveIdMatch = src.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
@@ -55,27 +56,32 @@ const EmbeddedVideo = ({
       }}
     >
       {driveId && isPlaying ? (
-        <iframe
-          src={`https://drive.google.com/file/d/${driveId}/preview?autoplay=1`}
-          title={title}
-          className="w-full h-full bg-black rounded-[12px] sm:rounded-[20px] border-0"
-          allow="autoplay; encrypted-media; picture-in-picture"
-          allowFullScreen
-        />
+        <video
+          controls
+          autoPlay
+          playsInline
+          className="w-full h-full bg-black object-contain rounded-[12px] sm:rounded-[20px] focus:outline-none"
+          onEnded={() => setIsPlaying(false)}
+        >
+          <source src={`/api/video-stream?id=${driveId}`} type="video/mp4" />
+          <source src={`https://docs.google.com/uc?export=download&id=${driveId}`} type="video/mp4" />
+          Your browser does not support the video tag or format.
+        </video>
       ) : driveId && (
         <div 
           className="absolute inset-0 w-full h-full flex flex-col items-center justify-center z-20 cursor-pointer bg-black"
           onClick={handlePlay}
         >
-          {thumbnailSrc ? (
+          {thumbnailSrc && !thumbError ? (
             <img 
                src={thumbnailSrc} 
                alt={title}
                className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
                referrerPolicy="no-referrer"
+               onError={() => setThumbError(true)}
             />
           ) : (
-            <div className="absolute inset-0 bg-[#001D21]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[#001D21] via-[#004D40] to-[#001518]" />
           )}
           {/* Ambient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/50 z-0" />

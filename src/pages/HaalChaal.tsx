@@ -19,7 +19,6 @@ const EmbeddedVideo = ({
   className?: string; 
  }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Extract file ID from Google Drive preview link if present
   const driveIdMatch = src.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
@@ -34,47 +33,10 @@ const EmbeddedVideo = ({
     ? `https://drive.google.com/thumbnail?id=${driveId}&sz=w800`
     : "";
 
-  // Dynamic video source for client-side fallback (e.g. when hosted on static Vercel)
-  const [videoSrc, setVideoSrc] = useState(`/api/video-stream?id=${driveId}`);
-
-  useEffect(() => {
-    setVideoSrc(`/api/video-stream?id=${driveId}`);
-  }, [driveId]);
-
-  const handleVideoError = () => {
-    // If proxy api route fails/404s, fall back directly to the Google Drive direct download link
-    const directUrl = `https://docs.google.com/uc?export=download&id=${driveId}`;
-    if (videoSrc !== directUrl) {
-      console.log(`Video streaming API failed/unreachable. Falling back to direct Google Drive stream: ${directUrl}`);
-      setVideoSrc(directUrl);
-    }
-  };
-
   const handlePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsPlaying(true);
-    if (videoRef.current) {
-      videoRef.current.preload = "auto";
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((err) => {
-          console.warn("Mobile playback play() call was deferred or blocked:", err);
-        });
-      }
-    }
   };
-
-  useEffect(() => {
-    if (isPlaying && videoRef.current) {
-      videoRef.current.preload = "auto";
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((err) => {
-          console.warn("Automatic playback for source transfer was deferred or blocked:", err);
-        });
-      }
-    }
-  }, [isPlaying, videoSrc]);
 
   const isPortrait = aspect.includes("9/16") || aspect.includes("portrait");
 
@@ -92,22 +54,15 @@ const EmbeddedVideo = ({
         maxHeight: isPortrait ? "min(85vh, 800px)" : "none",
       }}
     >
-      {driveId && (
-        <video
-          ref={videoRef}
-          src={videoSrc}
+      {driveId && isPlaying ? (
+        <iframe
+          src={`https://drive.google.com/file/d/${driveId}/preview?autoplay=1`}
           title={title}
-          controls
-          playsInline
-          webkit-playsinline="true"
-          preload="metadata"
-          className="w-full h-full bg-black object-contain rounded-[12px] sm:rounded-[20px]"
-          onEnded={() => setIsPlaying(false)}
-          onError={handleVideoError}
+          className="w-full h-full bg-black rounded-[12px] sm:rounded-[20px] border-0"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowFullScreen
         />
-      )}
-
-      {!isPlaying && (
+      ) : driveId && (
         <div 
           className="absolute inset-0 w-full h-full flex flex-col items-center justify-center z-20 cursor-pointer bg-black"
           onClick={handlePlay}
@@ -143,7 +98,7 @@ const EmbeddedVideo = ({
           target="_blank" 
           rel="noopener noreferrer"
           title="Open video in new tab"
-          className="absolute top-2.5 right-2.5 z-20 w-7 h-7 rounded-full bg-[#0097A7]/95 hover:bg-[#0097A7] text-white flex items-center justify-center backdrop-blur-sm shadow-lg border border-white/20 active:scale-105 transition-all outline-none"
+          className="absolute top-2.5 right-2.5 z-30 w-7 h-7 rounded-full bg-[#0097A7]/95 hover:bg-[#0097A7] text-white flex items-center justify-center backdrop-blur-sm shadow-lg border border-white/20 active:scale-105 transition-all outline-none"
           onClick={(e) => e.stopPropagation()}
         >
           <ArrowUpRight className="w-3 h-3" />

@@ -20,6 +20,7 @@ const EmbeddedVideo = ({
  }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [thumbError, setThumbError] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Extract file ID from Google Drive preview link if present
   const driveIdMatch = src.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
@@ -36,6 +37,27 @@ const EmbeddedVideo = ({
 
   const handlePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
+    setIsPlaying(true);
+    if (videoRef.current) {
+      videoRef.current.preload = "auto";
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.warn("Mobile playback play() call was deferred or blocked:", err);
+          // Try loading and playing again if blocked
+          videoRef.current?.load();
+          videoRef.current?.play().catch(e => console.error("Retry play failed:", e));
+        });
+      }
+    }
+  };
+
+  // Synchronize state if paused by device or native controls
+  const handlePause = () => {
+    setIsPlaying(false);
+  };
+
+  const handleNativePlay = () => {
     setIsPlaying(true);
   };
 
@@ -55,21 +77,30 @@ const EmbeddedVideo = ({
         maxHeight: isPortrait ? "min(85vh, 800px)" : "none",
       }}
     >
-      {driveId && isPlaying ? (
+      {driveId && (
         <video
+          ref={videoRef}
+          src={`/api/video-stream?id=${driveId}`}
           controls
-          autoPlay
           playsInline
+          webkit-playsinline="true"
+          preload="metadata"
           className="w-full h-full bg-black object-contain rounded-[12px] sm:rounded-[20px] focus:outline-none"
           onEnded={() => setIsPlaying(false)}
+          onPause={handlePause}
+          onPlay={handleNativePlay}
         >
-          <source src={`/api/video-stream?id=${driveId}`} type="video/mp4" />
-          <source src={`https://docs.google.com/uc?export=download&id=${driveId}`} type="video/mp4" />
-          Your browser does not support the video tag or format.
+          Your browser does not support the video tag.
         </video>
-      ) : driveId && (
+      )}
+
+      {/* Premium play overlay that transitions opacity during play state */}
+      {driveId && (
         <div 
-          className="absolute inset-0 w-full h-full flex flex-col items-center justify-center z-20 cursor-pointer bg-black"
+          className={cn(
+            "absolute inset-0 w-full h-full flex flex-col items-center justify-center z-20 cursor-pointer bg-black transition-all duration-300",
+            isPlaying ? "opacity-0 pointer-events-none scale-95" : "opacity-100 scale-100"
+          )}
           onClick={handlePlay}
         >
           {thumbnailSrc && !thumbError ? (

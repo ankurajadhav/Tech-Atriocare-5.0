@@ -34,18 +34,22 @@ const EmbeddedVideo = ({
     ? `https://drive.google.com/thumbnail?id=${driveId}&sz=w800`
     : "";
 
-  const isPortrait = aspect.includes("9/16") || aspect.includes("portrait");
+  const isPortrait = aspect.includes("9/16") || aspect.includes("portrait") || aspect.includes("3/4") || aspect.includes("9/12");
 
   const handlePlayClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsPlaying(true);
   };
 
+  const isThreeFour = aspect.includes("3/4") || aspect.includes("9/12");
+
   return (
     <div 
       className={cn(
         "group relative z-10 w-full overflow-hidden border-2 sm:border-4 md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center placeholder-black rounded-[20px] sm:rounded-[28px] bg-black", 
-        isPortrait ? "aspect-[9/14.5] xs:aspect-[9/15.5] sm:aspect-[9/16]" : aspect,
+        isPortrait 
+          ? (isThreeFour ? "aspect-[3/4]" : "aspect-[9/14.5] xs:aspect-[9/15.5] sm:aspect-[9/16]")
+          : aspect,
         isPortrait 
           ? "max-w-[335px] xs:max-w-[365px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[450px] mx-auto" 
           : "max-w-[92%] sm:max-w-3xl lg:max-w-4xl mx-auto",
@@ -58,24 +62,25 @@ const EmbeddedVideo = ({
       {driveId && isPlaying && (
         <iframe
           src={`https://drive.google.com/file/d/${driveId}/preview?autoplay=1`}
-          className="absolute inset-0 w-full h-full bg-black rounded-[12px] sm:rounded-[20px] border-0 z-10"
+          className="absolute inset-0 w-full h-full bg-black rounded-[16px] sm:rounded-[24px] border-0 z-10"
           allow="autoplay; encrypted-media; picture-in-picture"
           allowFullScreen
           title={title}
         />
       )}
 
-      {/* Floating close button to return to the custom thumbnail */}
+      {/* Floating close button to return to the custom thumbnail, positioned left to avoid GDrive native right-hand buttons */}
       {isPlaying && (
         <button
           onClick={(e) => {
             e.stopPropagation();
             setIsPlaying(false);
           }}
-          className="absolute top-2 right-2 sm:top-4 sm:right-4 z-30 p-1.5 sm:p-2 rounded-full bg-black/60 hover:bg-black/90 text-white/95 hover:text-white transition-all duration-300 border border-white/20 cursor-pointer shadow-lg hover:scale-105 active:scale-95"
+          className="absolute top-2.5 left-2.5 sm:top-4 sm:left-4 z-30 p-1.5 sm:p-2 rounded-full bg-black/75 hover:bg-black/95 text-white/90 hover:text-white transition-all duration-300 border border-white/20 cursor-pointer shadow-lg hover:scale-105 active:scale-95 flex items-center justify-center gap-1 backdrop-blur-md"
           title="Close Video"
         >
-          <X className="w-4 h-4 sm:w-5 sm:h-5" />
+          <X className="w-3.5 h-3.5 sm:w-4.5 sm:h-4.5" />
+          <span className="text-[9px] sm:text-[10px] tracking-wider font-extrabold pr-1 uppercase">Close</span>
         </button>
       )}
 
@@ -394,7 +399,7 @@ export default function HaalChaal() {
                 <EmbeddedVideo 
                   src="https://drive.google.com/file/d/1Z9UZQhUhqkYGfMONidA1uIyibhUaA7J6/preview" 
                   title="Mrs. Parinita Sinha Testimony"
-                  aspect="aspect-[9/16]"
+                  aspect="aspect-[3/4]"
                   className="w-full"
                 />
               </div>
@@ -613,7 +618,7 @@ export default function HaalChaal() {
                 <EmbeddedVideo 
                   src="https://drive.google.com/file/d/1Z9UZQhUhqkYGfMONidA1uIyibhUaA7J6/preview" 
                   title="Mrs. Parinita Sinha Testimony"
-                  aspect="aspect-[9/16]"
+                  aspect="aspect-[3/4]"
                   className="w-full"
                 />
               </div>

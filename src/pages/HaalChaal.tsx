@@ -80,16 +80,24 @@ const EmbeddedVideo = ({
       {driveId && (
         <video
           ref={videoRef}
-          src={`/api/video-stream?id=${driveId}`}
-          controls
+          controls={isPlaying}
           playsInline
           webkit-playsinline="true"
           preload="metadata"
+          poster={thumbnailSrc && !thumbError ? thumbnailSrc : undefined}
           className="w-full h-full bg-black object-contain rounded-[12px] sm:rounded-[20px] focus:outline-none"
-          onEnded={() => setIsPlaying(false)}
+          onEnded={() => {
+            setIsPlaying(false);
+            if (videoRef.current) {
+              videoRef.current.load(); // Reloading resets standard UI to show poster
+            }
+          }}
           onPause={handlePause}
           onPlay={handleNativePlay}
         >
+          <source src={`https://docs.google.com/uc?export=download&id=${driveId}`} type="video/mp4" />
+          <source src={`/api/video-stream?id=${driveId}`} type="video/mp4" />
+          <source src={`https://drive.google.com/uc?id=${driveId}&export=download`} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       )}
@@ -107,7 +115,7 @@ const EmbeddedVideo = ({
             <img 
                src={thumbnailSrc} 
                alt={title}
-               className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
+               className="absolute inset-0 w-full h-full object-contain opacity-85 group-hover:scale-105 transition-transform duration-700 bg-black"
                referrerPolicy="no-referrer"
                onError={() => setThumbError(true)}
             />
@@ -115,7 +123,7 @@ const EmbeddedVideo = ({
             <div className="absolute inset-0 bg-gradient-to-br from-[#001D21] via-[#004D40] to-[#001518]" />
           )}
           {/* Ambient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/50 z-0" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/60 z-0" />
           
           {/* Visual play button */}
           <div className="relative z-10 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-brand-teal/90 text-white flex items-center justify-center shadow-2xl shadow-brand-teal/40 group-hover:scale-110 active:scale-95 transition-all duration-300 group-hover:bg-[#0097A7]">

@@ -11,8 +11,8 @@ const PORT = 3000;
 
 app.use(express.json());
 
-// Shared in-memory cache for resolved Google Drive download URLs to bypass antivirus checkpoints and rate limits
-const directUrlCache = new Map<string, { url: string; headers: Record<string, string> }>();
+// Shared in-memory cache for resolved Google Drive download URLs with a dynamic TTL to avoid stale links and rate limits
+const directUrlCache = new Map<string, { url: string; headers: Record<string, string>; timestamp: number }>();
 
 function parseCookies(cookieList: string[]): Record<string, string> {
   const cookies: Record<string, string> = {};
@@ -38,8 +38,10 @@ function serializeCookies(cookies: Record<string, string>): string {
 }
 
 async function resolveDriveUrl(id: string): Promise<{ url: string; headers: Record<string, string> }> {
-  if (directUrlCache.has(id)) {
-    return directUrlCache.get(id)!;
+  const cached = directUrlCache.get(id);
+  const now = Date.now();
+  if (cached && (now - cached.timestamp < 1000 * 60 * 15)) { // 15-minute TTL to keep access tokens and IP-bound URLs fresh
+    return { url: cached.url, headers: cached.headers };
   }
 
   let currentUrl = `https://drive.google.com/uc?export=download&id=${id}`;
@@ -105,7 +107,7 @@ async function resolveDriveUrl(id: string): Promise<{ url: string; headers: Reco
         ...(serializeCookies(accumulatedCookies) ? { "Cookie": serializeCookies(accumulatedCookies) } : {}),
       }
     };
-    directUrlCache.set(id, result);
+    directUrlCache.set(id, { ...result, timestamp: Date.now() });
     return result;
   }
 

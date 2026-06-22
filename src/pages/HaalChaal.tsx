@@ -19,9 +19,7 @@ const EmbeddedVideo = ({
   className?: string; 
  }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [thumbError, setThumbError] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Extract file ID from Google Drive preview link if present
   const driveIdMatch = src.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
@@ -41,13 +39,6 @@ const EmbeddedVideo = ({
   const handlePlayClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsPlaying(true);
-    setIsLoading(true);
-    if (videoRef.current) {
-      videoRef.current.load();
-      videoRef.current.play().catch((err) => {
-        console.warn("Playback failed or was deferred:", err);
-      });
-    }
   };
 
   return (
@@ -64,43 +55,28 @@ const EmbeddedVideo = ({
         maxHeight: isPortrait ? "min(85vh, 800px)" : "none",
       }}
     >
-      {driveId && (
-        <video
-          ref={videoRef}
-          src={`/api/video-stream?id=${driveId}`}
-          controls={isPlaying}
-          playsInline
-          webkit-playsinline="true"
-          preload="none"
-          onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
-          onEnded={() => {
-            setIsPlaying(false);
-            if (videoRef.current) {
-              videoRef.current.load();
-            }
-          }}
-          onLoadStart={() => {
-            if (isPlaying) setIsLoading(true);
-          }}
-          onWaiting={() => setIsLoading(true)}
-          onPlaying={() => setIsLoading(false)}
-          onCanPlay={() => setIsLoading(false)}
-          className={cn(
-            "absolute inset-0 w-full h-full bg-black object-contain rounded-[12px] sm:rounded-[20px] focus:outline-none transition-all duration-300",
-            isPlaying ? "opacity-100 z-10 scale-100" : "opacity-0 z-0 pointer-events-none scale-95"
-          )}
-        >
-          Your browser does not support the video tag.
-        </video>
+      {driveId && isPlaying && (
+        <iframe
+          src={`https://drive.google.com/file/d/${driveId}/preview?autoplay=1`}
+          className="absolute inset-0 w-full h-full bg-black rounded-[12px] sm:rounded-[20px] border-0 z-10"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowFullScreen
+          title={title}
+        />
       )}
 
-      {/* Premium loading spinner overlay */}
-      {isPlaying && isLoading && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 z-30 pointer-events-none">
-          <div className="w-10 h-10 border-4 border-[#0097A7]/30 border-t-[#0097A7] rounded-full animate-spin mb-2" />
-          <p className="text-[10px] uppercase tracking-wider font-semibold text-white/90">Connecting Secure Stream...</p>
-        </div>
+      {/* Floating close button to return to the custom thumbnail */}
+      {isPlaying && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsPlaying(false);
+          }}
+          className="absolute top-2 right-2 sm:top-4 sm:right-4 z-30 p-1.5 sm:p-2 rounded-full bg-black/60 hover:bg-black/90 text-white/95 hover:text-white transition-all duration-300 border border-white/20 cursor-pointer shadow-lg hover:scale-105 active:scale-95"
+          title="Close Video"
+        >
+          <X className="w-4 h-4 sm:w-5 sm:h-5" />
+        </button>
       )}
 
       {/* Premium play overlay that transitions opacity during play state */}

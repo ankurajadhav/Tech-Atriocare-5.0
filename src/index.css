@@ -2,6 +2,7 @@
 @import "tailwindcss";
 
 @theme {
+  --breakpoint-xs: 375px;
   --color-brand-bg: #f8fafc;
   --color-brand-teal: #0097a7;
   --color-brand-teal-light: #e0f2f1;

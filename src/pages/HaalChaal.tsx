@@ -20,7 +20,6 @@ const EmbeddedVideo = ({
  }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [thumbError, setThumbError] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Extract file ID from Google Drive preview link if present
   const driveIdMatch = src.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
@@ -34,33 +33,6 @@ const EmbeddedVideo = ({
   const thumbnailSrc = driveId 
     ? `https://drive.google.com/thumbnail?id=${driveId}&sz=w800`
     : "";
-
-  const handlePlay = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsPlaying(true);
-    if (videoRef.current) {
-      videoRef.current.preload = "auto";
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((err) => {
-          console.warn("Mobile playback play() call was deferred or blocked:", err);
-          // Try loading and playing again if blocked
-          videoRef.current?.load();
-          videoRef.current?.play().catch(e => console.error("Retry play failed:", e));
-        });
-      }
-    }
-  };
-
-  // Synchronize state if paused by device or native controls
-  const handlePause = () => {
-    // Keep isPlaying as true so the native mobile controls stay visible 
-    // and our custom play overlay does not cover the video with a second play button
-  };
-
-  const handleNativePlay = () => {
-    setIsPlaying(true);
-  };
 
   const isPortrait = aspect.includes("9/16") || aspect.includes("portrait");
 
@@ -78,37 +50,18 @@ const EmbeddedVideo = ({
         maxHeight: isPortrait ? "min(85vh, 800px)" : "none",
       }}
     >
-      {driveId && (
-        <video
-          ref={videoRef}
-          src={`/api/video-stream?id=${driveId}`}
-          controls={isPlaying}
-          playsInline
-          webkit-playsinline="true"
-          preload="metadata"
-          poster={thumbnailSrc && !thumbError ? thumbnailSrc : undefined}
-          className="w-full h-full bg-black object-contain rounded-[12px] sm:rounded-[20px] focus:outline-none"
-          onEnded={() => {
-            setIsPlaying(false);
-            if (videoRef.current) {
-              videoRef.current.load(); // Reloading resets standard UI to show poster
-            }
-          }}
-          onPause={handlePause}
-          onPlay={handleNativePlay}
-        >
-          Your browser does not support the video tag.
-        </video>
-      )}
-
-      {/* Premium play overlay that transitions opacity during play state */}
-      {driveId && (
+      {driveId && isPlaying ? (
+        <iframe
+          src={`https://drive.google.com/file/d/${driveId}/preview`}
+          title={title}
+          className="w-full h-full border-0 rounded-[12px] sm:rounded-[20px] absolute inset-0 z-10"
+          allow="autoplay; encrypted-media"
+          allowFullScreen
+        />
+      ) : (
         <div 
-          className={cn(
-            "absolute inset-0 w-full h-full flex flex-col items-center justify-center z-20 cursor-pointer bg-black transition-all duration-300",
-            isPlaying ? "opacity-0 pointer-events-none scale-95" : "opacity-100 scale-100"
-          )}
-          onClick={handlePlay}
+          className="absolute inset-0 w-full h-full flex flex-col items-center justify-center z-20 cursor-pointer bg-black"
+          onClick={() => setIsPlaying(true)}
         >
           {thumbnailSrc && !thumbError ? (
             <img 

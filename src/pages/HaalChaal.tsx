@@ -54,7 +54,8 @@ const EmbeddedVideo = ({
 
   // Synchronize state if paused by device or native controls
   const handlePause = () => {
-    setIsPlaying(false);
+    // Keep isPlaying as true so the native mobile controls stay visible 
+    // and our custom play overlay does not cover the video with a second play button
   };
 
   const handleNativePlay = () => {
@@ -80,6 +81,7 @@ const EmbeddedVideo = ({
       {driveId && (
         <video
           ref={videoRef}
+          src={`/api/video-stream?id=${driveId}`}
           controls={isPlaying}
           playsInline
           webkit-playsinline="true"
@@ -95,9 +97,6 @@ const EmbeddedVideo = ({
           onPause={handlePause}
           onPlay={handleNativePlay}
         >
-          <source src={`https://docs.google.com/uc?export=download&id=${driveId}`} type="video/mp4" />
-          <source src={`/api/video-stream?id=${driveId}`} type="video/mp4" />
-          <source src={`https://drive.google.com/uc?id=${driveId}&export=download`} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       )}

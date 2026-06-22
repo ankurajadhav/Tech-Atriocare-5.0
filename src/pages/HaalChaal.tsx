@@ -45,9 +45,9 @@ const EmbeddedVideo = ({
     <div 
       className={cn(
         "group relative z-10 w-full overflow-hidden border-2 sm:border-4 md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center placeholder-black rounded-[20px] sm:rounded-[28px] bg-black", 
-        aspect,
+        isPortrait ? "aspect-[9/14.5] xs:aspect-[9/15.5] sm:aspect-[9/16]" : aspect,
         isPortrait 
-          ? "max-w-[290px] xs:max-w-[330px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[450px] mx-auto" 
+          ? "max-w-[335px] xs:max-w-[365px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[450px] mx-auto" 
           : "max-w-[92%] sm:max-w-3xl lg:max-w-4xl mx-auto",
         className
       )}
@@ -390,7 +390,7 @@ export default function HaalChaal() {
               </div>
 
               {/* Video Right */}
-              <div className="w-full max-w-[290px] xs:max-w-[330px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[450px] lg:w-[450px] shrink-0 flex items-center justify-center mx-auto">
+              <div className="w-full max-w-[335px] xs:max-w-[365px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[450px] lg:w-[450px] shrink-0 flex items-center justify-center mx-auto">
                 <EmbeddedVideo 
                   src="https://drive.google.com/file/d/1Z9UZQhUhqkYGfMONidA1uIyibhUaA7J6/preview" 
                   title="Mrs. Parinita Sinha Testimony"
@@ -609,7 +609,7 @@ export default function HaalChaal() {
               viewport={{ once: true }}
               className="flex flex-col items-center space-y-6 w-full"
             >
-              <div className="w-full max-w-[290px] xs:max-w-[330px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[450px] flex justify-center mx-auto">
+              <div className="w-full max-w-[335px] xs:max-w-[365px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[450px] flex justify-center mx-auto">
                 <EmbeddedVideo 
                   src="https://drive.google.com/file/d/1Z9UZQhUhqkYGfMONidA1uIyibhUaA7J6/preview" 
                   title="Mrs. Parinita Sinha Testimony"
@@ -630,9 +630,9 @@ export default function HaalChaal() {
               transition={{ delay: 0.15 }}
               className="flex flex-col items-center space-y-6 w-full"
             >
-              <div className="w-full max-w-[290px] xs:max-w-[330px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[450px] flex justify-center mx-auto">
+              <div className="w-full max-w-[335px] xs:max-w-[365px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[450px] flex justify-center mx-auto">
                 <div 
-                  className="group relative z-10 w-full overflow-hidden bg-white border-2 sm:border-4 md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center rounded-[20px] sm:rounded-[28px] aspect-[9/16]"
+                  className="group relative z-10 w-full overflow-hidden bg-white border-2 sm:border-4 md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center rounded-[20px] sm:rounded-[28px] aspect-[9/14.5] xs:aspect-[9/15.5] sm:aspect-[9/16]"
                   style={{
                     maxHeight: "min(85vh, 800px)",
                   }}

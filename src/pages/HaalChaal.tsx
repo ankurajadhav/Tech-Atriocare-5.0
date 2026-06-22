@@ -43,8 +43,8 @@ const EmbeddedVideo = ({
   return (
     <div 
       className={cn(
-        "group relative z-10 w-full overflow-hidden bg-black border-2 sm:border-4 md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center placeholder-black rounded-[20px] sm:rounded-[28px]", 
-        aspect,
+        "group relative z-10 w-full overflow-hidden border-2 sm:border-4 md:border-8 border-slate-100 shadow-2xl transition-all duration-300 hover:scale-[1.01] hover:border-teal-100/80 flex items-center justify-center placeholder-black rounded-[20px] sm:rounded-[28px]", 
+        isPlaying ? "bg-transparent aspect-auto" : cn("bg-black", aspect),
         isPortrait 
           ? "max-w-[290px] xs:max-w-[330px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[450px] mx-auto" 
           : "max-w-[92%] sm:max-w-3xl lg:max-w-4xl mx-auto",
@@ -52,16 +52,20 @@ const EmbeddedVideo = ({
       )}
       style={{
         maxHeight: isPortrait ? "min(85vh, 800px)" : "none",
+        height: isPlaying ? "auto" : undefined,
       }}
     >
       {isPlaying && driveId ? (
-        <div className="absolute inset-0 w-full h-full bg-black p-0 flex items-center justify-center">
-          <iframe
-            src={`https://drive.google.com/file/d/${driveId}/preview?autoplay=1`}
+        <div className="w-full h-full bg-transparent flex items-center justify-center overflow-hidden">
+          <video
+            src={`/api/video-stream?id=${driveId}`}
             title={title}
-            className="w-full h-full bg-black border-none"
-            allow="autoplay; encrypted-media; picture-in-picture; clipboard-write; microphone; camera"
-            allowFullScreen
+            controls
+            playsInline
+            autoPlay
+            preload="auto"
+            className="w-full h-auto max-h-[80vh] bg-transparent object-contain rounded-[12px] sm:rounded-[20px]"
+            onEnded={() => setIsPlaying(false)}
           />
         </div>
       ) : (

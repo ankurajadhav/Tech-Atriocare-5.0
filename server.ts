@@ -14,68 +14,102 @@ app.use(express.json());
 // Shared in-memory cache for resolved Google Drive download URLs to bypass antivirus checkpoints and rate limits
 const directUrlCache = new Map<string, { url: string; headers: Record<string, string> }>();
 
+function parseCookies(cookieList: string[]): Record<string, string> {
+  const cookies: Record<string, string> = {};
+  for (const list of cookieList) {
+    if (!list) continue;
+    const firstPart = list.split(";")[0];
+    const firstEq = firstPart.indexOf("=");
+    if (firstEq !== -1) {
+      const key = firstPart.substring(0, firstEq).trim();
+      const value = firstPart.substring(firstEq + 1).trim();
+      if (key) {
+        cookies[key] = value;
+      }
+    }
+  }
+  return cookies;
+}
+
+function serializeCookies(cookies: Record<string, string>): string {
+  return Object.entries(cookies)
+    .map(([k, v]) => `${k}=${v}`)
+    .join("; ");
+}
+
 async function resolveDriveUrl(id: string): Promise<{ url: string; headers: Record<string, string> }> {
   if (directUrlCache.has(id)) {
     return directUrlCache.get(id)!;
   }
 
-  const initialUrl = `https://drive.google.com/uc?export=download&id=${id}`;
+  let currentUrl = `https://drive.google.com/uc?export=download&id=${id}`;
+  const accumulatedCookies: Record<string, string> = {};
   const initialHeaders = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
   };
 
-  // Step 1: Initial request to handle potential 302 redirects and collect confirmation cookies
-  let res = await fetch(initialUrl, {
-    method: "GET",
-    headers: initialHeaders,
-    redirect: "manual"
-  });
+  let attempts = 0;
+  while (attempts < 10) {
+    attempts++;
+    const headers: Record<string, string> = { ...initialHeaders };
+    const cookieHeader = serializeCookies(accumulatedCookies);
+    if (cookieHeader) {
+      headers["Cookie"] = cookieHeader;
+    }
 
-  let status = res.status;
-  let cookieHeader = res.headers.get("set-cookie") || "";
-  let finalUrl = initialUrl;
+    const res = await fetch(currentUrl, {
+      method: "GET",
+      headers,
+      redirect: "manual",
+    });
 
-  if ([301, 302, 303, 307, 308].includes(status)) {
-    const loc = res.headers.get("location");
-    if (loc) {
-      finalUrl = loc;
-      // Follow the redirect manually to collect any warning skip keys
-      res = await fetch(finalUrl, {
-        method: "GET",
-         headers: {
-          ...initialHeaders,
-          ...(cookieHeader ? { "Cookie": cookieHeader } : {})
-        },
-        redirect: "manual"
-      });
-      const nextCookie = res.headers.get("set-cookie");
-      if (nextCookie) {
-        cookieHeader = [cookieHeader, nextCookie].filter(Boolean).join("; ");
+    const status = res.status;
+    const setCookieHeader = typeof res.headers.getSetCookie === "function"
+      ? res.headers.getSetCookie()
+      : (res.headers.get("set-cookie") ? [res.headers.get("set-cookie")!] : []);
+
+    const newCookies = parseCookies(setCookieHeader);
+    Object.assign(accumulatedCookies, newCookies);
+
+    // If it's a redirect, capture the Location and loop
+    if ([301, 302, 303, 307, 308].includes(status)) {
+      const loc = res.headers.get("location");
+      if (loc) {
+        if (loc.startsWith("/")) {
+          const parsed = new URL(currentUrl);
+          currentUrl = `${parsed.protocol}//${parsed.host}${loc}`;
+        } else {
+          currentUrl = loc;
+        }
+        continue;
       }
     }
+
+    // Checking for HTML page which represents the "Google can't scan this file for viruses" confirmation gate
+    const contentType = res.headers.get("content-type") || "";
+    if (contentType.includes("text/html")) {
+      const htmlText = await res.text();
+      const confirmMatch = htmlText.match(/confirm=([a-zA-Z0-9_-]+)/);
+      if (confirmMatch) {
+         const confirmToken = confirmMatch[1];
+         currentUrl = `https://drive.google.com/uc?export=download&id=${id}&confirm=${confirmToken}`;
+         continue;
+      }
+    }
+
+    // If we reach here, we've successfully got a non-redirect, non-HTML stream-ready response!
+    const result = {
+      url: currentUrl,
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+        ...(serializeCookies(accumulatedCookies) ? { "Cookie": serializeCookies(accumulatedCookies) } : {}),
+      }
+    };
+    directUrlCache.set(id, result);
+    return result;
   }
 
-  // Step 2: Check for Google's large file virus confirmation gate page
-  const contentType = res.headers.get("content-type") || "";
-  if (contentType.includes("text/html")) {
-    const htmlText = await res.text();
-    const confirmMatch = htmlText.match(/confirm=([a-zA-Z0-9_-]+)/);
-    if (confirmMatch) {
-      const confirmToken = confirmMatch[1];
-      finalUrl = `https://drive.google.com/uc?export=download&id=${id}&confirm=${confirmToken}`;
-    }
-  }
-
-  const result = {
-    url: finalUrl,
-    headers: {
-      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-      ...(cookieHeader ? { "Cookie": cookieHeader } : {})
-    }
-  };
-
-  directUrlCache.set(id, result);
-  return result;
+  throw new Error(`Failed to resolve Google Drive direct link for ID ${id} after ${attempts} redirects.`);
 }
 
 // Lazy initialization for Gemini to catch missing API keys gracefully
@@ -188,7 +222,7 @@ app.get("/api/video-stream", async (req, res) => {
       driveHeaders["Range"] = req.headers.range;
     }
 
-    // Step 3: Fetch the range segment from Google Drive
+    // Fetch the range segment from Google Drive
     let driveRes = await fetch(url, {
       method: "GET",
       headers: driveHeaders,
@@ -211,17 +245,24 @@ app.get("/api/video-stream", async (req, res) => {
       }
     }
 
-    // Step 4: Map status, copy headers, and pipe stream chunks directly to bypass any memory buffers:
-    const contentType = driveRes.headers.get("content-type") || "video/mp4";
+    let contentType = driveRes.headers.get("content-type") || "video/mp4";
+    if (contentType.includes("text/html")) {
+      // If we received HTML, it means Google Drive returned a permission error or virus scan page
+      // In this case, we have to raise an exception, purge cache and fail
+      directUrlCache.delete(id);
+      throw new Error("Resolved URL returned text/html content instead of media stream.");
+    }
+
     const contentLength = driveRes.headers.get("content-length");
     const contentRange = driveRes.headers.get("content-range");
     const acceptRanges = driveRes.headers.get("accept-ranges");
 
     res.setHeader("Content-Disposition", "inline");
-    res.setHeader("Content-Type", contentType.includes("text/html") ? "video/mp4" : contentType);
+    res.setHeader("Content-Type", contentType);
     if (contentLength) res.setHeader("Content-Length", contentLength);
     if (contentRange) res.setHeader("Content-Range", contentRange);
     res.setHeader("Accept-Ranges", acceptRanges || "bytes");
+    res.setHeader("Cache-Control", "public, max-age=31536000");
 
     res.status(driveRes.status);
 

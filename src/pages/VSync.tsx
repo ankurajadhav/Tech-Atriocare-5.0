@@ -698,7 +698,7 @@ export default function VSyncPage() {
           {/* Vaani */}
           <div className="grid lg:grid-cols-2 gap-12 lg:grid-cols-2 lg:gap-24 items-center">
             <div className="space-y-6 sm:space-y-12">
-              <h2 className="text-4xl sm:text-8xl md:text-[160px] font-black text-white leading-none tracking-tighter drop-shadow-[0_8px_32px_rgba(76,29,149,0.5)] select-none">वाणी</h2>
+              <h2 className="text-4xl sm:text-7xl md:text-[110px] font-black text-white leading-none tracking-tighter drop-shadow-[0_8px_32px_rgba(76,29,149,0.5)] select-none">वाणी</h2>
               <div className="space-y-4 sm:space-y-6">
                  <p className="text-base sm:text-2xl md:text-3xl font-bold text-white leading-relaxed">
                    In Hindi, the word "Vaani" (वाणी) translates to "speech" or "voice".
@@ -739,7 +739,7 @@ export default function VSyncPage() {
                <h3 className="w-full text-center text-4xl sm:text-7xl md:text-8xl font-serif text-white tracking-widest drop-shadow-[0_8px_24px_rgba(255,255,255,0.4)] z-10 font-bold group-hover:scale-110 transition-transform duration-500">Verve</h3>
             </motion.div>
             <div className="space-y-6 sm:space-y-12 order-1 lg:order-2">
-              <h2 className="text-4xl sm:text-8xl md:text-[160px] font-black text-white leading-none tracking-tighter drop-shadow-[0_8px_32px_rgba(76,29,149,0.5)] select-none">उत्साह</h2>
+              <h2 className="text-4xl sm:text-7xl md:text-[110px] font-black text-white leading-none tracking-tighter drop-shadow-[0_8px_32px_rgba(76,29,149,0.5)] select-none">उत्साह</h2>
               <div className="space-y-4 sm:space-y-6">
                  <p className="text-base sm:text-2xl md:text-3xl font-bold text-white leading-relaxed">
                    "Verve" is the dynamic and energetic quality of interpersonal connections.
@@ -754,7 +754,7 @@ export default function VSyncPage() {
           {/* Vibes */}
           <div className="grid lg:grid-cols-2 gap-12 lg:grid-cols-2 lg:gap-24 items-center">
             <div className="space-y-6 sm:space-y-12">
-              <h2 className="text-4xl sm:text-8xl md:text-[160px] font-black text-white leading-none tracking-tighter drop-shadow-[0_8px_32px_rgba(76,29,149,0.5)] select-none">तरंग</h2>
+              <h2 className="text-4xl sm:text-7xl md:text-[110px] font-black text-white leading-none tracking-tighter drop-shadow-[0_8px_32px_rgba(76,29,149,0.5)] select-none">तरंग</h2>
               <div className="space-y-4 sm:space-y-6">
                  <p className="text-base sm:text-2xl md:text-3xl font-bold text-white leading-relaxed">
                    "Vibes" is the emotional and intuitive energy detected in a person or setting.

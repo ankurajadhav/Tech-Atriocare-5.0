@@ -2360,7 +2360,7 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-300/15 blur-[100px] rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-8">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}

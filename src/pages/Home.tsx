@@ -431,7 +431,7 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="max-w-7xl mx-auto flex flex-col items-start justify-start text-left relative z-10 w-full pt-8 px-6 md:px-12 lg:px-16">
+        <div className="max-w-7xl mx-auto flex flex-col items-start justify-start text-left relative z-10 w-full pt-8 pb-10 sm:pb-16 px-6 md:px-12 lg:px-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -102,7 +102,7 @@ export default function FeaturedInsightsSlider({ onOpenNoviculeModal }: Featured
   return (
     <section 
       id="featured-insights" 
-      className="py-16 px-4 md:px-12 bg-gradient-to-r from-sky-50/50 via-white to-sky-50/50 relative overflow-hidden select-none border-y border-sky-100"
+      className="pt-6 pb-16 px-4 md:px-12 bg-gradient-to-r from-sky-50/50 via-white to-sky-50/50 relative overflow-hidden select-none border-y border-sky-100"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

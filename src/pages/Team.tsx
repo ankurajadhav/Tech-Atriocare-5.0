@@ -39,7 +39,7 @@ const mentors = [
   {
     name: "Dr. Santanu Kar Mahapatra",
     role: "Research Advisor | Physiology specialist",
-    image: "https://mcconline.org.in/ERPLMCC/STAFF/IMAGES/134.png?260430060718",
+    image: "https://drive.google.com/thumbnail?id=1FU6yJoJCUyHhbPkwjKANT-lLPEbTVdVh&sz=w800",
     bio: "Dr. Santanu Kar Mahapatra is an Associate Professor and Head of the Paramedical & Allied Health Science Department at Midnapore City College. He holds an M.Sc. in Human Physiology (2005) and a Ph.D. from Vidyasagar University (2010). Dr. Mahapatra specializes in Immunology, focusing on macrophage polarization and immune metabolism, as well as Physiology related to infectious diseases like Leishmania, Tuberculosis, and Malaria. He has extensive teaching experience and has worked in research roles at SCBT, SASTRA University, and Bose Institute."
   }
 ];
@@ -179,12 +179,17 @@ export default function Team() {
                 viewport={{ once: true }}
                 className="bg-white rounded-[24px] sm:rounded-[40px] p-5 sm:p-8 md:p-12 border border-brand-border shadow-soft flex flex-col md:flex-row items-center gap-6 sm:gap-12 group hover:shadow-xl transition-all"
               >
-                <div className="w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-full overflow-hidden shrink-0 border-4 sm:border-8 border-brand-teal/5 shadow-inner relative group">
+                <div className="w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-full overflow-hidden shrink-0 border-4 sm:border-8 border-brand-teal/5 shadow-inner relative group bg-slate-100">
                   <img 
                     src={mentor.image} 
                     alt={mentor.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      if (!e.currentTarget.src.includes('/api/image-proxy')) {
+                        e.currentTarget.src = `/api/image-proxy?url=${encodeURIComponent(mentor.image)}`;
+                      }
+                    }}
                   />
                   <div className="absolute inset-0 ring-1 ring-inset ring-brand-teal/10 rounded-full" />
                 </div>

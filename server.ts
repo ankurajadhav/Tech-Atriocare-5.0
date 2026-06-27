@@ -279,6 +279,43 @@ app.get("/api/video-stream", async (req, res) => {
   }
 });
 
+// Image proxy route to bypass browser CORS/referrer blocking for remote images
+app.get("/api/image-proxy", async (req, res) => {
+  const { url } = req.query;
+  if (!url || typeof url !== "string") {
+    return res.status(400).send("Image URL is required");
+  }
+
+  try {
+    const parsedUrl = new URL(url);
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": `${parsedUrl.protocol}//${parsedUrl.host}/`,
+      },
+    });
+
+    if (!response.ok) {
+      return res.status(response.status).send("Failed to fetch image from source.");
+    }
+
+    const contentType = response.headers.get("content-type") || "image/png";
+    res.setHeader("Content-Type", contentType);
+    res.setHeader("Cache-Control", "public, max-age=31536000");
+    res.setHeader("Access-Control-Allow-Origin", "*");
+
+    if (response.body) {
+      Readable.fromWeb(response.body as any).pipe(res);
+    } else {
+      res.end();
+    }
+  } catch (error) {
+    console.error("Image proxy exception:", error);
+    res.status(500).send("Image proxy failed");
+  }
+});
+
 async function startServer() {
   if (!process.env.VERCEL) {
     if (process.env.NODE_ENV !== "production") {

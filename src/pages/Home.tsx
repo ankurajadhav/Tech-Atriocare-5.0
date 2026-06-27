@@ -577,15 +577,14 @@ export default function Home() {
                 {/* Advanced Light dynamics */}
                 <motion.div
                   animate={{
-                    opacity: [0.6, 1, 0.6],
-                    scale: [1, 1.1, 1],
+                    opacity: [0.7, 1, 0.7],
                   }}
                   transition={{
-                    duration: 1.2,
+                    duration: 3,
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="absolute inset-0 bg-white/20 rounded-full blur-3xl"
+                  className="absolute inset-0 bg-white/20 rounded-full blur-2xl"
                 />
 
                 <motion.div
@@ -596,7 +595,7 @@ export default function Home() {
                     ease: "easeInOut",
                     repeatDelay: 1,
                   }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent skew-x-[45deg]"
+                  className="hidden sm:block absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent skew-x-[45deg]"
                 />
 
                 <div className="flex flex-col items-start leading-tight relative z-10 text-left">

@@ -24,7 +24,8 @@ const partners = [
   },
   {
     name: 'DST-NIDHI',
-    logo: 'https://aic.ccmb.res.in/wp-content/uploads/2023/05/DST-NIDHI_Original-Logo-V.jpg',
+    logo: '/assets/aistudio/Screenshot_2026-11-03_113327_dee9dfe7.png',
+    imgClassName: 'scale-100 group-hover:scale-105 max-h-[85%] max-w-[85%]',
   },
   {
     name: 'TATA 1MG',
@@ -78,7 +79,10 @@ export default function RecognitionsSection() {
                   <img 
                     src={partner.logo} 
                     alt={partner.name} 
-                    className="w-full h-full object-contain filter contrast-[1.05] transition-transform duration-500 scale-[1.2] group-hover:scale-[1.3]"
+                    className={cn(
+                      "w-full h-full object-contain filter contrast-[1.05] transition-transform duration-500 scale-[1.2] group-hover:scale-[1.3]",
+                      partner.imgClassName
+                    )}
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                        (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${partner.name[0]}&background=f8fafc&color=64748b&size=128&bold=true`;

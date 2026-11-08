@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '../lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
 import NoviculeInfoModal from './NoviculeInfoModal';
+import companyLogo from '../assets/images/logo.webp';
 
 let globalMobileMenuOpen = false;
 const mobileMenuListeners = new Set<(open: boolean) => void>();
@@ -224,20 +225,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         )}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between lg:justify-start gap-1 lg:gap-12 w-full">
-          <Link to="/" className="flex items-center gap-3 group shrink-0">
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
             <div className={cn(
-              "w-14 h-14 md:w-16 md:h-16 flex items-center justify-center transition-all duration-500 select-none",
+              "w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center transition-all duration-500 select-none shrink-0",
               isScrolled || location.pathname !== '/' ? "scale-100" : "scale-105"
             )}>
               <img 
-                src="https://www.techatriocare.com/logo.webp" 
+                src={companyLogo} 
                 alt="Tech AtrioCare Logo" 
-                className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
+                className="w-full h-full object-contain shrink-0 group-hover:scale-110 transition-transform duration-500"
                 referrerPolicy="no-referrer"
+                fetchPriority="high"
+                decoding="sync"
               />
             </div>
-            <div className="flex flex-col">
-              <span className="text-lg md:text-xl font-extrabold font-display tracking-tight uppercase leading-none text-slate-950 group-hover:text-brand-teal transition-all duration-500">
+            <div className="flex flex-col min-w-0">
+              <span className="text-base sm:text-lg md:text-xl font-extrabold font-display tracking-tight uppercase leading-none text-slate-950 group-hover:text-brand-teal transition-all duration-500 whitespace-nowrap">
                 Tech AtrioCare
               </span>
               <span className="text-[10px] font-bold tracking-wide mt-1 text-slate-500 group-hover:text-brand-teal transition-all duration-500 leading-none capitalize italic hidden xl:block">
@@ -496,10 +499,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Link to="/" className="flex items-center gap-3">
               <div className="w-10 h-10 flex items-center justify-center overflow-hidden">
                 <img 
-                  src="https://www.techatriocare.com/logo.webp" 
+                  src={companyLogo} 
                   alt="Tech AtrioCare Logo" 
                   className="w-full h-full object-contain"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
                 />
               </div>
               <span className="text-lg font-bold font-display tracking-tight text-[#1E293B] uppercase">

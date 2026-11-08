@@ -10,6 +10,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+app.use(express.static(path.join(process.cwd(), "public")));
 
 // Shared in-memory cache for resolved Google Drive download URLs with a dynamic TTL to avoid stale links and rate limits
 const directUrlCache = new Map<string, { url: string; headers: Record<string, string>; timestamp: number }>();

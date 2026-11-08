@@ -65,6 +65,7 @@ import aboutOurVision from "../assets/images/about_our_vision_1779734494009.png"
 import clinicalLabDoctors from "../assets/images/clinical_lab_doctors_1779800211382.png";
 import neuralAnalysisGirl from "../assets/images/neural_analysis_girl_1779800243404.png";
 import futuristicLungHero from "../assets/images/futuristic_lung_hero_1779727247618.png";
+import companyLogo from "../assets/images/logo.webp";
 
 interface InteractiveCardProps {
   src: string;
@@ -445,7 +446,7 @@ export default function Home() {
               transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
               className="mb-8 relative flex flex-col items-start gap-4"
             >
-              <div className="relative w-48 h-48 md:w-56 md:h-56 flex items-center justify-center">
+              <div className="relative w-44 h-44 sm:w-48 sm:h-48 md:w-56 md:h-56 flex items-center justify-center">
                 {/* 1. Pulse glowing background halo */}
                 <motion.div
                   animate={{
@@ -499,10 +500,10 @@ export default function Home() {
                 <motion.div
                   whileHover={{ scale: 1.08 }}
                   transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                  className="w-44 h-44 md:w-52 md:h-52 flex items-center justify-center relative z-10 select-none group"
+                  className="w-40 h-40 sm:w-44 sm:h-44 md:w-52 md:h-52 flex items-center justify-center relative z-10 select-none group isolate"
                 >
                   {/* Elegant soft white glowing backdrop to define a clean base, preventing any discolored or blackish tints under multiply blend mode */}
-                  <div className="absolute w-36 h-36 bg-white rounded-full blur-xl opacity-95 pointer-events-none z-0" />
+                  <div className="absolute w-32 h-32 sm:w-36 sm:h-36 bg-white rounded-full blur-xl opacity-95 pointer-events-none z-0" />
 
                   {/* Actual high-quality logo image in natural view with blend mode and drop shadow */}
                   <img
@@ -511,6 +512,10 @@ export default function Home() {
                     className="w-full h-full object-contain relative z-10 transition-transform duration-700 ease-out group-hover:scale-110 drop-shadow-[0_12px_32px_rgba(0,96,100,0.18)]"
                     style={{ mixBlendMode: 'multiply' }}
                     referrerPolicy="no-referrer"
+                    fetchPriority="high"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = companyLogo;
+                    }}
                   />
                 </motion.div>
               </div>
@@ -637,10 +642,11 @@ export default function Home() {
               >
                 <div className="w-11 h-11 flex items-center justify-center overflow-hidden shrink-0">
                   <img
-                    src="https://www.techatriocare.com/logo.webp"
+                    src={companyLogo}
                     alt="AtrioCare Shield"
                     className="w-full h-full object-contain"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
                   />
                 </div>
                 <div className="text-left">
@@ -2465,11 +2471,12 @@ export default function Home() {
               className="w-24 h-24 md:w-32 md:h-32 mb-8 flex items-center justify-center select-none overflow-hidden"
             >
               <img
-                src="https://www.techatriocare.com/logo.webp"
+                src={companyLogo}
                 alt="AtrioCare Logo"
                 className="w-full h-full object-contain scale-[1.12] translate-y-[4%]"
                 style={{ clipPath: "inset(0% 0% 23% 0%)" }}
                 referrerPolicy="no-referrer"
+                loading="lazy"
               />
             </motion.div>
             <h2 className="text-2xl sm:text-5xl md:text-7xl lg:text-8xl font-bold font-display mb-8 tracking-tighter leading-none">

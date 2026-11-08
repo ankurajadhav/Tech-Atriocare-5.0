@@ -441,7 +441,7 @@ export default function AirwayCheckup() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F0FBFA] pt-20 sm:pt-32 pb-20 sm:pb-32">
+    <div className="min-h-screen bg-[#F0FBFA] pt-28 sm:pt-36 pb-20 sm:pb-32">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         {/* Progress Tracker */}
         {step !== 'landing' && step !== 'results' && (
@@ -472,8 +472,8 @@ export default function AirwayCheckup() {
                 <p className="text-[#0097A7] font-black tracking-[0.2em] text-[10px] sm:text-xs uppercase mb-1 sm:mb-2">
                   1-Minute
                 </p>
-                <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-[#006D77] tracking-tight uppercase leading-[1.1] sm:leading-[1.1]">
-                  Digital Airway <br className="hidden md:block" /> Checkup
+                <h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-[#006D77] tracking-tight uppercase leading-[1.1]">
+                  Digital Airway <br /> Checkup
                 </h1>
                 <p className="text-slate-500 font-bold tracking-widest text-[9px] sm:text-[10px] uppercase">
                   Revolutionizing Preventive Lung Care

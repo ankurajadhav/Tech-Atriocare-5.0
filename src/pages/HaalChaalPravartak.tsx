@@ -249,9 +249,9 @@ export default function HaalChaalPravartak() {
       </section>
 
       {/* SECTION 2: The Reality */}
-      <section className="py-16 md:py-24 px-6 md:px-12 lg:px-24 mb-10 relative z-10">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="text-center mb-16 md:mb-20 relative">
+      <section className="py-12 md:py-16 px-4 sm:px-8 md:px-12 mb-8 relative z-10">
+        <div className="max-w-[1180px] mx-auto">
+          <div className="text-center mb-10 md:mb-12 relative">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15vw] font-black text-slate-900/5 whitespace-nowrap z-0 pointer-events-none uppercase tracking-tighter">
               Reality
             </div>
@@ -259,9 +259,9 @@ export default function HaalChaalPravartak() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative z-10 bg-white/40 backdrop-blur-md border border-white p-2 rounded-full inline-flex mx-auto mb-6 shadow-sm"
+              className="relative z-10 bg-white/40 backdrop-blur-md border border-white p-1.5 sm:p-2 rounded-full inline-flex mx-auto mb-4 sm:mb-6 shadow-sm"
             >
-              <div className="bg-brand-teal/10 px-6 py-1.5 rounded-full text-brand-teal font-black text-xs uppercase tracking-widest">
+              <div className="bg-brand-teal/10 px-5 sm:px-6 py-1.5 rounded-full text-brand-teal font-black text-xs uppercase tracking-widest">
                 Air Quality & Health
               </div>
             </motion.div>
@@ -270,14 +270,14 @@ export default function HaalChaalPravartak() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-3xl md:text-5xl lg:text-6xl font-black text-brand-blue mb-6 font-display tracking-tight relative z-10 uppercase leading-[1.1]"
+              className="text-2xl sm:text-4xl lg:text-5xl font-black text-brand-blue mb-4 font-display tracking-tight relative z-10 uppercase leading-[1.15]"
             >
               The Air Around You Is Affecting <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-teal to-brand-blue">
                 You More Than You Think
               </span>
             </motion.h2>
-            <p className="text-xs sm:text-base md:text-xl text-slate-600 max-w-3xl mx-auto font-medium leading-relaxed relative z-10">
+            <p className="text-xs sm:text-base md:text-lg text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed relative z-10">
               India is home to some of the most polluted air on the planet.
               Millions of people from urban professionals to children breathe
               air laced with particulate matter, dust, and pollutants every
@@ -285,7 +285,7 @@ export default function HaalChaalPravartak() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-12 gap-6 lg:gap-8 mb-12 md:mb-16 relative">
+          <div className="grid md:grid-cols-12 gap-5 lg:gap-6 mb-8 md:mb-10 relative">
             {/* Background Blob for Bento */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[120%] bg-white/40 blur-3xl rounded-full pointer-events-none z-0"></div>
 
@@ -293,28 +293,28 @@ export default function HaalChaalPravartak() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="md:col-span-8 bg-white/80 backdrop-blur-xl rounded-[24px] sm:rounded-[32px] md:rounded-[40px] p-5 sm:p-8 md:p-10 lg:p-12 border border-white shadow-2xl shadow-slate-200/50 flex flex-col justify-between overflow-hidden relative group z-10 hover:bg-white transition-all duration-500"
+              className="md:col-span-8 bg-white/80 backdrop-blur-xl rounded-[24px] sm:rounded-[32px] p-5 sm:p-7 lg:p-8 border border-white shadow-xl shadow-slate-200/50 flex flex-col justify-between overflow-hidden relative group z-10 hover:bg-white transition-all duration-500"
             >
-              <div className="absolute -right-20 -top-20 w-96 h-96 bg-brand-teal/5 rounded-full blur-3xl group-hover:bg-brand-teal/10 transition-colors duration-1000 pointer-events-none" />
+              <div className="absolute -right-20 -top-20 w-80 h-80 bg-brand-teal/5 rounded-full blur-3xl group-hover:bg-brand-teal/10 transition-colors duration-1000 pointer-events-none" />
               <div className="relative z-10 h-full flex flex-col">
                 <div className="mb-auto flex justify-between items-start">
                   <div>
-                    <div className="w-16 h-16 bg-slate-50 flex items-center justify-center rounded-2xl mb-6 border border-slate-100">
-                      <Wind className="w-8 h-8 text-brand-teal" />
+                    <div className="w-12 h-12 bg-slate-50 flex items-center justify-center rounded-xl mb-4 border border-slate-100">
+                      <Wind className="w-6 h-6 text-brand-teal" />
                     </div>
-                    <h3 className="text-2xl font-bold text-brand-blue mb-2 font-display">
+                    <h3 className="text-xl font-bold text-brand-blue mb-1.5 font-display">
                       Global Impact
                     </h3>
-                    <p className="text-slate-500 font-medium text-xs sm:text-sm lg:text-lg max-w-sm">
+                    <p className="text-slate-500 font-medium text-xs sm:text-sm max-w-sm">
                       Breathe air that exceeds WHO safety limits
                     </p>
                   </div>
                 </div>
-                <div className="mt-10 lg:mt-12">
-                  <h2 className="text-3xl sm:text-5xl lg:text-7xl font-black text-brand-blue font-display tracking-tighter leading-none mb-3">
+                <div className="mt-6 lg:mt-8">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-blue font-display tracking-tighter leading-none mb-2">
                     9<span className="text-brand-teal">/</span>10
                   </h2>
-                  <p className="text-brand-teal font-black uppercase tracking-[0.2em] text-sm md:text-base">
+                  <p className="text-brand-teal font-black uppercase tracking-[0.2em] text-xs sm:text-sm">
                     People Worldwide
                   </p>
                 </div>
@@ -326,21 +326,21 @@ export default function HaalChaalPravartak() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="md:col-span-4 bg-gradient-to-br from-brand-blue to-slate-900 rounded-[24px] sm:rounded-[32px] md:rounded-[40px] p-5 sm:p-8 md:p-10 border border-brand-blue/50 shadow-2xl relative overflow-hidden group z-10 animate-fade-in"
+              className="md:col-span-4 bg-gradient-to-br from-brand-blue to-slate-900 rounded-[24px] sm:rounded-[32px] p-5 sm:p-7 lg:p-8 border border-brand-blue/50 shadow-xl relative overflow-hidden group z-10 animate-fade-in"
             >
               <div className="absolute bottom-0 right-0 w-64 h-64 bg-brand-teal/20 blur-[80px] rounded-full pointer-events-none"></div>
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div>
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2 font-display">
+                  <h3 className="text-lg lg:text-xl font-bold text-white mb-1.5 font-display">
                     Indian Cities
                   </h3>
-                  <p className="text-brand-teal-light/80 font-medium text-xs sm:text-sm md:text-base">
+                  <p className="text-brand-teal-light/80 font-medium text-xs sm:text-sm">
                     Of the world's most polluted cities are in India.
                   </p>
                 </div>
-                <h2 className="text-3xl sm:text-5xl lg:text-7xl font-black text-white font-display tracking-tighter mt-10 leading-none">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white font-display tracking-tighter mt-6 lg:mt-8 leading-none">
                   21
-                  <span className="text-brand-teal-light/50 text-3xl">/30</span>
+                  <span className="text-brand-teal-light/50 text-2xl">/30</span>
                 </h2>
               </div>
             </motion.div>
@@ -350,18 +350,18 @@ export default function HaalChaalPravartak() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="md:col-span-5 bg-white/80 backdrop-blur-xl rounded-[24px] sm:rounded-[32px] md:rounded-[40px] p-5 sm:p-8 md:p-10 border border-white shadow-xl flex flex-col justify-center gap-5 z-10 group hover:bg-white transition-all duration-500"
+              className="md:col-span-5 bg-white/80 backdrop-blur-xl rounded-[24px] sm:rounded-[32px] p-5 sm:p-6 lg:p-7 border border-white shadow-xl flex flex-col justify-center gap-4 z-10 group hover:bg-white transition-all duration-500"
             >
-              <div className="w-20 h-20 rounded-2xl bg-slate-50 flex items-center justify-center shrink-0 border border-slate-100 group-hover:bg-brand-teal/5 transition-colors">
-                <span className="text-3xl font-black text-brand-teal font-display">
+              <div className="w-14 h-14 rounded-xl bg-slate-50 flex items-center justify-center shrink-0 border border-slate-100 group-hover:bg-brand-teal/5 transition-colors">
+                <span className="text-2xl font-black text-brand-teal font-display">
                   2nd
                 </span>
               </div>
               <div>
-                <h4 className="font-bold text-brand-blue text-xl leading-tight mb-2 font-display">
+                <h4 className="font-bold text-brand-blue text-base sm:text-lg leading-tight mb-1.5 font-display">
                   Leading risk factor globally
                 </h4>
-                <p className="text-slate-500 font-medium text-xs sm:text-sm md:text-base">
+                <p className="text-slate-500 font-medium text-xs sm:text-sm">
                   For non-communicable diseases.
                 </p>
               </div>
@@ -372,24 +372,24 @@ export default function HaalChaalPravartak() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="md:col-span-7 bg-white/80 backdrop-blur-xl rounded-[24px] sm:rounded-[32px] md:rounded-[40px] p-5 sm:p-8 md:p-10 border border-white shadow-xl flex flex-col md:flex-row items-center gap-6 sm:gap-8 justify-between relative overflow-hidden z-10 group hover:bg-white transition-all duration-500"
+              className="md:col-span-7 bg-white/80 backdrop-blur-xl rounded-[24px] sm:rounded-[32px] p-5 sm:p-6 lg:p-7 border border-white shadow-xl flex flex-col md:flex-row items-center gap-5 sm:gap-6 justify-between relative overflow-hidden z-10 group hover:bg-white transition-all duration-500"
             >
               <div className="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-slate-50/50 to-transparent pointer-events-none group-hover:from-slate-100/50 transition-colors" />
               <div className="relative z-10">
-                <h4 className="text-2xl md:text-3xl font-black text-brand-blue mb-3 font-display uppercase tracking-tight">
+                <h4 className="text-lg sm:text-xl md:text-2xl font-black text-brand-blue mb-2 font-display uppercase tracking-tight">
                   Most at Risk <br className="hidden md:inline" />& Unaware
                 </h4>
-                <p className="text-slate-600 font-medium text-xs sm:text-sm md:text-base">
+                <p className="text-slate-600 font-medium text-xs sm:text-sm">
                   Children, the elderly, and outdoor workers.
                 </p>
               </div>
-              <div className="flex -space-x-4 relative z-10">
+              <div className="flex -space-x-3 relative z-10">
                 {[Users, Heart, Stethoscope].map((Icon, i) => (
                   <div
                     key={i}
-                    className="w-14 h-14 rounded-full bg-white border-4 border-slate-50 flex items-center justify-center shadow-lg transform hover:-translate-y-2 transition-transform duration-300"
+                    className="w-11 h-11 rounded-full bg-white border-2 border-slate-50 flex items-center justify-center shadow-md transform hover:-translate-y-1 transition-transform duration-300"
                   >
-                    <Icon className="w-5 h-5 text-brand-teal" />
+                    <Icon className="w-4 h-4 text-brand-teal" />
                   </div>
                 ))}
               </div>
@@ -400,10 +400,10 @@ export default function HaalChaalPravartak() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-r from-rose-50 to-orange-50 border border-white p-5 sm:p-8 md:p-10 rounded-[24px] sm:rounded-[32px] md:rounded-[40px] text-center max-w-4xl mx-auto shadow-xl relative overflow-hidden"
+            className="bg-gradient-to-r from-rose-50 to-orange-50 border border-white p-5 sm:p-6 lg:p-7 rounded-[20px] sm:rounded-[28px] text-center max-w-3xl mx-auto shadow-lg relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/50 blur-3xl rounded-full pointer-events-none" />
-            <h4 className="text-2xl lg:text-3xl font-black text-brand-blue tracking-tight font-display leading-[1.3] relative z-10">
+            <h4 className="text-lg sm:text-xl lg:text-2xl font-black text-brand-blue tracking-tight font-display leading-[1.3] relative z-10">
               Pollution doesn't just affect your lungs on bad AQI days.
               <br className="hidden md:block" />
               <span className="text-rose-500">
@@ -417,7 +417,7 @@ export default function HaalChaalPravartak() {
       </section>
 
       {/* SECTION 3: UAO */}
-      <section className="px-4 sm:px-12 lg:px-24 mb-12 sm:mb-32 max-w-[1400px] mx-auto relative z-10">
+      <section className="px-4 sm:px-8 md:px-12 mb-10 sm:mb-20 max-w-[1180px] mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-24 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -572,83 +572,83 @@ export default function HaalChaalPravartak() {
       </section>
 
       {/* SECTION 5: Technology */}
-      <section className="py-12 md:py-24 px-4 sm:px-12 lg:px-24 mb-6 sm:mb-10 relative z-10">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="text-center mb-10 sm:mb-20">
-            <h2 className="text-2xl sm:text-5xl lg:text-6xl font-black text-brand-blue mb-4 sm:mb-8 font-display uppercase tracking-tighter leading-none">
+      <section className="py-10 md:py-16 px-4 sm:px-8 md:px-12 mb-6 sm:mb-8 relative z-10">
+        <div className="max-w-[1180px] mx-auto">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-brand-blue mb-3 sm:mb-4 font-display uppercase tracking-tighter leading-none">
               The Science <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-teal to-brand-blue">
                 Behind the Hum
               </span>
             </h2>
-            <div className="inline-block px-4 py-2 sm:px-6 sm:py-3 bg-brand-teal/10 rounded-full mb-6 sm:mb-8 border border-brand-teal/20">
+            <div className="inline-block px-4 py-1.5 sm:px-5 sm:py-2 bg-brand-teal/10 rounded-full mb-4 sm:mb-6 border border-brand-teal/20">
               <p className="text-brand-teal font-black uppercase tracking-wider text-xs sm:text-sm">
                 Digital Signal Processing meets Respiratory Medicine
               </p>
             </div>
-            <p className="text-slate-600 text-xs sm:text-lg md:text-xl font-medium max-w-4xl mx-auto leading-relaxed">
+            <p className="text-slate-600 text-xs sm:text-base md:text-lg font-medium max-w-3xl mx-auto leading-relaxed">
               When you hum, your vocal cords, nasal passages, and upper airway
               work together to produce a unique acoustic signal. Our proprietary
               DSP engine decodes what your airways are telling us.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-10">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white/80 backdrop-blur-xl rounded-[24px] sm:rounded-[32px] md:rounded-[40px] p-5 sm:p-10 lg:p-12 border border-white shadow-2xl flex flex-col items-start relative overflow-hidden group hover:bg-white transition-all duration-500"
+              className="bg-white/80 backdrop-blur-xl rounded-[24px] sm:rounded-[32px] p-5 sm:p-7 lg:p-8 border border-white shadow-xl flex flex-col items-start relative overflow-hidden group hover:bg-white transition-all duration-500"
             >
               <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-brand-teal/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
-              <div className="w-16 h-16 bg-slate-50 border border-slate-100 rounded-[22px] flex items-center justify-center mb-6 shadow-sm relative z-10">
-                <Activity className="w-8 h-8 text-brand-teal" />
+              <div className="w-12 h-12 bg-slate-50 border border-slate-100 rounded-xl flex items-center justify-center mb-4 shadow-sm relative z-10">
+                <Activity className="w-6 h-6 text-brand-teal" />
               </div>
-              <h3 className="text-xl sm:text-3xl font-black text-brand-blue mb-2 sm:mb-3 font-display uppercase tracking-tight relative z-10">
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-black text-brand-blue mb-2 font-display uppercase tracking-tight relative z-10">
                 Airway Patency Score
               </h3>
-              <p className="text-slate-600 text-xs sm:text-sm lg:text-lg leading-relaxed mb-4 sm:mb-6 font-medium relative z-10 max-w-lg">
+              <p className="text-slate-600 text-xs sm:text-sm md:text-base leading-relaxed mb-4 font-medium relative z-10 max-w-lg">
                 Airway patency refers to how open and unobstructed your airway
                 is. Our algorithm generates a patency score by analysing the
                 harmonic content and resonance characteristics of your humming
                 signal.
               </p>
 
-              <div className="bg-slate-50/80 p-4 sm:p-6 rounded-[20px] sm:rounded-[24px] border border-slate-100 w-full relative z-10 mt-auto">
-                <h4 className="font-black text-brand-blue mb-4 uppercase tracking-[0.2em] text-xs">
+              <div className="bg-slate-50/80 p-3.5 sm:p-4 rounded-xl border border-slate-100 w-full relative z-10 mt-auto">
+                <h4 className="font-black text-brand-blue mb-2.5 uppercase tracking-[0.2em] text-xs">
                   Status Categories
                 </h4>
-                <div className="grid gap-3">
-                  <div className="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                    <div className="flex items-center gap-4">
-                      <div className="w-3.5 h-3.5 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.5)]"></div>
-                      <span className="font-bold text-slate-800 text-base md:text-lg">
+                <div className="grid gap-2">
+                  <div className="flex items-center justify-between p-2.5 sm:p-3 bg-white rounded-lg shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                    <div className="flex items-center gap-3">
+                      <div className="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+                      <span className="font-bold text-slate-800 text-sm sm:text-base">
                         Optimal
                       </span>
                     </div>
-                    <CheckCircle2 className="w-5.5 h-5.5 text-emerald-500" />
+                    <CheckCircle2 className="w-4.5 h-4.5 text-emerald-500" />
                   </div>
-                  <div className="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                    <div className="flex items-center gap-4">
-                      <div className="w-3.5 h-3.5 rounded-full bg-amber-500 shadow-[0_0_12px_rgba(245,158,11,0.5)]"></div>
-                      <span className="font-bold text-slate-800 text-base md:text-lg">
+                  <div className="flex items-center justify-between p-2.5 sm:p-3 bg-white rounded-lg shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                    <div className="flex items-center gap-3">
+                      <div className="w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]"></div>
+                      <span className="font-bold text-slate-800 text-sm sm:text-base">
                         Less Optimal
                       </span>
                     </div>
-                    <Activity className="w-5.5 h-5.5 text-amber-500" />
+                    <Activity className="w-4.5 h-4.5 text-amber-500" />
                   </div>
-                  <div className="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                    <div className="flex items-center gap-4">
-                      <div className="w-3.5 h-3.5 rounded-full bg-rose-500 shadow-[0_0_12px_rgba(244,63,94,0.5)]"></div>
-                      <span className="font-bold text-slate-800 text-base md:text-lg">
+                  <div className="flex items-center justify-between p-2.5 sm:p-3 bg-white rounded-lg shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                    <div className="flex items-center gap-3">
+                      <div className="w-3 h-3 rounded-full bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.5)]"></div>
+                      <span className="font-bold text-slate-800 text-sm sm:text-base">
                         Least Optimal
                       </span>
                     </div>
-                    <ShieldAlert className="w-5.5 h-5.5 text-rose-500" />
+                    <ShieldAlert className="w-4.5 h-4.5 text-rose-500" />
                   </div>
                 </div>
               </div>
-              <p className="text-xs text-slate-400 font-bold mt-6 text-center w-full relative z-10 uppercase tracking-widest">
+              <p className="text-[11px] text-slate-400 font-bold mt-4 text-center w-full relative z-10 uppercase tracking-widest">
                 Wellness assessment tool only. Not a diagnostic device.
               </p>
             </motion.div>
@@ -658,22 +658,22 @@ export default function HaalChaalPravartak() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              whileHover={{ y: -6, scale: 1.01, boxShadow: "0 20px 40px rgba(0, 96, 100, 0.15)" }}
-              className="bg-gradient-to-br from-brand-blue to-slate-900 rounded-[24px] sm:rounded-[40px] p-5 sm:p-10 lg:p-12 border border-brand-blue/30 text-white shadow-2xl relative overflow-hidden group"
+              whileHover={{ y: -4, scale: 1.005, boxShadow: "0 16px 32px rgba(0, 96, 100, 0.12)" }}
+              className="bg-gradient-to-br from-brand-blue to-slate-900 rounded-[24px] sm:rounded-[32px] p-5 sm:p-7 lg:p-8 border border-brand-blue/30 text-white shadow-xl relative overflow-hidden group"
             >
               <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
-              <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-teal/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-teal/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
 
               <div className="relative z-10 flex flex-col h-full">
-                <div className="w-16 h-16 bg-white/5 rounded-[22px] flex items-center justify-center mb-6 border border-white/10 backdrop-blur-md">
-                  <Cpu className="w-8 h-8 text-brand-teal-light" />
+                <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-4 border border-white/10 backdrop-blur-md">
+                  <Cpu className="w-6 h-6 text-brand-teal-light" />
                 </div>
-                <h3 className="text-xl sm:text-3xl font-black text-white mb-4 sm:mb-6 font-display uppercase tracking-tight">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-black text-white mb-3 font-display uppercase tracking-tight">
                   What the Report <br />
                   Tells You
                 </h3>
 
-                <ul className="space-y-3.5 mb-auto">
+                <ul className="space-y-2 mb-auto">
                   {[
                     {
                       title: "Airway Patency Score",
@@ -698,14 +698,14 @@ export default function HaalChaalPravartak() {
                   ].map((item, idx) => (
                     <li
                       key={idx}
-                      className="flex items-start gap-4 p-4 md:p-5 bg-white/5 rounded-[20px] border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors"
+                      className="flex items-start gap-3 p-2.5 sm:p-3 bg-white/5 rounded-xl border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors"
                     >
-                      <CheckCircle2 className="w-6 h-6 text-brand-teal-light shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-5 h-5 text-brand-teal-light shrink-0 mt-0.5" />
                       <div>
-                        <p className="font-bold text-white text-lg leading-tight mb-2">
+                        <p className="font-bold text-white text-sm sm:text-base leading-tight mb-0.5">
                           {item.title}
                         </p>
-                        <p className="text-slate-400 font-medium text-sm">
+                        <p className="text-slate-300/80 font-medium text-xs sm:text-sm">
                           {item.desc}
                         </p>
                       </div>
@@ -719,8 +719,8 @@ export default function HaalChaalPravartak() {
       </section>
 
       {/* SECTION 6: How it works */}
-      <section className="py-10 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-12 lg:px-24 mb-10 sm:mb-16 relative z-10 bg-white">
-        <div className="max-w-[1400px] mx-auto">
+      <section className="py-10 sm:py-16 md:py-20 px-4 sm:px-8 md:px-12 mb-8 sm:mb-12 relative z-10 bg-white">
+        <div className="max-w-[1180px] mx-auto">
           <div className="text-center mb-12 sm:mb-28">
             <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-slate-100 rounded-full mb-6 sm:mb-8 border border-slate-200">
               <Zap className="w-4 h-4 text-brand-teal" />
@@ -1056,36 +1056,36 @@ export default function HaalChaalPravartak() {
       </section>
 
       {/* SECTION 9: Footer CTA */}
-      <section className="text-center mx-4 sm:mx-auto px-4 sm:px-6 md:px-12 py-10 sm:py-24 md:py-40 max-w-[1200px] mb-10 sm:mb-20 bg-gradient-to-br from-brand-blue to-slate-900 border border-brand-blue/50 rounded-[28px] sm:rounded-[56px] md:rounded-[80px] relative z-10 overflow-hidden shadow-2xl">
+      <section className="text-center mx-4 sm:mx-auto px-4 sm:px-6 md:px-10 py-8 sm:py-14 md:py-16 max-w-[1000px] mb-8 sm:mb-16 bg-gradient-to-br from-brand-blue to-slate-900 border border-brand-blue/50 rounded-[24px] sm:rounded-[36px] md:rounded-[44px] relative z-10 overflow-hidden shadow-2xl">
         <div className="absolute top-0 right-0 w-full md:w-2/3 h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-teal/10 via-transparent to-transparent pointer-events-none" />
         <div className="absolute -bottom-48 -left-48 w-96 h-96 bg-brand-teal/20 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-px bg-gradient-to-r from-transparent via-brand-teal to-transparent opacity-50 relative z-20" />
 
         <div className="relative z-20">
-          <h2 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 sm:mb-10 font-display uppercase tracking-tighter leading-[1.1] sm:leading-[0.9]">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-white mb-3 sm:mb-5 font-display uppercase tracking-tight leading-tight">
             Start Your Airway <br />
             Journey Today
           </h2>
-          <p className="text-xs sm:text-2xl md:text-3xl text-slate-300 mb-8 sm:mb-16 font-medium max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-lg md:text-xl text-slate-300 mb-6 sm:mb-8 font-medium max-w-2xl mx-auto leading-relaxed">
             No equipment. No clinic visit. Just your voice, your phone, and 7
             seconds.
           </p>
 
           <Link
             to="/checkup"
-            className="inline-flex px-6 py-4 sm:px-14 sm:py-7 rounded-2xl sm:rounded-[2rem] bg-brand-teal text-white font-black tracking-[0.2em] text-xs sm:text-sm uppercase hover:bg-white hover:text-brand-blue transition-all shadow-[0_20px_50px_-15px_rgba(0,151,167,0.6)] hover:shadow-[0_20px_50px_-10px_rgba(0,151,167,0.8)] mb-8 sm:mb-20 gap-3 sm:gap-5 items-center group hover:-translate-y-2"
+            className="inline-flex px-6 py-3.5 sm:px-10 sm:py-4 rounded-xl sm:rounded-full bg-brand-teal text-white font-black tracking-[0.2em] text-xs sm:text-sm uppercase hover:bg-white hover:text-brand-blue transition-all shadow-[0_15px_35px_-10px_rgba(0,151,167,0.5)] hover:shadow-[0_20px_45px_-10px_rgba(0,151,167,0.7)] mb-6 sm:mb-10 gap-3 items-center group hover:-translate-y-1"
           >
             Try Haal-Chaal Pravartak
-            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-brand-blue/20 transition-colors">
-              <MoveRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform text-white group-hover:text-brand-blue" />
+            <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-brand-blue/20 transition-colors">
+              <MoveRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-white group-hover:text-brand-blue" />
             </div>
           </Link>
 
-          <div className="text-slate-400 font-medium space-y-3 sm:space-y-6 pt-8 sm:pt-16 border-t border-white/10 w-full max-w-xl mx-auto">
-            <p className="text-brand-teal-light uppercase tracking-[0.3em] font-black text-sm">
+          <div className="text-slate-400 font-medium space-y-2 sm:space-y-3 pt-5 sm:pt-7 border-t border-white/10 w-full max-w-lg mx-auto">
+            <p className="text-brand-teal-light uppercase tracking-[0.3em] font-black text-xs sm:text-sm">
               Breathe Strong. Live Strong.
             </p>
-            <p className="text-sm font-bold text-slate-400 uppercase tracking-[0.2em]">
+            <p className="text-xs sm:text-sm font-bold text-slate-400 uppercase tracking-[0.2em]">
               By Tech AtrioCare Private Limited: An Atrium for Innovation
             </p>
           </div>
